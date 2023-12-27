@@ -30,6 +30,12 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "react-hooks/exhaustive-deps": 0,
     "react/display-name": 0,
     "react/no-unknown-property": "off",
