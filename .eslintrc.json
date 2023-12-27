@@ -20,7 +20,7 @@
   },
   "rules": {
     "no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-imports": "warn",
     "unused-imports/no-unused-vars": [
       "warn",
       {
@@ -34,8 +34,8 @@
     "react/display-name": 0,
     "react/no-unknown-property": "off",
     "@next/next/no-img-element": 0,
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn"
   },
   "globals": {
     "React": "writable"
