@@ -30,6 +30,13 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "**/*.ts", "**/*.tsx", "vite-env.d.ts"],
+  "include": [
+    "src",
+    "**/*.ts",
+    "**/*.tsx",
+    "vite-env.d.ts",
+    "tailwind.config.js",
+    "postcss.config.js"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
