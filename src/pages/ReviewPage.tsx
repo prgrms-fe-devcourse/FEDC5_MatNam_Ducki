@@ -1,9 +1,29 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 export default function ReviewPage() {
   const [image, setImage] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const elementRef = useRef<HTMLDivElement>(null);
+
+  const createURL = (selectedFile: File | null) => {
+    if (!selectedFile) {
+      return '';
+    }
+
+    return URL.createObjectURL(selectedFile);
+  };
+
+  const handleImageFilesChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    if (!event.target.files) {
+      return;
+    }
+
+    setImage(createURL(event.target.files[0]));
+    setFile(event.target.files[0]);
+  };
 
   const handleImageInputClick = () => {
     if (!imageInputRef.current) {
@@ -27,6 +47,7 @@ export default function ReviewPage() {
             <section className="mb-[1.63rem] flex gap-[0.81rem] overflow-auto whitespace-nowrap">
               <input
                 ref={imageInputRef}
+                onChange={handleImageFilesChange}
                 className="hidden border-[1.5px] border-gray-600"
                 type="file"
                 accept="image/*"
