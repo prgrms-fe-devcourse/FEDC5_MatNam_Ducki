@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import React, { useRef, useState } from 'react';
 
 export default function ReviewPage() {
@@ -34,43 +35,32 @@ export default function ReviewPage() {
   };
   return (
     <>
-      <article className="relative bg-gray-100 p-5">
+      <article css={articleStyle}>
         <form>
-          <section className="pb-5">
-            <p className="mb-2">채널 선택</p>
+          <section>
+            <p>채널 선택</p>
           </section>
           <section className="relative">
-            <input
-              placeholder="제목을 입력해주세요."
-              className="border-0.5 mb-5 w-full border-gray-600"
-            />
-            <section className="mb-[1.63rem] flex gap-[0.81rem] overflow-auto whitespace-nowrap">
+            <input css={titleInputStyle} placeholder="제목을 입력해주세요." />
+            <section css={sectionStyle}>
               <input
                 ref={imageInputRef}
                 onChange={handleImageFilesChange}
-                className="hidden border-[1.5px] border-gray-600"
+                css={imageInputStyle}
                 type="file"
                 accept="image/*"
               />
               {image ? (
                 <div ref={elementRef} className="w-full">
-                  <div className="relative aspect-[5/3] w-full flex-shrink-0 overflow-hidden rounded-xl border-[1.5px] border-gray-600 bg-white">
-                    <img
-                      className="aspect-[5/3] w-full object-cover"
-                      src={image}
-                      alt="이미지 미리보기"
-                    />
-                    <button
-                      type="button"
-                      className="absolute bottom-1 right-1 flex h-12 w-12 items-center justify-center rounded-full bg-white">
+                  <div css={imageContainerStyle}>
+                    <img css={imageStyle} src={image} alt="이미지 미리보기" />
+                    <button type="button" css={imageButtonStyle}>
                       이미지 버튼
                     </button>
                   </div>
                 </div>
               ) : (
-                <div
-                  onClick={handleImageInputClick}
-                  className="flex aspect-[5/3] w-full flex-shrink-0 flex-col items-center justify-center rounded-[0.3125rem] border-[1.5px] border-gray-600 bg-white">
+                <div onClick={handleImageInputClick} css={addImageStyle}>
                   <span className="text-[0.875rem] text-gray-400">
                     사진 추가
                   </span>
@@ -80,14 +70,118 @@ export default function ReviewPage() {
             <textarea
               name="content"
               placeholder="내용을 작성해보세요."
-              className="w-full resize-none bg-gray-100 pb-[0.56rem] pl-1.5 pt-[0.5rem] text-[0.8125rem] placeholder:text-gray-300 focus:outline-none cs:h-40"
+              css={reviewTextStyle}
             />
-            <button className="fixed bottom-8 right-6 h-10 w-16 transition-none disabled:opacity-50 md:right-1/2 md:translate-x-[22.5rem]">
-              등록
-            </button>
+            <button css={createButtonStyle}>등록</button>
           </section>
         </form>
       </article>
     </>
   );
 }
+
+const articleStyle = css`
+  position: relative;
+  background-color: #f3f4f6; /* bg-gray-100 */
+  padding: 1.25rem; /* p-5 */
+`;
+
+const titleInputStyle = css`
+  width: 100%; /* w-full */
+  border-width: 0.5px; /* border-0.5 */
+  border-color: #4b5563; /* border-gray-600 */
+  margin-bottom: 1.25rem; /* mb-5 */
+`;
+
+const imageInputStyle = css`
+  display: none;
+  border: 1.5px solid gray;
+`;
+
+const imageContainerStyle = css`
+  position: relative;
+  aspect-ratio: 5 / 3;
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1.5px solid gray;
+  background: white;
+`;
+
+const imageStyle = css`
+  aspect-ratio: 5 / 3;
+  width: 100%;
+  object-fit: cover;
+`;
+
+const imageButtonStyle = css`
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  height: 12px;
+  width: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: white;
+`;
+
+const addImageStyle = css`
+  display: flex;
+  aspect-ratio: 5 / 3;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.3125rem;
+  border: 1.5px solid gray;
+  background: white;
+`;
+
+const reviewTextStyle = css`
+  width: 100%;
+  resize: none;
+  background: white;
+  padding-bottom: 0.56rem;
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: #4b5563;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: gray;
+  }
+`;
+
+const createButtonStyle = css`
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  height: 2.5rem;
+  width: 4rem;
+  transition: none;
+  opacity: 1;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  @media (min-width: 768px) {
+    right: 50%;
+    transform: translateX(22.5rem);
+  }
+`;
+
+const sectionStyle = css`
+  margin-bottom: 1.63rem; /* mb-[1.63rem] */
+  display: flex; /* flex */
+  gap: 0.81rem; /* gap-[0.81rem] */
+  overflow: auto; /* overflow-auto */
+  white-space: nowrap; /* whitespace-nowrap */
+`;
