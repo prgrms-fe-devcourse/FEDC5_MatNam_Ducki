@@ -33,6 +33,11 @@ export default function ReviewPage() {
     imageInputRef.current.click();
     console.log('imageInputRef.current', imageInputRef.current);
   };
+
+  const handleImageRemove = () => {
+    setImage(null);
+  };
+
   return (
     <>
       <article css={articleStyle}>
@@ -54,15 +59,18 @@ export default function ReviewPage() {
                 <div ref={elementRef} className="w-full">
                   <div css={imageContainerStyle}>
                     <img css={imageStyle} src={image} alt="이미지 미리보기" />
-                    <button type="button" css={imageButtonStyle}>
-                      이미지 버튼
+                    <button
+                      onClick={handleImageRemove}
+                      type="button"
+                      css={imageButtonStyle}>
+                      이미지 삭제
                     </button>
                   </div>
                 </div>
               ) : (
                 <div onClick={handleImageInputClick} css={addImageStyle}>
                   <span className="text-[0.875rem] text-gray-400">
-                    사진 추가
+                    이미지 추가
                   </span>
                 </div>
               )}
