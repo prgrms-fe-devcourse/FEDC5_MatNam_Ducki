@@ -24,6 +24,8 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@types/node": "^20.10.5",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
