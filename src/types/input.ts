@@ -13,9 +13,9 @@ import {
  */
 export interface HookFormInputProps<T extends FieldValues>
   extends React.ComponentProps<'input'> {
-  label: string;
   name: Path<T>;
   register: UseFormRegister<T>;
+  label?: string;
   required?: boolean;
   errors?: FieldErrors<T>;
   errorMessage?: string;
