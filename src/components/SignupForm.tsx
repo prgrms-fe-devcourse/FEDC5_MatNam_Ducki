@@ -27,7 +27,7 @@ const SignupButton = styled.button<{ isValid: boolean }>`
   border-color: ${({ isValid }) => (isValid ? '#000' : '#ddd')};
 `;
 
-export default function SignupInput() {
+export default function SignupForm() {
   const {
     register,
     handleSubmit,
