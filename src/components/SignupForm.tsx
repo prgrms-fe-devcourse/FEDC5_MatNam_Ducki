@@ -31,6 +31,7 @@ export default function SignupForm() {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors, isValid },
   } = useForm<SignupValues>();
 
@@ -42,6 +43,7 @@ export default function SignupForm() {
       name: 'fullName',
       required: true,
       placeholder: '이름을 입력해 주세요.',
+      validation: INPUT_VALIDATION.FULLNAME,
     },
     {
       label: '이메일',
@@ -65,6 +67,10 @@ export default function SignupForm() {
       required: true,
       placeholder: '비밀번호를 다시 입력해 주세요.',
       type: 'password',
+      validation: {
+        validate: (value) =>
+          value === getValues('password') || '비밀번호가 일치하지 않습니다.',
+      },
     },
   ];
 
