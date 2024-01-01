@@ -37,3 +37,33 @@ export interface Channel {
   updatedAt: string;
   authRequired?: boolean;
 }
+
+export interface Post {
+  _id: string;
+  likes: Like[];
+  comments: Comment[];
+  channel: Channel;
+  author: User;
+  createdAt: string;
+  updatedAt: string;
+  image?: string;
+  imagePublicId?: string;
+  title: string;
+}
+
+export interface Like {
+  _id: string;
+  user: string; // user id
+  post: string; // post id
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Comment {
+  _id: string;
+  comment: string;
+  author: User;
+  post: string; // post id
+  createdAt: string;
+  updatedAt: string;
+}
