@@ -19,7 +19,7 @@ export default function HookFormInput<T extends FieldValues>({
   label,
   name,
   register,
-  required,
+  required = false,
   errors,
   errorMessage = '값을 입력해 주세요.',
   type = 'text',
