@@ -50,7 +50,7 @@ export default function BottomNavBar() {
   const currentPathName = location.pathname;
 
   const isPathActive = (path: pathType) => {
-    return currentPathName === path ? 'true' : 'false';
+    return currentPathName === path ? true : false;
   };
 
   const handleButtonClick = (
@@ -78,7 +78,7 @@ export default function BottomNavBar() {
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
             handleButtonClick(e, path)
           }
-          active={isPathActive(path)}>
+          active={isPathActive(path).toString()}>
           {icon}
         </LinkWrapper>
       ))}
