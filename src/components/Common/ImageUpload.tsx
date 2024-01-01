@@ -45,6 +45,24 @@ const ButtonContainer = styled.div`
   right: 20%;
 `;
 
+/**
+ * @summary 사용법 <ImageUpload
+      image={image}
+      onFileChange={handleFileChange}
+      onImageRemove={handleImageRemove}
+      width="10%"
+      ratio="1 / 1"
+    />
+ * @description 공통 ImageUpload 컴포넌트
+ * @param image 상위 컴포넌트에서 받아온 이미지
+ * @param onFileChange 이미지 변경 시 호출되는 함수
+ * @param onImageRemove 이미지 삭제 시 호출되는 함수
+ * @param width optional) width 이미지 너비, 기본 값: 100%
+ * @param ratio optional) ratio 이미지 가로 세로 비율, 기본 값: 5 / 3
+ * @param borderRadius optional) borderRadius 이미지 테두리 둥글기, 기본 값: 0px
+ * @returns
+ */
+
 export default function ImageUpload({
   image,
   onFileChange,
