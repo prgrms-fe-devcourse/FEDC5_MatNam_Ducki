@@ -23,25 +23,35 @@ const Input = styled.input`
  * @param name - useForm에서 사용되는 value의 key (API 필드와 통일하기) 예) email, password
  * @param register - useForm의 register 함수
  * @param label - optional) input 좌측에 위치한 text label. 예) 이메일, 비밀번호
- * @param errors - optional) 미입력 체크를 위함. useForm의 formState 객체 내부의 errors 값
- * @param errorMessage - optional) 값을 입력하지 않았을 때의 메세지. default = 값을 입력해 주세요.
  * @param type - optional) text | email | password. default = text
+ * @param required - optional) 필수 입력 값인지 체크
+ * @param errors - optional) 미입력 체크를 위함. useForm의 formState 객체 내부의 errors 값
+ * @param validation - optional) validate 패턴과 errorMessage를 지정
  */
 export default function HookFormInput<T extends FieldValues>({
-  label,
   name,
   register,
-  required = false,
+  label,
   errors,
-  errorMessage = '값을 입력해 주세요.',
+  required = false,
   type = 'text',
+  validation,
   ...props
 }: HookFormInputProps<T>) {
+  const inputError = errors && errors[name];
+
   return (
     <InputWrapper>
       {label && <label htmlFor={name}>{label}</label>}
-      <Input type={type} {...register(name, { required })} {...props} />
-      {errors && errors[name] && <span>{errorMessage}</span>}
+      <Input
+        type={type}
+        {...register(name, {
+          ...validation,
+          required: required && '값을 입력해 주세요.',
+        })}
+        {...props}
+      />
+      {inputError && <span>{inputError.message as string}</span>}
     </InputWrapper>
   );
 }
