@@ -67,3 +67,26 @@ export interface Comment {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Notification {
+  _id: string;
+  seen: boolean;
+  author: User;
+  user: User | string;
+  post: string | null; // post id
+  follow?: string; // user id
+  comment?: Comment;
+  message?: string; // message id
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Message {
+  _id: string;
+  message: string;
+  sender: User;
+  receiver: User;
+  seen: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
