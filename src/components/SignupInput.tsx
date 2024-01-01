@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { INPUT_VALIDATION } from '@/constants/validation';
 import { HookFormInputListProps } from '@/types/input';
 
 import HookFormInput from './Common/HookFormInput';
@@ -48,6 +49,7 @@ export default function SignupInput() {
       required: true,
       placeholder: '이메일을 입력해 주세요.',
       type: 'email',
+      validation: INPUT_VALIDATION.EMAIL,
     },
     {
       label: '비밀번호',
@@ -55,6 +57,7 @@ export default function SignupInput() {
       required: true,
       placeholder: '비밀번호를 입력해 주세요.',
       type: 'password',
+      validation: INPUT_VALIDATION.PASSWORD,
     },
     {
       label: '비밀번호 확인',
@@ -67,15 +70,12 @@ export default function SignupInput() {
 
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-      {signupInputList.map(({ label, name, required, placeholder, type }) => (
+      {signupInputList.map((props) => (
         <HookFormInput
-          label={label}
-          name={name}
+          key={props.name}
           register={register}
-          required={required}
-          placeholder={placeholder}
           errors={errors}
-          type={type}
+          {...props}
         />
       ))}
       <SignupButton type="submit" isValid={isValid}>
