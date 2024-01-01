@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import React, { useRef, useState } from 'react';
 
 export default function ReviewPage() {
@@ -40,73 +40,65 @@ export default function ReviewPage() {
 
   return (
     <>
-      <article css={articleStyle}>
+      <ReviewContainer>
         <form>
           <section>
             <p>채널 선택</p>
           </section>
           <section className="relative">
-            <input css={titleInputStyle} placeholder="제목을 입력해주세요." />
-            <section css={sectionStyle}>
-              <input
+            <TitleInput placeholder="제목을 입력해주세요." />
+            <Section>
+              <ImamgeInput
                 ref={imageInputRef}
                 onChange={handleImageFilesChange}
-                css={imageInputStyle}
                 type="file"
                 accept="image/*"
               />
               {image ? (
                 <div ref={elementRef} className="w-full">
-                  <div css={imageContainerStyle}>
-                    <img css={imageStyle} src={image} alt="이미지 미리보기" />
-                    <button
-                      onClick={handleImageRemove}
-                      type="button"
-                      css={imageButtonStyle}>
+                  <ImageContainer>
+                    <Image src={image} alt="이미지 미리보기" />
+                    <ImageButton onClick={handleImageRemove} type="button">
                       이미지 삭제
-                    </button>
-                  </div>
+                    </ImageButton>
+                  </ImageContainer>
                 </div>
               ) : (
-                <div onClick={handleImageInputClick} css={addImageStyle}>
+                <AddImage onClick={handleImageInputClick}>
                   <span className="text-[0.875rem] text-gray-400">
                     이미지 추가
                   </span>
-                </div>
+                </AddImage>
               )}
-            </section>
-            <textarea
-              name="content"
-              placeholder="내용을 작성해보세요."
-              css={reviewTextStyle}
-            />
-            <button css={createButtonStyle}>등록</button>
+            </Section>
+            <ReviewTextArea name="content" placeholder="내용을 작성해보세요." />
+            <CreateButton>등록</CreateButton>
           </section>
         </form>
-      </article>
+      </ReviewContainer>
     </>
   );
 }
 
-const articleStyle = css`
+const ReviewContainer = styled.article`
   position: relative;
   background-color: #f3f4f6; /* bg-gray-100 */
   padding: 1.25rem; /* p-5 */
 `;
 
-const titleInputStyle = css`
+const TitleInput = styled.input`
   width: 100%; /* w-full */
   border-width: 0.5px; /* border-0.5 */
   border-color: #4b5563; /* border-gray-600 */
   margin-bottom: 1.25rem; /* mb-5 */
 `;
 
-const imageInputStyle = css`
+const ImamgeInput = styled.input`
   display: none;
   border: 1.5px solid gray;
 `;
 
-const imageContainerStyle = css`
+const ImageContainer = styled.div`
   position: relative;
   aspect-ratio: 5 / 3;
   width: 100%;
@@ -117,13 +109,13 @@ const imageContainerStyle = css`
   background: white;
 `;
 
-const imageStyle = css`
+const Image = styled.img`
   aspect-ratio: 5 / 3;
   width: 100%;
   object-fit: cover;
 `;
 
-const imageButtonStyle = css`
+const ImageButton = styled.button`
   position: absolute;
   bottom: 1px;
   right: 1px;
@@ -136,7 +128,7 @@ const imageButtonStyle = css`
   background: white;
 `;
 
-const addImageStyle = css`
+const AddImage = styled.div`
   display: flex;
   aspect-ratio: 5 / 3;
   width: 100%;
@@ -149,7 +141,7 @@ const addImageStyle = css`
   background: white;
 `;
 
-const reviewTextStyle = css`
+const ReviewTextArea = styled.textarea`
   width: 100%;
   resize: none;
   background: white;
@@ -167,7 +159,7 @@ const reviewTextStyle = css`
   }
 `;
 
-const createButtonStyle = css`
+const CreateButton = styled.button`
   position: fixed;
   bottom: 2rem;
   right: 1.5rem;
@@ -186,7 +178,7 @@ const createButtonStyle = css`
   }
 `;
 
-const sectionStyle = css`
+const Section = styled.section`
   margin-bottom: 1.63rem; /* mb-[1.63rem] */
   display: flex; /* flex */
   gap: 0.81rem; /* gap-[0.81rem] */
