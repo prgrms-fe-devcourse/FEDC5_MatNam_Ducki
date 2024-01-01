@@ -1,4 +1,10 @@
 export const INPUT_VALIDATION = {
+  FULLNAME: {
+    minLength: {
+      value: 2,
+      message: '최소 2글자 이상 입력해 주세요.',
+    },
+  },
   EMAIL: {
     pattern: {
       value:
