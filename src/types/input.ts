@@ -2,6 +2,7 @@ import {
   FieldErrors,
   FieldValues,
   Path,
+  RegisterOptions,
   UseFormRegister,
 } from 'react-hook-form';
 
@@ -16,10 +17,10 @@ export interface HookFormInputProps<T extends FieldValues>
   name: Path<T>;
   register: UseFormRegister<T>;
   label?: string;
+  type?: 'email' | 'password' | 'text';
   required?: boolean;
   errors?: FieldErrors<T>;
-  errorMessage?: string;
-  type?: 'email' | 'password' | 'text';
+  validation?: RegisterOptions;
 }
 
 /**
