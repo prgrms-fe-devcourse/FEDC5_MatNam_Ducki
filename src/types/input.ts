@@ -10,7 +10,7 @@ export interface HookFormInputProps<T extends FieldValues>
   label: string;
   name: Path<T>;
   register: UseFormRegister<T>;
-  required: boolean;
+  required?: boolean;
   errors?: FieldErrors<T>;
   errorMessage?: string;
   type?: 'email' | 'password' | 'text';
