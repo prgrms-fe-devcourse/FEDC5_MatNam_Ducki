@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 interface ImageUploadProps {
   image: string | null;
-  onFileChange: (file: File | null) => void;
-  onImageRemove: () => void;
+  // onFileChange: (file: File | null) => void;
+  // onImageRemove: () => void;
   width?: string;
   ratio?: string;
   borderRadius?: string;
@@ -55,8 +55,6 @@ const ButtonContainer = styled.div`
     />
  * @description 공통 ImageUpload 컴포넌트
  * @param image 상위 컴포넌트에서 받아온 이미지
- * @param onFileChange 이미지 변경 시 호출되는 함수
- * @param onImageRemove 이미지 삭제 시 호출되는 함수
  * @param width optional) width 이미지 너비, 기본 값: 100%
  * @param ratio optional) ratio 이미지 가로 세로 비율, 기본 값: 5 / 3
  * @param borderRadius optional) borderRadius 이미지 테두리 둥글기, 기본 값: 0px
@@ -65,12 +63,11 @@ const ButtonContainer = styled.div`
 
 export default function ImageUpload({
   image,
-  onFileChange,
-  onImageRemove,
   width,
   ratio,
   borderRadius,
 }: ImageUploadProps) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(image);
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageFilesChange = (
@@ -80,9 +77,14 @@ export default function ImageUpload({
       return;
     }
 
-    onFileChange(event.target.files[0]);
+    const file = URL.createObjectURL(event.target.files[0]);
+    setSelectedImage(file);
   };
 
+  const handleImageRemove = () => {
+    setSelectedImage(null);
+    //onImageRemove();
+  };
   const handleImageInputClick = () => {
     imageInputRef.current?.click();
   };
@@ -96,30 +98,29 @@ export default function ImageUpload({
         accept="image/*"
         style={{ display: 'none' }} // 숨김 처리
       />
-      {image ? (
-        <UploadContainer
-          borderRadius={borderRadius}
-          width={width}
-          ratio={ratio}>
-          <ImagePreview src={image} alt="이미지 미리보기" />
-          <ButtonContainer>
-            <button onClick={onImageRemove} type="button">
-              삭제
-            </button>
-            <button onClick={handleImageInputClick} type="button">
-              변경
-            </button>
-          </ButtonContainer>
-        </UploadContainer>
-      ) : (
-        <UploadContainer
-          onClick={handleImageInputClick}
-          borderRadius={borderRadius}
-          width={width}
-          ratio={ratio}>
+      <UploadContainer
+        onClick={handleImageInputClick}
+        borderRadius={borderRadius}
+        width={width}
+        ratio={ratio}>
+        {selectedImage ? (
+          <>
+            <ImagePreview src={selectedImage} alt="이미지 미리보기" />
+            <ButtonContainer>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleImageRemove();
+                }}
+                type="button">
+                삭제
+              </button>
+            </ButtonContainer>
+          </>
+        ) : (
           <span>이미지 추가</span>
-        </UploadContainer>
-      )}
+        )}
+      </UploadContainer>
     </section>
   );
 }
