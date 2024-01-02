@@ -11,7 +11,7 @@ interface ReviewCardProps {
 const ReviewCardContainer = styled.div<{ width: string }>`
   width: ${({ width }) => width};
   margin: 0 auto;
-  border-radius: 0.5rem;
+  border-radius: 5%;
   border: 1px solid #bdbdbd;
   box-shadow: 0px 1.5px 1.5px rgba(0, 0, 0, 0.25);
 `;
@@ -29,7 +29,7 @@ const ProfileContainer = styled.div`
   gap: 0.5rem;
 `;
 
-const ProfilImage = styled.img`
+const ProfileImage = styled.img`
   width: 2rem;
   border-radius: 50%;
   background-color: #bdbdbd;
@@ -51,14 +51,14 @@ const ReviewCardContents = styled.div``;
 const ReviewCardImage = styled.img`
   width: 100%;
   height: 100%;
-  border-radius: 0.5rem;
+  border-radius: 5%;
 `;
 
 const ReviewCardInfo = styled.div`
   width: 100%;
   height: 100%;
   background-color: #f2f2f2;
-  border-radius: 0.5rem;
+  border-radius: 5%;
   padding: 0.5rem;
 `;
 
@@ -93,7 +93,7 @@ export const ReviewCard = ({
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
         <ProfileContainer>
-          <ProfilImage src={profileImage} />
+          <ProfileImage src={profileImage} />
           <ProfileNickname>{profileName}</ProfileNickname>
         </ProfileContainer>
         <div>5분 전</div>
