@@ -1,3 +1,8 @@
+export interface UserReponse {
+  user: User;
+  token: string;
+}
+
 export interface User {
   _id: string;
   fullName: string;
