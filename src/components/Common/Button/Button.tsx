@@ -9,6 +9,7 @@ interface ButtonProps {
   textSize?: string;
   textColor?: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
 const CommonButton = styled.button<ButtonProps>`
@@ -30,6 +31,7 @@ export default function Button({
   backgroundColor,
   textSize,
   textColor,
+  onClick,
   children,
   ...props
 }: ButtonProps) {
@@ -41,6 +43,7 @@ export default function Button({
       backgroundColor={backgroundColor}
       textSize={textSize}
       textColor={textColor}
+      onClick={onClick}
       {...props}>
       {children}
     </CommonButton>
