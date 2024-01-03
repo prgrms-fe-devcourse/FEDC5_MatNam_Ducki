@@ -44,9 +44,9 @@ const ButtonContainer = styled.div`
 `;
 
 /**
- * @summary 사용법 <ImageUpload image={file} onFileChange={handleFileChange} />
+ * @summary 사용법 <ImageUploadonFileChange={handleFileChange} />
  * @description 공통 ImageUpload 컴포넌트
- * @param image 상위 컴포넌트에서 받아온 이미지
+ * @param onFileChange required) onFileChange 파일 선택 시 외부로 전달할 함수
  * @param width optional) width 이미지 너비, 기본 값: 100%
  * @param ratio optional) ratio 이미지 가로 세로 비율, 기본 값: 5 / 3
  * @param borderRadius optional) borderRadius 이미지 테두리 둥글기, 기본 값: 0px
@@ -72,20 +72,24 @@ export default function ImageUpload({
     const file = event.target.files[0];
     const fileURL = URL.createObjectURL(file);
     setSelectedImage(fileURL);
-    onFileChange(file); // 선택된 파일을 외부로 전달합니다.
+    onFileChange(file); // 선택된 파일을 외부로 전달
   };
 
   const handleImageRemove = () => {
-    setSelectedImage(null);
-    onFileChange(null); // 이미지 제거 시 외부에 null을 전달합니다.
-    if (imageInputRef.current) {
-      imageInputRef.current.value = ''; // input의 value를 리셋하여 같은 파일이 다시 업로드될 수 있게 합니다.
+    if (selectedImage) {
+      URL.revokeObjectURL(selectedImage);
+      setSelectedImage(null);
     }
+
+    // 'current'가 존재하는지 확인 후, input의 value를 리셋하여 같은 파일이 다시 업로드될 수 있게 합니다.
+    if (imageInputRef.current) {
+      imageInputRef.current.value = '';
+    }
+
+    onFileChange(null); // 이미지 제거 시 외부에 null을 전달
   };
 
   const handleImageInputClick = () => {
-    console.log(imageInputRef.current);
-
     imageInputRef.current?.click();
   };
 
