@@ -1,4 +1,3 @@
-import { ACCESS_TOKEN_KEY } from '@/constants/api';
 import { User } from '@/types';
 import { SignInPayload, SignUpPayload } from '@/types/payload';
 import { UserReponse } from '@/types/reponse';
@@ -14,11 +13,10 @@ export const signUp = async ({ email, fullName, password }: SignUpPayload) => {
       password,
     });
 
-    const { token } = response;
-
-    sessionStorage.setItem(ACCESS_TOKEN_KEY, token);
+    return response;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 
@@ -29,18 +27,16 @@ export const signIn = async ({ email, password }: SignInPayload) => {
       password,
     });
 
-    const { token } = response;
-
-    sessionStorage.setItem(ACCESS_TOKEN_KEY, token);
+    return response;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 
 export const signOut = async () => {
   try {
     await axiosAuthInstance.post(ENDPOINT.SIGNOUT);
-    sessionStorage.removeItem(ACCESS_TOKEN_KEY);
   } catch (error) {
     console.error(error);
   }
@@ -53,6 +49,7 @@ export const signOut = async () => {
 export const checkAuthUser = async () => {
   try {
     const response = await axiosAuthInstance.get<User>(ENDPOINT.AUTH_USER);
+
     return response;
   } catch (error) {
     console.error(error);
