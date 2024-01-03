@@ -5,10 +5,9 @@ export interface PropsAvatar {
   imageUrl: string | null;
   size: string | number;
   borderRadius?: number;
-  onChangeAvatar: () => void;
 }
 
-const ImageComponent = styled.img<{ borderRadius: string | number }>`
+const ImageComponent = styled.img<{ borderRadius: number }>`
   object-fit: cover;
   border: 1px solid #cdcdcd;
   transition: opacity 0.2s ease-out;
@@ -23,7 +22,6 @@ export default function Avatar({
   imageUrl,
   size,
   borderRadius = 50,
-  onChangeAvatar,
 }: PropsAvatar) {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
@@ -54,7 +52,6 @@ export default function Avatar({
       height={size}
       borderRadius={borderRadius}
       alt="profile_image"
-      onClick={onChangeAvatar}
       style={{ opacity: loaded ? 1 : 0 }}></ImageComponent>
   );
 }
