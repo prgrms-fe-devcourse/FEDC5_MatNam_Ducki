@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface ImageUploadProps {
-  image: string | null;
-  // onFileChange: (file: File | null) => void;
-  // onImageRemove: () => void;
+  image: File | null;
+  onFileChange: (file: File | null) => void;
   width?: string;
   ratio?: string;
   borderRadius?: string;
@@ -46,13 +45,7 @@ const ButtonContainer = styled.div`
 `;
 
 /**
- * @summary 사용법 <ImageUpload
-      image={image}
-      onFileChange={handleFileChange}
-      onImageRemove={handleImageRemove}
-      width="10%"
-      ratio="1 / 1"
-    />
+ * @summary 사용법 <ImageUpload image={file} onFileChange={handleFileChange} />
  * @description 공통 ImageUpload 컴포넌트
  * @param image 상위 컴포넌트에서 받아온 이미지
  * @param width optional) width 이미지 너비, 기본 값: 100%
@@ -65,26 +58,42 @@ export default function ImageUpload({
   image,
   width,
   ratio,
+  onFileChange,
   borderRadius,
 }: ImageUploadProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(image);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
+
+  // 이미지 파일이 변경될 때마다 미리보기 URL을 업데이트
+  useEffect(() => {
+    if (!image) {
+      setSelectedImage(null);
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setSelectedImage(fileReader.result as string);
+    };
+    fileReader.readAsDataURL(image);
+  }, [image]);
 
   const handleImageFilesChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (!event.target.files || event.target.files.length === 0) {
+      onFileChange(null);
       return;
     }
 
-    const file = URL.createObjectURL(event.target.files[0]);
-    setSelectedImage(file);
+    const file = event.target.files[0];
+    onFileChange(file); // 부모 컴포넌트로 파일 전달
   };
 
   const handleImageRemove = () => {
     setSelectedImage(null);
-    //onImageRemove();
+    onFileChange(null); // 이미지 제거 시 부모 컴포넌트에도 null 전달
   };
+
   const handleImageInputClick = () => {
     imageInputRef.current?.click();
   };
