@@ -25,7 +25,7 @@ export const createLike = async (postId: string) => {
 export const deleteLike = async (postId: string) => {
   try {
     const response = await axiosAuthInstance.delete<Like>(
-      ENDPOINT.LIKES.CREATE,
+      ENDPOINT.LIKES.DELETE,
       {
         data: {
           id: postId,
