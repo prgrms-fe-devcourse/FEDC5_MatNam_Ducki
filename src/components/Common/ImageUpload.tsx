@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 interface ImageUploadProps {
-  image: File | null;
   onFileChange: (file: File | null) => void;
   width?: string;
   ratio?: string;
@@ -55,7 +54,6 @@ const ButtonContainer = styled.div`
  */
 
 export default function ImageUpload({
-  image,
   width,
   ratio,
   onFileChange,
@@ -64,37 +62,30 @@ export default function ImageUpload({
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
 
-  // 이미지 파일이 변경될 때마다 미리보기 URL을 업데이트
-  useEffect(() => {
-    if (!image) {
-      setSelectedImage(null);
-      return;
-    }
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setSelectedImage(fileReader.result as string);
-    };
-    fileReader.readAsDataURL(image);
-  }, [image]);
-
   const handleImageFilesChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (!event.target.files || event.target.files.length === 0) {
-      onFileChange(null);
       return;
     }
 
     const file = event.target.files[0];
-    onFileChange(file); // 부모 컴포넌트로 파일 전달
+    const fileURL = URL.createObjectURL(file);
+    setSelectedImage(fileURL);
+    onFileChange(file); // 선택된 파일을 외부로 전달합니다.
   };
 
   const handleImageRemove = () => {
     setSelectedImage(null);
-    onFileChange(null); // 이미지 제거 시 부모 컴포넌트에도 null 전달
+    onFileChange(null); // 이미지 제거 시 외부에 null을 전달합니다.
+    if (imageInputRef.current) {
+      imageInputRef.current.value = ''; // input의 value를 리셋하여 같은 파일이 다시 업로드될 수 있게 합니다.
+    }
   };
 
   const handleImageInputClick = () => {
+    console.log(imageInputRef.current);
+
     imageInputRef.current?.click();
   };
 
