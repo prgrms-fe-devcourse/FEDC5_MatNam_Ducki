@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 
-import { DONE_BUTTON_TEXT, INTRODUCE_LENGTH_LIMIT } from '@/constants/profile';
+import {
+  DEFAULT_HEIGHT,
+  DONE_BUTTON_TEXT,
+  INTRODUCE_LENGTH_LIMIT,
+} from '@/constants/profile';
 import { PropsIntroductionEditor } from '@/types/profile';
 
 import HookFormInput from '../Common/HookFormInput';
@@ -12,14 +16,16 @@ const IntroductionContainer = styled.div<{ introductionLength: number }>`
     introductionLength > INTRODUCE_LENGTH_LIMIT ? 'column' : 'none'};
   margin-top: 10px;
   align-items: start;
-  height: 100px;
+  height: ${({ introductionLength }) =>
+    introductionLength
+      ? DEFAULT_HEIGHT * (introductionLength / INTRODUCE_LENGTH_LIMIT)
+      : DEFAULT_HEIGHT};
 `;
 
 const IntroductionForm = styled.form`
   display: flex;
   margin-top: 10px;
   height: 28px;
-  margin-bottom: 72px;
 `;
 
 const IntroductionButton = styled.button<{ isEditing: boolean }>`
