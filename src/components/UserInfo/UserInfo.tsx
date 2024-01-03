@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { PropsUserInfo } from '@/types/profile';
+
 const UserInfoSection = styled.div`
   margin-top: 20px;
 `;
@@ -12,11 +14,6 @@ const NickName = styled.div`
 const UserId = styled.div`
   color: #777777;
 `;
-
-export interface PropsUserInfo {
-  userName: string;
-  userId: string;
-}
 
 export default function UserInfo({ userName, userId }: PropsUserInfo) {
   return (
