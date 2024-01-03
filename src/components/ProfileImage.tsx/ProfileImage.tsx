@@ -14,6 +14,7 @@ const UploadContainer = styled.div<{
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 50%;
+  cursor: pointer;
 `;
 
 const ImagePreview = styled.img`
@@ -24,6 +25,7 @@ const ImagePreview = styled.img`
   object-fit: cover;
   border: 1px solid #cdcdcd;
   background-color: #eee;
+  cursor: pointer;
 `;
 
 export default function ProfileImage({
