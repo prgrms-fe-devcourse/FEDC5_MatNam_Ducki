@@ -1,3 +1,4 @@
+import { Global } from '@emotion/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import MainPage from './pages/MainPage';
@@ -9,6 +10,7 @@ import ReviewPage from './pages/ReviewPage';
 import SearchPage from './pages/SearchPage';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
+import { reset } from './styles/Global';
 
 const router = createBrowserRouter([
   {
@@ -50,7 +52,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />;
+      <Global styles={reset} />
+    </>
+  );
 }
 
 export default App;
