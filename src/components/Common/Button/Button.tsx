@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
 
@@ -11,7 +12,6 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
 }
-
 const CommonButton = styled.button<ButtonProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -35,14 +35,15 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
+  const theme = useTheme();
   return (
     <CommonButton
-      width={width}
-      height={height}
-      borderRadius={borderRadius}
-      backgroundColor={backgroundColor}
-      textSize={textSize}
-      textColor={textColor}
+      width={width || theme.size.xLarge}
+      height={height || theme.size.large}
+      borderRadius={borderRadius || theme.size.noSize}
+      backgroundColor={backgroundColor || theme.colors.primary}
+      textSize={textSize || theme.size.xSmall}
+      textColor={textColor || theme.colors.white}
       onClick={onClick}
       {...props}>
       {children}
