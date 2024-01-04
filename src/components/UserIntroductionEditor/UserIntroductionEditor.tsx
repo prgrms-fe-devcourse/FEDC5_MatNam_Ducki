@@ -1,12 +1,25 @@
 import styled from '@emotion/styled';
+import { useForm } from 'react-hook-form';
+
+import {
+  DEFAULT_HEIGHT,
+  DONE_BUTTON_TEXT,
+  INTRODUCE_LENGTH_LIMIT,
+} from '@/constants/profile';
+import { PropsIntroductionEditor } from '@/types/profile';
+
+import HookFormInput from '../Common/HookFormInput';
 
 const IntroductionContainer = styled.div<{ introductionLength: number }>`
   display: flex;
   flex-direction: ${({ introductionLength }) =>
-    introductionLength > 16 ? 'column' : 'none'};
+    introductionLength > INTRODUCE_LENGTH_LIMIT ? 'column' : 'none'};
   margin-top: 10px;
   align-items: start;
-  height: 100px;
+  height: ${({ introductionLength }) =>
+    introductionLength
+      ? DEFAULT_HEIGHT * (introductionLength / INTRODUCE_LENGTH_LIMIT)
+      : DEFAULT_HEIGHT};
 `;
 
 const IntroductionForm = styled.form`
@@ -26,46 +39,31 @@ const IntroductionButton = styled.button<{ isEditing: boolean }>`
   height: 28px;
 `;
 
-const IntroductionInput = styled.input`
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-`;
-
-interface PropsIntroductionEditor {
-  isEditing: boolean;
-  introduction: string;
-  onEditButtonClick: () => void;
-  onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  inputRef: React.RefObject<HTMLInputElement>;
-  placeholderText: string;
-  buttonText: string;
-}
-
 export default function UserIntroductionEditor({
   isEditing,
   onFormSubmit,
-  inputRef,
   placeholderText,
   onInputChange,
   introduction,
   onEditButtonClick,
   buttonText,
 }: PropsIntroductionEditor) {
-  console.log(introduction.length);
+  const { register } = useForm();
+
   return (
     <>
       {isEditing ? (
         <IntroductionForm onSubmit={onFormSubmit}>
-          <IntroductionInput
-            ref={inputRef}
+          <HookFormInput
+            name="content"
             placeholder={placeholderText}
             value={introduction}
             type="text"
             onChange={onInputChange}
-          />
-          <IntroductionButton isEditing={isEditing}>완료</IntroductionButton>
+            register={register}></HookFormInput>
+          <IntroductionButton isEditing={isEditing}>
+            {DONE_BUTTON_TEXT}
+          </IntroductionButton>
         </IntroductionForm>
       ) : (
         <IntroductionContainer introductionLength={introduction.length}>
