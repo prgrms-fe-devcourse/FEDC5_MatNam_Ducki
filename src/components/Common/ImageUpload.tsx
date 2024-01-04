@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 
 interface ImageUploadProps {
   onFileChange: (file: File | null) => void;
+  image?: string | null;
   width?: string;
   ratio?: string;
   borderRadius?: string;
@@ -44,8 +45,17 @@ const ButtonContainer = styled.div`
 `;
 
 /**
- * @summary 사용법 <ImageUploadonFileChange={handleFileChange} />
+ * @summary 사용법 
+ * export default function ParentComponent() {
+    const [file, setFile] = useState<File | null>(null); // 선택된 파일
+    const image = file ? URL.createObjectURL(file) : null; // 파일이 있으면 url을 만들어서 image에 넣어줍니다.
+    const handleFileChange = (file: File | null) => {
+      setFile(file); // 파일이 선택되면 file state를 업데이트
+    };
+  return <ImageUpload image={image} onFileChange={handleFileChange} />;
+  }
  * @description 공통 ImageUpload 컴포넌트
+ * @param image required) image 이미지 경로, 기본 값: null
  * @param onFileChange required) onFileChange 파일 선택 시 외부로 전달할 함수
  * @param width optional) width 이미지 너비, 기본 값: 100%
  * @param ratio optional) ratio 이미지 가로 세로 비율, 기본 값: 5 / 3
@@ -54,12 +64,15 @@ const ButtonContainer = styled.div`
  */
 
 export default function ImageUpload({
+  image,
   width,
   ratio,
   onFileChange,
   borderRadius,
 }: ImageUploadProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(
+    image || null,
+  );
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageFilesChange = (
