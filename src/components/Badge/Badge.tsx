@@ -37,7 +37,7 @@ const BadgeComponent = styled.span<BadgeProps>`
 `;
 
 export const Badge = ({
-  variant = 'outline',
+  variant,
   children,
   ...props
 }: PropsWithChildren<BadgeProps>) => {
