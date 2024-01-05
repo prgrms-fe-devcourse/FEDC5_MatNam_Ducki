@@ -7,17 +7,16 @@ interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 const variantStyles = {
   outline: `
-    background-color: white;
-    color: gray;
-    border: 1px solid #e4e4e7; // gray-200에 해당하는 색상
+    background-color: #FFF7F5;
+    color: #black;
   `,
   solid: `
     background-color: white;
     color: #a1a1aa; // gray-500에 해당하는 색상
   `,
   subtle: `
-    background-color: #fafafa; // active-lightest에 해당하는 색상
-    color: #5a67d8; // active-darken에 해당하는 색상
+    background-color: #FFA614;
+    color: #black;
   `,
 };
 
