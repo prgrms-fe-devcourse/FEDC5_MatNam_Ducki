@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
+import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
+import { ACCESS_TOKEN_KEY } from '@/constants/api';
 import { INPUT_VALIDATION } from '@/constants/validation';
+import { signUp } from '@/services/Auth/auth';
 import { HookFormInputListProps } from '@/types/input';
 
 import HookFormInput from './Common/HookFormInput';
@@ -36,6 +40,28 @@ export default function SignupForm() {
   } = useForm<SignupValues>();
 
   const onSubmit: SubmitHandler<SignupValues> = (data) => console.log(data);
+  const navigate = useNavigate();
+
+  const navigateToMainPage = () => {
+    navigate('/');
+  };
+
+  const mutation = useMutation({
+    mutationFn: signUp,
+    onSuccess: (data) => {
+      if (data?.token) {
+        localStorage.setItem(ACCESS_TOKEN_KEY, data.token);
+        navigateToMainPage();
+      }
+    },
+  });
+
+  const onSubmit: SubmitHandler<SignupValues> = ({
+    passwordCheck,
+    ...signUpInput
+  }) => {
+    mutation.mutate(signUpInput);
+  };
 
   const signupInputList: HookFormInputListProps<SignupValues> = [
     {
