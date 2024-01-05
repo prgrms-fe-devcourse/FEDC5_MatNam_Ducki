@@ -14,7 +14,7 @@ import {
 
 import HookFormInput from '../Common/HookFormInput';
 
-interface SignupValues {
+interface SignUpValues {
   fullName: string;
   email: string;
   password: string;
@@ -48,7 +48,7 @@ export default function SignUpForm() {
     getValues,
     watch,
     formState: { errors, isValid },
-  } = useForm<SignupValues>();
+  } = useForm<SignUpValues>();
 
   const navigate = useNavigate();
 
@@ -66,7 +66,7 @@ export default function SignUpForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<SignupValues> = ({
+  const onSubmit: SubmitHandler<SignUpValues> = ({
     passwordCheck,
     ...signUpInput
   }) => {
@@ -78,7 +78,7 @@ export default function SignUpForm() {
   const isPasswordValidated =
     !isPasswordShort(password) && isPasswordContainsSpecialChar(password);
 
-  const inputList: HookFormInputListProps<SignupValues> = [
+  const inputList: HookFormInputListProps<SignUpValues> = [
     {
       label: '이름',
       name: 'fullName',
