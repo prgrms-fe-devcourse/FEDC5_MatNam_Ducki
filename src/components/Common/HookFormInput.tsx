@@ -49,6 +49,7 @@ export default function HookFormInput<T extends FieldValues>({
           ...validation,
           required: required && '값을 입력해 주세요.',
         })}
+        autoComplete="true"
         {...props}
       />
       {inputError && <span>{inputError.message as string}</span>}
