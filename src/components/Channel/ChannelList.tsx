@@ -1,22 +1,20 @@
 import styled from '@emotion/styled';
 
-import { Channel } from '@/types/response';
+import { useGetChannels } from '@/hooks/useGetChannel';
 
-interface ChannelListProps {
-  channelId: string;
-}
+import { Badge } from '../Badge/Badge';
 
 const ChannelSection = styled.section`
   display: inline-flex;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
-export const ChannelList = ({ channelId }: ChannelListProps) => {
-  const channels: Channel[] = []; // react-query 사용해서 데이터 가져오기
+export const ChannelList = () => {
+  const { data: channels } = useGetChannels();
   return (
     <ChannelSection>
-      {channels.map((channel) => (
-        <span key={channel._id}>{channel.name}</span>
+      {channels?.map((channel) => (
+        <Badge key={channel._id}>{channel.name}</Badge>
       ))}
     </ChannelSection>
   );
