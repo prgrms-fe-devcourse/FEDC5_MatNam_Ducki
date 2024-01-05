@@ -12,7 +12,7 @@ import {
   isPasswordShort,
 } from '@/utils/validation';
 
-import HookFormInput from './Common/HookFormInput';
+import HookFormInput from '../Common/HookFormInput';
 
 interface SignupValues {
   fullName: string;
@@ -28,19 +28,20 @@ const FormWrapper = styled.form`
   padding: 20px;
 `;
 
-const SignupButton = styled.button<{ isValid: boolean }>`
+const SubmitButton = styled.button<{ isValid: boolean }>`
   border-width: 1px;
   border-radius: 4px;
   color: ${({ isValid }) => (isValid ? '#000' : '#ddd')};
-  border-color: ${({ isValid }) => (isValid ? '#000' : '#ddd')};
+  border: 1px solid ${({ isValid }) => (isValid ? '#000' : '#ddd')};
+  padding: 6px;
 `;
 
-export default function SignupForm() {
-  const GuideWrapper = styled.div`
-    display: block;
-    padding-top: 1rem;
-  `;
+const GuideWrapper = styled.div`
+  display: block;
+  padding-top: 1rem;
+`;
 
+export default function SignUpForm() {
   const {
     register,
     handleSubmit,
@@ -49,7 +50,6 @@ export default function SignupForm() {
     formState: { errors, isValid },
   } = useForm<SignupValues>();
 
-  const onSubmit: SubmitHandler<SignupValues> = (data) => console.log(data);
   const navigate = useNavigate();
 
   const navigateToMainPage = () => {
@@ -127,17 +127,15 @@ export default function SignupForm() {
 
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-      {signupInputList.map((props) => (
-        <HookFormInput
-          key={props.name}
-          register={register}
-          errors={errors}
-          {...props}
-        />
+      {inputList.map((props) => (
+        <div key={props.name}>
+          <HookFormInput register={register} errors={errors} {...props} />
+          {props.guide}
+        </div>
       ))}
-      <SignupButton type="submit" isValid={isValid}>
+      <SubmitButton type="submit" isValid={isValid}>
         회원가입
-      </SignupButton>
+      </SubmitButton>
     </FormWrapper>
   );
 }
