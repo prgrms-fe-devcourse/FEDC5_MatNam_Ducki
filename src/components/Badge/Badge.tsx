@@ -20,6 +20,12 @@ const variantStyles = {
   `,
 };
 
+/**
+ * @summary <Badge variant="outline">outline</Badge>
+ * @param {string} variant - outline, solid, subtle
+ * @param {React.ReactNode} children - Badge 내부에 들어갈 내용
+ */
+
 const BadgeComponent = styled.span<BadgeProps>`
   ${({ variant }) => variantStyles[variant || 'outline']}
   display: inline-block;
