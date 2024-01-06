@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
+import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector/PostSelector';
-import ProfileImage from '@/components/ProfileImage/ProfileImage';
 import UserInfo from '@/components/UserInfo/UserInfo';
 import UserIntroductionEditor from '@/components/UserIntroductionEditor/UserIntroductionEditor';
 import {
@@ -13,20 +13,26 @@ import {
 } from '@/constants/profile';
 
 const ProfileWrapper = styled.div`
-  margin: 20px;
-  width: 320px;
+  margin: 4rem 1.4rem;
+  width: 23rem;
   position: relative;
 `;
 
 const Header = styled.div`
-  margin: 20px 0;
-  font-size: 30px;
+  margin: 1rem 0;
+  font-size: 2.12rem;
   font-weight: bold;
 `;
 
 const UserWrapper = styled.div`
   display: flex;
+  gap: 2rem;
   flex-direction: column;
+`;
+
+const UserInfoWrap = styled.div`
+  display: flex;
+  margin-bottom: 1.1rem;
 `;
 
 export default function ProfilePage() {
@@ -59,14 +65,22 @@ export default function ProfilePage() {
     introduction === '' ? PLACEHOLDER_DEFAULTS : introduction;
 
   const buttonText: string = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
-
+  const defaultAvatar = '../../../public/vite.svg';
   return (
     <>
       <ProfileWrapper>
         <Header>마이페이지</Header>
-        <ProfileImage onFileChange={handleFileChange} />
-        <UserWrapper>
+        <UserInfoWrap>
+          <ImageUpload
+            onFileChange={handleFileChange}
+            ratio="5/5"
+            width="60px"
+            borderRadius="50%"
+            image={defaultAvatar}
+          />
           <UserInfo userName="러비더비" userId="ducki" />
+        </UserInfoWrap>
+        <UserWrapper>
           <UserIntroductionEditor
             isEditing={isEditing}
             onEditButtonClick={handleEditButtonClick}

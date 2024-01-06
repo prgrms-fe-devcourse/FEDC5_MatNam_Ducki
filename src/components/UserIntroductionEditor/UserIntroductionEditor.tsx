@@ -6,6 +6,7 @@ import {
   DONE_BUTTON_TEXT,
   INTRODUCE_LENGTH_LIMIT,
 } from '@/constants/profile';
+import { theme } from '@/styles/Theme';
 import { PropsIntroductionEditor } from '@/types/profile';
 
 import HookFormInput from '../Common/HookFormInput';
@@ -14,29 +15,28 @@ const IntroductionContainer = styled.div<{ introductionLength: number }>`
   display: flex;
   flex-direction: ${({ introductionLength }) =>
     introductionLength > INTRODUCE_LENGTH_LIMIT ? 'column' : 'none'};
-  margin-top: 10px;
-  align-items: start;
+  align-items: center;
+  gap: 2rem;
   height: ${({ introductionLength }) =>
     introductionLength
       ? DEFAULT_HEIGHT * (introductionLength / INTRODUCE_LENGTH_LIMIT)
       : DEFAULT_HEIGHT};
 `;
-
 const IntroductionForm = styled.form`
   display: flex;
-  margin-top: 10px;
-  height: 28px;
+  height: 2rem;
+  gap: 1.5rem;
 `;
-
 const IntroductionButton = styled.button<{ isEditing: boolean }>`
-  border: 1px solid ${({ isEditing }) => (isEditing ? '#f86f03' : '#ccc')};
-  margin-left: 15px;
+  border: 0.1rem solid
+    ${({ isEditing }) => (isEditing ? theme.colors.primary : '#ccc')};
   border-radius: 6px;
-  padding: 1px;
-  background-color: ${({ isEditing }) => (isEditing ? '#f86f03' : '#f3efef')};
+  padding: 0.1rem;
+  background-color: ${({ isEditing }) =>
+    isEditing ? theme.colors.primary : '#f3efef'};
   color: ${({ isEditing }) => (isEditing ? 'white' : '#777777;')};
-  width: 36px;
-  height: 28px;
+  width: 2.5rem;
+  height: 2rem;
 `;
 
 export default function UserIntroductionEditor({
@@ -59,6 +59,7 @@ export default function UserIntroductionEditor({
             placeholder={placeholderText}
             value={introduction}
             type="text"
+            style={{ height: '2rem' }}
             onChange={onInputChange}
             register={register}></HookFormInput>
           <IntroductionButton isEditing={isEditing}>
