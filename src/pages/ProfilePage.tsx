@@ -61,10 +61,10 @@ export default function ProfilePage() {
     }
   };
 
-  const placeholderText: string =
+  const placeholderText =
     introduction === '' ? PLACEHOLDER_DEFAULTS : introduction;
 
-  const buttonText: string = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
+  const buttonText = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
   const defaultAvatar = '../../../public/vite.svg';
   return (
     <>
