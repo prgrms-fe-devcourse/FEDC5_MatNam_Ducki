@@ -20,11 +20,11 @@ const PostHeader = styled.div`
   margin-bottom: 20px;
 `;
 
-const PostLength = styled.span`
+const PostLengthTitle = styled.span`
   font-size: 18px;
 `;
 
-const NotPost = styled.div`
+const EmptyPostTitle = styled.div`
   margin-top: 10px;
   color: #777777;
 `;
@@ -81,7 +81,7 @@ export default function MyPosts() {
       {post.length !== 0 ? (
         <>
           <PostHeader>
-            포스트 <PostLength>{post.length}개</PostLength>
+            포스트 <PostLengthTitle>{post.length}개</PostLengthTitle>
           </PostHeader>
           {post.map(
             ({ imageUrl, content, profileName, profileImage, width }) => (
@@ -99,7 +99,7 @@ export default function MyPosts() {
       ) : (
         <>
           <PostHeader>포스트</PostHeader>
-          <NotPost>아직 작성된 포스트가 없습니다.</NotPost>
+          <EmptyPostTitle>아직 작성된 포스트가 없습니다.</EmptyPostTitle>
         </>
       )}
     </PostWrapper>

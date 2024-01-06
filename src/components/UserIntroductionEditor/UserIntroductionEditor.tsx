@@ -11,7 +11,7 @@ import { PropsIntroductionEditor } from '@/types/profile';
 
 import HookFormInput from '../Common/HookFormInput';
 
-const IntroductionContainer = styled.div<{ introductionLength: number }>`
+const IntroductionWrapper = styled.div<{ introductionLength: number }>`
   display: flex;
   flex-direction: ${({ introductionLength }) =>
     introductionLength > INTRODUCE_LENGTH_LIMIT ? 'column' : 'none'};
@@ -67,12 +67,12 @@ export default function UserIntroductionEditor({
           </IntroductionButton>
         </IntroductionForm>
       ) : (
-        <IntroductionContainer introductionLength={introduction.length}>
+        <IntroductionWrapper introductionLength={introduction.length}>
           <span>{introduction}</span>
           <IntroductionButton isEditing={isEditing} onClick={onEditButtonClick}>
             {buttonText}
           </IntroductionButton>
-        </IntroductionContainer>
+        </IntroductionWrapper>
       )}
     </>
   );

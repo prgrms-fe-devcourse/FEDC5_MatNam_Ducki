@@ -30,7 +30,7 @@ const UserWrapper = styled.div`
   flex-direction: column;
 `;
 
-const UserInfoWrap = styled.div`
+const UserInfoWrapper = styled.div`
   display: flex;
   margin-bottom: 1.1rem;
 `;
@@ -70,7 +70,7 @@ export default function ProfilePage() {
     <>
       <ProfileWrapper>
         <Header>마이페이지</Header>
-        <UserInfoWrap>
+        <UserInfoWrapper>
           <ImageUpload
             onFileChange={handleFileChange}
             ratio="5/5"
@@ -79,7 +79,7 @@ export default function ProfilePage() {
             image={defaultAvatar}
           />
           <UserInfo userName="러비더비" userId="ducki" />
-        </UserInfoWrap>
+        </UserInfoWrapper>
         <UserWrapper>
           <UserIntroductionEditor
             isEditing={isEditing}

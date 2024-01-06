@@ -33,18 +33,18 @@ const RightButton = styled(Button)`
 `;
 
 export default function PostSelector() {
-  const [showLikes, setShowLikes] = useState<boolean>(false);
+  const [isLikesSelected, setIsLikesSelected] = useState(false);
   return (
     <>
       <SelectorWrapper>
-        <LeftButton onClick={() => setShowLikes(false)}>
+        <LeftButton onClick={() => setIsLikesSelected(false)}>
           {LEFT_BUTTON_TEXT}
         </LeftButton>
-        <RightButton onClick={() => setShowLikes(true)}>
+        <RightButton onClick={() => setIsLikesSelected(true)}>
           {RIGHT_BUTTON_TEXT}
         </RightButton>
       </SelectorWrapper>
-      {showLikes ? <LikePosts /> : <MyPosts />}
+      {isLikesSelected ? <LikePosts /> : <MyPosts />}
     </>
   );
 }

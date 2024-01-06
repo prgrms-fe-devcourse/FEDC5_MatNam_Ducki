@@ -20,11 +20,11 @@ const PostHeader = styled.div`
   margin-bottom: 20px;
 `;
 
-const PostLength = styled.span`
+const PostLengthTitle = styled.span`
   font-size: 18px;
 `;
 
-const NotPost = styled.div`
+const EmptyPostTitle = styled.div`
   margin-top: 10px;
   color: #777777;
 `;
@@ -83,25 +83,16 @@ export default function LikePosts() {
       {post.length !== 0 ? (
         <>
           <PostHeader>
-            포스트 <PostLength>{post.length}개</PostLength>
+            포스트 <PostLengthTitle>{post.length}개</PostLengthTitle>
           </PostHeader>
-          {post.map(
-            ({ imageUrl, content, profileName, profileImage, width }) => (
-              <ReviewCard
-                key={imageUrl}
-                imageUrl={imageUrl}
-                content={content}
-                profileName={profileName}
-                profileImage={profileImage}
-                width={width}
-              />
-            ),
-          )}
+          {post.map((props) => (
+            <ReviewCard key={props.imageUrl} {...props} />
+          ))}
         </>
       ) : (
         <>
           <PostHeader>좋아요 목록</PostHeader>
-          <NotPost>아직 좋아요한 목록 없습니다.</NotPost>
+          <EmptyPostTitle>아직 좋아요한 목록 없습니다.</EmptyPostTitle>
         </>
       )}
     </PostWrapper>
