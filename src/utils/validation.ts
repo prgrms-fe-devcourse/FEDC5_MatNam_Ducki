@@ -1,7 +1,7 @@
 import { REGEX } from '@/constants/validation';
 
 export const isPasswordShort = (password: string) => {
-  return !password || password.length < length;
+  return !password || password.length < 8;
 };
 
 export const isPasswordContainsSpecialChar = (password: string) => {
