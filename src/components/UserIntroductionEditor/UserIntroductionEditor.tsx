@@ -1,26 +1,24 @@
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 
-import {
-  DEFAULT_HEIGHT,
-  DONE_BUTTON_TEXT,
-  INTRODUCE_LENGTH_LIMIT,
-} from '@/constants/profile';
+import { DONE_BUTTON_TEXT } from '@/constants/profile';
 import { theme } from '@/styles/Theme';
 import { PropsIntroductionEditor } from '@/types/profile';
 
 import HookFormInput from '../Common/HookFormInput';
 
+const Introduction = styled.span`
+  margin-top: 0.3rem;
+  line-height: 1.3rem;
+  width: 16.45rem;
+  box-sizing: border-box;
+  margin-left: 0.55rem;
+`;
+
 const IntroductionWrapper = styled.div<{ introductionLength: number }>`
   display: flex;
-  flex-direction: ${({ introductionLength }) =>
-    introductionLength > INTRODUCE_LENGTH_LIMIT ? 'column' : 'none'};
-  align-items: center;
-  gap: 2rem;
-  height: ${({ introductionLength }) =>
-    introductionLength
-      ? DEFAULT_HEIGHT * (introductionLength / INTRODUCE_LENGTH_LIMIT)
-      : DEFAULT_HEIGHT};
+  width: 23rem;
+  gap: 1.5rem;
 `;
 const IntroductionForm = styled.form`
   display: flex;
@@ -59,7 +57,11 @@ export default function UserIntroductionEditor({
             placeholder={placeholderText}
             value={introduction}
             type="text"
-            style={{ height: '2rem' }}
+            style={{
+              height: '2rem',
+              width: '17rem',
+              padding: '0.25rem 0.5rem',
+            }}
             onChange={onInputChange}
             register={register}></HookFormInput>
           <IntroductionButton isEditing={isEditing}>
@@ -68,7 +70,7 @@ export default function UserIntroductionEditor({
         </IntroductionForm>
       ) : (
         <IntroductionWrapper introductionLength={introduction.length}>
-          <span>{introduction}</span>
+          <Introduction>{introduction}</Introduction>
           <IntroductionButton isEditing={isEditing} onClick={onEditButtonClick}>
             {buttonText}
           </IntroductionButton>
