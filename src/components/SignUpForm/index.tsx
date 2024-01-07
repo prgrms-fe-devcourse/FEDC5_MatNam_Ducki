@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +12,7 @@ import {
 } from '@/utils/validation';
 
 import HookFormInput from '../Common/HookFormInput';
+import { FormWrapper, GuideWrapper, SubmitButton } from './style';
 
 interface SignUpValues {
   fullName: string;
@@ -20,26 +20,6 @@ interface SignUpValues {
   password: string;
   passwordCheck: string;
 }
-
-const FormWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 20px;
-`;
-
-const SubmitButton = styled.button<{ isValid: boolean }>`
-  border-width: 1px;
-  border-radius: 4px;
-  color: ${({ isValid }) => (isValid ? '#000' : '#ddd')};
-  border: 1px solid ${({ isValid }) => (isValid ? '#000' : '#ddd')};
-  padding: 6px;
-`;
-
-const GuideWrapper = styled.div`
-  display: block;
-  padding-top: 1rem;
-`;
 
 export default function SignUpForm() {
   const {
