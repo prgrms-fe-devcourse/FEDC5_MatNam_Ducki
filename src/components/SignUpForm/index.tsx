@@ -23,7 +23,6 @@ export default function SignUpForm() {
   const {
     register,
     handleSubmit,
-    getValues,
     watch,
     formState: { errors, isValid },
   } = useForm<SignUpValues>();
@@ -49,9 +48,12 @@ export default function SignUpForm() {
   };
 
   const password = watch('password');
+  const passwordCheck = watch('passwordCheck');
 
   const isPasswordValidated =
     !isPasswordShort(password) && isPasswordContainsSpecialChar(password);
+
+  const isPasswordMatched = password === passwordCheck;
 
   const inputList: HookFormInputListProps<SignUpValues> = [
     {
@@ -95,8 +97,13 @@ export default function SignUpForm() {
       type: 'password',
       validation: {
         validate: (value) =>
-          value === getValues('password') || '비밀번호가 일치하지 않습니다.',
+          value === password || '비밀번호가 일치하지 않습니다.',
       },
+      guide: !isPasswordMatched && passwordCheck !== '' && (
+        <GuideWrapper>
+          <p>비밀번호가 일치하지 않습니다.</p>
+        </GuideWrapper>
+      ),
     },
   ];
 
