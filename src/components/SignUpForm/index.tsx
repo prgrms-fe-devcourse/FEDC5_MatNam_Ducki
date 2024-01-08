@@ -1,10 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { ACCESS_TOKEN_KEY } from '@/constants/api';
 import { INPUT_VALIDATION } from '@/constants/validation';
-import { signUp } from '@/services/Auth/auth';
+import { useSignUp } from '@/hooks/useAuth';
 import { HookFormInputListProps } from '@/types/input';
 import {
   isPasswordContainsSpecialChar,
@@ -36,21 +34,18 @@ export default function SignUpForm() {
     navigate('/');
   };
 
-  const mutation = useMutation({
-    mutationFn: signUp,
-    onSuccess: (data) => {
-      if (data?.token) {
-        localStorage.setItem(ACCESS_TOKEN_KEY, data.token);
-        navigateToMainPage();
-      }
-    },
-  });
+  const handleSignUpSuccess = () => {
+    navigateToMainPage();
+    alert('가입이 완료 되었어요!');
+  };
+
+  const { mutate } = useSignUp({ onSuccess: handleSignUpSuccess });
 
   const onSubmit: SubmitHandler<SignUpValues> = ({
     passwordCheck,
     ...signUpInput
   }) => {
-    mutation.mutate(signUpInput);
+    mutate(signUpInput);
   };
 
   const password = watch('password');
