@@ -1,6 +1,5 @@
 import { SignInPayload, SignUpPayload } from '@/types/payload';
-import { UserReponse } from '@/types/response';
-import { User } from '@/types/response';
+import { User, UserReponse } from '@/types/response';
 
 import { axiosAuthInstance, axiosInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
