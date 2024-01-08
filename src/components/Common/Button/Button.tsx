@@ -40,7 +40,7 @@ export default function Button({
     <CommonButton
       width={width || theme.size.xLarge}
       height={height || theme.size.large}
-      borderRadius={borderRadius || theme.size.noSize}
+      borderRadius={borderRadius || theme.size.xSmall}
       backgroundColor={backgroundColor || theme.colors.secondary}
       textSize={textSize || theme.size.small}
       textColor={textColor || theme.colors.white}
