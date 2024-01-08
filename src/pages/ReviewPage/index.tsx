@@ -19,8 +19,6 @@ export default function ReviewPage() {
   };
 
   const handleChannelId = useCallback((channelId: string) => {
-    console.log(channelId);
-
     setChannelId(channelId);
   }, []);
 
