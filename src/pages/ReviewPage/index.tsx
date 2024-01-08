@@ -37,6 +37,9 @@ export default function ReviewPage() {
           alert('succeess');
           navigate('/');
         },
+        onError: () => {
+          alert('글 등록 실패');
+        },
       },
     );
   };
