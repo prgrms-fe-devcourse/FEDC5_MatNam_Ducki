@@ -9,7 +9,7 @@ import ReviewList from './pages/ReviewList';
 import ReviewPage from './pages/ReviewPage';
 import SearchPage from './pages/SearchPage';
 import SigninPage from './pages/SigninPage';
-import SignupPage from './pages/SignupPage';
+import SignUpPage from './pages/SignUpPage';
 import { reset } from './styles/Global';
 
 const router = createBrowserRouter([
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/signup',
-    element: <SignupPage />,
+    element: <SignUpPage />,
   },
   {
     path: '/search',
