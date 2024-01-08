@@ -11,6 +11,7 @@ import {
   EDIT_BUTTON_TEXT,
   PLACEHOLDER_DEFAULTS,
 } from '@/constants/profile';
+import { useChangeImage, useProfile } from '@/hooks/useGetProfile';
 
 const ProfileWrapper = styled.div`
   margin: 4rem 1.4rem;
@@ -40,8 +41,12 @@ export default function ProfilePage() {
   const [introduction, setIntroduction] = useState<string>('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
+  const { changeImage } = useChangeImage();
+  const { data: authUser } = useProfile();
+
   const handleFileChange = (file: File | null) => {
     setSelectedFile(file);
+    changeImage(file);
   };
 
   const handleEditButtonClick = () => {
@@ -65,7 +70,6 @@ export default function ProfilePage() {
     introduction === '' ? PLACEHOLDER_DEFAULTS : introduction;
 
   const buttonText = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
-  const defaultAvatar = '../../../public/vite.svg';
   return (
     <>
       <ProfileWrapper>
@@ -76,9 +80,9 @@ export default function ProfilePage() {
             ratio="5/5"
             width="60px"
             borderRadius="50%"
-            image={defaultAvatar}
+            image={authUser?.image ? `${authUser.image}?${Date.now()}` : null}
           />
-          <UserInfo userName="러비더비" userId="ducki" />
+          <UserInfo userName={authUser?.fullName} userId={authUser?.email} />
         </UserInfoWrapper>
         <UserWrapper>
           <UserIntroductionEditor
