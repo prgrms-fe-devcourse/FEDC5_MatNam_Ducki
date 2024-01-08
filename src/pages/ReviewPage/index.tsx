@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ChannelList } from '@/components/Channel/ChannelList';
 import ImageUpload from '@/components/Common/ImageUpload';
@@ -13,6 +14,7 @@ export default function ReviewPage() {
   const [channelId, setChannelId] = useState('');
 
   const image = file ? URL.createObjectURL(file) : null; // 파일이 있으면 url을 만들어서 image에 넣어줍니다.
+  const navigate = useNavigate();
 
   const handleFileChange = (file: File | null) => {
     setFile(file); // 파일이 선택되면 file state를 업데이트
@@ -33,6 +35,7 @@ export default function ReviewPage() {
       {
         onSuccess: () => {
           alert('succeess');
+          navigate('/');
         },
       },
     );
