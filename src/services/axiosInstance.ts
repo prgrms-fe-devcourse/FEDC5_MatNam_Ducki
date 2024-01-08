@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(onResponse, onError);
 axiosAuthInstance.interceptors.response.use(onResponse, onError);
 
 const onRequest = (config: InternalAxiosRequestConfig) => {
-  const accessToken = sessionStorage.getItem(ACCESS_TOKEN_KEY);
+  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
