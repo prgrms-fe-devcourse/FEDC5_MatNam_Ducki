@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+import { createComment } from '@/services/Post/comment';
 import { getPostDetail } from '@/services/Post/post';
 import { Post } from '@/types/response';
 
@@ -10,6 +11,16 @@ export const useGetDetail = ({ postId }: { postId: string }) => {
   });
 };
 
-export const useLike = () => {};
+export const useCreateComment = () => {
+  const queryClient = useQueryClient();
 
-export const useCreateComment = () => {};
+  return useMutation({
+    mutationKey: ['post'],
+    mutationFn: createComment,
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['post'] });
+    },
+  });
+};
+
+export const useLike = () => {};
