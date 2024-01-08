@@ -42,7 +42,7 @@ export const updateProfileImage = async ({
     formData.append('isCover', isCover ? 'true' : 'false');
     formData.append('image', image);
 
-    const response = await axiosInstance.post<User>(
+    const response = await axiosAuthInstance.post<User>(
       ENDPOINT.USERS.UPLOAD_PHOTO,
       formData,
     );
