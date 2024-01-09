@@ -12,7 +12,8 @@ import {
   EDIT_BUTTON_TEXT,
   PLACEHOLDER_DEFAULTS,
 } from '@/constants/profile';
-import { useChangeImage, useProfile } from '@/hooks/useGetProfile';
+import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useChangeImage } from '@/hooks/useGetProfile';
 
 const ProfileWrapper = styled.div`
   margin: 6.4rem 1.96rem;
@@ -32,6 +33,10 @@ const UserWrapper = styled.div`
   flex-direction: column;
 `;
 
+const ImageWrapper = styled.div`
+  margin-top: 1.2rem;
+`;
+
 const UserInfoWrapper = styled.div`
   display: flex;
   margin-bottom: 1.76rem;
@@ -43,7 +48,7 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { changeImage } = useChangeImage(setIsLoading);
-  const { data: authUser } = useProfile();
+  const { data: authUser } = useCheckAuthUser();
 
   const handleFileChange = (file: File | null) => {
     if (file) {
@@ -82,22 +87,25 @@ export default function ProfilePage() {
           <UserInfoWrapper>
             {isLoading ? (
               <Skeleton
-                width="60px"
-                height="60px"
+                width="80px"
+                height="=70px"
                 borderRadius="50%"></Skeleton>
             ) : (
-              <ImageUpload
-                onFileChange={handleFileChange}
-                ratio="5/5"
-                width="60px"
-                borderRadius="50%"
-                image={
-                  authUser?.image
-                    ? `${authUser.image}?${Date.now()}`
-                    : defaultImage // 초기 값
-                }
-              />
+              <ImageWrapper>
+                <ImageUpload
+                  onFileChange={handleFileChange}
+                  ratio="5/5"
+                  width="80px"
+                  borderRadius="50%"
+                  image={
+                    authUser?.image
+                      ? `${authUser.image}?${Date.now()}`
+                      : defaultImage // 초기 값
+                  }
+                />
+              </ImageWrapper>
             )}
+
             <UserInfo userName={authUser?.fullName} userId={authUser?.email} />
           </UserInfoWrapper>
           <UserWrapper>

@@ -14,6 +14,7 @@ const UserName = styled.div`
 `;
 
 const UserId = styled.div`
+  font-size: 1.6rem;
   color: #777777;
 `;
 
