@@ -5,8 +5,10 @@ export const reset = css`
    v2.0 | 20110126
    License: none (public domain)
 */
+  html {
+    font-size: 62.5%;
+  }
 
-  html,
   body,
   div,
   span,
@@ -94,6 +96,11 @@ export const reset = css`
     font: inherit;
     vertical-align: baseline;
   }
+
+  body {
+    font-size: 1.6rem;
+  }
+
   /* HTML5 display-role reset for older browsers */
   article,
   aside,
