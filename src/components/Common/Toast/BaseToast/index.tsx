@@ -1,3 +1,5 @@
+import { BaseToastWrapper } from './style';
+
 interface BaseToastProps {
   id: string;
   children: React.ReactNode;
@@ -5,9 +7,9 @@ interface BaseToastProps {
 
 export default function BaseToast({ id, children }: BaseToastProps) {
   return (
-    <div id={id}>
+    <BaseToastWrapper id={id}>
       {children}
       <button>삭제</button>
-    </div>
+    </BaseToastWrapper>
   );
 }

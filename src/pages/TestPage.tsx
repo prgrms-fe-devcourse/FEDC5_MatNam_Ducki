@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { useToast } from '@/components/Common/Toast/ToastProvider';
 import { useSignIn, useSignOut } from '@/hooks/useAuth';
 import { useModal } from '@/hooks/useModal';
 import { ModalType } from '@/types/modal';
@@ -40,6 +41,8 @@ export default function TestPage() {
     gap: 2rem;
   `;
 
+  const { addToast } = useToast();
+
   const TestButton = styled.button`
     border: 1px solid black;
     padding: 0.5rem;
@@ -48,7 +51,9 @@ export default function TestPage() {
 
   return (
     <MainPageWrapper>
-      <TestButton onClick={handleSignIn}>테스트 계정 로그인</TestButton>
+      <TestButton onClick={() => addToast({ content: '로그인 성공' })}>
+        테스트 계정 로그인
+      </TestButton>
       <TestButton onClick={handleSignOut}>테스트 계정 로그아웃</TestButton>
       <TestButton onClick={handleOpenModal}>이미지 변경 모달 열기</TestButton>
     </MainPageWrapper>

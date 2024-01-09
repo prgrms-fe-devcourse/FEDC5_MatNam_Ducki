@@ -5,9 +5,14 @@ interface ToastWrapperProps {
 }
 
 export const ToastWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-50%);
+  gap: 1rem;
 `;
 
 // export const ToastWrapper = styled.div<ToastWrapperProps>`

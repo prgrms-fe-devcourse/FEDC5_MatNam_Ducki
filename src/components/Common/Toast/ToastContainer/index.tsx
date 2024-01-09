@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom';
 
+import BaseToast from '../BaseToast';
 import { ToastWrapper } from './style';
 
 interface ToastContainerProps {
@@ -10,7 +11,9 @@ export default function ToastContainer({ toasts }: ToastContainerProps) {
   return createPortal(
     <ToastWrapper>
       {toasts.map((toast) => (
-        <div key={toast.id}>{toast.content}</div>
+        <BaseToast key={toast.id} id={toast.id}>
+          {toast.content}
+        </BaseToast>
       ))}
     </ToastWrapper>,
     document.body,
