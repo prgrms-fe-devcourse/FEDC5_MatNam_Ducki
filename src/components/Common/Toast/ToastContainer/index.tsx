@@ -5,11 +5,15 @@ import { ToastWrapper } from './style';
 
 interface ToastContainerProps {
   toasts: { id: string; content: string; backgroundColor?: string }[];
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 }
 
-export default function ToastContainer({ toasts }: ToastContainerProps) {
+export default function ToastContainer({
+  toasts,
+  position,
+}: ToastContainerProps) {
   return createPortal(
-    <ToastWrapper>
+    <ToastWrapper position={position}>
       {toasts.map((toast) => (
         <BaseToast
           key={toast.id}
