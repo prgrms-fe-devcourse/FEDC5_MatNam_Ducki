@@ -5,8 +5,10 @@ export const reset = css`
    v2.0 | 20110126
    License: none (public domain)
 */
+  html {
+    font-size: 62.5%;
+  }
 
-  html,
   body,
   div,
   span,
