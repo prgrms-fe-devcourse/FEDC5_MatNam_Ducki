@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector/PostSelector';
+import Skeleton from '@/components/Skeleton';
 import UserInfo from '@/components/UserInfo/UserInfo';
 import UserIntroductionEditor from '@/components/UserIntroductionEditor/UserIntroductionEditor';
 import {
@@ -14,39 +15,40 @@ import {
 import { useChangeImage, useProfile } from '@/hooks/useGetProfile';
 
 const ProfileWrapper = styled.div`
-  margin: 4rem 1.4rem;
-  width: 23rem;
+  margin: 6.4rem 1.96rem;
+  width: 36.8rem;
   position: relative;
 `;
 
 const Header = styled.div`
-  margin: 1rem 0;
-  font-size: 2.12rem;
+  margin: 1.6rem 0;
+  font-size: 3.4rem;
   font-weight: bold;
 `;
 
 const UserWrapper = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 3.2rem;
   flex-direction: column;
 `;
 
 const UserInfoWrapper = styled.div`
   display: flex;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.76rem;
 `;
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [introduction, setIntroduction] = useState<string>('');
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { changeImage } = useChangeImage();
+  const { changeImage } = useChangeImage(setIsLoading);
   const { data: authUser } = useProfile();
 
   const handleFileChange = (file: File | null) => {
-    setSelectedFile(file);
-    changeImage(file);
+    if (file) {
+      changeImage(file);
+    }
   };
 
   const handleEditButtonClick = () => {
@@ -70,33 +72,50 @@ export default function ProfilePage() {
     introduction === '' ? PLACEHOLDER_DEFAULTS : introduction;
 
   const buttonText = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
+
+  const defaultImage = '../../public/vite.svg';
   return (
     <>
-      <ProfileWrapper>
-        <Header>마이페이지</Header>
-        <UserInfoWrapper>
-          <ImageUpload
-            onFileChange={handleFileChange}
-            ratio="5/5"
-            width="60px"
-            borderRadius="50%"
-            image={authUser?.image ? `${authUser.image}?${Date.now()}` : null}
-          />
-          <UserInfo userName={authUser?.fullName} userId={authUser?.email} />
-        </UserInfoWrapper>
-        <UserWrapper>
-          <UserIntroductionEditor
-            isEditing={isEditing}
-            onEditButtonClick={handleEditButtonClick}
-            placeholderText={placeholderText}
-            onFormSubmit={handleFormSubmit}
-            introduction={introduction}
-            onInputChange={handleInputChange}
-            buttonText={buttonText}
-          />
-          <PostSelector></PostSelector>
-        </UserWrapper>
-      </ProfileWrapper>
+      {authUser ? (
+        <ProfileWrapper>
+          <Header>마이페이지</Header>
+          <UserInfoWrapper>
+            {isLoading ? (
+              <Skeleton
+                width="60px"
+                height="60px"
+                borderRadius="50%"></Skeleton>
+            ) : (
+              <ImageUpload
+                onFileChange={handleFileChange}
+                ratio="5/5"
+                width="60px"
+                borderRadius="50%"
+                image={
+                  authUser?.image
+                    ? `${authUser.image}?${Date.now()}`
+                    : defaultImage // 초기 값
+                }
+              />
+            )}
+            <UserInfo userName={authUser?.fullName} userId={authUser?.email} />
+          </UserInfoWrapper>
+          <UserWrapper>
+            <UserIntroductionEditor
+              isEditing={isEditing}
+              onEditButtonClick={handleEditButtonClick}
+              placeholderText={placeholderText}
+              onFormSubmit={handleFormSubmit}
+              introduction={introduction}
+              onInputChange={handleInputChange}
+              buttonText={buttonText}
+            />
+            <PostSelector></PostSelector>
+          </UserWrapper>
+        </ProfileWrapper>
+      ) : (
+        <div>로그인하세요</div>
+      )}
       <BottomNavBar></BottomNavBar>
     </>
   );

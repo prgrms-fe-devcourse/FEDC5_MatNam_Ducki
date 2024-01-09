@@ -7,29 +7,29 @@ import LikePosts from '../LikePosts/LikePosts';
 import MyPosts from '../MyPosts/MyPosts';
 
 const SelectorWrapper = styled.div`
-  height: 100px;
+  height: 10rem;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 340px;
-  border-radius: 10px;
-  margin-top: 10px;
+  width: 34rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
 `;
 
 const Button = styled.button`
   flex: 1;
   background-color: #e4e1e1;
-  border: 1px solid #ccc;
-  height: 100px;
+  border: 0.1rem solid #ccc;
+  height: 10rem;
 `;
 
 const LeftButton = styled(Button)`
-  border-radius: 10px 0 0 10px;
+  border-radius: 1rem 0 0 1rem;
 `;
 
 const RightButton = styled(Button)`
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 1rem 1rem 0;
 `;
 
 export default function PostSelector() {
