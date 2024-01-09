@@ -96,6 +96,11 @@ export const reset = css`
     font: inherit;
     vertical-align: baseline;
   }
+
+  body {
+    font-size: 1.6rem;
+  }
+
   /* HTML5 display-role reset for older browsers */
   article,
   aside,
