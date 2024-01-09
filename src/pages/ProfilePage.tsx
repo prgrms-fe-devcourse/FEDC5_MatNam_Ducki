@@ -87,8 +87,9 @@ export default function ProfilePage() {
           <UserInfoWrapper>
             {isLoading ? (
               <Skeleton
+                style={{ marginTop: '1.2rem' }}
                 width="80px"
-                height="=70px"
+                height="80px"
                 borderRadius="50%"></Skeleton>
             ) : (
               <ImageWrapper>

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-interface PropsSkeleton {
+interface PropsSkeleton extends React.ComponentProps<'div'> {
   width: string;
   height: string;
   borderRadius?: string;
