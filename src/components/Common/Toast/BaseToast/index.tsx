@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { useToast } from '../ToastProvider';
 import { BaseToastWrapper } from './style';
 
@@ -17,6 +19,13 @@ export default function BaseToast({
   };
 
   const { removeToast } = useToast();
+
+  useEffect(() => {
+    setTimeout(() => {
+      removeToast({ id });
+    }, 1000);
+  }, [id, removeToast]);
+
   return (
     <BaseToastWrapper id={id} style={style}>
       {children}
