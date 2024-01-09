@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 export interface PropsAvatar {
-  imageUrl: string | null;
+  imageUrl?: string;
   size: string | number;
   borderRadius?: number;
 }
