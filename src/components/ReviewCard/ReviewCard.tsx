@@ -6,7 +6,7 @@ interface ReviewCardProps extends React.ComponentProps<'div'> {
   imageUrl: string;
   content: string;
   profileName: string;
-  profileImage: string;
+  profileImage?: string;
   width?: string;
 }
 
