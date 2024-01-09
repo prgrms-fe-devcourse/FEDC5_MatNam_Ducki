@@ -7,3 +7,10 @@ export type ModalStateType = {
 export enum ModalType {
   CHANGE_IMAGE = 'CHANGE_IMAGE',
 }
+
+export const MODAL_PROPS_BY_TYPE = [
+  {
+    type: ModalType.CHANGE_IMAGE,
+    isCloseButton: false,
+  },
+];
