@@ -3,7 +3,13 @@ import { createContext, useContext, useState } from 'react';
 import ToastContainer from '../ToastContainer';
 
 interface ToastContextProps {
-  addToast: ({ content }: { content: string }) => void;
+  addToast: ({
+    content,
+    backgroundColor,
+  }: {
+    content: string;
+    backgroundColor?: string;
+  }) => void;
   removeToast: ({ id }: { id: string }) => void;
 }
 
@@ -18,10 +24,21 @@ export const useToast = () => {
 };
 
 export default function ToastProvider({ children }: React.PropsWithChildren) {
-  const [toasts, setToasts] = useState<{ id: string; content: string }[]>([]);
+  const [toasts, setToasts] = useState<
+    { id: string; content: string; backgroundColor?: string }[]
+  >([]);
 
-  const addToast = ({ content }: { content: string }) => {
-    setToasts((prev) => [...prev, { id: Date.now().toString(), content }]);
+  const addToast = ({
+    content,
+    backgroundColor,
+  }: {
+    content: string;
+    backgroundColor?: string;
+  }) => {
+    setToasts((prev) => [
+      ...prev,
+      { id: Date.now().toString(), content, backgroundColor },
+    ]);
   };
 
   const removeToast = ({ id }: { id: string }) => {
