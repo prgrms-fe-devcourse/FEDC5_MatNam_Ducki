@@ -1,5 +1,5 @@
-import { Comment } from '@/types';
 import { CreateCommentPayload } from '@/types/payload';
+import { Comment } from '@/types/response';
 
 import { axiosAuthInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
