@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useSearchAll } from '@/hooks/useSearch';
 import { SearchResultType } from '@/types/response';
@@ -21,13 +23,19 @@ export default function SearchBar({ onSearchResult }: SearchBarProps) {
   const { register, handleSubmit, watch, setFocus, resetField, setValue } =
     useForm<SearchBarValues>();
 
+  const navigate = useNavigate();
+
   const searchValue = watch('search');
 
   const { refetch } = useSearchAll(searchValue);
 
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('q');
+
   const handleResetValue = () => {
     resetField('search');
     setFocus('search');
+    navigate({ pathname: '/search' });
   };
 
   const onSubmit: SubmitHandler<SearchBarValues> = async () => {
@@ -39,6 +47,18 @@ export default function SearchBar({ onSearchResult }: SearchBarProps) {
       onSearchResult(data ?? null);
     }
   };
+
+  useEffect(() => {
+    if (searchValue != null) {
+      navigate({ pathname: '/search', search: `?q=${searchValue}` });
+    }
+  }, [searchValue]);
+
+  useEffect(() => {
+    if (searchQuery != null) {
+      setValue('search', searchQuery);
+    }
+  }, [searchQuery]);
 
   return (
     <SearchForm onSubmit={handleSubmit(onSubmit)}>
