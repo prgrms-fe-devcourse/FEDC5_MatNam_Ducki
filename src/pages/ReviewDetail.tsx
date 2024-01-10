@@ -88,7 +88,7 @@ export default function ReviewDetail() {
         <BadgeWrapper>
           <Badge
             label={data.channel.name!}
-            color={`${theme.colors.lightSecondary}`}
+            color={theme.colors.lightSecondary}
           />
         </BadgeWrapper>
         <ReviewCard
