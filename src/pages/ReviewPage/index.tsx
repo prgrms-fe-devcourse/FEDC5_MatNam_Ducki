@@ -5,7 +5,12 @@ import { ChannelList } from '@/components/Channel/ChannelList';
 import ImageUpload from '@/components/Common/ImageUpload';
 import { useCreatePost } from '@/hooks/useCreatePost';
 
-import { CreateButton, ReviewContainer, ReviewTextArea } from './style';
+import {
+  CreateButton,
+  ReviewContainer,
+  ReviewForm,
+  ReviewTextArea,
+} from './style';
 
 export default function ReviewPage() {
   const { mutate: createPost, isLoading } = useCreatePost();
@@ -47,7 +52,7 @@ export default function ReviewPage() {
   return (
     <>
       <ReviewContainer>
-        <form onSubmit={handleSubmit}>
+        <ReviewForm onSubmit={handleSubmit}>
           <section>
             <p>채널 선택</p>
             <ChannelList channelId={channelId} handleClick={handleChannelId} />
@@ -57,7 +62,7 @@ export default function ReviewPage() {
             <ReviewTextArea name="review" placeholder="후기를 작성해보세요." />
             <CreateButton disabled={isLoading}>등록</CreateButton>
           </section>
-        </form>
+        </ReviewForm>
       </ReviewContainer>
     </>
   );
