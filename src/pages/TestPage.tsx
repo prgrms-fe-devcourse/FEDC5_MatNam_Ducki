@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { useToast } from '@/components/Common/Toast/ToastProvider';
 import { useSignIn, useSignOut } from '@/hooks/useAuth';
 import { useModal } from '@/hooks/useModal';
+import { useToast } from '@/hooks/useToast';
 import { ModalType } from '@/types/modal';
 
 export default function TestPage() {
@@ -54,10 +54,7 @@ export default function TestPage() {
       <TestButton onClick={handleSignIn}>테스트 계정 로그인</TestButton>
       <TestButton onClick={handleSignOut}>테스트 계정 로그아웃</TestButton>
       <TestButton onClick={handleOpenModal}>이미지 변경 모달 열기</TestButton>
-      <TestButton
-        onClick={() =>
-          addToast({ content: '테스트 토스트', position: 'top-left' })
-        }>
+      <TestButton onClick={() => addToast({ content: '테스트 토스트' })}>
         토스트 테스트
       </TestButton>
     </MainPageWrapper>

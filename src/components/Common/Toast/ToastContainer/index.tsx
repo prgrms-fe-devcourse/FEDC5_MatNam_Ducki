@@ -1,28 +1,25 @@
 import { createPortal } from 'react-dom';
+import { useRecoilValue } from 'recoil';
+
+import { toastState } from '@/recoil/toast';
 
 import BaseToast from '../BaseToast';
 import { ToastWrapper } from './style';
 
-interface ToastContainerProps {
-  toasts: { id: string; content: string; backgroundColor?: string }[];
-  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-}
+export default function ToastContainer() {
+  const ref = document.querySelector('#toast');
 
-export default function ToastContainer({
-  toasts,
-  position,
-}: ToastContainerProps) {
+  const toasts = useRecoilValue(toastState);
+
+  if (!ref) {
+    return null;
+  }
   return createPortal(
-    <ToastWrapper position={position}>
+    <ToastWrapper>
       {toasts.map((toast) => (
-        <BaseToast
-          key={toast.id}
-          id={toast.id}
-          backgroundColor={toast.backgroundColor}>
-          {toast.content}
-        </BaseToast>
+        <BaseToast key={toast.id}>{toast.content}</BaseToast>
       ))}
     </ToastWrapper>,
-    document.body,
+    ref,
   );
 }

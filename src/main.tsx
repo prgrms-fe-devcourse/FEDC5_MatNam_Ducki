@@ -8,7 +8,6 @@ import ReactDOM from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 
 import App from './App.tsx';
-import ToastProvider from './components/Common/Toast/ToastProvider/index.tsx';
 import { theme } from './styles/Theme.ts';
 
 const queryClient = new QueryClient({
@@ -21,12 +20,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <ToastProvider>
-          <RecoilRoot>
-            <App />
-            <ReactQueryDevtools initialIsOpen={false} />
-          </RecoilRoot>
-        </ToastProvider>
+        <RecoilRoot>
+          <App />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </RecoilRoot>
       </QueryClientProvider>
     </ThemeProvider>
   </React.StrictMode>,
