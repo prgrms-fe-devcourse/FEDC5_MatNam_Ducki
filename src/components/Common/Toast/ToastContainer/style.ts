@@ -15,27 +15,27 @@ export const ToastWrapper = styled.div<ToastWrapperProps>`
     switch (position) {
       case 'top-left':
         return `
-          top: 0;
+          top: 3rem;
           left: 0;
         `;
       case 'top-right':
         return `
-          top: 0;
+          top: 3rem;
           right: 0;
         `;
       case 'bottom-left':
         return `
-          bottom: 0;
+          bottom: 5rem;
           left: 0;
         `;
       case 'bottom-right':
         return `
-          bottom: 0;
+          bottom: 5rem;
           right: 0;
         `;
       default:
         return `
-          top: 0;
+          top: 3rem;
           right: 0;
         `;
     }

@@ -23,7 +23,7 @@ export default function BaseToast({
   useEffect(() => {
     setTimeout(() => {
       removeToast({ id });
-    }, 1000);
+    }, 2000);
   }, [id, removeToast]);
 
   return (
