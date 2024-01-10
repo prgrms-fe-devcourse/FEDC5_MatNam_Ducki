@@ -1,17 +1,16 @@
 import styled from '@emotion/styled';
 
 interface ReviewCardProps {
-  imageUrl: string;
+  imageUrl?: string;
   content: string;
   profileName: string;
-  profileImage: string;
   width?: string;
 }
 
 const ReviewCardContainer = styled.div<{ width: string }>`
   width: ${({ width }) => width};
   margin: 0 auto;
-  border-radius: 5%;
+  border-radius: 1rem;
   border: 1px solid #bdbdbd;
   box-shadow: 0px 1.5px 1.5px rgba(0, 0, 0, 0.25);
 `;
@@ -27,12 +26,6 @@ const ProfileContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-`;
-
-const ProfileImage = styled.img`
-  width: 2rem;
-  border-radius: 50%;
-  background-color: #bdbdbd;
 `;
 
 const ProfileNickname = styled.span`
@@ -77,7 +70,6 @@ const RestaurantLocation = styled.div`
  * @param {string} imageUrl - 리뷰 이미지
  * @param {string} content - 리뷰 내용
  * @param {string} profileName - 프로필 닉네임
- * @param {string} profileImage - 프로필 이미지
  * @param {string} width - 리뷰 카드 너비
  */
 
@@ -85,7 +77,6 @@ export const ReviewCard = ({
   imageUrl,
   content,
   profileName,
-  profileImage,
   width = '80%',
   ...props
 }: ReviewCardProps) => {
@@ -93,7 +84,6 @@ export const ReviewCard = ({
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
         <ProfileContainer>
-          <ProfileImage src={profileImage} />
           <ProfileNickname>{profileName}</ProfileNickname>
         </ProfileContainer>
         <div>5분 전</div>

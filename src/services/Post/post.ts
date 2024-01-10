@@ -1,10 +1,10 @@
-import { Post } from '@/types';
 import {
   CreatePostPayload,
   GetPostByChannelPayload,
   GetPostByUserPayload,
   UpdatePostPayload,
 } from '@/types/payload';
+import { Post } from '@/types/response';
 
 import { axiosInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
