@@ -47,7 +47,7 @@ export default function ProfilePage() {
   const [introduction, setIntroduction] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { changeImage } = useChangeImage(setIsLoading);
+  const { changeImage } = useChangeImage();
   const { data: authUser } = useCheckAuthUser();
 
   const handleFileChange = (file: File | null) => {

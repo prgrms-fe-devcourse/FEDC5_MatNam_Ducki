@@ -19,7 +19,14 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
 };
 
 const onError = (error: AxiosError) => {
+  const response = error.response as AxiosResponse;
+
+  if (response?.data) {
+    alert(response.data);
+  }
+
   console.error(error);
+
   return Promise.reject(error);
 };
 
