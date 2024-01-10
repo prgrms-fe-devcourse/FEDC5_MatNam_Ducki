@@ -70,44 +70,48 @@ const Comment = styled.p`
 const CommentUserName = styled.h3``;
 
 export default function ReviewDetail() {
-  const { data } = useGetDetail({ postId: '659b4c245a6441788727b01a' });
+  const { data, isLoading } = useGetDetail({
+    postId: '659b4c245a6441788727b01a',
+  });
   // TODO: postId url 파라미터값 사용으로 변경
 
-  return (
-    <ReviewDetailPage>
-      <UserInfoWrapper>
-        <Avatar imageUrl={data?.author.image!} size="68px" />
-        <UserInfoTextBox>
-          <UserName>{data?.author.fullName}</UserName>
-          <UserMail>{data?.author.email}</UserMail>
-        </UserInfoTextBox>
-      </UserInfoWrapper>
-      <BadgeWrapper>
-        <Badge
-          label={data?.channel.name!}
-          color={`${theme.colors.lightSecondary}`}
+  if (!isLoading && data) {
+    return (
+      <ReviewDetailPage>
+        <UserInfoWrapper>
+          <Avatar imageUrl={data.author.image!} size="68px" />
+          <UserInfoTextBox>
+            <UserName>{data.author.fullName}</UserName>
+            <UserMail>{data.author.email}</UserMail>
+          </UserInfoTextBox>
+        </UserInfoWrapper>
+        <BadgeWrapper>
+          <Badge
+            label={data.channel.name!}
+            color={`${theme.colors.lightSecondary}`}
+          />
+        </BadgeWrapper>
+        <ReviewCard
+          content="dfsd"
+          profileImage="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
+          profileName="sangmin"
+          imageUrl="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
         />
-      </BadgeWrapper>
-      <ReviewCard
-        content="dfsd"
-        profileImage="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-        profileName="sangmin"
-        imageUrl="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-      />
-      <EvaluationSection />
-      <CommentList>
-        {data?.comments.map((comment) => (
-          <CommentBox key={comment._id}>
-            <CommentUserInfoWrapper>
-              <Avatar imageUrl={comment.author.image!} size="38px" />
-              <CommentUserName>{comment.author.fullName}</CommentUserName>
-            </CommentUserInfoWrapper>
-            <Comment>{comment.comment}</Comment>
-          </CommentBox>
-        ))}
-      </CommentList>
-      <CommentInput />
-      <BottomNavBar />
-    </ReviewDetailPage>
-  );
+        <EvaluationSection />
+        <CommentList>
+          {data.comments.map((comment) => (
+            <CommentBox key={comment._id}>
+              <CommentUserInfoWrapper>
+                <Avatar imageUrl={comment.author.image!} size="38px" />
+                <CommentUserName>{comment.author.fullName}</CommentUserName>
+              </CommentUserInfoWrapper>
+              <Comment>{comment.comment}</Comment>
+            </CommentBox>
+          ))}
+        </CommentList>
+        <CommentInput />
+        <BottomNavBar />
+      </ReviewDetailPage>
+    );
+  }
 }
