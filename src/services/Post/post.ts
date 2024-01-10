@@ -6,7 +6,7 @@ import {
 } from '@/types/payload';
 import { Post } from '@/types/response';
 
-import { axiosInstance } from '../axiosInstance';
+import { axiosAuthInstance, axiosInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
 
 export const getPostByChannel = async ({
@@ -70,7 +70,7 @@ export const createPost = async ({
     formData.append('image', image);
     formData.append('channelId', channelId);
 
-    await axiosInstance.post(ENDPOINT.POSTS.CREATE, formData);
+    await axiosAuthInstance.post(ENDPOINT.POSTS.CREATE, formData);
   } catch (error) {
     console.error(error);
   }
