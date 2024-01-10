@@ -1,14 +1,24 @@
+import { useCallback, useState } from 'react';
+
+import { ChannelList } from '@/components/Channel/ChannelList';
 import { ReviewCardList } from '@/components/ReviewCardList';
-import { useGetChannels } from '@/hooks/useGetChannel';
 import { useGetPostByChannel } from '@/hooks/usePost';
 
 export default function ReviewList() {
-  const { data: channels } = useGetChannels();
+  const [channelId, setChannelId] = useState('65965f97f759661f3e669793');
+
   const { data: postsByChannel } = useGetPostByChannel({
-    channelId: '65965f97f759661f3e669793',
+    channelId: channelId,
   });
 
-  console.log(postsByChannel);
+  const handleChannelId = useCallback((channelId: string) => {
+    setChannelId(channelId);
+  }, []);
 
-  return <ReviewCardList posts={postsByChannel} />;
+  return (
+    <>
+      <ChannelList channelId={channelId} handleClick={handleChannelId} />
+      <ReviewCardList posts={postsByChannel} />
+    </>
+  );
 }
