@@ -1,11 +1,10 @@
 import { PropsWithChildren } from 'react';
 
-import { Notification } from '@/types/response';
-
-import NotificationItem from '../NotificationItem';
+import NotificationItem, { DummyData } from '../NotificationItem';
+import { NotificationListContainer } from './style';
 
 interface NotificationListProps {
-  notifications: Notification[];
+  notifications: DummyData[];
 }
 
 export default function NotificationList({
@@ -13,14 +12,14 @@ export default function NotificationList({
 }: PropsWithChildren<NotificationListProps>) {
   if (notifications.length) {
     return (
-      <ul>
+      <NotificationListContainer>
         {notifications.map((notification) => (
           <NotificationItem
             key={notification._id}
             notification={notification}
           />
         ))}
-      </ul>
+      </NotificationListContainer>
     );
   }
 

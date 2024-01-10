@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const NotificationListContainer = styled.div`
+export const NotificationListContainer = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
