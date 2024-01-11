@@ -18,17 +18,17 @@ const UploadContainer = styled.div<{
   ratio?: string;
 }>`
   aspect-ratio: ${({ ratio }) => ratio || '5 / 3'}; // 가로 세로 비율
-  width: ${({ width }) => width || '90%'};
+  width: ${({ width }) => width || '100%'};
   flex-shrink: 0;
   overflow: hidden;
-  border: 1px solid gray;
+  border: 1px solid #e2e8f0;
   border-radius: ${({ borderRadius }) => borderRadius || '0px'};
-  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   position: relative;
+  font-size: 1rem;
 `;
 
 const ImagePreview = styled.img<{ ratio?: string }>`
