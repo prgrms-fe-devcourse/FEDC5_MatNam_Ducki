@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import { INPUT_VALIDATION } from '@/constants/validation';
 import { useSignIn } from '@/hooks/useAuth';
 import { HookFormInputListProps } from '@/types/input';
 
@@ -42,6 +43,7 @@ export default function SigninForm() {
       required: true,
       placeholder: '이메일을 입력해 주세요.',
       type: 'email',
+      validation: INPUT_VALIDATION.EMAIL,
     },
     {
       name: 'password',
