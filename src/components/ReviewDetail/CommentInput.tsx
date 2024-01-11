@@ -1,8 +1,10 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 import { useCreateComment } from '@/hooks/ReviewDetail';
+import { useCheckAuthUser } from '@/hooks/useAuth';
 import { theme } from '@/styles/Theme';
 
 import Avatar from '../Common/Avatar/Avatar';
@@ -22,37 +24,36 @@ const FormWrapper = styled.form`
 `;
 
 export default function CommentInput() {
+  const { postId } = useParams() as { postId: string };
   const { register, handleSubmit, reset } = useForm<{ comment: string }>();
-  const { mutate } = useCreateComment();
+  const { mutate } = useCreateComment({ postId });
+  const { data, isLoading } = useCheckAuthUser();
 
   const onSubmit: SubmitHandler<{ comment: string }> = ({ comment }) => {
-    mutate({
-      comment,
-      postId: '659b4c245a6441788727b01a',
-    });
+    mutate({ comment, postId });
     reset();
 
     //TODO: scroll 최하단으로
   };
-  return (
-    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <Avatar
-        imageUrl="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-        size="48px"
-      />
-      <HookFormInput
-        register={register}
-        name="comment"
-        placeholder="댓글 달기"
-        css={css`
-          width: 100%;
-          padding: 0.625rem 1.25rem;
-          background-color: ${theme.colors.whitePrimary};
-          border: 0;
-          border-radius: 0.625rem;
-          outline: none;
-        `}
-      />
-    </FormWrapper>
-  );
+
+  if (!isLoading && data) {
+    return (
+      <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+        <Avatar imageUrl={data.image!} size="48px" />
+        <HookFormInput
+          register={register}
+          name="comment"
+          placeholder="댓글 달기"
+          css={css`
+            width: 100%;
+            padding: 0.625rem 1.25rem;
+            background-color: ${theme.colors.whitePrimary};
+            border: 0;
+            border-radius: 0.625rem;
+            outline: none;
+          `}
+        />
+      </FormWrapper>
+    );
+  }
 }
