@@ -1,5 +1,6 @@
 import { useRecoilState } from 'recoil';
 
+import { MAX_TOAST_COUNT, TOAST_REMOVE_DELAY } from '@/constants/toast';
 import { positionState, toastState } from '@/recoil/toast';
 import { Toast } from '@/types/toast';
 
@@ -14,9 +15,12 @@ export function useToast() {
   };
 
   const addToast = (toast: Toast) => {
+    if (toasts.length >= MAX_TOAST_COUNT) {
+      return;
+    }
     const id = getRandomID();
     setToasts((prev) => [...prev, { ...toast, id }]);
-    setTimeout(() => removeToast(id), 2000);
+    setTimeout(() => removeToast(id), TOAST_REMOVE_DELAY);
   };
 
   const addPosition = (newPosition: string) => {
