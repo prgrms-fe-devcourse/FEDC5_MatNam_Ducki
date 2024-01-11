@@ -15,30 +15,43 @@ import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useChangeImage } from '@/hooks/useGetProfile';
 
 const ProfileWrapper = styled.div`
-  margin: 6.4rem 1.96rem;
-  width: 36.8rem;
-  position: relative;
+  width: 37.5rem;
+  height: 73.2rem;
 `;
 
-const Header = styled.div`
-  margin: 1.6rem 0;
-  font-size: 3.4rem;
-  font-weight: bold;
+const Hello = styled.div`
+  width: 37.5rem;
+  height: 16rem;
 `;
 
-const UserWrapper = styled.div`
-  display: flex;
-  gap: 3.2rem;
-  flex-direction: column;
-`;
-
-const ImageWrapper = styled.div`
-  margin-top: 1.2rem;
+const TopBackGroundImage = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: pink;
 `;
 
 const UserInfoWrapper = styled.div`
   display: flex;
-  margin-bottom: 1.76rem;
+  width: 100%;
+  height: 10rem;
+`;
+
+const UserWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  margin: 3rem 2rem 0 2rem;
+`;
+
+const ImageWrapper = styled.div`
+  margin-top: 1.2rem;
+  margin-left: 2.5rem;
+`;
+
+const Label = styled.span`
+  color: #868686;
+  font-size: 1.3rem;
+  margin-left: 0.7rem;
 `;
 
 export default function ProfilePage() {
@@ -81,7 +94,9 @@ export default function ProfilePage() {
     <>
       {authUser ? (
         <ProfileWrapper>
-          <Header>마이페이지</Header>
+          <Hello>
+            <TopBackGroundImage></TopBackGroundImage>
+          </Hello>
           <UserInfoWrapper>
             {isLoading ? (
               <Skeleton
@@ -107,6 +122,7 @@ export default function ProfilePage() {
             <UserInfo userName={authUser?.fullName} userId={authUser?.email} />
           </UserInfoWrapper>
           <UserWrapper>
+            <Label>자기소개</Label>
             <UserIntroductionEditor
               isEditing={isEditing}
               onEditButtonClick={handleEditButtonClick}
