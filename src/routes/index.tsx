@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
         element: <ReviewList />,
       },
       {
-        path: PATH.REVIEWDETAIL,
+        path: `${PATH.REVIEWDETAIL}/:postId`,
         element: <ReviewDetail />,
       },
       {

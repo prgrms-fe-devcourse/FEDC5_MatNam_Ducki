@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useParams } from 'react-router-dom';
 
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import Avatar from '@/components/Common/Avatar/Avatar';
@@ -70,10 +71,8 @@ const Comment = styled.p`
 const CommentUserName = styled.h3``;
 
 export default function ReviewDetail() {
-  const { data, isLoading } = useGetDetail({
-    postId: '659b4c245a6441788727b01a',
-  });
-  // TODO: postId url 파라미터값 사용으로 변경
+  const { postId } = useParams() as { postId: string };
+  const { data, isLoading } = useGetDetail({ postId });
 
   if (!isLoading && data) {
     return (
