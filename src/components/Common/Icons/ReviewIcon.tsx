@@ -6,7 +6,7 @@ export default function ReviewIcon() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-7 h-7">
+      className="w-11 h-11">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

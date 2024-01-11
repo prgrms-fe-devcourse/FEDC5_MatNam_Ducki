@@ -1,5 +1,5 @@
-import { Notification } from '@/types';
 import { SendNotificationsPayload } from '@/types/payload';
+import { Notification } from '@/types/response';
 
 import { axiosAuthInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';

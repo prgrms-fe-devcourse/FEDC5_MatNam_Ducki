@@ -4,15 +4,19 @@ import { FieldValues } from 'react-hook-form';
 import { HookFormInputProps } from '@/types/input';
 
 const InputWrapper = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  position: relative;
 `;
 
 const Input = styled.input`
+  width: 100%;
   border: 1px solid #dadada;
-  border-radius: 4px;
-  padding: 2px 4px;
+  border-radius: 1rem;
+  padding: 0.2rem 0.4rem;
+  outline: none;
 `;
 
 /**
@@ -49,6 +53,7 @@ export default function HookFormInput<T extends FieldValues>({
           ...validation,
           required: required && '값을 입력해 주세요.',
         })}
+        autoComplete="off"
         {...props}
       />
       {inputError && <span>{inputError.message as string}</span>}

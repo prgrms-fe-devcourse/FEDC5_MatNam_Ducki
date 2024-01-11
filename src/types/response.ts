@@ -95,3 +95,5 @@ export interface Message {
   createdAt: string;
   updatedAt: string;
 }
+
+export type SearchResultType = User[] | Post[] | null;
