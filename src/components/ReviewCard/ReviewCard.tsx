@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 
-interface ReviewCardProps {
+import Avatar from '../Common/Avatar/Avatar';
+
+interface ReviewCardProps extends React.ComponentProps<'div'> {
   imageUrl?: string;
   content: string;
   profileName: string;
+  profileImage?: string;
   width?: string;
 }
 
@@ -77,6 +80,7 @@ export const ReviewCard = ({
   imageUrl,
   content,
   profileName,
+  profileImage,
   width = '80%',
   ...props
 }: ReviewCardProps) => {
@@ -84,6 +88,7 @@ export const ReviewCard = ({
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
         <ProfileContainer>
+          <Avatar size="2rem" imageUrl={profileImage} />
           <ProfileNickname>{profileName}</ProfileNickname>
         </ProfileContainer>
         <div>5분 전</div>
