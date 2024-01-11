@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-
 interface PropsSkeleton extends React.ComponentProps<'div'> {
   width: string;
   height: string;
@@ -8,14 +7,8 @@ interface PropsSkeleton extends React.ComponentProps<'div'> {
 
 const Base = styled.div<PropsSkeleton>`
   border-radius: 4px;
-  background-image: linear-gradient(
-    90deg,
-    #dfe3e8 0px,
-    #efefef 40px,
-    #dfe3e8 80px
-  );
-  background-size: 200% 100%;
-  background-position: 0 center;
+  background: linear-gradient(90deg, #dfe3e8 0px, #efefef 40px, #dfe3e8 80px) 0%
+    center / 200% 100%;
   animation:
     skeleton--zoom-in 0.2s ease-out,
     skeleton--loading 2s infinite linear;
