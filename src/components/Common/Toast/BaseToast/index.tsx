@@ -1,12 +1,16 @@
 import { BaseToastWrapper } from './style';
 
 interface BaseToastProps {
+  backgroundColor?: string;
   children: React.ReactNode;
 }
-export default function BaseToast({ children }: BaseToastProps) {
-  // const style = {
-  //   backgroundColor: backgroundColor || '#ffffff',
-  // };
-
-  return <BaseToastWrapper>{children}</BaseToastWrapper>;
+export default function BaseToast({
+  backgroundColor,
+  children,
+}: BaseToastProps) {
+  return (
+    <BaseToastWrapper backgroundColor={backgroundColor}>
+      {children}
+    </BaseToastWrapper>
+  );
 }

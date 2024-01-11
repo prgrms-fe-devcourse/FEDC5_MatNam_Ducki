@@ -17,7 +17,9 @@ export default function ToastContainer() {
   return createPortal(
     <ToastWrapper>
       {toasts.map((toast) => (
-        <BaseToast key={toast.id}>{toast.content}</BaseToast>
+        <BaseToast key={toast.id} backgroundColor={toast.backgroundColor}>
+          {toast.content}
+        </BaseToast>
       ))}
     </ToastWrapper>,
     ref,
