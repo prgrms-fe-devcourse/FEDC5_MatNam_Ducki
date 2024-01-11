@@ -1,12 +1,10 @@
 import styled from '@emotion/styled';
 
-import Avatar from '../Common/Avatar/Avatar';
-
 interface ReviewCardProps extends React.ComponentProps<'div'> {
   imageUrl?: string;
   content: string;
   profileName: string;
-  profileImage?: string;
+  createdAt?: string;
   width?: string;
 }
 
@@ -23,12 +21,8 @@ const ReviewCardHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-`;
-
-const ProfileContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-size: 1.2rem;
+  color: #4f4f4f;
 `;
 
 const ProfileNickname = styled.span`
@@ -51,11 +45,10 @@ const ReviewCardImage = styled.img`
 `;
 
 const ReviewCardInfo = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 5%;
-  padding: 0.5rem;
 `;
 
 const RestaurantName = styled.div`
@@ -64,6 +57,7 @@ const RestaurantName = styled.div`
 
 const RestaurantLocation = styled.div`
   color: #828282;
+  font-size: 1.5rem;
 `;
 
 /**
@@ -80,26 +74,23 @@ export const ReviewCard = ({
   imageUrl,
   content,
   profileName,
-  profileImage,
   width = '80%',
   ...props
 }: ReviewCardProps) => {
   return (
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
-        <ProfileContainer>
-          <Avatar size="2rem" imageUrl={profileImage} />
-          <ProfileNickname>{profileName}</ProfileNickname>
-        </ProfileContainer>
-        <div>5분 전</div>
+        <ProfileNickname>{profileName}</ProfileNickname>
+        <div>5분전</div>
       </ReviewCardHeader>
       <ReviewCardBody>
-        <ReviewCardContents>{content}</ReviewCardContents>
-        <ReviewCardImage src={imageUrl} />
         <ReviewCardInfo>
-          <RestaurantName>Five Guys</RestaurantName>
-          <RestaurantLocation>서울특별시 강남구</RestaurantLocation>
+          <RestaurantName>나이스 샤워 역삼점</RestaurantName>
+          <div>❤ 3</div>
         </ReviewCardInfo>
+        <RestaurantLocation>서울특별시 강남구</RestaurantLocation>
+        <ReviewCardImage src={imageUrl} />
+        <ReviewCardContents>{content}</ReviewCardContents>
       </ReviewCardBody>
     </ReviewCardContainer>
   );

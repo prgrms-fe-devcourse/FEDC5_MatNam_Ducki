@@ -15,7 +15,9 @@ export const ReviewCardList = ({ posts }: PostListProps) => {
           key={post._id}
           imageUrl={post.image}
           profileName={post.author.fullName}
-          content={post.title}></ReviewCard>
+          content={post.title}
+          createdAt={post.createdAt}
+        />
       ))}
     </ul>
   );
