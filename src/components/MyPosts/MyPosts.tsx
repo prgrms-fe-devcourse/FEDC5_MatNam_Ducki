@@ -5,21 +5,10 @@ import { useGetPost } from '@/hooks/useGetProfile';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
 
-const PostWrapper = styled.div`
-  margin-top: 3.36rem;
-`;
-
-const PostHeader = styled.div`
-  font-size: 2.24rem;
-  margin-bottom: 2.24rem;
-`;
-
-const PostLengthTitle = styled.span`
-  font-size: 2.08rem;
-`;
+const PostWrapper = styled.div``;
 
 const EmptyPostTitle = styled.div`
-  margin-top: 1.6rem;
+  margin-top: 1rem;
   color: #777777;
 `;
 
@@ -37,13 +26,10 @@ export default function MyPosts() {
     <PostWrapper>
       {posts?.length !== 0 && auth ? (
         <>
-          <PostHeader>
-            포스트 <PostLengthTitle>{posts?.length}개</PostLengthTitle>
-          </PostHeader>
           {posts?.map((item) => (
             <ReviewCard
-              style={{ marginTop: '3.2rem' }}
               key={item._id}
+              style={{ marginBottom: '3.2rem' }}
               imageUrl={item.image}
               profileImage={auth.image}
               profileName={auth.fullName}
@@ -52,7 +38,6 @@ export default function MyPosts() {
         </>
       ) : (
         <>
-          <PostHeader>포스트</PostHeader>
           <EmptyPostTitle>아직 작성된 포스트가 없습니다.</EmptyPostTitle>
         </>
       )}
