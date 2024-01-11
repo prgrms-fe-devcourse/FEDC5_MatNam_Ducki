@@ -6,16 +6,21 @@ interface SearchResult {
   word: string;
 }
 
-const searchResults: SearchResult[] = [
-  { id: 1, word: '강남' },
-  { id: 2, word: '곱도리탕' },
-  { id: 3, word: '성수' },
-  { id: 4, word: '건대' },
-  { id: 5, word: '일식' },
-  { id: 6, word: '홍대' },
-  { id: 7, word: '칵테일' },
-  { id: 8, word: 'Cookies' },
+const words = [
+  '강남',
+  '곱도리탕',
+  '성수',
+  '건대',
+  '일식',
+  '홍대',
+  '칵테일',
+  'Cookies',
 ];
+
+const searchResults: SearchResult[] = words.map((word, index) => ({
+  id: index + 1,
+  word,
+}));
 
 export default function PopularSearch() {
   return (
