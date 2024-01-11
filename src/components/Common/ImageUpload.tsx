@@ -18,7 +18,7 @@ const UploadContainer = styled.div<{
   ratio?: string;
 }>`
   aspect-ratio: ${({ ratio }) => ratio || '5 / 3'}; // 가로 세로 비율
-  width: ${({ width }) => width || '100%'};
+  width: ${({ width }) => width || '90%'};
   flex-shrink: 0;
   overflow: hidden;
   border: 1px solid gray;
@@ -110,6 +110,7 @@ export default function ImageUpload({
   useEffect(() => {
     setSelectedImage(image);
   }, [image]);
+
   return (
     <section>
       <input
