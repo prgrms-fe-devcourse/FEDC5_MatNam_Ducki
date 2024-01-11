@@ -56,14 +56,14 @@ export default function EvaluationSection() {
 }
 
 const StyledEvaluationSection = styled.div`
-  margin: 1.5625rem 0;
+  margin: 2.5rem 0;
   display: flex;
   justify-content: space-between;
 `;
 
 const EvaluationLeftWrapper = styled.div`
   display: flex;
-  gap: 0.625rem;
+  gap: 1rem;
 `;
 
 const LikeText = styled.span`
@@ -73,12 +73,12 @@ const LikeText = styled.span`
 
 const EvaluationRightWrapper = styled.div`
   display: flex;
-  gap: 0.625rem;
+  gap: 1rem;
 `;
 
 const LikeBtn = styled.button<{ isLike: boolean }>`
   border: 1px solid ${theme.colors.accent};
-  padding: 0.1875rem 0.8125rem;
+  padding: 0.3rem 1.3;
   border-radius: 8px;
 
   ${(props) =>

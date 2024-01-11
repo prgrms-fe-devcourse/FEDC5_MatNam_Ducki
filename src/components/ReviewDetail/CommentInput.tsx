@@ -49,7 +49,7 @@ const FormWrapper = styled.form`
   width: inherit;
   display: flex;
   background-color: white;
-  gap: 0.9375rem;
+  gap: 1.5rem;
   position: fixed;
   bottom: 60px;
 
