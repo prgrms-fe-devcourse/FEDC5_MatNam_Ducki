@@ -39,6 +39,7 @@ export default function SigninForm() {
 
   const signinInputList: HookFormInputListProps<SigninValues> = [
     {
+      label: '이메일',
       name: 'email',
       required: true,
       placeholder: '이메일을 입력해 주세요.',
@@ -46,6 +47,7 @@ export default function SigninForm() {
       validation: INPUT_VALIDATION.EMAIL,
     },
     {
+      label: '비밀번호',
       name: 'password',
       required: true,
       placeholder: '비밀번호를 입력해 주세요.',
