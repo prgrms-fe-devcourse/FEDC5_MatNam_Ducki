@@ -8,11 +8,12 @@ import { PropsIntroductionEditor } from '@/types/profile';
 import HookFormInput from '../Common/HookFormInput';
 
 const Introduction = styled.span`
-  margin-top: 0.48rem;
+  margin-top: 0.6rem;
   line-height: 2.08rem;
   width: 26.32rem;
   box-sizing: border-box;
-  margin-left: 0.88rem;
+  margin-left: 1.15rem;
+  border-bottom: 1px solid #ccc;
 `;
 
 const IntroductionWrapper = styled.div<{ introductionLength: number }>`
@@ -22,6 +23,7 @@ const IntroductionWrapper = styled.div<{ introductionLength: number }>`
 `;
 const IntroductionForm = styled.form`
   display: flex;
+  width: 100%;
   height: 3.2rem;
   gap: 2.4rem;
 `;
@@ -30,11 +32,14 @@ const IntroductionButton = styled.button<{ isEditing: boolean }>`
     ${({ isEditing }) => (isEditing ? theme.colors.primary : '#ccc')};
   border-radius: 6px;
   padding: 0.16rem;
-  background-color: ${({ isEditing }) =>
-    isEditing ? theme.colors.primary : '#f3efef'};
-  color: ${({ isEditing }) => (isEditing ? 'white' : '#777777;')};
+  font-weight: bold;
+  background-color: {
+    ${theme.colors.white}
+  }
+  color: ${theme.colors.primary};
   width: 4rem;
   height: 3.2rem;
+  border: none;
 `;
 
 export default function UserIntroductionEditor({
