@@ -1,7 +1,7 @@
 import { Like } from '@/types';
 
-import { axiosAuthInstance } from './axiosInstance';
-import { ENDPOINT } from './endPoint';
+import { axiosAuthInstance } from '../axiosInstance';
+import { ENDPOINT } from '../endPoint';
 
 /**
  * @description 특정 포스트에 좋아요를 눌렀을 때 호출합니다.
