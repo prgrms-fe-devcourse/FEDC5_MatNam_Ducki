@@ -7,7 +7,7 @@ import ReviewDetail from '../pages/ReviewDetail';
 import ReviewList from '../pages/ReviewList';
 import ReviewPage from '../pages/ReviewPage';
 import SearchPage from '../pages/SearchPage';
-import SigninPage from '../pages/SigninPage';
+import SignInPage from '../pages/SignInPage';
 import SignUpPage from '../pages/SignUpPage';
 import TestPage from '../pages/TestPage';
 import { PATH } from './path';
@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.SIGNIN,
-        element: <SigninPage />,
+        element: <SignInPage />,
       },
       {
         path: PATH.SIGNUP,

@@ -1,9 +1,9 @@
-import SigninForm from '@/components/SigininForm/SigninForm';
+import SignInForm from '@/components/SignInForm/SignInForm';
 
-export default function SigninPage() {
+export default function SignInPage() {
   return (
     <div>
-      <SigninForm />
+      <SignInForm />
     </div>
   );
 }

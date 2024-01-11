@@ -6,19 +6,19 @@ import { useSignIn } from '@/hooks/useAuth';
 import { HookFormInputListProps } from '@/types/input';
 
 import HookFormInput from '../Common/HookFormInput';
-import { FormWrapper, SigninButton } from './style';
+import { FormWrapper, SignInButton } from './style';
 
-interface SigninValues {
+interface SignInValues {
   email: string;
   password: string;
 }
 
-export default function SigninForm() {
+export default function SignInForm() {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<SigninValues>();
+  } = useForm<SignInValues>();
 
   const navigate = useNavigate();
 
@@ -33,11 +33,11 @@ export default function SigninForm() {
 
   const { mutate } = useSignIn({ onSuccess: handleSignInSuccess });
 
-  const onSubmit: SubmitHandler<SigninValues> = (signInInput) => {
+  const onSubmit: SubmitHandler<SignInValues> = (signInInput) => {
     mutate(signInInput);
   };
 
-  const signinInputList: HookFormInputListProps<SigninValues> = [
+  const signInInputList: HookFormInputListProps<SignInValues> = [
     {
       label: '이메일',
       name: 'email',
@@ -57,14 +57,14 @@ export default function SigninForm() {
 
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-      {signinInputList.map((props) => (
+      {signInInputList.map((props) => (
         <div key={props.name}>
           <HookFormInput register={register} errors={errors} {...props} />
         </div>
       ))}
-      <SigninButton type="submit" isValid={isValid}>
+      <SignInButton type="submit" isValid={isValid}>
         로그인
-      </SigninButton>
+      </SignInButton>
     </FormWrapper>
   );
 }

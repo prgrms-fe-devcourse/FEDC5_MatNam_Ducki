@@ -7,7 +7,7 @@ export const FormWrapper = styled.form`
   padding: 20px;
 `;
 
-export const SigninButton = styled.button<{ isValid: boolean }>`
+export const SignInButton = styled.button<{ isValid: boolean }>`
   background-color: #ffa500;
   border: none;
   border-radius: 5px;
