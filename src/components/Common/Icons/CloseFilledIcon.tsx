@@ -1,6 +1,4 @@
-interface CloseFilledIconProps extends React.ComponentProps<'svg'> {}
-
-export default function CloseFilledIcon(props: CloseFilledIconProps) {
+export default function CloseFilledIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg
       width="16"

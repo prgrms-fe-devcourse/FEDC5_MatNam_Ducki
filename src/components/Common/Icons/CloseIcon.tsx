@@ -1,6 +1,4 @@
-interface CloseIconProps extends React.ComponentProps<'svg'> {}
-
-export default function CloseIcon(props: CloseIconProps) {
+export default function CloseIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg
       focusable="false"

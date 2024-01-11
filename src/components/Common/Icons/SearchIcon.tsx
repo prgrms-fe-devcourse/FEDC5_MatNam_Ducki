@@ -1,6 +1,4 @@
-interface SearchIconProps extends React.ComponentProps<'svg'> {}
-
-export default function SearchIcon(props: SearchIconProps) {
+export default function SearchIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg
       focusable="false"
