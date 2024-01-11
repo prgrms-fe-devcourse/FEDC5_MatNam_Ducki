@@ -1,5 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
+import { useSignIn } from '@/hooks/useAuth';
 import { HookFormInputListProps } from '@/types/input';
 
 import HookFormInput from '../Common/HookFormInput';
@@ -17,7 +19,22 @@ export default function SigninForm() {
     formState: { errors, isValid },
   } = useForm<SigninValues>();
 
-  const onSubmit: SubmitHandler<SigninValues> = (data) => console.log(data);
+  const navigate = useNavigate();
+
+  const navigateToMainPage = () => {
+    navigate('/');
+  };
+
+  const handleSignInSuccess = () => {
+    navigateToMainPage();
+    alert('로그인 되었어요!');
+  };
+
+  const { mutate } = useSignIn({ onSuccess: handleSignInSuccess });
+
+  const onSubmit: SubmitHandler<SigninValues> = (signInInput) => {
+    mutate(signInInput);
+  };
 
   const signinInputList: HookFormInputListProps<SigninValues> = [
     {
@@ -37,12 +54,9 @@ export default function SigninForm() {
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       {signinInputList.map((props) => (
-        <HookFormInput
-          key={props.name}
-          register={register}
-          errors={errors}
-          {...props}
-        />
+        <div key={props.name}>
+          <HookFormInput register={register} errors={errors} {...props} />
+        </div>
       ))}
       <SigninButton type="submit" isValid={isValid}>
         로그인
