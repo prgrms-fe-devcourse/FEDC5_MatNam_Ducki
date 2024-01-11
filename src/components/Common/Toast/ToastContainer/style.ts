@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 interface ToastWrapperProps {
-  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  position?: string;
 }
 
 export const ToastWrapper = styled.div<ToastWrapperProps>`
@@ -9,7 +9,6 @@ export const ToastWrapper = styled.div<ToastWrapperProps>`
   z-index: 50;
   display: flex;
   flex-direction: column;
-  transform: translateX(-50%);
   gap: 1rem;
   ${({ position }) => {
     switch (position) {

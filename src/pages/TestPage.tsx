@@ -47,7 +47,7 @@ export default function TestPage() {
     border-radius: 0.3rem;
   `;
 
-  const { addToast } = useToast();
+  const { addToast, addPosition } = useToast();
 
   return (
     <MainPageWrapper>
@@ -55,9 +55,10 @@ export default function TestPage() {
       <TestButton onClick={handleSignOut}>테스트 계정 로그아웃</TestButton>
       <TestButton onClick={handleOpenModal}>이미지 변경 모달 열기</TestButton>
       <TestButton
-        onClick={() =>
-          addToast({ content: '테스트 토스트', backgroundColor: 'blue' })
-        }>
+        onClick={() => {
+          addPosition('top-left');
+          addToast({ content: '테스트 토스트' });
+        }}>
         토스트 테스트
       </TestButton>
     </MainPageWrapper>
