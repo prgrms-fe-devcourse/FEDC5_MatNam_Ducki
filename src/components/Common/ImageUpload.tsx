@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import React, { useRef, useState } from 'react';
 
+import { useModal } from '@/hooks/useModal';
+import { ModalType } from '@/types/modal';
+
 interface ImageUploadProps {
   onFileChange: (file: File | null) => void;
   image?: string | null;
@@ -35,15 +38,6 @@ const ImagePreview = styled.img<{ ratio?: string }>`
   object-fit: cover;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 10%;
-  left: 20%;
-  right: 20%;
-`;
-
 /**
  * @summary 사용법 
  * export default function ParentComponent() {
@@ -73,6 +67,13 @@ export default function ImageUpload({
   const [selectedImage, setSelectedImage] = useState<string | null>(
     image || null,
   );
+
+  const { openModal } = useModal();
+
+  const handleOpenModal = () => {
+    openModal({ type: ModalType.CHANGE_IMAGE });
+  };
+
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageFilesChange = (
@@ -102,7 +103,7 @@ export default function ImageUpload({
     onFileChange(null); // 이미지 제거 시 외부에 null을 전달
   };
 
-  const handleImageInputClick = () => {
+  const handleImageUpdate = () => {
     imageInputRef.current?.click();
   };
 
@@ -116,23 +117,13 @@ export default function ImageUpload({
         style={{ display: 'none' }} // 숨김 처리
       />
       <UploadContainer
-        onClick={handleImageInputClick}
+        onClick={handleOpenModal}
         borderRadius={borderRadius}
         width={width}
         ratio={ratio}>
         {selectedImage ? (
           <>
             <ImagePreview src={selectedImage} alt="이미지 미리보기" />
-            <ButtonContainer>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleImageRemove();
-                }}
-                type="button">
-                삭제
-              </button>
-            </ButtonContainer>
           </>
         ) : (
           <span>이미지 추가</span>
