@@ -11,8 +11,8 @@ export default function SearchPage() {
   };
 
   return (
-    <div>
+    <>
       <SearchBar onSearchResult={handleSearchResult} />
-    </div>
+    </>
   );
 }
