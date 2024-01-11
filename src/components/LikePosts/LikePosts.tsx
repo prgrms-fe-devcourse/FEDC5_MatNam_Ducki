@@ -5,18 +5,7 @@ import { useGetPostDetail } from '@/hooks/useGetProfile';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
 
-const PostWrapper = styled.div`
-  margin-top: 3.36rem;
-`;
-
-const PostHeader = styled.div`
-  font-size: 2.24rem;
-  margin-bottom: 2.24rem;
-`;
-
-const PostLengthTitle = styled.span`
-  font-size: 2.08rem;
-`;
+const PostWrapper = styled.div``;
 
 const EmptyPostTitle = styled.div`
   margin-top: 1.6rem;
@@ -39,12 +28,9 @@ export default function LikePosts() {
     <PostWrapper>
       {likes && likes.length !== 0 ? (
         <>
-          <PostHeader>
-            좋아요 <PostLengthTitle>{likes.length}개</PostLengthTitle>
-          </PostHeader>
           {detailPosts?.map((item) => (
             <ReviewCard
-              style={{ marginTop: '3.2rem' }}
+              style={{ marginBottom: '3.2rem' }}
               key={item?._id}
               imageUrl={item?.image}
               profileImage={item?.author?.image}
@@ -54,7 +40,6 @@ export default function LikePosts() {
         </>
       ) : (
         <>
-          <PostHeader>좋아요 목록</PostHeader>
           <EmptyPostTitle>아직 좋아요한 목록이 없습니다.</EmptyPostTitle>
         </>
       )}
