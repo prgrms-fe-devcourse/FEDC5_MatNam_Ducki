@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
-import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector/PostSelector';
 import Skeleton from '@/components/Skeleton';
@@ -46,8 +45,7 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [introduction, setIntroduction] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const { changeImage } = useChangeImage();
+  const { changeImage } = useChangeImage(setIsLoading);
   const { data: authUser } = useCheckAuthUser();
 
   const handleFileChange = (file: File | null) => {
@@ -106,7 +104,6 @@ export default function ProfilePage() {
                 />
               </ImageWrapper>
             )}
-
             <UserInfo userName={authUser?.fullName} userId={authUser?.email} />
           </UserInfoWrapper>
           <UserWrapper>
@@ -119,13 +116,12 @@ export default function ProfilePage() {
               onInputChange={handleInputChange}
               buttonText={buttonText}
             />
-            <PostSelector></PostSelector>
+            <PostSelector />
           </UserWrapper>
         </ProfileWrapper>
       ) : (
         <div>로그인하세요</div>
       )}
-      <BottomNavBar></BottomNavBar>
     </>
   );
 }
