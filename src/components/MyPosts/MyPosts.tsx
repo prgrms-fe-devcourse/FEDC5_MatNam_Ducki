@@ -1,100 +1,54 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+
+import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useGetPost } from '@/hooks/useGetProfile';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
 
-interface ReviewCardProps {
-  imageUrl: string;
-  content: string;
-  profileName: string;
-  profileImage: string;
-  width?: string;
-}
-
 const PostWrapper = styled.div`
-  margin-top: 30px;
+  margin-top: 3.36rem;
 `;
 
 const PostHeader = styled.div`
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 2.24rem;
+  margin-bottom: 2.24rem;
 `;
 
 const PostLengthTitle = styled.span`
-  font-size: 18px;
+  font-size: 2.08rem;
 `;
 
 const EmptyPostTitle = styled.div`
-  margin-top: 10px;
+  margin-top: 1.6rem;
   color: #777777;
 `;
 
 export default function MyPosts() {
-  const [post, setPost] = useState<ReviewCardProps[]>([]);
+  const { data: auth } = useCheckAuthUser();
 
-  useEffect(() => {
-    // 임시로 하드코딩된 데이터 사용
-    const fetchedPosts: ReviewCardProps[] = [
-      // {
-      //   imageUrl: 'image_url_1',
-      //   content: '내용 1',
-      //   profileName: '더기',
-      //   profileImage: '../../../public/vite.svg',
-      //   width: '200px',
-      // },
-      // {
-      //   imageUrl: 'image_url_2',
-      //   content: '내용 2',
-      //   profileName: '더기',
-      //   profileImage: '../../../public/vite.svg',
-      //   width: '200px',
-      // },
-      // {
-      //   imageUrl: 'image_url_1',
-      //   content: '내용 1',
-      //   profileName: '경빈',
-      //   profileImage: '../../../public/vite.svg',
-      //   width: '200px',
-      // },
-      // {
-      //   imageUrl: 'image_url_2',
-      //   content: '내용 2',
-      //   profileName: '경빈',
-      //   profileImage: '../../../public/vite.svg',
-      //   width: '200px',
-      // },
-      // {
-      //   imageUrl: 'image_url_2',
-      //   content: '내용 2',
-      //   profileName: '더기',
-      //   profileImage: '../../../public/vite.svg',
-      //   width: '200px',
-      // },
-    ];
-    const myPosts = fetchedPosts.filter((post) => post.profileName === '더기'); // '사용자의 이름'
+  if (!auth) {
+    // auth가 undefined일 아무것도 렌더링하지 않음
+    return null;
+  }
 
-    setPost(myPosts);
-  }, []);
+  const { data: posts } = useGetPost(auth._id);
 
   return (
     <PostWrapper>
-      {post.length !== 0 ? (
+      {posts?.length !== 0 && auth ? (
         <>
           <PostHeader>
-            포스트 <PostLengthTitle>{post.length}개</PostLengthTitle>
+            포스트 <PostLengthTitle>{posts?.length}개</PostLengthTitle>
           </PostHeader>
-          {post.map(
-            ({ imageUrl, content, profileName, profileImage, width }) => (
-              <ReviewCard
-                key={imageUrl}
-                imageUrl={imageUrl}
-                content={content}
-                profileName={profileName}
-                profileImage={profileImage}
-                width={width}
-              />
-            ),
-          )}
+          {posts?.map((item) => (
+            <ReviewCard
+              style={{ marginTop: '3.2rem' }}
+              key={item._id}
+              imageUrl={item.image}
+              profileImage={auth.image}
+              profileName={auth.fullName}
+              content={item.title}></ReviewCard>
+          ))}
         </>
       ) : (
         <>

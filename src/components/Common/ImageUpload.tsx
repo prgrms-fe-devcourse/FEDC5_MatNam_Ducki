@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useModal } from '@/hooks/useModal';
 import { ModalType } from '@/types/modal';
 
 interface ImageUploadProps {
   onFileChange: (file: File | null) => void;
-  image?: string | null;
+  image: string | null;
   width?: string;
   ratio?: string;
   borderRadius?: string;
@@ -107,6 +107,9 @@ export default function ImageUpload({
     imageInputRef.current?.click();
   };
 
+  useEffect(() => {
+    setSelectedImage(image);
+  }, [image]);
   return (
     <section>
       <input
