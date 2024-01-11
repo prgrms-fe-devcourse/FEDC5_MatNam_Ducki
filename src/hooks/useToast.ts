@@ -1,6 +1,7 @@
 import { useRecoilState } from 'recoil';
 
-import { positionState, Toast, toastState } from '@/recoil/toast';
+import { positionState, toastState } from '@/recoil/toast';
+import { Toast } from '@/types/toast';
 
 const getRandomID = () => String(new Date().getTime());
 

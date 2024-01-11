@@ -1,10 +1,6 @@
 import { atom } from 'recoil';
 
-export interface Toast {
-  id?: string;
-  content: string;
-  backgroundColor?: string;
-}
+import { Toast } from '@/types/toast';
 
 export const toastState = atom<Toast[]>({
   key: 'toastState',

@@ -56,7 +56,7 @@ export default function TestPage() {
       <TestButton onClick={handleOpenModal}>이미지 변경 모달 열기</TestButton>
       <TestButton
         onClick={() => {
-          addPosition('top-left');
+          addPosition('bottom-center');
           addToast({ content: '테스트 토스트' });
         }}>
         토스트 테스트
