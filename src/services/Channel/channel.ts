@@ -1,5 +1,5 @@
-import { Channel } from '@/types';
 import { CreateChannelPayload } from '@/types/payload';
+import { Channel } from '@/types/response';
 
 import { axiosAuthInstance, axiosInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
