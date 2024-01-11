@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
@@ -10,65 +9,19 @@ import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
 import { theme } from '@/styles/Theme';
 
-const ReviewDetailPage = styled.div`
-  --mobile-width: 450px;
-
-  margin: 0 auto;
-  width: var(--mobile-width);
-  display: flex;
-  flex-direction: column;
-`;
-
-const UserInfoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
-const UserInfoTextBox = styled.div``;
-
-const UserName = styled.h3``;
-
-const UserMail = styled.span`
-  opacity: 0.3;
-`;
-
-const BadgeWrapper = styled.div`
-  width: 50px;
-  margin: 10px 0;
-  cursor: pointer;
-`;
-
-const CommentList = styled.div`
-  height: 100%;
-  margin-bottom: 108px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow-y: auto;
-`;
-
-const CommentBox = styled.div`
-  padding: 0.625rem;
-  border: 2px solid #cccccc;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9375rem;
-  font-size: 17px;
-`;
-
-const CommentUserInfoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const Comment = styled.p`
-  font-weight: ${theme.fontWeight.regular};
-`;
-
-const CommentUserName = styled.h3``;
+import {
+  BadgeWrapper,
+  Comment,
+  CommentBox,
+  CommentList,
+  CommentUserInfoWrapper,
+  CommentUserName,
+  ReviewDetailPage,
+  UserInfoTextBox,
+  UserInfoWrapper,
+  UserMail,
+  UserName,
+} from './style';
 
 export default function ReviewDetail() {
   const { postId } = useParams() as { postId: string };

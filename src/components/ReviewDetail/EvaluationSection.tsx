@@ -7,39 +7,6 @@ import { useGetDetail, useLike } from '@/hooks/ReviewDetail';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { theme } from '@/styles/Theme';
 
-const StyledEvaluationSection = styled.div`
-  margin: 1.5625rem 0;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const EvaluationLeftWrapper = styled.div`
-  display: flex;
-  gap: 0.625rem;
-`;
-
-const LikeText = styled.span`
-  color: ${theme.colors.accent};
-  font-weight: ${theme.fontWeight.bold};
-`;
-
-const EvaluationRightWrapper = styled.div`
-  display: flex;
-  gap: 0.625rem;
-`;
-
-const LikeBtn = styled.button<{ isLike: boolean }>`
-  border: 1px solid ${theme.colors.accent};
-  padding: 0.1875rem 0.8125rem;
-  border-radius: 8px;
-
-  ${(props) =>
-    props.isLike &&
-    css`
-      background-color: ${theme.colors.accent};
-    `}
-`;
-
 export default function EvaluationSection() {
   const { postId } = useParams() as { postId: string };
   const { data: postData } = useGetDetail({ postId });
@@ -87,3 +54,36 @@ export default function EvaluationSection() {
     );
   }
 }
+
+const StyledEvaluationSection = styled.div`
+  margin: 1.5625rem 0;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const EvaluationLeftWrapper = styled.div`
+  display: flex;
+  gap: 0.625rem;
+`;
+
+const LikeText = styled.span`
+  color: ${theme.colors.accent};
+  font-weight: ${theme.fontWeight.bold};
+`;
+
+const EvaluationRightWrapper = styled.div`
+  display: flex;
+  gap: 0.625rem;
+`;
+
+const LikeBtn = styled.button<{ isLike: boolean }>`
+  border: 1px solid ${theme.colors.accent};
+  padding: 0.1875rem 0.8125rem;
+  border-radius: 8px;
+
+  ${(props) =>
+    props.isLike &&
+    css`
+      background-color: ${theme.colors.accent};
+    `}
+`;

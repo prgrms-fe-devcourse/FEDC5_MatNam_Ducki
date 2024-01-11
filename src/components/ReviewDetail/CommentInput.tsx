@@ -10,19 +10,6 @@ import { theme } from '@/styles/Theme';
 import Avatar from '../Common/Avatar/Avatar';
 import HookFormInput from '../Common/HookFormInput';
 
-const FormWrapper = styled.form`
-  width: inherit;
-  display: flex;
-  background-color: white;
-  gap: 0.9375rem;
-  position: fixed;
-  bottom: 60px;
-
-  div {
-    width: 100%;
-  }
-`;
-
 export default function CommentInput() {
   const { postId } = useParams() as { postId: string };
   const { register, handleSubmit, reset } = useForm<{ comment: string }>();
@@ -57,3 +44,16 @@ export default function CommentInput() {
     );
   }
 }
+
+const FormWrapper = styled.form`
+  width: inherit;
+  display: flex;
+  background-color: white;
+  gap: 0.9375rem;
+  position: fixed;
+  bottom: 60px;
+
+  div {
+    width: 100%;
+  }
+`;

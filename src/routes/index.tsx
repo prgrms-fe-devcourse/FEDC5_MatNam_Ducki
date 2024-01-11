@@ -1,9 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import ReviewDetail from '@/pages/ReviewDetailPage';
+
 import MainPage from '../pages/MainPage';
 import NotificationPage from '../pages/NotificationPage';
 import ProfilePage from '../pages/ProfilePage';
-import ReviewDetail from '../pages/ReviewDetail';
 import ReviewList from '../pages/ReviewList';
 import ReviewPage from '../pages/ReviewPage';
 import SearchPage from '../pages/SearchPage';
