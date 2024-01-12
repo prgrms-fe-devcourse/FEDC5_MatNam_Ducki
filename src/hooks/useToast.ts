@@ -14,18 +14,15 @@ export function useToast() {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   };
 
-  const addToast = (toast: Toast) => {
+  const addToast = (toast: Toast, position: string) => {
     if (toasts.length >= MAX_TOAST_COUNT) {
       return;
     }
     const id = getRandomID();
+    setPosition(position);
     setToasts((prev) => [...prev, { ...toast, id }]);
     setTimeout(() => removeToast(id), TOAST_REMOVE_DELAY);
   };
 
-  const addPosition = (newPosition: string) => {
-    setPosition(newPosition);
-  };
-
-  return { addToast, removeToast, addPosition, toasts, position };
+  return { addToast, removeToast, toasts, position };
 }

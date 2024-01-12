@@ -4,6 +4,7 @@ import { useSignIn, useSignOut } from '@/hooks/useAuth';
 import { useModal } from '@/hooks/useModal';
 import { useToast } from '@/hooks/useToast';
 import { ModalType } from '@/types/modal';
+import { TOP_POSITIONS } from '@/utils/getPositionStyle';
 
 export default function TestPage() {
   const testUser = {
@@ -47,7 +48,7 @@ export default function TestPage() {
     border-radius: 0.3rem;
   `;
 
-  const { addToast, addPosition } = useToast();
+  const { addToast } = useToast();
 
   return (
     <MainPageWrapper>
@@ -56,8 +57,7 @@ export default function TestPage() {
       <TestButton onClick={handleOpenModal}>이미지 변경 모달 열기</TestButton>
       <TestButton
         onClick={() => {
-          addPosition('bottom-center');
-          addToast({ content: '테스트 토스트' });
+          addToast({ content: '테스트 토스트' }, TOP_POSITIONS.CENTER);
         }}>
         토스트 테스트
       </TestButton>
