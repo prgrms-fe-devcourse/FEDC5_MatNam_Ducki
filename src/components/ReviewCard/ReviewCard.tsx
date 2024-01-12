@@ -1,6 +1,8 @@
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
 import {
+  ElaspedTime,
+  LikeContainer,
   ProfileNickname,
   RestaurantLocation,
   RestaurantName,
@@ -44,12 +46,12 @@ export const ReviewCard = ({
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
         <ProfileNickname>{profileName}</ProfileNickname>
-        <div>{getElapsedTime(createdAt)}</div>
+        <ElaspedTime>{getElapsedTime(createdAt)}</ElaspedTime>
       </ReviewCardHeader>
       <ReviewCardBody>
         <ReviewCardInfo>
           <RestaurantName>나이스 샤워 역삼점</RestaurantName>
-          <div>❤ {likes}</div>
+          <LikeContainer>❤ {likes}</LikeContainer>
         </ReviewCardInfo>
         <RestaurantLocation>서울특별시 강남구</RestaurantLocation>
         <ReviewCardImage src={imageUrl} />

@@ -19,6 +19,11 @@ export const ReviewCardHeader = styled.div`
 
 export const ProfileNickname = styled.span`
   cursor: pointer;
+  padding: 0.5rem 1rem;
+`;
+
+export const ElaspedTime = styled.span`
+  padding: 0.5rem 1rem;
 `;
 
 export const ReviewCardBody = styled.div`
@@ -28,7 +33,7 @@ export const ReviewCardBody = styled.div`
   gap: 1.5rem;
 `;
 
-export const ReviewCardContents = styled.div``;
+export const ReviewCardContents = styled.span``;
 
 export const ReviewCardImage = styled.img`
   width: 100%;
@@ -36,18 +41,20 @@ export const ReviewCardImage = styled.img`
   border-radius: 5%;
 `;
 
-export const ReviewCardInfo = styled.div`
+export const ReviewCardInfo = styled.span`
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 5%;
 `;
 
-export const RestaurantName = styled.div`
+export const RestaurantName = styled.span`
   font-weight: bold;
 `;
 
-export const RestaurantLocation = styled.div`
+export const LikeContainer = styled.span``;
+
+export const RestaurantLocation = styled.span`
   color: #828282;
   font-size: 1.5rem;
 `;

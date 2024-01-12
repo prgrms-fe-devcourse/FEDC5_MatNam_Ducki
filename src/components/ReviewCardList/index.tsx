@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
+import { PATH } from '@/routes/path';
 import { Post } from '@/types/response';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
 
 interface PostListProps {
-  posts: Post[] | undefined | null;
+  posts: Post[] | null;
 }
 
 export const ReviewCardList = ({ posts }: PostListProps) => {
@@ -22,7 +23,7 @@ export const ReviewCardList = ({ posts }: PostListProps) => {
           content={post.title}
           createdAt={post.createdAt}
           likes={post.likes.length}
-          onClick={() => navigate(`/reviewdetail/${post._id}`)}
+          onClick={() => navigate(`${PATH.REVIEWDETAIL}/${post._id}`)}
         />
       ))}
     </ul>
