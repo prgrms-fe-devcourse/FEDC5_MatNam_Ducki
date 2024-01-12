@@ -14,7 +14,7 @@ export const ProfileTopWrapper = styled.div`
 export const ProfileBackGroundImage = styled.div`
   width: 37.5rem;
   height: 23.2rem;
-  background-image: url('../../../public/Group.png');
+  background-image: url('../../../public/profileBackground.png');
   background-size: cover;
 `;
 
