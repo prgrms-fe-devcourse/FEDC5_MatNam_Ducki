@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Post } from '@/types/response';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
@@ -7,6 +9,7 @@ interface PostListProps {
 }
 
 export const ReviewCardList = ({ posts }: PostListProps) => {
+  const navigate = useNavigate();
   if (!posts) return <div>Post가 없습니다</div>;
 
   return (
@@ -19,6 +22,7 @@ export const ReviewCardList = ({ posts }: PostListProps) => {
           content={post.title}
           createdAt={post.createdAt}
           likes={post.likes.length}
+          onClick={() => navigate(`/reviewdetail/${post._id}`)}
         />
       ))}
     </ul>
