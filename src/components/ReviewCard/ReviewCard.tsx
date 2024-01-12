@@ -8,6 +8,7 @@ interface ReviewCardProps extends React.ComponentProps<'div'> {
   profileName: string;
   createdAt: string;
   width?: string;
+  likes: number;
 }
 
 const ReviewCardContainer = styled.div<{ width: string }>`
@@ -77,6 +78,7 @@ export const ReviewCard = ({
   content,
   profileName,
   createdAt,
+  likes,
   width = '80%',
   ...props
 }: ReviewCardProps) => {
@@ -89,7 +91,7 @@ export const ReviewCard = ({
       <ReviewCardBody>
         <ReviewCardInfo>
           <RestaurantName>나이스 샤워 역삼점</RestaurantName>
-          <div>❤ 3</div>
+          <div>❤ {likes}</div>
         </ReviewCardInfo>
         <RestaurantLocation>서울특별시 강남구</RestaurantLocation>
         <ReviewCardImage src={imageUrl} />

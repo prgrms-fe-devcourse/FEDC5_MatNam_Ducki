@@ -8,6 +8,7 @@ interface PostListProps {
 
 export const ReviewCardList = ({ posts }: PostListProps) => {
   if (!posts) return <div>Post가 없습니다</div>;
+
   return (
     <ul>
       {posts.map((post) => (
@@ -17,6 +18,7 @@ export const ReviewCardList = ({ posts }: PostListProps) => {
           profileName={post.author.fullName}
           content={post.title}
           createdAt={post.createdAt}
+          likes={post.likes.length}
         />
       ))}
     </ul>
