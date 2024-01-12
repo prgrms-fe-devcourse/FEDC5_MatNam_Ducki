@@ -2,7 +2,12 @@ import { useNavigate } from 'react-router-dom';
 
 import SignInForm from '@/components/SignInForm/SignInForm';
 
-import { GuideComment, SignInPageContainer, SignUpButton } from './style';
+import {
+  GuideComment,
+  GuideContainer,
+  SignInPageContainer,
+  SignUpButton,
+} from './style';
 
 export default function SignInPage() {
   const navigate = useNavigate();
@@ -18,8 +23,10 @@ export default function SignInPage() {
   return (
     <SignInPageContainer>
       <SignInForm />
-      <GuideComment>처음이신가요?</GuideComment>
-      <SignUpButton onClick={handleCreateAccount}>계정 만들기</SignUpButton>
+      <GuideContainer>
+        <GuideComment>처음이신가요?</GuideComment>
+        <SignUpButton onClick={handleCreateAccount}>계정 만들기</SignUpButton>
+      </GuideContainer>
     </SignInPageContainer>
   );
 }
