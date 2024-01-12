@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import PopularSearch from '@/components/PopularSearch/PopularSearch';
 import SearchBar from '@/components/SearchBar';
 import { SearchResultType } from '@/types/response';
 
@@ -13,6 +14,7 @@ export default function SearchPage() {
   return (
     <>
       <SearchBar onSearchResult={handleSearchResult} />
+      <PopularSearch />
     </>
   );
 }

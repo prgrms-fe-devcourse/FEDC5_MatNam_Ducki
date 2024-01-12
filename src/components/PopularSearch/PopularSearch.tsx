@@ -1,5 +1,11 @@
 import SearchIcon from '../Common/Icons/SearchIcon';
-import { PopularSearchContainer, ResultItem, ResultList, Title } from './style';
+import {
+  IconWrapper,
+  PopularSearchContainer,
+  ResultItem,
+  ResultList,
+  Title,
+} from './style';
 
 interface SearchResult {
   id: number;
@@ -29,7 +35,9 @@ export default function PopularSearch() {
       <ResultList>
         {searchResults.map((result) => (
           <ResultItem key={result.id}>
-            <SearchIcon />
+            <IconWrapper>
+              <SearchIcon />
+            </IconWrapper>
             {result.word}
           </ResultItem>
         ))}
