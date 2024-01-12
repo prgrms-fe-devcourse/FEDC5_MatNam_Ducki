@@ -12,7 +12,7 @@ export const GuideContainer = styled.div`
 `;
 
 export const GuideComment = styled.span`
-  color: #868686;
+  color: ${(props) => props.theme.colors.gray};
 `;
 
 export const SignInButton = styled.button`

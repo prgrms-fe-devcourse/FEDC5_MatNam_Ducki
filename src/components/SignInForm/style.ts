@@ -3,17 +3,17 @@ import styled from '@emotion/styled';
 export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 0 2rem;
 `;
 
 export const SignInButton = styled.button<{ isValid: boolean }>`
-  background-color: #eea734;
+  background-color: ${(props) => props.theme.colors.secondary};
   border: none;
   border-radius: 0.8rem;
-  padding: 15px 20px;
-  font-size: 18px;
+  padding: 1.5rem 2rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   color: ${({ isValid }) => (isValid ? '#000' : '#ffffff')};
 `;
 

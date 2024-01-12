@@ -49,7 +49,7 @@ export const TogglePasswordButton = styled.button`
 
 const LabelText = styled.label`
   font-size: 1.2rem;
-  color: #868686;
+  color: ${(props) => props.theme.colors.gray};
   padding-bottom: 0.8rem;
 `;
 
