@@ -5,10 +5,11 @@ import { ReviewCardList } from '@/components/ReviewCardList';
 import { useGetPostByChannel } from '@/hooks/usePost';
 import { Post } from '@/types/response';
 
-import { ReviewListContainer } from './style';
+import { ReviewListContainer, SortContainer, SortOption } from './style';
 
 export default function ReviewList() {
   const [channelId, setChannelId] = useState('65965f97f759661f3e669793');
+  const [highlight, setHighlight] = useState('');
   const [sortType, setSortType] = useState('latest'); // ['latest', 'popular']
   const [sortedPosts, setSortedPosts] = useState<Post[]>([]);
 
@@ -16,13 +17,16 @@ export default function ReviewList() {
     channelId: channelId,
   });
 
+  const sortPopularPosts = useCallback((posts: Post[]) => {
+    return posts.slice().sort((a, b) => {
+      return b.likes.length - a.likes.length;
+    });
+  }, []);
+
   useEffect(() => {
     if (postsByChannel) {
       if (sortType === 'popular') {
-        const popularPosts = postsByChannel.slice().sort((a, b) => {
-          return b.likes.length - a.likes.length;
-        });
-        setSortedPosts(popularPosts);
+        setSortedPosts(sortPopularPosts(postsByChannel));
       } else {
         setSortedPosts(postsByChannel);
       }
@@ -36,8 +40,19 @@ export default function ReviewList() {
   return (
     <>
       <ReviewListContainer>
-        <button onClick={() => setSortType('latest')}>최신 순</button>
-        <button onClick={() => setSortType('popular')}>인기 순</button>
+        <SortContainer>
+          <SortOption
+            active={sortType === 'latest'}
+            onClick={() => setSortType('latest')}>
+            최신순
+          </SortOption>
+          <span>|</span>
+          <SortOption
+            active={sortType === 'popular'}
+            onClick={() => setSortType('popular')}>
+            좋아요순
+          </SortOption>
+        </SortContainer>
         <ChannelList channelId={channelId} handleClick={handleChannelId} />
         <ReviewCardList posts={sortedPosts} />
       </ReviewListContainer>
