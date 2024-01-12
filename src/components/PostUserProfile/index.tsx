@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import UserInfo from '@/components/UserInfo/UserInfo';
 import { useGetUser } from '@/hooks/useGetProfile';
 
@@ -18,12 +20,10 @@ import {
   UserWrapper,
 } from './style';
 
-interface PropsPostUserProfile {
-  userId: string;
-}
-
-export default function PostUserProfile({ userId }: PropsPostUserProfile) {
+export default function PostUserProfile() {
+  const { userId } = useParams() as { userId: string };
   const { data: user } = useGetUser(userId);
+
   return (
     <>
       {user && (
