@@ -1,13 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import ReviewDetail from '@/pages/ReviewDetailPage';
+import SignInPage from '@/pages/SignInPage/SignInPage';
+
 import MainPage from '../pages/MainPage';
 import NotificationPage from '../pages/NotificationPage';
 import ProfilePage from '../pages/ProfilePage';
-import ReviewDetail from '../pages/ReviewDetail';
 import ReviewList from '../pages/ReviewList';
 import ReviewPage from '../pages/ReviewPage';
 import SearchPage from '../pages/SearchPage';
-import SigninPage from '../pages/SigninPage';
 import SignUpPage from '../pages/SignUpPage';
 import TestPage from '../pages/TestPage';
 import { PATH } from './path';
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.SIGNIN,
-        element: <SigninPage />,
+        element: <SignInPage />,
       },
       {
         path: PATH.SIGNUP,
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
         element: <ReviewList />,
       },
       {
-        path: PATH.REVIEWDETAIL,
+        path: `${PATH.REVIEWDETAIL}/:postId`,
         element: <ReviewDetail />,
       },
       {

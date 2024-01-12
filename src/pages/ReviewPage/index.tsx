@@ -2,15 +2,11 @@ import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ChannelList } from '@/components/Channel/ChannelList';
+import Button from '@/components/Common/Button/Button';
 import ImageUpload from '@/components/Common/ImageUpload';
 import { useCreatePost } from '@/hooks/useCreatePost';
 
-import {
-  CreateButton,
-  ReviewContainer,
-  ReviewForm,
-  ReviewTextArea,
-} from './style';
+import { ReviewForm, ReviewTextArea, Section } from './style';
 
 export default function ReviewPage() {
   const { mutate: createPost, isLoading } = useCreatePost();
@@ -51,19 +47,39 @@ export default function ReviewPage() {
 
   return (
     <>
-      <ReviewContainer>
-        <ReviewForm onSubmit={handleSubmit}>
-          <section>
-            <p>채널 선택</p>
-            <ChannelList channelId={channelId} handleClick={handleChannelId} />
-          </section>
-          <section className="relative">
-            <ImageUpload image={image} onFileChange={handleFileChange} />
-            <ReviewTextArea name="review" placeholder="후기를 작성해보세요." />
-            <CreateButton disabled={isLoading}>등록</CreateButton>
-          </section>
-        </ReviewForm>
-      </ReviewContainer>
+      <ReviewForm onSubmit={handleSubmit}>
+        <Section>
+          <p>가게 평가</p>
+          <ChannelList channelId={channelId} handleClick={handleChannelId} />
+        </Section>
+        <Section>
+          <p>가게 이름</p>
+        </Section>
+        <Section>
+          <p>영업 시간</p>
+        </Section>
+        <Section className="relative">
+          <p>이미지 추가</p>
+          <ImageUpload
+            image={image}
+            onFileChange={handleFileChange}
+            borderRadius="1rem"
+          />
+        </Section>
+        <Section>
+          <p>후기 작성</p>
+          <ReviewTextArea name="review" placeholder="후기 남기기" />
+        </Section>
+        <Section>
+          <Button
+            width="100%"
+            height="3rem"
+            textSize="1.2rem"
+            textColor="white">
+            등록하기
+          </Button>
+        </Section>
+      </ReviewForm>
     </>
   );
 }

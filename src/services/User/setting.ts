@@ -1,5 +1,5 @@
-import { User } from '@/types';
 import { UpdateUserNamePayload } from '@/types/payload';
+import { User } from '@/types/response';
 
 import { axiosAuthInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
