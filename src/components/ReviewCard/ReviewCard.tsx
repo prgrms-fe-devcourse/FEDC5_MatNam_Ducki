@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 
+import { getElapsedTime } from '@/utils/getElapsedTime';
+
 interface ReviewCardProps extends React.ComponentProps<'div'> {
   imageUrl?: string;
   content: string;
   profileName: string;
-  createdAt?: string;
+  createdAt: string;
   width?: string;
 }
 
@@ -74,6 +76,7 @@ export const ReviewCard = ({
   imageUrl,
   content,
   profileName,
+  createdAt,
   width = '80%',
   ...props
 }: ReviewCardProps) => {
@@ -81,7 +84,7 @@ export const ReviewCard = ({
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
         <ProfileNickname>{profileName}</ProfileNickname>
-        <div>5분전</div>
+        <div>{getElapsedTime(createdAt)}</div>
       </ReviewCardHeader>
       <ReviewCardBody>
         <ReviewCardInfo>
