@@ -9,7 +9,6 @@ import { ReviewListContainer, SortContainer, SortOption } from './style';
 
 export default function ReviewList() {
   const [channelId, setChannelId] = useState('65965f97f759661f3e669793');
-  const [highlight, setHighlight] = useState('');
   const [sortType, setSortType] = useState('latest'); // ['latest', 'popular']
   const [sortedPosts, setSortedPosts] = useState<Post[]>([]);
 
