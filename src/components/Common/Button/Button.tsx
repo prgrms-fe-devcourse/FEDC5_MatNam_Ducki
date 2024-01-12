@@ -42,7 +42,7 @@ export default function Button({
       width={width || theme.size.xLarge}
       height={height || theme.size.large}
       borderRadius={borderRadius || theme.size.xSmall}
-      backgroundColor={backgroundColor || theme.colors.secondary}
+      backgroundColor={backgroundColor || theme.colors.primary}
       textSize={textSize || theme.size.small}
       textColor={textColor || theme.colors.whitePrimary}
       onClick={onClick}
