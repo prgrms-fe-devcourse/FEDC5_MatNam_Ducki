@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-import SignInForm from '@/components/SignInForm/SignInForm';
+import SignInForm from '@/components/SignInForm';
 
 import {
   GuideComment,
   GuideContainer,
+  MainLogo,
+  SignInButton,
   SignInPageContainer,
-  SignUpButton,
 } from './style';
 
 export default function SignInPage() {
@@ -22,10 +23,11 @@ export default function SignInPage() {
 
   return (
     <SignInPageContainer>
+      <MainLogo src="/images/mainLogo.png" />
       <SignInForm />
       <GuideContainer>
         <GuideComment>처음이신가요?</GuideComment>
-        <SignUpButton onClick={handleCreateAccount}>계정 만들기</SignUpButton>
+        <SignInButton onClick={handleCreateAccount}>계정 만들기</SignInButton>
       </GuideContainer>
     </SignInPageContainer>
   );

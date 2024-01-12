@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 
-export const SignInPageContainer = styled.div``;
+export const SignUpPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const GuideContainer = styled.div`
   display: flex;
@@ -15,14 +20,9 @@ export const GuideComment = styled.span`
   color: #868686;
 `;
 
-export const SignInButton = styled.button`
+export const SignUpButton = styled.button`
   border: none;
   color: #eea734;
   font-weight: bold;
   cursor: pointer;
-`;
-
-export const MainLogo = styled.img`
-  width: 13rem;
-  margin: 4rem auto;
 `;
