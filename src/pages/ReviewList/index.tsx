@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { ChannelList } from '@/components/Channel/ChannelList';
+import Circle from '@/components/Common/Circle';
 import { ReviewCardList } from '@/components/ReviewCardList';
 import { useGetPostByChannel } from '@/hooks/usePost';
 import { Post } from '@/types/response';
@@ -45,7 +46,7 @@ export default function ReviewList() {
             onClick={() => setSortType('latest')}>
             최신순
           </SortOption>
-          <span>|</span>
+          <Circle />
           <SortOption
             active={sortType === 'popular'}
             onClick={() => setSortType('popular')}>
