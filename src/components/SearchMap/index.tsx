@@ -68,9 +68,9 @@ export default function SearchMap({ searchKeyword }: SearchMapProps) {
 
       for (let i = 0; i < places.length; i++) {
         const place = places[i];
-        const { place_name, place_url } = place;
+        const { place_name, place_url, x, y } = place;
 
-        let placePosition = new kakao.maps.LatLng(place.y, place.x);
+        const placePosition = new kakao.maps.LatLng(y, x);
 
         addMarker(placePosition);
 
