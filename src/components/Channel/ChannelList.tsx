@@ -23,7 +23,7 @@ export const ChannelList = memo(
         {channels?.map((channel) => (
           <Badge
             onClick={() => handleClick(channel._id)}
-            variant={channelId === channel._id ? 'subtle' : 'outline'}
+            variant={channelId === channel._id ? 'focus' : 'blur'}
             key={channel._id}>
             {channel.name}
           </Badge>
