@@ -1,21 +1,18 @@
 import styled from '@emotion/styled';
 
+import { theme } from '@/styles/Theme';
+
 export const ProfileWrapper = styled.div`
-  width: 37.5rem;
-  height: 81.2rem;
   background-color: #ffffff;
 `;
 
-export const ProfileTopWrapper = styled.div`
-  width: 100%;
-  height: 26rem;
-`;
-
 export const ProfileBackGroundImage = styled.div`
-  width: 37.5rem;
-  height: 23.2rem;
   background-image: url('../../../public/images/profileBackground.png');
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: ${theme.fontWeight.medium};
 `;
 
 export const UserInfoWrapper = styled.div`
@@ -26,8 +23,6 @@ export const UserInfoWrapper = styled.div`
 
 export const UserWrapper = styled.div`
   display: flex;
-  height: 30rem;
-  width: 33.5rem;
   flex-direction: column;
   margin: 3rem 2rem 0 2rem;
 `;

@@ -19,7 +19,6 @@ import {
   ImageWrapper,
   Label,
   ProfileBackGroundImage,
-  ProfileTopWrapper,
   ProfileWrapper,
   UserInfoWrapper,
   UserWrapper,
@@ -69,37 +68,35 @@ export default function ProfilePage() {
         <>
           {authUser._id === userId ? (
             <ProfileWrapper>
-              <ProfileTopWrapper>
-                <ProfileBackGroundImage>
-                  <UserInfoWrapper>
-                    {isLoading ? (
-                      <Skeleton
-                        style={{ marginTop: '1.2rem' }}
+              <ProfileBackGroundImage>
+                <UserInfoWrapper>
+                  {isLoading ? (
+                    <Skeleton
+                      style={{ marginTop: '1.2rem' }}
+                      width="80px"
+                      height="80px"
+                      borderRadius="50%"></Skeleton>
+                  ) : (
+                    <ImageWrapper>
+                      <ImageUpload
+                        onFileChange={handleFileChange}
+                        ratio="5/5"
                         width="80px"
-                        height="80px"
-                        borderRadius="50%"></Skeleton>
-                    ) : (
-                      <ImageWrapper>
-                        <ImageUpload
-                          onFileChange={handleFileChange}
-                          ratio="5/5"
-                          width="80px"
-                          borderRadius="50%"
-                          image={
-                            authUser?.image
-                              ? `${authUser.image}?${Date.now()}`
-                              : defaultImage // 초기 값
-                          }
-                        />
-                      </ImageWrapper>
-                    )}
-                    <UserInfo
-                      userName={authUser?.fullName}
-                      userId={authUser?.email}
-                    />
-                  </UserInfoWrapper>
-                </ProfileBackGroundImage>
-              </ProfileTopWrapper>
+                        borderRadius="50%"
+                        image={
+                          authUser?.image
+                            ? `${authUser.image}?${Date.now()}`
+                            : defaultImage // 초기 값
+                        }
+                      />
+                    </ImageWrapper>
+                  )}
+                  <UserInfo
+                    userName={authUser?.fullName}
+                    userId={authUser?.email}
+                  />
+                </UserInfoWrapper>
+              </ProfileBackGroundImage>
               <UserWrapper>
                 <Label>자기소개</Label>
                 <UserIntroductionEditor
