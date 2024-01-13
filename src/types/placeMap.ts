@@ -13,3 +13,8 @@ export interface PositionType {
   La: number;
   Ma: number;
 }
+
+export interface PlaceInfoType {
+  restaurant: string;
+  location: string;
+}
