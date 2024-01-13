@@ -1,16 +1,9 @@
-import styled from '@emotion/styled';
-
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useGetPostDetail } from '@/hooks/useGetProfile';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
-
-const PostWrapper = styled.div``;
-
-const EmptyPostTitle = styled.div`
-  margin-top: 1.6rem;
-  color: #777777;
-`;
+import { PostWrapper } from './style';
+import { EmptyPostTitle } from './style';
 
 export default function LikePosts() {
   const { data: auth } = useCheckAuthUser();
@@ -28,15 +21,18 @@ export default function LikePosts() {
     <PostWrapper>
       {likes && likes.length !== 0 ? (
         <>
-          {detailPosts?.map((item) => (
-            <ReviewCard
-              style={{ marginBottom: '3.2rem' }}
-              key={item?._id}
-              imageUrl={item?.image}
-              profileImage={item?.author?.image}
-              profileName={item?.author?.fullName}
-              content={item?.title}></ReviewCard>
-          ))}
+          {detailPosts?.map(
+            (item) =>
+              item && (
+                <ReviewCard
+                  style={{ marginBottom: '3.2rem' }}
+                  key={item._id}
+                  imageUrl={item.image}
+                  profileImage={item.author.image}
+                  profileName={item.author.fullName}
+                  content={item.title}></ReviewCard>
+              ),
+          )}
         </>
       ) : (
         <>
