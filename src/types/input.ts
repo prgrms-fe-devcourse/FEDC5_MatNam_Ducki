@@ -1,6 +1,7 @@
 import {
   FieldErrors,
   FieldValues,
+  FormState,
   Path,
   RegisterOptions,
   UseFormRegister,
@@ -19,8 +20,10 @@ export interface HookFormInputProps<T extends FieldValues>
   label?: string;
   type?: 'email' | 'password' | 'text';
   required?: boolean;
+  formState?: FormState<T>;
   errors?: FieldErrors<T>;
   validation?: RegisterOptions;
+  isErrorCheck?: boolean;
 }
 
 /**

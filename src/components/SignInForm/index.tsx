@@ -5,8 +5,9 @@ import { INPUT_VALIDATION } from '@/constants/validation';
 import { useSignIn } from '@/hooks/useAuth';
 import { HookFormInputListProps } from '@/types/input';
 
-import HookFormInput from '../Common/HookFormInput';
-import { FormWrapper, SignInButton } from './style';
+import CTAButton from '../Common/Button/CTAButton.tsx';
+import LabelInput from '../Common/Input/LabelInput.tsx/index.tsx';
+import { FormWrapper, InputList, InputListWrapper } from './style.ts';
 
 interface SignInValues {
   email: string;
@@ -14,11 +15,9 @@ interface SignInValues {
 }
 
 export default function SignInForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<SignInValues>();
+  const { register, handleSubmit, formState } = useForm<SignInValues>({
+    mode: 'onChange',
+  });
 
   const navigate = useNavigate();
 
@@ -52,19 +51,25 @@ export default function SignInForm() {
       required: true,
       placeholder: '비밀번호를 입력해 주세요.',
       type: 'password',
+      isErrorCheck: false,
     },
   ];
 
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-      {signInInputList.map((props) => (
-        <div key={props.name}>
-          <HookFormInput register={register} errors={errors} {...props} />
-        </div>
-      ))}
-      <SignInButton type="submit" isValid={isValid}>
-        로그인
-      </SignInButton>
+      <InputListWrapper>
+        {signInInputList.map((props) => (
+          <InputList key={props.name}>
+            <LabelInput
+              register={register}
+              errors={formState.errors}
+              formState={formState}
+              {...props}
+            />
+          </InputList>
+        ))}
+      </InputListWrapper>
+      <CTAButton>로그인</CTAButton>
     </FormWrapper>
   );
 }

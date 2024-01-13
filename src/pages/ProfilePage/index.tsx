@@ -13,7 +13,7 @@ import {
 } from '@/constants/profile';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useChangeImage } from '@/hooks/useGetProfile';
-import PostUserProfile from '@/PostUserProfile';
+
 import {
   ImageWrapper,
   Label,
@@ -22,7 +22,7 @@ import {
   ProfileWrapper,
   UserInfoWrapper,
   UserWrapper,
-} from '@/PostUserProfile/style';
+} from './style';
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
