@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Avatar from '../Common/Avatar/Avatar';
 
 interface ReviewCardProps extends React.ComponentProps<'div'> {
-  imageUrl: string;
+  imageUrl?: string;
   content: string;
   profileName: string;
   profileImage?: string;

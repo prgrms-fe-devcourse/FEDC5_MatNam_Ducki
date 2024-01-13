@@ -19,6 +19,7 @@ const CommonButton = styled.button<ButtonProps>`
   background-color: ${(props) => props.backgroundColor};
   font-size: ${(props) => props.textSize};
   color: ${(props) => props.textColor};
+  font-weight: bold;
   cursor: pointer;
   &:hover {
     opacity: 0.8;
