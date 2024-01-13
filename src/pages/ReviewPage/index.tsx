@@ -6,6 +6,7 @@ import CTAButton from '@/components/Common/Button/CTAButton';
 import ImageUpload from '@/components/Common/ImageUpload';
 import { useCreatePost } from '@/hooks/useCreatePost';
 import { useInput } from '@/hooks/useInput';
+import { isValidCreatePost } from '@/utils/validation';
 
 import {
   InputStyle,
@@ -41,6 +42,9 @@ export default function ReviewPage() {
     const elements = event.currentTarget;
     const review = elements.review.value;
 
+    if (!isValidCreatePost({ channelId, restaurant, location, review })) {
+      return;
+    }
     createPost(
       { review, restaurant, location, openingTime, channelId, image: file },
       {
