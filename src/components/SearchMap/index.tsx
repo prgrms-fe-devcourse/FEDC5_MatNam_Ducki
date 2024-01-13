@@ -100,7 +100,7 @@ export default function SearchMap({ searchKeyword }: SearchMapProps) {
       }
     }
 
-    function addMarker(position: any) {
+    function addMarker(position: PositionType) {
       const imageSrc = '/images/marker.png',
         imageSize = new kakao.maps.Size(36, 36),
         imgOptions = {
