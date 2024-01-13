@@ -24,7 +24,7 @@ export const PlaceIconWrapper = styled.div`
   transform: translateY(-0.6rem);
 `;
 
-export const PlaceInfo = styled.a`
+export const PlaceInfo = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
