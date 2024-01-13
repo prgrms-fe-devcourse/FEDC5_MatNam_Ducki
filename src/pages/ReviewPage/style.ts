@@ -7,6 +7,7 @@ export const ReviewForm = styled.form`
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+  margin-bottom: 6rem;
 `;
 
 export const ReviewTextArea = styled.textarea`
