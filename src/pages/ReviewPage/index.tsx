@@ -5,6 +5,7 @@ import { ChannelList } from '@/components/Channel/ChannelList';
 import CTAButton from '@/components/Common/Button/CTAButton';
 import ImageUpload from '@/components/Common/ImageUpload';
 import { useCreatePost } from '@/hooks/useCreatePost';
+import { useInput } from '@/hooks/useInput';
 
 import {
   InputStyle,
@@ -19,6 +20,9 @@ export default function ReviewPage() {
 
   const [file, setFile] = useState<File | null>(null);
   const [channelId, setChannelId] = useState('');
+  const [restaurant, handleRestaurant] = useInput();
+  const [location, handleLocation] = useInput();
+  const [openingTime, handleOpeningTime] = useInput();
 
   const image = file ? URL.createObjectURL(file) : null; // 파일이 있으면 url을 만들어서 image에 넣어줍니다.
   const navigate = useNavigate();
@@ -36,9 +40,6 @@ export default function ReviewPage() {
 
     const elements = event.currentTarget;
     const review = elements.review.value;
-    const restaurant = '테스트 식당';
-    const location = '테스트 위치';
-    const openingTime = '테스트 시간';
 
     createPost(
       { review, restaurant, location, openingTime, channelId, image: file },
@@ -63,11 +64,15 @@ export default function ReviewPage() {
         </Section>
         <Section>
           <TextStyle>가게 이름 *</TextStyle>
-          <InputStyle />
+          <InputStyle onChange={handleRestaurant} />
+        </Section>
+        <Section>
+          <TextStyle>가게 위치 *</TextStyle>
+          <InputStyle onChange={handleLocation} />
         </Section>
         <Section>
           <TextStyle>영업 시간</TextStyle>
-          <InputStyle />
+          <InputStyle onChange={handleOpeningTime} />
         </Section>
         <Section className="relative">
           <TextStyle>이미지 추가</TextStyle>
