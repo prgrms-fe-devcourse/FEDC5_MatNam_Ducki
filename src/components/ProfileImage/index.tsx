@@ -1,32 +1,11 @@
-import styled from '@emotion/styled';
 import React, { useRef, useState } from 'react';
+
+import { ImagePreview, UploadContainer } from './style';
 
 interface PropsProfileImage {
   onFileChange: (file: File | null) => void;
   size?: string;
 }
-
-const UploadContainer = styled.div<{
-  size?: string;
-}>`
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
-  flex-shrink: 0;
-  overflow: hidden;
-  border-radius: 50%;
-  cursor: pointer;
-`;
-
-const ImagePreview = styled.img`
-  aspect-ratio: 5 / 5;
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: 1px solid #cdcdcd;
-  background-color: #eee;
-  cursor: pointer;
-`;
 
 export default function ProfileImage({
   size = '60px',

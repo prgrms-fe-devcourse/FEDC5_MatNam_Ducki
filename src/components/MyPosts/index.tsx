@@ -1,18 +1,9 @@
-import styled from '@emotion/styled';
-
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useGetPost } from '@/hooks/useGetProfile';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
-
-const PostWrapper = styled.div`
-  margin-top: 3rem;
-`;
-
-const EmptyPostTitle = styled.div`
-  margin-left: 1rem;
-  color: #777777;
-`;
+import { PostWrapper } from './style';
+import { EmptyPostTitle } from './style';
 
 export default function MyPosts() {
   const { data: auth } = useCheckAuthUser();
