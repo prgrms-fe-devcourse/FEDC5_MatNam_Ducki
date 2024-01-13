@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
         element: <ReviewDetail />,
       },
       {
-        path: PATH.PROFILE,
+        path: `${PATH.PROFILE}/:userId`,
         element: <ProfilePage />,
       },
       {
