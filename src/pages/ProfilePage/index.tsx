@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector';
+import PostUserProfile from '@/components/PostUserProfile';
 import Skeleton from '@/components/Skeleton';
 import UserInfo from '@/components/UserInfo';
 import UserIntroductionEditor from '@/components/UserIntroductionEditor';
