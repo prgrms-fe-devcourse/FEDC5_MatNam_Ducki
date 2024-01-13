@@ -29,11 +29,11 @@ const variantStyles = {
 const BadgeComponent = styled.span<BadgeProps>`
   ${({ variant }) => variantStyles[variant || 'outline']}
   display: inline-block;
-  min-height: 1rem;
+  min-height: 1.5rem;
   border-radius: 15px;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   width: fit-content;
-  font-size: 0.625rem;
+  font-size: 1.5rem;
 `;
 
 export const Badge = ({
