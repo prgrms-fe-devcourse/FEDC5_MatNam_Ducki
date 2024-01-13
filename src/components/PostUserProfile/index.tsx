@@ -4,7 +4,7 @@ import UserInfo from '@/components/UserInfo/UserInfo';
 import { useGetUser } from '@/hooks/useGetProfile';
 
 import Avatar from '../Common/Avatar/Avatar';
-import UserPosts from '../\bUserPosts';
+import UserPosts from '../UserPosts';
 import {
   ImageWrapper,
   Introduction,
