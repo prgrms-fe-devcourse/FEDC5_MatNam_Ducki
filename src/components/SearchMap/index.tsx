@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { PlaceType, PositionType } from '@/types/placeMap';
+import { PlaceInfoType, PlaceType, PositionType } from '@/types/placeMap';
 
 import PlaceList from './PlaceList';
 import {
@@ -140,6 +140,11 @@ export default function SearchMap({ searchKeyword }: SearchMapProps) {
     position: relative;
   `;
 
+  const handleClickPlace = ({ restaurant, location }: PlaceInfoType) => {
+    // 상위 컴포넌트에 가게 정보를 전달하는 부분 처리 필요
+    console.log('가게 정보: ', restaurant, location);
+  };
+
   return (
     <div className="map_wrap">
       <div
@@ -159,7 +164,11 @@ export default function SearchMap({ searchKeyword }: SearchMapProps) {
               <SearchKeyword>{searchKeyword}</SearchKeyword>
               검색 결과
             </SearchKeywordWrapper>
-            <PlaceList placeList={placeList} onMoveMap={moveMap} />
+            <PlaceList
+              placeList={placeList}
+              onMoveMap={moveMap}
+              onClickPlace={handleClickPlace}
+            />
             <div id="pagination"></div>
           </SearchResult>
         )}

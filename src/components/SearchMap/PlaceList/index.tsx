@@ -1,5 +1,5 @@
 import PlaceIcon from '@/components/Common/Icons/PlaceIcon';
-import { PlaceType, PositionType } from '@/types/placeMap';
+import { PlaceInfoType, PlaceType, PositionType } from '@/types/placeMap';
 
 import {
   Address,
@@ -18,14 +18,23 @@ import {
 interface PlaceListProps {
   placeList: PlaceType[];
   onMoveMap: (position: PositionType) => void;
+  onClickPlace: (props: PlaceInfoType) => void;
 }
 
 const { kakao } = window as any;
 
-export default function PlaceList({ placeList, onMoveMap }: PlaceListProps) {
+export default function PlaceList({
+  placeList,
+  onMoveMap,
+  onClickPlace,
+}: PlaceListProps) {
   const handleMouseOver = (x: string, y: string) => {
     const placePosition = new kakao.maps.LatLng(y, x);
     onMoveMap(placePosition);
+  };
+
+  const handleClick = (restaurant: string, location: string) => {
+    onClickPlace({ restaurant, location });
   };
 
   return (
@@ -34,7 +43,6 @@ export default function PlaceList({ placeList, onMoveMap }: PlaceListProps) {
         placeList.map(
           ({
             id,
-            place_url,
             place_name,
             road_address_name,
             address_name,
@@ -43,11 +51,13 @@ export default function PlaceList({ placeList, onMoveMap }: PlaceListProps) {
             y,
           }) => (
             <PlaceItem key={id} id="places-item">
-              <PlaceWrapper onMouseOver={() => handleMouseOver(x, y)}>
+              <PlaceWrapper
+                onMouseOver={() => handleMouseOver(x, y)}
+                onClick={() => handleClick(place_name, road_address_name)}>
                 <PlaceIconWrapper>
                   <PlaceIcon width={30} height={30} />
                 </PlaceIconWrapper>
-                <PlaceInfo href={place_url} target="_blank">
+                <PlaceInfo>
                   <PlaceName>{place_name}</PlaceName>
                   <RoadAddress>{road_address_name}</RoadAddress>
                   <Address>
