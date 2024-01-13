@@ -1,39 +1,35 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
+import { theme } from '@/styles/Theme';
+
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: 'outline' | 'solid' | 'subtle';
+  variant?: 'blur' | 'focus';
 }
 
 const variantStyles = {
-  outline: `
-    background-color: #FFF7F5;
-    color: #black;
+  blur: `
+    background-color: ${theme.colors.whitePrimary};
   `,
-  solid: `
-    background-color: white;
-    color: #a1a1aa; // gray-500에 해당하는 색상
-  `,
-  subtle: `
-    background-color: #FFA614;
-    color: #black;
+  focus: `
+    background-color: ${theme.colors.lightSecondary};
   `,
 };
 
 /**
  * @summary <Badge variant="outline">outline</Badge>
- * @param {string} variant - outline, solid, subtle
+ * @param {string} variant - blur | focus
  * @param {React.ReactNode} children - Badge 내부에 들어갈 내용
  */
 
 const BadgeComponent = styled.span<BadgeProps>`
-  ${({ variant }) => variantStyles[variant || 'outline']}
+  ${({ variant }) => variantStyles[variant || 'blur']}
   display: inline-block;
-  min-height: 1rem;
+  min-height: 1.5rem;
   border-radius: 15px;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   width: fit-content;
-  font-size: 0.625rem;
+  font-size: 1.5rem;
 `;
 
 export const Badge = ({

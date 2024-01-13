@@ -2,14 +2,18 @@ import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ChannelList } from '@/components/Channel/ChannelList';
+import CTAButton from '@/components/Common/Button/CTAButton';
 import ImageUpload from '@/components/Common/ImageUpload';
 import { useCreatePost } from '@/hooks/useCreatePost';
+import { useInput } from '@/hooks/useInput';
+import { isValidCreatePost } from '@/utils/validation';
 
 import {
-  CreateButton,
-  ReviewContainer,
+  InputStyle,
   ReviewForm,
   ReviewTextArea,
+  Section,
+  TextStyle,
 } from './style';
 
 export default function ReviewPage() {
@@ -17,6 +21,9 @@ export default function ReviewPage() {
 
   const [file, setFile] = useState<File | null>(null);
   const [channelId, setChannelId] = useState('');
+  const [restaurant, handleRestaurant] = useInput();
+  const [location, handleLocation] = useInput();
+  const [openingTime, handleOpeningTime] = useInput();
 
   const image = file ? URL.createObjectURL(file) : null; // 파일이 있으면 url을 만들어서 image에 넣어줍니다.
   const navigate = useNavigate();
@@ -33,10 +40,13 @@ export default function ReviewPage() {
     event.preventDefault();
 
     const elements = event.currentTarget;
-    const title = elements.review.value;
+    const review = elements.review.value;
 
+    if (!isValidCreatePost({ channelId, restaurant, location, review })) {
+      return;
+    }
     createPost(
-      { title, channelId, image: file },
+      { review, restaurant, location, openingTime, channelId, image: file },
       {
         onSuccess: () => {
           alert('succeess');
@@ -51,19 +61,39 @@ export default function ReviewPage() {
 
   return (
     <>
-      <ReviewContainer>
-        <ReviewForm onSubmit={handleSubmit}>
-          <section>
-            <p>채널 선택</p>
-            <ChannelList channelId={channelId} handleClick={handleChannelId} />
-          </section>
-          <section className="relative">
-            <ImageUpload image={image} onFileChange={handleFileChange} />
-            <ReviewTextArea name="review" placeholder="후기를 작성해보세요." />
-            <CreateButton disabled={isLoading}>등록</CreateButton>
-          </section>
-        </ReviewForm>
-      </ReviewContainer>
+      <ReviewForm onSubmit={handleSubmit}>
+        <Section>
+          <TextStyle>가게 평가 *</TextStyle>
+          <ChannelList channelId={channelId} handleClick={handleChannelId} />
+        </Section>
+        <Section>
+          <TextStyle>가게 이름 *</TextStyle>
+          <InputStyle onChange={handleRestaurant} />
+        </Section>
+        <Section>
+          <TextStyle>가게 위치 *</TextStyle>
+          <InputStyle onChange={handleLocation} />
+        </Section>
+        <Section>
+          <TextStyle>영업 시간</TextStyle>
+          <InputStyle onChange={handleOpeningTime} />
+        </Section>
+        <Section className="relative">
+          <TextStyle>이미지 추가</TextStyle>
+          <ImageUpload
+            image={image}
+            onFileChange={handleFileChange}
+            borderRadius="1rem"
+          />
+        </Section>
+        <Section>
+          <TextStyle>후기 작성 *</TextStyle>
+          <ReviewTextArea name="review" placeholder="후기 남기기" />
+        </Section>
+        <Section>
+          <CTAButton>등록하기</CTAButton>
+        </Section>
+      </ReviewForm>
     </>
   );
 }
