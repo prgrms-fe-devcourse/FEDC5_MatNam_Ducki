@@ -7,6 +7,7 @@ import {
   PROFILE_PATH,
   REVIEW_PATH,
 } from '@/constants';
+import { useCheckAuthUser } from '@/hooks/useAuth';
 
 import MainIcon from '../Common/Icons/MainIcon';
 import NotificationIcon from '../Common/Icons/NotificationIcon';
@@ -22,7 +23,8 @@ type pathType =
   | typeof MAIN_PATH
   | typeof NOTIFICATION_PATH
   | typeof PROFILE_PATH
-  | typeof REVIEW_PATH;
+  | typeof REVIEW_PATH
+  | `${typeof PROFILE_PATH}/${string}`;
 
 const BottomNavBarWrapper = styled.div`
   position: fixed;
@@ -62,11 +64,13 @@ export default function BottomNavBar() {
     }
   };
 
+  const { data: authUser } = useCheckAuthUser();
+
   const navItems: PropsBottomNavBar[] = [
     { path: MAIN_PATH, icon: <MainIcon /> },
     { path: REVIEW_PATH, icon: <ReviewIcon /> },
     { path: NOTIFICATION_PATH, icon: <NotificationIcon /> },
-    { path: PROFILE_PATH, icon: <ProfileIcon /> },
+    { path: `${PROFILE_PATH}/${authUser?._id}`, icon: <ProfileIcon /> },
   ];
 
   return (

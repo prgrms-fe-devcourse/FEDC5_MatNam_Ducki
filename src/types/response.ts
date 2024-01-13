@@ -54,6 +54,10 @@ export interface Post {
   image?: string;
   imagePublicId?: string;
   title: string;
+  review: string;
+  restaurant: string;
+  location: string;
+  openingTime: string;
 }
 
 export interface Like {
@@ -95,3 +99,5 @@ export interface Message {
   createdAt: string;
   updatedAt: string;
 }
+
+export type SearchResultType = User[] | Post[] | null;

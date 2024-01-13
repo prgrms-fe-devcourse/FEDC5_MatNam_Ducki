@@ -19,6 +19,7 @@ const CommonButton = styled.button<ButtonProps>`
   background-color: ${(props) => props.backgroundColor};
   font-size: ${(props) => props.textSize};
   color: ${(props) => props.textColor};
+  font-weight: semibold;
   cursor: pointer;
   &:hover {
     opacity: 0.8;
@@ -41,9 +42,9 @@ export default function Button({
       width={width || theme.size.xLarge}
       height={height || theme.size.large}
       borderRadius={borderRadius || theme.size.xSmall}
-      backgroundColor={backgroundColor || theme.colors.secondary}
+      backgroundColor={backgroundColor || theme.colors.primary}
       textSize={textSize || theme.size.small}
-      textColor={textColor || theme.colors.white}
+      textColor={textColor || theme.colors.whitePrimary}
       onClick={onClick}
       {...props}>
       {children}

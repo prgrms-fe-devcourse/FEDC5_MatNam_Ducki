@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
-import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector/PostSelector';
+import Skeleton from '@/components/Skeleton';
 import UserInfo from '@/components/UserInfo/UserInfo';
 import UserIntroductionEditor from '@/components/UserIntroductionEditor/UserIntroductionEditor';
 import {
@@ -11,37 +11,47 @@ import {
   EDIT_BUTTON_TEXT,
   PLACEHOLDER_DEFAULTS,
 } from '@/constants/profile';
+import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useChangeImage } from '@/hooks/useGetProfile';
 
 const ProfileWrapper = styled.div`
-  margin: 4rem 1.4rem;
-  width: 23rem;
+  margin: 6.4rem 1.96rem;
+  width: 36.8rem;
   position: relative;
 `;
 
 const Header = styled.div`
-  margin: 1rem 0;
-  font-size: 2.12rem;
+  margin: 1.6rem 0;
+  font-size: 3.4rem;
   font-weight: bold;
 `;
 
 const UserWrapper = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 3.2rem;
   flex-direction: column;
+`;
+
+const ImageWrapper = styled.div`
+  margin-top: 1.2rem;
 `;
 
 const UserInfoWrapper = styled.div`
   display: flex;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.76rem;
 `;
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [introduction, setIntroduction] = useState<string>('');
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { changeImage } = useChangeImage(setIsLoading);
+  const { data: authUser } = useCheckAuthUser();
 
   const handleFileChange = (file: File | null) => {
-    setSelectedFile(file);
+    if (file) {
+      changeImage(file);
+    }
   };
 
   const handleEditButtonClick = () => {
@@ -65,35 +75,53 @@ export default function ProfilePage() {
     introduction === '' ? PLACEHOLDER_DEFAULTS : introduction;
 
   const buttonText = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
-  const defaultAvatar = '../../../public/vite.svg';
+
+  const defaultImage = '../../public/vite.svg';
   return (
     <>
-      <ProfileWrapper>
-        <Header>마이페이지</Header>
-        <UserInfoWrapper>
-          <ImageUpload
-            onFileChange={handleFileChange}
-            ratio="5/5"
-            width="60px"
-            borderRadius="50%"
-            image={defaultAvatar}
-          />
-          <UserInfo userName="러비더비" userId="ducki" />
-        </UserInfoWrapper>
-        <UserWrapper>
-          <UserIntroductionEditor
-            isEditing={isEditing}
-            onEditButtonClick={handleEditButtonClick}
-            placeholderText={placeholderText}
-            onFormSubmit={handleFormSubmit}
-            introduction={introduction}
-            onInputChange={handleInputChange}
-            buttonText={buttonText}
-          />
-          <PostSelector></PostSelector>
-        </UserWrapper>
-      </ProfileWrapper>
-      <BottomNavBar></BottomNavBar>
+      {authUser ? (
+        <ProfileWrapper>
+          <Header>마이페이지</Header>
+          <UserInfoWrapper>
+            {isLoading ? (
+              <Skeleton
+                style={{ marginTop: '1.2rem' }}
+                width="80px"
+                height="80px"
+                borderRadius="50%"></Skeleton>
+            ) : (
+              <ImageWrapper>
+                <ImageUpload
+                  onFileChange={handleFileChange}
+                  ratio="5/5"
+                  width="80px"
+                  borderRadius="50%"
+                  image={
+                    authUser?.image
+                      ? `${authUser.image}?${Date.now()}`
+                      : defaultImage // 초기 값
+                  }
+                />
+              </ImageWrapper>
+            )}
+            <UserInfo userName={authUser?.fullName} userId={authUser?.email} />
+          </UserInfoWrapper>
+          <UserWrapper>
+            <UserIntroductionEditor
+              isEditing={isEditing}
+              onEditButtonClick={handleEditButtonClick}
+              placeholderText={placeholderText}
+              onFormSubmit={handleFormSubmit}
+              introduction={introduction}
+              onInputChange={handleInputChange}
+              buttonText={buttonText}
+            />
+            <PostSelector />
+          </UserWrapper>
+        </ProfileWrapper>
+      ) : (
+        <div>로그인하세요</div>
+      )}
     </>
   );
 }

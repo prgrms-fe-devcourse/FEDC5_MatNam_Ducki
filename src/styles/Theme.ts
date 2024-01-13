@@ -2,10 +2,13 @@ import { Theme } from '@emotion/react';
 
 export const theme: Theme = {
   colors: {
-    primary: '#F86F03', // 메인 색상
+    primary: '#EEA734', // 메인 색상
     secondary: '#FFA41B', // 보조 색상
+    lightSecondary: '#FFDCA0',
+    whitePrimary: '#FFF7F5',
     accent: '#525FE1', // 강조 색상
-    white: 'FFF6F4',
+    gray: '#868686',
+    lightGray: '#F3F2F2',
   },
   size: {
     xSmall: '0.5rem',
