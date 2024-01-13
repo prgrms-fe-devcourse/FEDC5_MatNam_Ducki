@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector';
@@ -32,6 +32,14 @@ export default function ProfilePage() {
   const { data: authUser } = useCheckAuthUser();
   const params = useParams();
   const userId = params.userId;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!authUser) {
+      alert('로그인이 필요합니다.'); // 토스트 컴포넌트가 만들어지면 토스트 컴포넌트 이용하면 괜찮을거같습니다.!
+      navigate('/signIn');
+    }
+  }, [authUser, history]);
 
   const handleFileChange = (file: File | null) => {
     if (file) {
