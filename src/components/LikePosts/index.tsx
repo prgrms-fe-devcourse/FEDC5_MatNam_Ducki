@@ -28,7 +28,8 @@ export default function LikePosts() {
                   style={{ marginBottom: '3.2rem' }}
                   key={item._id}
                   imageUrl={item.image}
-                  profileImage={item.author.image}
+                  createdAt={item.createdAt}
+                  likes={item.likes.length}
                   profileName={item.author.fullName}
                   content={item.title}></ReviewCard>
               ),

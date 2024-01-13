@@ -2,8 +2,7 @@ import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useGetPost } from '@/hooks/useGetProfile';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
-import { PostWrapper } from './style';
-import { EmptyPostTitle } from './style';
+import { EmptyPostTitle, PostWrapper } from './style';
 
 export default function MyPosts() {
   const { data: auth } = useCheckAuthUser();
@@ -24,7 +23,8 @@ export default function MyPosts() {
               key={item._id}
               style={{ marginBottom: '3.2rem' }}
               imageUrl={item.image}
-              profileImage={auth.image}
+              likes={item.likes.length}
+              createdAt={item.createdAt}
               profileName={auth.fullName}
               content={item.title}></ReviewCard>
           ))}
