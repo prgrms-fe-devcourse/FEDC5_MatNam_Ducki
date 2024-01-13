@@ -29,9 +29,7 @@ export default function UserPosts({
           ))}
         </>
       ) : (
-        <>
-          <EmptyPostTitle>아직 작성된 포스트가 없습니다.</EmptyPostTitle>
-        </>
+        <EmptyPostTitle>아직 작성된 포스트가 없습니다.</EmptyPostTitle>
       )}
     </PostWrapper>
   );
