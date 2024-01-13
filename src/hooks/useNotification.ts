@@ -5,17 +5,16 @@ import {
   seenNotifications,
   sendNotifications,
 } from '@/services/User/notification';
-import { User } from '@/types/response';
 
 const notificationKeys = {
   all: ['notifications'] as const,
 };
 
-export const useGetNotifications = (user: User) => {
+export const useGetNotifications = () => {
+  // token에 있는 user의 notifications을 가져오도록 구현해야함...
   return useQuery({
     queryKey: notificationKeys.all,
     queryFn: getNotifications,
-    enabled: !!user,
   });
 };
 
