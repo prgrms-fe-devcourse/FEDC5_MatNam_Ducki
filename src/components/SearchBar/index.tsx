@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -8,18 +7,28 @@ import { SearchResultType } from '@/types/response';
 
 import HookFormInput from '../Common/HookFormInput';
 import CloseFilledIcon from '../Common/Icons/CloseFilledIcon';
-import SearchIcon from '../Common/Icons/SearchIcon';
-import { SearchButton, SearchCloseButton, SearchForm } from './style';
+import PlaceIcon from '../Common/Icons/PlaceIcon';
+import {
+  closeFilledIconStyle,
+  inputStyle,
+  SearchButton,
+  SearchCloseButton,
+  SearchForm,
+} from './style';
 
 interface SearchBarValues {
   search: string;
 }
 
 interface SearchBarProps {
+  onSearchKeyword?: (keyword: string) => void;
   onSearchResult?: (result: SearchResultType) => void;
 }
 
-export default function SearchBar({ onSearchResult }: SearchBarProps) {
+export default function SearchBar({
+  onSearchKeyword,
+  onSearchResult,
+}: SearchBarProps) {
   const { register, handleSubmit, watch, setFocus, resetField, setValue } =
     useForm<SearchBarValues>();
 
@@ -39,9 +48,14 @@ export default function SearchBar({ onSearchResult }: SearchBarProps) {
   };
 
   const onSubmit: SubmitHandler<SearchBarValues> = async () => {
-    if (!searchValue?.trim()) return;
+    const searchKeyword = searchValue?.trim();
+    if (!searchKeyword) return;
 
     const { data } = await refetch();
+
+    if (onSearchKeyword) {
+      onSearchKeyword(searchKeyword);
+    }
 
     if (onSearchResult) {
       onSearchResult(data ?? null);
@@ -60,15 +74,22 @@ export default function SearchBar({ onSearchResult }: SearchBarProps) {
     }
   }, [searchQuery]);
 
+  useEffect(() => {
+    if (searchQuery && onSearchKeyword) {
+      onSearchKeyword(searchQuery);
+    }
+  }, []);
+
   return (
     <SearchForm onSubmit={handleSubmit(onSubmit)}>
       <SearchButton>
-        <SearchIcon />
+        <PlaceIcon />
       </SearchButton>
       <HookFormInput
         name="search"
         register={register}
-        placeholder="맛집 후기 또는 사용자 검색"
+        placeholder="맛집 검색"
+        autoFocus
         css={inputStyle}
       />
       <SearchCloseButton>
@@ -82,18 +103,3 @@ export default function SearchBar({ onSearchResult }: SearchBarProps) {
     </SearchForm>
   );
 }
-
-const inputStyle = css`
-  width: 100%;
-  height: 5rem;
-  border: 1px solid #ddd;
-  border-radius: 1.4rem;
-  padding: 1rem 3rem 1rem;
-`;
-
-const closeFilledIconStyle = css`
-  width: 2rem;
-  height: 2rem;
-  z-index: 10;
-  transform: translateY(-0.1rem);
-`;
