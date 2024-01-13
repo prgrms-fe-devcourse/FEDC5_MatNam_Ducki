@@ -35,10 +35,13 @@ export default function ReviewPage() {
     event.preventDefault();
 
     const elements = event.currentTarget;
-    const title = elements.review.value;
+    const review = elements.review.value;
+    const restaurant = '테스트 식당';
+    const location = '테스트 위치';
+    const openingTime = '테스트 시간';
 
     createPost(
-      { title, channelId, image: file },
+      { review, restaurant, location, openingTime, channelId, image: file },
       {
         onSuccess: () => {
           alert('succeess');
