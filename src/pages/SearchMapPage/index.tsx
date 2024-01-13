@@ -3,9 +3,9 @@ import { useState } from 'react';
 import SearchBar from '@/components/SearchBar';
 import SearchMap from '@/components/SearchMap';
 
-import { SearchPageWrapper } from './style';
+import { SearchMapPageWrapper } from './style';
 
-export default function SearchPage() {
+export default function SearchMapPage() {
   const [searchKeyword, setSearchKeyword] = useState('');
 
   const handleSearchKeyword = (keyword: string) => {
@@ -13,9 +13,9 @@ export default function SearchPage() {
   };
 
   return (
-    <SearchPageWrapper>
+    <SearchMapPageWrapper>
       <SearchBar onSearchKeyword={handleSearchKeyword} />
       <SearchMap searchKeyword={searchKeyword} />
-    </SearchPageWrapper>
+    </SearchMapPageWrapper>
   );
 }
