@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 
-import { DONE_BUTTON_TEXT } from '@/constants/profile';
 import { PropsIntroductionEditor } from '@/types/profile';
 
 import HookFormInput from '../Common/HookFormInput';
@@ -34,25 +33,20 @@ export default function UserIntroductionEditor({
               value={introduction}
               type="text"
               style={{
-                height: '3.2rem',
-                width: '26.2rem',
-                padding: '0.4rem 0.8rem',
+                border: 'none',
+                borderBottom: '1px solid #f3f2f2',
               }}
               onChange={onInputChange}
               register={register}></HookFormInput>
-            <IntroductionButton isEditing={isEditing}>
-              {DONE_BUTTON_TEXT}
-            </IntroductionButton>
+            <IntroductionButton>{buttonText}</IntroductionButton>
           </IntroductionForm>
           <IntroductionBar />
         </>
       ) : (
         <>
-          <IntroductionWrapper introductionLength={introduction.length}>
+          <IntroductionWrapper>
             <Introduction>{introduction}</Introduction>
-            <IntroductionButton
-              isEditing={isEditing}
-              onClick={onEditButtonClick}>
+            <IntroductionButton onClick={onEditButtonClick}>
               {buttonText}
             </IntroductionButton>
           </IntroductionWrapper>
