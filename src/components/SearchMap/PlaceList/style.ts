@@ -9,7 +9,7 @@ export const PlaceListWrapper = styled.ul`
 export const PlaceItem = styled.li`
   display: flex;
   padding: 1.4rem 0;
-  border-bottom: 1px solid ${(props) => props.theme.colors.lightGray};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
 `;
 
 export const PlaceWrapper = styled.div`

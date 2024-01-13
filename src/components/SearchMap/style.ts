@@ -29,7 +29,7 @@ export const SearchKeywordWrapper = styled.div`
 `;
 
 export const SearchKeyword = styled.span`
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   font-size: 1.8rem;
   color: ${({ theme }) => theme.colors.primary};
 `;
