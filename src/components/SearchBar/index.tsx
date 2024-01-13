@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useSearchAll } from '@/hooks/useSearch';
+import { PATH } from '@/routes/path';
 import { SearchResultType } from '@/types/response';
 
 import HookFormInput from '../Common/HookFormInput';
@@ -44,7 +45,7 @@ export default function SearchBar({
   const handleResetValue = () => {
     resetField('search');
     setFocus('search');
-    navigate({ pathname: '/search' });
+    navigate({ pathname: PATH.SEARCH.MAP });
   };
 
   const onSubmit: SubmitHandler<SearchBarValues> = async () => {
@@ -64,7 +65,7 @@ export default function SearchBar({
 
   useEffect(() => {
     if (searchValue != null) {
-      navigate({ pathname: '/search', search: `?q=${searchValue}` });
+      navigate({ pathname: PATH.SEARCH.MAP, search: `?q=${searchValue}` });
     }
   }, [searchValue]);
 
