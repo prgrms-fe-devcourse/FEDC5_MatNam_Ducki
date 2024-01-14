@@ -163,7 +163,7 @@ export const updatePost = async ({
       formData.append('image', image);
     }
 
-    await axiosInstance.put<Post>(ENDPOINT.POSTS.UPDATE, formData);
+    await axiosAuthInstance.put<Post>(ENDPOINT.POSTS.UPDATE, formData);
   } catch (error) {
     console.error(error);
   }
