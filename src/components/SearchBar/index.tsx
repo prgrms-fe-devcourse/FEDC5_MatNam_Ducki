@@ -22,11 +22,15 @@ interface SearchBarValues {
 }
 
 interface SearchBarProps {
+  disabled?: boolean;
+  placeholder?: string;
   onSearchKeyword?: (keyword: string) => void;
   onSearchResult?: (result: SearchResultType) => void;
 }
 
 export default function SearchBar({
+  disabled = false,
+  placeholder,
   onSearchKeyword,
   onSearchResult,
 }: SearchBarProps) {
@@ -81,16 +85,20 @@ export default function SearchBar({
     }
   }, []);
 
+  const handleFormClick = () => {
+    navigate(PATH.SEARCH.POST);
+  };
+
   return (
-    <SearchForm onSubmit={handleSubmit(onSubmit)}>
+    <SearchForm onSubmit={handleSubmit(onSubmit)} onClick={handleFormClick}>
       <SearchButton>
         <PlaceIcon />
       </SearchButton>
       <HookFormInput
         name="search"
         register={register}
-        placeholder="맛집 검색"
-        autoFocus
+        placeholder={placeholder ?? '맛집 후기를 검색해 보세요!'}
+        autoFocus={!disabled}
         css={inputStyle}
       />
       <SearchCloseButton>
