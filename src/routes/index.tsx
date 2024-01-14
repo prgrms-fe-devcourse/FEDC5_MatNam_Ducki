@@ -8,6 +8,7 @@ import NotificationPage from '../pages/NotificationPage';
 import ProfilePage from '../pages/ProfilePage';
 import ReviewList from '../pages/ReviewList';
 import ReviewPage from '../pages/ReviewPage';
+import ReviewUpdatePage from '../pages/ReviewUpdatePage';
 import SearchPage from '../pages/SearchPage';
 import SignUpPage from '../pages/SignUpPage';
 import TestPage from '../pages/TestPage';
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.REVIEW,
         element: <ReviewPage />,
+      },
+      {
+        path: PATH.REVIEWUPDATE,
+        element: <ReviewUpdatePage />,
       },
       {
         path: PATH.REVIEWLIST,

@@ -18,7 +18,7 @@ import {
   TextStyle,
 } from '../ReviewPage/style';
 
-export default function ReviewEditPage() {
+export default function ReviewUpdatePage() {
   //const { state: pagePostId = '' } = useLocation();
   const pagePostId = '65a115e9817f4c1a36bc4795';
   const { data: post } = useGetDetail({ postId: pagePostId });

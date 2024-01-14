@@ -4,6 +4,7 @@ export const PATH = {
   SIGNUP: '/signup',
   SEARCH: '/search',
   REVIEW: '/review',
+  REVIEWUPDATE: '/reviewupdate',
   REVIEWLIST: '/reviewlist',
   REVIEWDETAIL: 'reviewdetail',
   PROFILE: '/profile',
