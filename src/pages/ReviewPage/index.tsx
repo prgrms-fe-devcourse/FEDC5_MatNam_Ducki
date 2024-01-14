@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { ChannelList } from '@/components/Channel/ChannelList';
 import CTAButton from '@/components/Common/Button/CTAButton';
 import ImageUpload from '@/components/Common/ImageUpload';
-import { useCreatePost } from '@/hooks/useCreatePost';
 import { useInput } from '@/hooks/useInput';
+import { useCreatePost } from '@/hooks/usePost';
 import { isValidCreatePost } from '@/utils/validation';
 
 import {
@@ -43,6 +43,7 @@ export default function ReviewPage() {
     const review = elements.review.value;
 
     if (!isValidCreatePost({ channelId, restaurant, location, review })) {
+      alert('필수 입력 사항을 모두 입력해주세요.');
       return;
     }
     createPost(

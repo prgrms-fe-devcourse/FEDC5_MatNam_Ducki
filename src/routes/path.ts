@@ -7,6 +7,7 @@ export const PATH = {
     POST: '/search/post',
   },
   REVIEW: '/review',
+  REVIEWUPDATE: '/reviewupdate',
   REVIEWLIST: '/reviewlist',
   REVIEWDETAIL: 'reviewdetail',
   PROFILE: '/profile',
