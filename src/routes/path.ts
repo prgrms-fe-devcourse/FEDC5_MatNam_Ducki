@@ -5,7 +5,7 @@ export const PATH = {
   SEARCH: '/search',
   REVIEW: '/review',
   REVIEWLIST: '/reviewlist',
-  REVIEWDETAIL: 'reviewdetail',
+  REVIEWDETAIL: '/reviewdetail',
   PROFILE: '/profile',
   NOTIFICATION: '/notification',
 };
