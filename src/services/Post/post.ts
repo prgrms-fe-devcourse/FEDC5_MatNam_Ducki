@@ -26,12 +26,12 @@ export const getPostByChannel = async ({
     );
 
     const parsedData = response.map((post: Post) => {
-      const { review, restaurant, location, openingTime } = JSON.parse(
+      const { review, restaurant, location, openingTime }: Post = JSON.parse(
         post.title,
       );
 
       return {
-        ...response,
+        ...post,
         review,
         restaurant,
         location,
@@ -63,12 +63,12 @@ export const getPostByUser = async ({
     );
 
     const parsedData = response.map((post: Post) => {
-      const { review, restaurant, location, openingTime } = JSON.parse(
+      const { review, restaurant, location, openingTime }: Post = JSON.parse(
         post.title,
       );
 
       return {
-        ...response,
+        ...post,
         review,
         restaurant,
         location,
