@@ -4,7 +4,7 @@ import { theme } from '@/styles/Theme';
 
 export const DropDownItem = styled.li`
   cursor: pointer;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 0.4rem 0.8rem;
   &:hover {
     background-color: ${theme.colors.gray};
@@ -16,10 +16,11 @@ export const DropDownWrapper = styled.ul`
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 130%;
+  top: 140%;
   left: 0;
   background-color: white;
   border-radius: 0.5rem;
   border: 1px solid ${theme.colors.gray};
   padding: 0.3rem 0;
+  width: 4.5rem;
 `;

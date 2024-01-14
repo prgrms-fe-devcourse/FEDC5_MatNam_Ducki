@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { MeatBallMenu } from '../Icons/MeatBallMenu';
 import { DropDownItem, DropDownWrapper } from './style';
 
 interface DropDownItemData {
@@ -16,7 +17,7 @@ export default function DropDownContainer({ items }: DropDownContainerProps) {
 
   return (
     <div style={{ position: 'relative' }}>
-      <span onClick={() => setView(!view)}>드롭다운</span>
+      <MeatBallMenu onClick={() => setView(!view)} />
       {view && (
         <DropDownWrapper>
           {items.map((item, index) => (
