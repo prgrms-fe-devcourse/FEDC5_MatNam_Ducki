@@ -17,8 +17,9 @@ import {
   Section,
   TextStyle,
 } from '../ReviewPage/style';
+import { NotUpdateInput } from './style';
 
-export default function ReviewUpdatePage() {
+export default function ReviewPage() {
   //const { state: pagePostId = '' } = useLocation();
   const pagePostId = '65a115e9817f4c1a36bc4795';
   const { data: post } = useGetDetail({ postId: pagePostId });
@@ -39,8 +40,8 @@ export default function ReviewUpdatePage() {
   const { mutate: updatePost } = useUpdatePost();
   const navigate = useNavigate();
 
-  const [restaurant, handleRestaurant] = useInput(prevRestaurant);
-  const [location, handleLocation] = useInput(prevLocation);
+  const restaurant = prevRestaurant;
+  const location = prevLocation;
   const [openingTime, handleOpeningTime] = useInput(prevOpeningTime);
   const [channelId, setChannelId] = useState(prevChannel._id);
   const [image, setImage] = useState<string | null>(prevPostImageUrl);
@@ -87,11 +88,11 @@ export default function ReviewUpdatePage() {
         </Section>
         <Section>
           <TextStyle>가게 이름 *</TextStyle>
-          <InputStyle value={restaurant} onChange={handleRestaurant} />
+          <NotUpdateInput>{restaurant}</NotUpdateInput>
         </Section>
         <Section>
           <TextStyle>가게 위치 *</TextStyle>
-          <InputStyle value={location} onChange={handleLocation} />
+          <NotUpdateInput>{location}</NotUpdateInput>
         </Section>
         <Section>
           <TextStyle>영업 시간</TextStyle>
