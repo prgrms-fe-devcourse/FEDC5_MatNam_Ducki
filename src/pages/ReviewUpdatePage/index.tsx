@@ -20,11 +20,9 @@ import {
 import { NotUpdateInput } from './style';
 
 export default function ReviewPage() {
-  //const { state: pagePostId = '' } = useLocation();
+  // const { state: pagePostId = '' } = useLocation(); <- DetailPage에서 넘어온 postId
   const pagePostId = '65a115e9817f4c1a36bc4795';
   const { data: post } = useGetDetail({ postId: pagePostId });
-
-  console.log(post);
 
   const {
     review: prevPostReview,
