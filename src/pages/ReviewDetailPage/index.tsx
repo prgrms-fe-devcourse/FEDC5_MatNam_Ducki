@@ -1,13 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
+import { Badge } from '@/components/Badge/Badge';
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import Avatar from '@/components/Common/Avatar/Avatar';
-import Badge from '@/components/Common/Badge';
-import { ReviewCard } from '@/components/ReviewCard/ReviewCard';
+import DropDownContainer from '@/components/Common/DropDown';
 import CommentInput from '@/components/ReviewDetail/CommentInput';
 import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
-import { theme } from '@/styles/Theme';
+import { useDeletePost } from '@/hooks/useDeletePost';
+import { PATH } from '@/routes/path';
 
 import {
   BadgeWrapper,
@@ -17,6 +19,9 @@ import {
   CommentUserInfoWrapper,
   CommentUserName,
   ReviewDetailPage,
+  ReviewImage,
+  ReviewRestaurant,
+  ReviewWrapper,
   UserInfoTextBox,
   UserInfoWrapper,
   UserMail,
@@ -24,8 +29,32 @@ import {
 } from './style';
 
 export default function ReviewDetail() {
+  const navigate = useNavigate();
+
   const { postId } = useParams() as { postId: string };
   const { data, isLoading } = useGetDetail({ postId });
+
+  const { mutate: deletePost } = useDeletePost();
+
+  const handleGoToEditPage = useCallback(() => {
+    navigate(PATH.REVIEWUPDATE, { state: postId });
+  }, [navigate, postId]);
+
+  const handleDeletePost = useCallback(() => {
+    deletePost(postId ?? '');
+    navigate('/');
+  }, [deletePost, navigate, postId]);
+
+  const dropDownItems = [
+    {
+      name: '수정',
+      onClick: () => handleGoToEditPage(),
+    },
+    {
+      name: '삭제',
+      onClick: () => handleDeletePost(),
+    },
+  ];
 
   if (!isLoading && data) {
     return (
@@ -38,17 +67,18 @@ export default function ReviewDetail() {
           </UserInfoTextBox>
         </UserInfoWrapper>
         <BadgeWrapper>
-          <Badge
-            label={data.channel.name!}
-            color={theme.colors.lightSecondary}
-          />
+          <Badge>{data.channel.name}</Badge>
         </BadgeWrapper>
-        <ReviewCard
-          content="dfsd"
-          profileImage="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-          profileName="sangmin"
-          imageUrl="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-        />
+        <ReviewWrapper>
+          <ReviewRestaurant>
+            <span>{data.restaurant}</span>
+            <DropDownContainer items={dropDownItems} />
+          </ReviewRestaurant>
+          <div>{data.location}</div>
+          <div>{data.openingTime}</div>
+          <ReviewImage src={data.image}></ReviewImage>
+          <div>{data.review}</div>
+        </ReviewWrapper>
         <EvaluationSection />
         <CommentList>
           {data.comments.map((comment) => (
