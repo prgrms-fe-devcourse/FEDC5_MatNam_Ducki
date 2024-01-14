@@ -3,17 +3,25 @@ import styled from '@emotion/styled';
 export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 20px;
+  padding: 0 2rem;
 `;
 
 export const SignInButton = styled.button<{ isValid: boolean }>`
-  background-color: #ffa500;
+  background-color: ${(props) => props.theme.colors.secondary};
   border: none;
-  border-radius: 5px;
-  padding: 15px 20px;
-  font-size: 18px;
+  border-radius: 0.8rem;
+  padding: 1.5rem 2rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   color: ${({ isValid }) => (isValid ? '#000' : '#ffffff')};
 `;
+
+export const InputListWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+`;
+
+export const InputList = styled.li``;

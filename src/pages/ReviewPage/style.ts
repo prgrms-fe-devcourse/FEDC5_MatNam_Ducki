@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 
+import { theme } from '@/styles/Theme';
+
 export const ReviewForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+  margin-bottom: 6rem;
 `;
 
 export const ReviewTextArea = styled.textarea`
@@ -28,4 +31,15 @@ export const Section = styled.section`
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+`;
+
+export const InputStyle = styled.input`
+  border: none;
+  border-bottom: 1px solid #f3f2f2;
+  padding-bottom: 1rem;
+`;
+
+export const TextStyle = styled.span`
+  font-size: 1.2rem;
+  color: ${theme.colors.gray};
 `;
