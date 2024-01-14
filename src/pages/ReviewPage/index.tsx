@@ -43,6 +43,7 @@ export default function ReviewPage() {
     const review = elements.review.value;
 
     if (!isValidCreatePost({ channelId, restaurant, location, review })) {
+      alert('필수 입력 사항을 모두 입력해주세요.');
       return;
     }
     createPost(

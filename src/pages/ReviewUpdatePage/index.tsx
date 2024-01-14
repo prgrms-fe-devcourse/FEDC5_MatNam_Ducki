@@ -9,6 +9,7 @@ import { useUpdatePost } from '@/hooks/useCreatePost';
 import { useInput } from '@/hooks/useInput';
 import { PATH } from '@/routes/path';
 import { Post } from '@/types/response';
+import { isValidCreatePost } from '@/utils/validation';
 
 import {
   InputStyle,
@@ -65,6 +66,10 @@ export default function ReviewPage() {
       imageToDeletePublicId: file ? undefined : prevPostImagePublicId,
       channelId,
     };
+    if (!isValidCreatePost({ channelId, restaurant, location, review })) {
+      alert('필수 입력 사항을 모두 입력해주세요.');
+      return;
+    }
 
     updatePost(newPost, {
       onSuccess: () => {
