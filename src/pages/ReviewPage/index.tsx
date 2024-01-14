@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { ChannelList } from '@/components/Channel/ChannelList';
 import CTAButton from '@/components/Common/Button/CTAButton';
 import ImageUpload from '@/components/Common/ImageUpload';
-import { useCreatePost } from '@/hooks/useCreatePost';
 import { useInput } from '@/hooks/useInput';
+import { useCreatePost } from '@/hooks/usePost';
 import { isValidCreatePost } from '@/utils/validation';
 
 import {
