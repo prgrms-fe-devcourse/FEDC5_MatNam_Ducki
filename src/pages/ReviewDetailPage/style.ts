@@ -26,7 +26,6 @@ export const UserMail = styled.span`
 `;
 
 export const BadgeWrapper = styled.div`
-  width: 5rem;
   margin: 1rem 0;
   cursor: pointer;
 `;
@@ -61,3 +60,11 @@ export const Comment = styled.p`
 `;
 
 export const CommentUserName = styled.h3``;
+
+export const ReviewWrapper = styled.div``;
+
+export const ReviewImage = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+`;

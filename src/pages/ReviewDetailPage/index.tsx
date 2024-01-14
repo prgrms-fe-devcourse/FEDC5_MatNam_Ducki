@@ -1,13 +1,11 @@
 import { useParams } from 'react-router-dom';
 
+import { Badge } from '@/components/Badge/Badge';
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import Avatar from '@/components/Common/Avatar/Avatar';
-import Badge from '@/components/Common/Badge';
-import { ReviewCard } from '@/components/ReviewCard/ReviewCard';
 import CommentInput from '@/components/ReviewDetail/CommentInput';
 import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
-import { theme } from '@/styles/Theme';
 
 import {
   BadgeWrapper,
@@ -17,6 +15,8 @@ import {
   CommentUserInfoWrapper,
   CommentUserName,
   ReviewDetailPage,
+  ReviewImage,
+  ReviewWrapper,
   UserInfoTextBox,
   UserInfoWrapper,
   UserMail,
@@ -38,17 +38,15 @@ export default function ReviewDetail() {
           </UserInfoTextBox>
         </UserInfoWrapper>
         <BadgeWrapper>
-          <Badge
-            label={data.channel.name!}
-            color={theme.colors.lightSecondary}
-          />
+          <Badge>{data.channel.name}</Badge>
         </BadgeWrapper>
-        <ReviewCard
-          content="dfsd"
-          profileImage="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-          profileName="sangmin"
-          imageUrl="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-        />
+        <ReviewWrapper>
+          <div>{data.restaurant}</div>
+          <div>{data.location}</div>
+          <div>{data.openingTime}</div>
+          <ReviewImage src={data.image}></ReviewImage>
+          <div>{data.review}</div>
+        </ReviewWrapper>
         <EvaluationSection />
         <CommentList>
           {data.comments.map((comment) => (
