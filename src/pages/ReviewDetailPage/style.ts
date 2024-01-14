@@ -68,3 +68,9 @@ export const ReviewImage = styled.img`
   height: 100%;
   border-radius: 5%;
 `;
+
+export const ReviewRestaurant = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;

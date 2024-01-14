@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Badge } from '@/components/Badge/Badge';
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import Avatar from '@/components/Common/Avatar/Avatar';
+import DropDownContainer from '@/components/Common/DropDown';
 import CommentInput from '@/components/ReviewDetail/CommentInput';
 import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
@@ -16,6 +17,7 @@ import {
   CommentUserName,
   ReviewDetailPage,
   ReviewImage,
+  ReviewRestaurant,
   ReviewWrapper,
   UserInfoTextBox,
   UserInfoWrapper,
@@ -26,6 +28,17 @@ import {
 export default function ReviewDetail() {
   const { postId } = useParams() as { postId: string };
   const { data, isLoading } = useGetDetail({ postId });
+
+  const dropDownItems = [
+    {
+      name: '수정',
+      onClick: () => console.log('수정 클릭'),
+    },
+    {
+      name: '삭제',
+      onClick: () => console.log('삭제 클릭'),
+    },
+  ];
 
   if (!isLoading && data) {
     return (
@@ -41,7 +54,10 @@ export default function ReviewDetail() {
           <Badge>{data.channel.name}</Badge>
         </BadgeWrapper>
         <ReviewWrapper>
-          <div>{data.restaurant}</div>
+          <ReviewRestaurant>
+            <span>{data.restaurant}</span>
+            <DropDownContainer items={dropDownItems} />
+          </ReviewRestaurant>
           <div>{data.location}</div>
           <div>{data.openingTime}</div>
           <ReviewImage src={data.image}></ReviewImage>
