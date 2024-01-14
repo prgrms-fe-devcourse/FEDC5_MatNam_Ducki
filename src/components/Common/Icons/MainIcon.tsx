@@ -5,7 +5,9 @@ export default function MainIcon() {
       fill="none"
       strokeWidth={1.5}
       stroke="currentColor"
-      viewBox="0 0 15 20">
+      viewBox="0 0 15 20"
+      width={25}
+      height={25}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

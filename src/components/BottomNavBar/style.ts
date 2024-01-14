@@ -32,3 +32,7 @@ export const LinkWrapper = styled(Link)<{ active: string }>`
   width: 6rem;
   height: 5.4rem;
 `;
+
+export const TextStyle = styled.span`
+  font-size: 1.2rem;
+`;

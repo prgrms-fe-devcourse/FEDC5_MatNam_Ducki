@@ -12,7 +12,7 @@ import MainIcon from '../Common/Icons/MainIcon';
 import NotificationIcon from '../Common/Icons/NotificationIcon';
 import ProfileIcon from '../Common/Icons/ProfileIcon';
 import ReviewIcon from '../Common/Icons/ReviewIcon';
-import { BottomNavBarWrapper, LinkWrapper } from './style';
+import { BottomNavBarWrapper, LinkWrapper, TextStyle } from './style';
 
 interface PropsBottomNavBar {
   path: pathType;
@@ -50,22 +50,22 @@ export default function BottomNavBar() {
     {
       path: MAIN_PATH,
       icon: <MainIcon />,
-      title: <div>홈</div>,
+      title: <TextStyle>홈</TextStyle>,
     },
     {
       path: REVIEW_PATH,
       icon: <ReviewIcon />,
-      title: <div>후기 작성</div>,
+      title: <TextStyle>후기 작성</TextStyle>,
     },
     {
       path: NOTIFICATION_PATH,
       icon: <NotificationIcon />,
-      title: <div>알림</div>,
+      title: <TextStyle>알림</TextStyle>,
     },
     {
       path: `${PROFILE_PATH}/${authUser?._id}`,
       icon: <ProfileIcon />,
-      title: <div>내 정보</div>,
+      title: <TextStyle>내 정보</TextStyle>,
     },
   ];
 
