@@ -13,6 +13,7 @@ import {
   PLACEHOLDER_DEFAULTS,
 } from '@/constants/profile';
 import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useChangeIntroduce } from '@/hooks/useGetProfile';
 import { useChangeImage } from '@/hooks/useGetProfile';
 
 import {
@@ -33,6 +34,13 @@ export default function ProfilePage() {
   const params = useParams();
   const userId = params.userId;
   const navigate = useNavigate();
+  const { changeIntroduce } = useChangeIntroduce();
+
+  useEffect(() => {
+    if (authUser) {
+      setIntroduction(authUser.username || '');
+    }
+  }, [authUser]);
 
   useEffect(() => {
     if (userId === 'undefined') {
@@ -54,6 +62,10 @@ export default function ProfilePage() {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsEditing((prevIsEditing) => !prevIsEditing);
+
+    if (authUser) {
+      changeIntroduce({ fullName: authUser.fullName, username: introduction });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +73,14 @@ export default function ProfilePage() {
       setIntroduction(e.target.value);
     } else {
       alert('작성 범위를 초과했습니다.');
+
+      if (authUser) {
+        // 범위를 넘기면 alert 발생하면서 초기값으로 돌아가게 되어서 일단은 서버쪽에 보내는 쪽으로 저장하도록했습니다.
+        changeIntroduce({
+          fullName: authUser.fullName,
+          username: introduction,
+        });
+      }
     }
   };
 
