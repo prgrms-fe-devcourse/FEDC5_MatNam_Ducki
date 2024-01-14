@@ -15,7 +15,6 @@ export default function SearchPostPage() {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchResult, setSearchResult] = useState<SearchResultType>(null);
 
-  console.log(searchResult);
   return (
     <SearchPostPageWrapper>
       <SearchBar
