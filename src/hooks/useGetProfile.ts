@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { getPostByUser, getPostDetail } from '@/services/Post/post';
 import { updateProfileImage } from '@/services/User/user';
+import { getUser } from '@/services/User/user';
 
 export const useGetPost = (userId: string) => {
   return useQuery({
@@ -42,5 +43,12 @@ export const useGetPostDetail = (postId: string) => {
   return useQuery({
     queryKey: ['postId', postId],
     queryFn: () => getPostDetail(postId),
+  });
+};
+
+export const useGetUser = (userId: string) => {
+  return useQuery({
+    queryKey: ['getUserInfo', userId],
+    queryFn: () => getUser(userId),
   });
 };

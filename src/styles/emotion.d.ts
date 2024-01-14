@@ -8,6 +8,8 @@ declare module '@emotion/react' {
       lightSecondary: string;
       whitePrimary: string;
       accent: string;
+      gray: string;
+      lightGray: string;
     };
     size: {
       xSmall: string;

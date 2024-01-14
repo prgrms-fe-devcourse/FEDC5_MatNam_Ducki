@@ -2,17 +2,28 @@ import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ChannelList } from '@/components/Channel/ChannelList';
-import Button from '@/components/Common/Button/Button';
+import CTAButton from '@/components/Common/Button/CTAButton';
 import ImageUpload from '@/components/Common/ImageUpload';
-import { useCreatePost } from '@/hooks/useCreatePost';
+import { useInput } from '@/hooks/useInput';
+import { useCreatePost } from '@/hooks/usePost';
+import { isValidCreatePost } from '@/utils/validation';
 
-import { ReviewForm, ReviewTextArea, Section } from './style';
+import {
+  InputStyle,
+  ReviewForm,
+  ReviewTextArea,
+  Section,
+  TextStyle,
+} from './style';
 
 export default function ReviewPage() {
   const { mutate: createPost, isLoading } = useCreatePost();
 
   const [file, setFile] = useState<File | null>(null);
   const [channelId, setChannelId] = useState('');
+  const [restaurant, handleRestaurant] = useInput();
+  const [location, handleLocation] = useInput();
+  const [openingTime, handleOpeningTime] = useInput();
 
   const image = file ? URL.createObjectURL(file) : null; // 파일이 있으면 url을 만들어서 image에 넣어줍니다.
   const navigate = useNavigate();
@@ -29,10 +40,14 @@ export default function ReviewPage() {
     event.preventDefault();
 
     const elements = event.currentTarget;
-    const title = elements.review.value;
+    const review = elements.review.value;
 
+    if (!isValidCreatePost({ channelId, restaurant, location, review })) {
+      alert('필수 입력 사항을 모두 입력해주세요.');
+      return;
+    }
     createPost(
-      { title, channelId, image: file },
+      { review, restaurant, location, openingTime, channelId, image: file },
       {
         onSuccess: () => {
           alert('succeess');
@@ -49,17 +64,23 @@ export default function ReviewPage() {
     <>
       <ReviewForm onSubmit={handleSubmit}>
         <Section>
-          <p>가게 평가</p>
+          <TextStyle>가게 평가 *</TextStyle>
           <ChannelList channelId={channelId} handleClick={handleChannelId} />
         </Section>
         <Section>
-          <p>가게 이름</p>
+          <TextStyle>가게 이름 *</TextStyle>
+          <InputStyle onChange={handleRestaurant} />
         </Section>
         <Section>
-          <p>영업 시간</p>
+          <TextStyle>가게 위치 *</TextStyle>
+          <InputStyle onChange={handleLocation} />
+        </Section>
+        <Section>
+          <TextStyle>영업 시간</TextStyle>
+          <InputStyle onChange={handleOpeningTime} />
         </Section>
         <Section className="relative">
-          <p>이미지 추가</p>
+          <TextStyle>이미지 추가</TextStyle>
           <ImageUpload
             image={image}
             onFileChange={handleFileChange}
@@ -67,17 +88,11 @@ export default function ReviewPage() {
           />
         </Section>
         <Section>
-          <p>후기 작성</p>
+          <TextStyle>후기 작성 *</TextStyle>
           <ReviewTextArea name="review" placeholder="후기 남기기" />
         </Section>
         <Section>
-          <Button
-            width="100%"
-            height="3rem"
-            textSize="1.2rem"
-            textColor="white">
-            등록하기
-          </Button>
+          <CTAButton>등록하기</CTAButton>
         </Section>
       </ReviewForm>
     </>
