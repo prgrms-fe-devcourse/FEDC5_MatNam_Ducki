@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import ReviewDetail from '@/pages/ReviewDetailPage';
+import SearchPostPage from '@/pages/SearchPostPage';
 import SignInPage from '@/pages/SignInPage';
 
 import MainPage from '../pages/MainPage';
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.SEARCH.MAP,
         element: <SearchMapPage />,
+      },
+      {
+        path: PATH.SEARCH.POST,
+        element: <SearchPostPage />,
       },
       {
         path: PATH.REVIEW,
