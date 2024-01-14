@@ -35,11 +35,11 @@ export default function ProfilePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!authUser) {
-      alert('로그인이 필요합니다.'); // 토스트 컴포넌트가 만들어지면 토스트 컴포넌트 이용하면 괜찮을거같습니다.!
+    if (userId === 'undefined') {
+      alert('로그인이 필요합니다.');
       navigate('/signIn');
     }
-  }, [authUser, history]);
+  }, [userId]);
 
   const handleFileChange = (file: File | null) => {
     if (file) {
@@ -72,58 +72,56 @@ export default function ProfilePage() {
   const defaultImage = '../../public/vite.svg';
   return (
     <>
-      {authUser && (
-        <>
-          {authUser._id === userId ? (
-            <ProfileWrapper>
-              <ProfileBackGroundImage>
-                <UserInfoWrapper>
-                  {isLoading ? (
-                    <Skeleton
-                      style={{ marginTop: '1.2rem' }}
+      <>
+        {authUser && authUser._id === userId ? (
+          <ProfileWrapper>
+            <ProfileBackGroundImage>
+              <UserInfoWrapper>
+                {isLoading ? (
+                  <Skeleton
+                    style={{ marginTop: '1.2rem' }}
+                    width="80px"
+                    height="80px"
+                    borderRadius="50%"></Skeleton>
+                ) : (
+                  <ImageWrapper>
+                    <ImageUpload
+                      onFileChange={handleFileChange}
+                      ratio="5/5"
                       width="80px"
-                      height="80px"
-                      borderRadius="50%"></Skeleton>
-                  ) : (
-                    <ImageWrapper>
-                      <ImageUpload
-                        onFileChange={handleFileChange}
-                        ratio="5/5"
-                        width="80px"
-                        borderRadius="50%"
-                        image={
-                          authUser?.image
-                            ? `${authUser.image}?${Date.now()}`
-                            : defaultImage // 초기 값
-                        }
-                      />
-                    </ImageWrapper>
-                  )}
-                  <UserInfo
-                    userName={authUser?.fullName}
-                    userId={authUser?.email}
-                  />
-                </UserInfoWrapper>
-              </ProfileBackGroundImage>
-              <UserWrapper>
-                <Label>자기소개</Label>
-                <UserIntroductionEditor
-                  isEditing={isEditing}
-                  onEditButtonClick={handleEditButtonClick}
-                  placeholderText={placeholderText}
-                  onFormSubmit={handleFormSubmit}
-                  introduction={introduction}
-                  onInputChange={handleInputChange}
-                  buttonText={buttonText}
+                      borderRadius="50%"
+                      image={
+                        authUser.image
+                          ? `${authUser.image}?${Date.now()}`
+                          : defaultImage // 초기 값
+                      }
+                    />
+                  </ImageWrapper>
+                )}
+                <UserInfo
+                  userName={authUser.fullName}
+                  userId={authUser.email}
                 />
-                <PostSelector />
-              </UserWrapper>
-            </ProfileWrapper>
-          ) : (
-            <PostUserProfile />
-          )}
-        </>
-      )}
+              </UserInfoWrapper>
+            </ProfileBackGroundImage>
+            <UserWrapper>
+              <Label>자기소개</Label>
+              <UserIntroductionEditor
+                isEditing={isEditing}
+                onEditButtonClick={handleEditButtonClick}
+                placeholderText={placeholderText}
+                onFormSubmit={handleFormSubmit}
+                introduction={introduction}
+                onInputChange={handleInputChange}
+                buttonText={buttonText}
+              />
+              <PostSelector />
+            </UserWrapper>
+          </ProfileWrapper>
+        ) : (
+          <PostUserProfile />
+        )}
+      </>
     </>
   );
 }
