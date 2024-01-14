@@ -8,7 +8,7 @@ import NotificationPage from '../pages/NotificationPage';
 import ProfilePage from '../pages/ProfilePage';
 import ReviewList from '../pages/ReviewList';
 import ReviewPage from '../pages/ReviewPage';
-import SearchPage from '../pages/SearchPage';
+import SearchMapPage from '../pages/SearchMapPage';
 import SignUpPage from '../pages/SignUpPage';
 import TestPage from '../pages/TestPage';
 import { PATH } from './path';
@@ -31,8 +31,8 @@ export const router = createBrowserRouter([
         element: <SignUpPage />,
       },
       {
-        path: PATH.SEARCH,
-        element: <SearchPage />,
+        path: PATH.SEARCH.MAP,
+        element: <SearchMapPage />,
       },
       {
         path: PATH.REVIEW,

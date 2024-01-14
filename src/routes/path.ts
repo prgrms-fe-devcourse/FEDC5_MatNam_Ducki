@@ -2,7 +2,10 @@ export const PATH = {
   ROOT: '/',
   SIGNIN: '/signin',
   SIGNUP: '/signup',
-  SEARCH: '/search',
+  SEARCH: {
+    MAP: '/search/map',
+    POST: '/search/post',
+  },
   REVIEW: '/review',
   REVIEWLIST: '/reviewlist',
   REVIEWDETAIL: 'reviewdetail',
