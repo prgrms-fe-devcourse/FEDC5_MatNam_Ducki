@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useSearchAll } from '@/hooks/useSearch';
 import { PATH } from '@/routes/path';
@@ -38,8 +38,10 @@ export default function SearchBar({
     useForm<SearchBarValues>();
 
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const searchValue = watch('search');
+  const searchKeyword = searchValue?.trim();
 
   const { refetch } = useSearchAll(searchValue);
 
@@ -49,29 +51,27 @@ export default function SearchBar({
   const handleResetValue = () => {
     resetField('search');
     setFocus('search');
-    navigate({ pathname: PATH.SEARCH.MAP });
+    navigate({ pathname });
   };
 
   const onSubmit: SubmitHandler<SearchBarValues> = async () => {
-    const searchKeyword = searchValue?.trim();
-    if (!searchKeyword) return;
-
-    const { data } = await refetch();
-
-    if (onSearchKeyword) {
-      onSearchKeyword(searchKeyword);
+    if (searchKeyword) {
+      const { data } = await refetch();
+      onSearchResult?.(data ?? null);
+    } else {
+      onSearchResult?.(null);
     }
 
-    if (onSearchResult) {
-      onSearchResult(data ?? null);
-    }
+    onSearchKeyword?.(searchKeyword);
   };
 
   useEffect(() => {
-    if (searchValue != null) {
-      navigate({ pathname: PATH.SEARCH.MAP, search: `?q=${searchValue}` });
+    if (searchKeyword === '') {
+      navigate({ pathname });
+    } else if (searchKeyword != null) {
+      navigate({ pathname, search: `?q=${searchKeyword}` });
     }
-  }, [searchValue]);
+  }, [searchKeyword]);
 
   useEffect(() => {
     if (searchQuery != null) {
@@ -80,8 +80,8 @@ export default function SearchBar({
   }, [searchQuery]);
 
   useEffect(() => {
-    if (searchQuery && onSearchKeyword) {
-      onSearchKeyword(searchQuery);
+    if (searchQuery != null) {
+      onSearchKeyword?.(searchQuery);
     }
   }, []);
 
