@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import ErrorFallback from '@/components/Common/ErrorFallback';
 import ModalContainer from '@/components/Common/Modal/ModalContainer';
-import TitleHeader from '@/components/Common/TitleHeader/TitleHeader';
+import TitleHeader from '@/components/Common/TitleHeader';
 
 export default function MainPage() {
   return (

@@ -1,9 +1,9 @@
-import styled from '@emotion/styled';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { PATH } from '@/routes/path';
 
 import ChevronLeftIcon from '../Icons/ChevronLeftIcon';
+import { IconWrapper, StyledTitleHeader, Title } from './style';
 
 export default function TitleHeader() {
   const navigate = useNavigate();
@@ -58,22 +58,3 @@ export default function TitleHeader() {
     </StyledTitleHeader>
   );
 }
-
-const StyledTitleHeader = styled.div`
-  margin: 2rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  position: relative;
-`;
-
-const Title = styled.h2`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-`;
-
-const IconWrapper = styled.div`
-  position: absolute;
-  left: 0;
-  cursor: pointer;
-`;
