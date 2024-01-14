@@ -1,4 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Badge } from '@/components/Badge/Badge';
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
@@ -7,6 +8,8 @@ import DropDownContainer from '@/components/Common/DropDown';
 import CommentInput from '@/components/ReviewDetail/CommentInput';
 import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
+import { useDeletePost } from '@/hooks/useDeletePost';
+import { PATH } from '@/routes/path';
 
 import {
   BadgeWrapper,
@@ -26,17 +29,30 @@ import {
 } from './style';
 
 export default function ReviewDetail() {
+  const navigate = useNavigate();
+
   const { postId } = useParams() as { postId: string };
   const { data, isLoading } = useGetDetail({ postId });
+
+  const { mutate: deletePost } = useDeletePost();
+
+  const handleGoToEditPage = useCallback(() => {
+    navigate(PATH.REVIEWUPDATE, { state: postId });
+  }, [navigate, postId]);
+
+  const handleDeletePost = useCallback(() => {
+    deletePost(postId ?? '');
+    navigate('/');
+  }, [deletePost, navigate, postId]);
 
   const dropDownItems = [
     {
       name: '수정',
-      onClick: () => console.log('수정 클릭'),
+      onClick: () => handleGoToEditPage(),
     },
     {
       name: '삭제',
-      onClick: () => console.log('삭제 클릭'),
+      onClick: () => handleDeletePost(),
     },
   ];
 

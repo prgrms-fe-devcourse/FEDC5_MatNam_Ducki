@@ -23,7 +23,7 @@ export const ReviewCardList = ({ posts }: PostListProps) => {
           content={post.title}
           createdAt={post.createdAt}
           likes={post.likes.length}
-          onClick={() => navigate(`${PATH.REVIEWDETAIL}/${post._id}`)}
+          onClick={() => navigate(`/${PATH.REVIEWDETAIL}/${post._id}`)}
         />
       ))}
     </ul>
