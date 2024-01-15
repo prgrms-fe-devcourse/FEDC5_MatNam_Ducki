@@ -13,4 +13,5 @@ export const PATH = {
   REVIEWDETAIL: 'reviewdetail',
   PROFILE: '/profile',
   NOTIFICATION: '/notification',
+  DIRECTMESSAGE: '/message',
 };
