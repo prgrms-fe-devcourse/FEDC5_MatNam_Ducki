@@ -10,13 +10,8 @@ export const SearchKeyword = styled.span`
   margin-top: 1.2rem;
 `;
 
-export const PopularKeyword = styled.div`
-  margin-top: 2rem;
-`;
-
 export const SearchPostPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 375px;
-  margin: auto;
+  height: 100%;
 `;
