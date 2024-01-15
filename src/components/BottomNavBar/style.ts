@@ -29,8 +29,6 @@ export const LinkWrapper = styled(Link)<{ active: string }>`
   &:hover {
     color: ${theme.colors.primary};
   }
-  width: 6rem;
-  height: 5.4rem;
 `;
 
 export const TextStyle = styled.span`
