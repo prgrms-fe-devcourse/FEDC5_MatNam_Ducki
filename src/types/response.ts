@@ -101,4 +101,5 @@ export interface Message {
   updatedAt: string;
 }
 
-export type SearchResultType = User[] | Post[] | null;
+export type PostResultType = Post[] | null;
+export type UserResultType = User[] | null;
