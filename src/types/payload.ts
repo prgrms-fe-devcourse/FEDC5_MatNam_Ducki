@@ -51,7 +51,7 @@ export type CreatePostPayload = Omit<UpdatePostPayload, 'postId'>;
 
 export interface UpdateUserNamePayload {
   fullName: string;
-  userName: string;
+  username?: string;
 }
 
 export interface GetUsersPayload extends Pagination {}
