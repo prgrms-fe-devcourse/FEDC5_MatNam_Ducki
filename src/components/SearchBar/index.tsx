@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useSearchAll } from '@/hooks/useSearch';
 import { PATH } from '@/routes/path';
-import { SearchResultType } from '@/types/response';
 
 import HookFormInput from '../Common/HookFormInput';
 import CloseFilledIcon from '../Common/Icons/CloseFilledIcon';
@@ -25,14 +23,12 @@ interface SearchBarProps {
   disabled?: boolean;
   placeholder?: string;
   onSearchKeyword?: (keyword: string) => void;
-  onSearchResult?: (result: SearchResultType) => void;
 }
 
 export default function SearchBar({
   disabled = false,
   placeholder,
   onSearchKeyword,
-  onSearchResult,
 }: SearchBarProps) {
   const { register, handleSubmit, watch, setFocus, resetField, setValue } =
     useForm<SearchBarValues>();
@@ -43,8 +39,6 @@ export default function SearchBar({
   const searchValue = watch('search');
   const searchKeyword = searchValue?.trim();
 
-  const { refetch } = useSearchAll(searchValue);
-
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('q');
 
@@ -54,14 +48,7 @@ export default function SearchBar({
     navigate({ pathname });
   };
 
-  const onSubmit: SubmitHandler<SearchBarValues> = async () => {
-    if (searchKeyword) {
-      const { data } = await refetch();
-      onSearchResult?.(data ?? null);
-    } else {
-      onSearchResult?.(null);
-    }
-
+  const onSubmit: SubmitHandler<SearchBarValues> = () => {
     onSearchKeyword?.(searchKeyword);
   };
 
@@ -86,7 +73,9 @@ export default function SearchBar({
   }, []);
 
   const handleFormClick = () => {
-    navigate(PATH.SEARCH.POST);
+    if (disabled) {
+      navigate(PATH.SEARCH.POST);
+    }
   };
 
   return (
