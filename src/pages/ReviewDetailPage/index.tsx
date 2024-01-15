@@ -1,61 +1,121 @@
-import { useParams } from 'react-router-dom';
+import { useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
+import { Badge } from '@/components/Badge/Badge';
+import BottomNavBar from '@/components/BottomNavBar';
 import Avatar from '@/components/Common/Avatar/Avatar';
-import Badge from '@/components/Common/Badge';
-import { ReviewCard } from '@/components/ReviewCard/ReviewCard';
+import DropDownContainer from '@/components/Common/DropDown';
+import ClockIcon from '@/components/Common/Icons/ClockIcon';
+import ThumbsUpIcon from '@/components/Common/Icons/ThumbsUpIcon';
 import CommentInput from '@/components/ReviewDetail/CommentInput';
 import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
-import { theme } from '@/styles/Theme';
+import { useDeletePost } from '@/hooks/useDeletePost';
+import { PATH } from '@/routes/path';
+import { getElapsedTime } from '@/utils/getElapsedTime';
 
 import {
   BadgeWrapper,
   Comment,
   CommentBox,
+  CommentCreatedTime,
   CommentList,
   CommentUserInfoWrapper,
   CommentUserName,
+  OpeningTitle,
+  RestaurantLocation,
+  RestaurantName,
+  RestaurantOpeningTime,
+  ReviewContent,
   ReviewDetailPage,
+  ReviewHeaderLeft,
+  ReviewHeaderTitleWrapper,
+  ReviewHeaderWrapper,
+  ReviewImage,
+  ReviewWrapper,
   UserInfoTextBox,
   UserInfoWrapper,
   UserMail,
   UserName,
+  WriterWrapper,
 } from './style';
 
 export default function ReviewDetail() {
+  const navigate = useNavigate();
+
   const { postId } = useParams() as { postId: string };
   const { data, isLoading } = useGetDetail({ postId });
+
+  const { mutate: deletePost } = useDeletePost();
+
+  const handleGoToEditPage = useCallback(() => {
+    navigate(PATH.REVIEWUPDATE, { state: postId });
+  }, [navigate, postId]);
+
+  const handleDeletePost = useCallback(() => {
+    deletePost(postId ?? '');
+    navigate('/');
+  }, [deletePost, navigate, postId]);
+
+  const dropDownItems = [
+    {
+      name: '수정',
+      onClick: () => handleGoToEditPage(),
+    },
+    {
+      name: '삭제',
+      onClick: () => handleDeletePost(),
+    },
+  ];
+
+  console.log(data?.comments);
 
   if (!isLoading && data) {
     return (
       <ReviewDetailPage>
         <UserInfoWrapper>
-          <Avatar imageUrl={data.author.image!} size="68px" />
+          <Avatar imageUrl={data.author.image!} size="80px" />
           <UserInfoTextBox>
             <UserName>{data.author.fullName}</UserName>
             <UserMail>{data.author.email}</UserMail>
           </UserInfoTextBox>
         </UserInfoWrapper>
         <BadgeWrapper>
-          <Badge
-            label={data.channel.name!}
-            color={theme.colors.lightSecondary}
-          />
+          <Badge>{data.channel.name}</Badge>
         </BadgeWrapper>
-        <ReviewCard
-          content="dfsd"
-          profileImage="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-          profileName="sangmin"
-          imageUrl="https://images.velog.io/images/ahsy92/post/d35e77d7-db52-48b2-b0d8-18e847956e4c/image.png"
-        />
+        <ReviewWrapper>
+          <ReviewHeaderWrapper>
+            <ReviewHeaderTitleWrapper>
+              <ReviewHeaderLeft>
+                <RestaurantName>{data.restaurant}</RestaurantName>
+
+                {/* TODO: API의 좋았어요, 가지마세요에 맞춰서 수정 */}
+                <ThumbsUpIcon />
+              </ReviewHeaderLeft>
+              <DropDownContainer items={dropDownItems} />
+            </ReviewHeaderTitleWrapper>
+            <RestaurantLocation>{data.location}</RestaurantLocation>
+          </ReviewHeaderWrapper>
+          <OpeningTitle>
+            <ClockIcon />
+            영업시간
+          </OpeningTitle>
+          <RestaurantOpeningTime>{data.openingTime}</RestaurantOpeningTime>
+          <ReviewImage src={data.image}></ReviewImage>
+          <ReviewContent>{data.review}</ReviewContent>
+        </ReviewWrapper>
         <EvaluationSection />
         <CommentList>
           {data.comments.map((comment) => (
             <CommentBox key={comment._id}>
               <CommentUserInfoWrapper>
-                <Avatar imageUrl={comment.author.image!} size="38px" />
-                <CommentUserName>{comment.author.fullName}</CommentUserName>
+                <WriterWrapper>
+                  <Avatar imageUrl={comment.author.image!} size="30px" />
+                  <CommentUserName>{comment.author.fullName}</CommentUserName>
+                </WriterWrapper>
+                <CommentCreatedTime>
+                  {getElapsedTime(comment.createdAt)}
+                </CommentCreatedTime>
               </CommentUserInfoWrapper>
               <Comment>{comment.comment}</Comment>
             </CommentBox>

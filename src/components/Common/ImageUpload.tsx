@@ -121,7 +121,7 @@ export default function ImageUpload({
         style={{ display: 'none' }} // 숨김 처리
       />
       <UploadContainer
-        onClick={handleOpenModal}
+        onClick={handleImageUpdate}
         borderRadius={borderRadius}
         width={width}
         ratio={ratio}>

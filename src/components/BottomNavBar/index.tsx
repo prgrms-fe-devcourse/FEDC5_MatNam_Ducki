@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import {
   MAIN_PATH,
@@ -13,10 +12,12 @@ import MainIcon from '../Common/Icons/MainIcon';
 import NotificationIcon from '../Common/Icons/NotificationIcon';
 import ProfileIcon from '../Common/Icons/ProfileIcon';
 import ReviewIcon from '../Common/Icons/ReviewIcon';
+import { BottomNavBarWrapper, LinkWrapper, TextStyle } from './style';
 
 interface PropsBottomNavBar {
   path: pathType;
   icon: React.ReactNode;
+  title: React.ReactNode;
 }
 
 type pathType =
@@ -25,27 +26,6 @@ type pathType =
   | typeof PROFILE_PATH
   | typeof REVIEW_PATH
   | `${typeof PROFILE_PATH}/${string}`;
-
-const BottomNavBarWrapper = styled.div`
-  position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: white;
-  bottom: 0;
-  left: 0;
-  padding: 16px;
-  border-top: 1px solid #ccc;
-`;
-
-const LinkWrapper = styled(Link)<{ active: string }>`
-  color: ${({ active }) => (active === 'true' ? '#f86f03' : '#ccc')};
-  transition: color 0.3s;
-  &:hover {
-    color: #f86f03;
-  }
-`;
 
 export default function BottomNavBar() {
   const location = useLocation();
@@ -67,15 +47,31 @@ export default function BottomNavBar() {
   const { data: authUser } = useCheckAuthUser();
 
   const navItems: PropsBottomNavBar[] = [
-    { path: MAIN_PATH, icon: <MainIcon /> },
-    { path: REVIEW_PATH, icon: <ReviewIcon /> },
-    { path: NOTIFICATION_PATH, icon: <NotificationIcon /> },
-    { path: `${PROFILE_PATH}/${authUser?._id}`, icon: <ProfileIcon /> },
+    {
+      path: MAIN_PATH,
+      icon: <MainIcon />,
+      title: <TextStyle>홈</TextStyle>,
+    },
+    {
+      path: REVIEW_PATH,
+      icon: <ReviewIcon />,
+      title: <TextStyle>후기 작성</TextStyle>,
+    },
+    {
+      path: NOTIFICATION_PATH,
+      icon: <NotificationIcon />,
+      title: <TextStyle>알림</TextStyle>,
+    },
+    {
+      path: `${PROFILE_PATH}/${authUser?._id}`,
+      icon: <ProfileIcon />,
+      title: <TextStyle>내 정보</TextStyle>,
+    },
   ];
 
   return (
     <BottomNavBarWrapper>
-      {navItems.map(({ path, icon }) => (
+      {navItems.map(({ path, icon, title }) => (
         <LinkWrapper
           key={path}
           to={path}
@@ -84,6 +80,7 @@ export default function BottomNavBar() {
           }
           active={isPathActive(path).toString()}>
           {icon}
+          {title}
         </LinkWrapper>
       ))}
     </BottomNavBarWrapper>

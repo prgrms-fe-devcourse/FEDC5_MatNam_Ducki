@@ -26,12 +26,12 @@ export const getPostByChannel = async ({
     );
 
     const parsedData = response.map((post: Post) => {
-      const { review, restaurant, location, openingTime } = JSON.parse(
+      const { review, restaurant, location, openingTime }: Post = JSON.parse(
         post.title,
       );
 
       return {
-        ...response,
+        ...post,
         review,
         restaurant,
         location,
@@ -63,12 +63,12 @@ export const getPostByUser = async ({
     );
 
     const parsedData = response.map((post: Post) => {
-      const { review, restaurant, location, openingTime } = JSON.parse(
+      const { review, restaurant, location, openingTime }: Post = JSON.parse(
         post.title,
       );
 
       return {
-        ...response,
+        ...post,
         review,
         restaurant,
         location,
@@ -163,7 +163,7 @@ export const updatePost = async ({
       formData.append('image', image);
     }
 
-    await axiosInstance.put<Post>(ENDPOINT.POSTS.UPDATE, formData);
+    await axiosAuthInstance.put<Post>(ENDPOINT.POSTS.UPDATE, formData);
   } catch (error) {
     console.error(error);
   }

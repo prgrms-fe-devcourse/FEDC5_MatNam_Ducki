@@ -9,11 +9,7 @@ interface PropsUserPosts {
   userName: string;
 }
 
-export default function UserPosts({
-  userPost,
-  userImage,
-  userName,
-}: PropsUserPosts) {
+export default function UserPosts({ userPost, userName }: PropsUserPosts) {
   return (
     <PostWrapper>
       {userPost.length !== 0 ? (
@@ -23,7 +19,8 @@ export default function UserPosts({
               key={item._id}
               style={{ marginBottom: '3.2rem' }}
               imageUrl={item.image}
-              profileImage={userImage}
+              likes={item.likes.length}
+              createdAt={item.createdAt}
               profileName={userName}
               content={item.title}></ReviewCard>
           ))}

@@ -13,7 +13,6 @@ import {
   Label,
   PostsTitle,
   ProfileBackGroundImage,
-  ProfileTopWrapper,
   ProfileWrapper,
   SelectorWrapper,
   UserInfoWrapper,
@@ -22,22 +21,25 @@ import {
 
 export default function PostUserProfile() {
   const { userId } = useParams() as { userId: string };
+  if (userId === 'undefined') {
+    return;
+  }
+
   const { data: user } = useGetUser(userId);
 
   return (
     <>
       {user && (
         <ProfileWrapper>
-          <ProfileTopWrapper>
-            <ProfileBackGroundImage>
-              <UserInfoWrapper>
-                <ImageWrapper>
-                  <Avatar imageUrl={user.image} size="80px" />
-                </ImageWrapper>
-                <UserInfo userName={user.fullName} userId={user.email} />
-              </UserInfoWrapper>
-            </ProfileBackGroundImage>
-          </ProfileTopWrapper>
+          <ProfileBackGroundImage>
+            <UserInfoWrapper>
+              <ImageWrapper>
+                <Avatar imageUrl={user.image} size="80px" />
+              </ImageWrapper>
+              <UserInfo userName={user.fullName} userId={user.email} />
+            </UserInfoWrapper>
+          </ProfileBackGroundImage>
+
           <UserWrapper>
             <Label>자기소개</Label>
             <IntroductionWrapper>

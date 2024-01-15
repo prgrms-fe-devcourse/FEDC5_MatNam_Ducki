@@ -21,6 +21,7 @@ declare module '@emotion/react' {
       fullSize: string;
       halfSize: string;
       noSize: string;
+      navbarSize: string;
     };
     device: {
       mobile: string;
