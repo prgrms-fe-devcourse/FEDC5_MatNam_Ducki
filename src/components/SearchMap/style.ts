@@ -17,6 +17,7 @@ export const SearchResult = styled.div`
 
 export const SearchKeywordWrapper = styled.div`
   width: 100%;
+  max-width: 37.5rem;
   position: fixed;
   z-index: 10;
   display: flex;

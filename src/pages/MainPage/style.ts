@@ -8,7 +8,7 @@ export const MainPageWrapper = styled.div`
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 375px;
+  max-width: 37.5rem;
   height: 100%;
   margin: auto;
 `;

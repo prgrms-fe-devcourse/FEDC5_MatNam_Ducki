@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Badge } from '@/components/Badge/Badge';
-import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
+import BottomNavBar from '@/components/BottomNavBar';
 import Avatar from '@/components/Common/Avatar/Avatar';
 import DropDownContainer from '@/components/Common/DropDown';
 import ClockIcon from '@/components/Common/Icons/ClockIcon';

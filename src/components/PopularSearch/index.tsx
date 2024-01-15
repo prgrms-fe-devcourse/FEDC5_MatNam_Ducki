@@ -20,7 +20,8 @@ const words = [
   '일식',
   '홍대',
   '칵테일',
-  'Cookies',
+  '치킨',
+  '잠실',
 ];
 
 const searchResults: SearchResult[] = words.map((word, index) => ({
