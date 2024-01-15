@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { DEFAULT_PROFILE_IMAGE } from '@/constants/avatar';
+
 export type AvatarSize = 'large' | 'small';
 
 export interface PropsAvatar extends React.ComponentProps<'img'> {
@@ -19,7 +21,7 @@ export default function Avatar({
   const [loaded, setLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
-  const defaultAvatar = '../../../../public/images/defaultProfileImage.png';
+  const defaultAvatar = `../../../${DEFAULT_PROFILE_IMAGE}`;
 
   useEffect(() => {
     const image = new Image();
@@ -39,8 +41,7 @@ export default function Avatar({
   }, [imageUrl, defaultAvatar]);
 
   const getSizeValue = () => {
-    // large와 small에 따라 다른 값을 리턴
-    return size === 'large' ? '80px' : size === 'small' ? '50px' : size;
+    return size === 'large' ? '80px' : '50px';
   };
 
   return (
