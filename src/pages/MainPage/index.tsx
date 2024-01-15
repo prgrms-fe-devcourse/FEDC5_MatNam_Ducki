@@ -10,6 +10,8 @@ import { ACCESS_TOKEN_KEY } from '@/constants/api';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { userAtom } from '@/recoil/user';
 
+import { ContentWrapper, MainPageWrapper } from './style';
+
 export default function MainPage() {
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
   const setUserData = useSetRecoilState(userAtom);
@@ -25,14 +27,16 @@ export default function MainPage() {
   }, [authUser]);
 
   return (
-    <>
+    <MainPageWrapper>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Suspense>
-          <Outlet />
+          <ContentWrapper>
+            <Outlet />
+          </ContentWrapper>
           <ModalContainer />
         </Suspense>
       </ErrorBoundary>
       <BottomNavBar />
-    </>
+    </MainPageWrapper>
   );
 }
