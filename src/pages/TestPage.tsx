@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import SearchBar from '@/components/SearchBar';
 import { useSignIn, useSignOut } from '@/hooks/useAuth';
 import { useModal } from '@/hooks/useModal';
+import { PATH } from '@/routes/path';
 import { ModalType } from '@/types/modal';
 
 export default function TestPage() {
@@ -11,20 +12,17 @@ export default function TestPage() {
     password: 'aaaaaaaa!',
   };
 
+  const testBot = {
+    email: 'testbot1@gmail.com',
+    password: 'testtest*',
+  };
+
   const { mutate: signIn } = useSignIn({
-    onSuccess: () => alert('test@gmail.com 로그인 완료!'),
+    onSuccess: () => alert('로그인 완료!'),
   });
   const { mutate: signOut } = useSignOut({
-    onSuccess: () => alert('test@gmail.com 로그아웃 완료!'),
+    onSuccess: () => alert('로그아웃 완료!'),
   });
-
-  const handleSignIn = () => {
-    signIn(testUser);
-  };
-
-  const handleSignOut = () => {
-    signOut();
-  };
 
   const { openModal } = useModal();
 
@@ -49,9 +47,12 @@ export default function TestPage() {
 
   return (
     <MainPageWrapper>
-      <SearchBar disabled />
-      <TestButton onClick={handleSignIn}>테스트 계정 로그인</TestButton>
-      <TestButton onClick={handleSignOut}>테스트 계정 로그아웃</TestButton>
+      <SearchBar disabled navigatePath={PATH.SEARCH.POST} />
+      <TestButton onClick={() => signIn(testUser)}>
+        테스트 계정 로그인
+      </TestButton>
+      <TestButton onClick={() => signIn(testBot)}>테스트 봇 로그인</TestButton>
+      <TestButton onClick={() => signOut()}>테스트 계정 로그아웃</TestButton>
       <TestButton onClick={handleOpenModal}>이미지 변경 모달 열기</TestButton>
     </MainPageWrapper>
   );
