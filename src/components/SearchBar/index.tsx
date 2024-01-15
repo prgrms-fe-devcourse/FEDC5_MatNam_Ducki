@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { PATH } from '@/routes/path';
-
 import HookFormInput from '../Common/HookFormInput';
 import CloseFilledIcon from '../Common/Icons/CloseFilledIcon';
 import PlaceIcon from '../Common/Icons/PlaceIcon';
@@ -20,14 +18,18 @@ interface SearchBarValues {
 }
 
 interface SearchBarProps {
+  searchIcon?: React.ReactNode;
   disabled?: boolean;
   placeholder?: string;
+  navigatePath?: string;
   onSearchKeyword?: (keyword: string) => void;
 }
 
 export default function SearchBar({
+  searchIcon,
   disabled = false,
   placeholder,
+  navigatePath,
   onSearchKeyword,
 }: SearchBarProps) {
   const { register, handleSubmit, watch, setFocus, resetField, setValue } =
@@ -73,16 +75,14 @@ export default function SearchBar({
   }, []);
 
   const handleFormClick = () => {
-    if (disabled) {
-      navigate(PATH.SEARCH.POST);
+    if (navigatePath) {
+      navigate(navigatePath);
     }
   };
 
   return (
     <SearchForm onSubmit={handleSubmit(onSubmit)} onClick={handleFormClick}>
-      <SearchButton>
-        <PlaceIcon />
-      </SearchButton>
+      <SearchButton>{searchIcon ?? <PlaceIcon />}</SearchButton>
       <HookFormInput
         name="search"
         register={register}
