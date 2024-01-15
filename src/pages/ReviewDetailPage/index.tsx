@@ -5,27 +5,39 @@ import { Badge } from '@/components/Badge/Badge';
 import BottomNavBar from '@/components/BottomNavBar/BottomNavBar';
 import Avatar from '@/components/Common/Avatar/Avatar';
 import DropDownContainer from '@/components/Common/DropDown';
+import ClockIcon from '@/components/Common/Icons/ClockIcon';
+import ThumbsUpIcon from '@/components/Common/Icons/ThumbsUpIcon';
 import CommentInput from '@/components/ReviewDetail/CommentInput';
 import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
 import { useDeletePost } from '@/hooks/useDeletePost';
 import { PATH } from '@/routes/path';
+import { getElapsedTime } from '@/utils/getElapsedTime';
 
 import {
   BadgeWrapper,
   Comment,
   CommentBox,
+  CommentCreatedTime,
   CommentList,
   CommentUserInfoWrapper,
   CommentUserName,
+  OpeningTitle,
+  RestaurantLocation,
+  RestaurantName,
+  RestaurantOpeningTime,
+  ReviewContent,
   ReviewDetailPage,
+  ReviewHeaderLeft,
+  ReviewHeaderTitleWrapper,
+  ReviewHeaderWrapper,
   ReviewImage,
-  ReviewRestaurant,
   ReviewWrapper,
   UserInfoTextBox,
   UserInfoWrapper,
   UserMail,
   UserName,
+  WriterWrapper,
 } from './style';
 
 export default function ReviewDetail() {
@@ -56,11 +68,13 @@ export default function ReviewDetail() {
     },
   ];
 
+  console.log(data?.comments);
+
   if (!isLoading && data) {
     return (
       <ReviewDetailPage>
         <UserInfoWrapper>
-          <Avatar imageUrl={data.author.image!} size="68px" />
+          <Avatar imageUrl={data.author.image!} size="80px" />
           <UserInfoTextBox>
             <UserName>{data.author.fullName}</UserName>
             <UserMail>{data.author.email}</UserMail>
@@ -70,22 +84,38 @@ export default function ReviewDetail() {
           <Badge>{data.channel.name}</Badge>
         </BadgeWrapper>
         <ReviewWrapper>
-          <ReviewRestaurant>
-            <span>{data.restaurant}</span>
-            <DropDownContainer items={dropDownItems} />
-          </ReviewRestaurant>
-          <div>{data.location}</div>
-          <div>{data.openingTime}</div>
+          <ReviewHeaderWrapper>
+            <ReviewHeaderTitleWrapper>
+              <ReviewHeaderLeft>
+                <RestaurantName>{data.restaurant}</RestaurantName>
+
+                {/* TODO: API의 좋았어요, 가지마세요에 맞춰서 수정 */}
+                <ThumbsUpIcon />
+              </ReviewHeaderLeft>
+              <DropDownContainer items={dropDownItems} />
+            </ReviewHeaderTitleWrapper>
+            <RestaurantLocation>{data.location}</RestaurantLocation>
+          </ReviewHeaderWrapper>
+          <OpeningTitle>
+            <ClockIcon />
+            영업시간
+          </OpeningTitle>
+          <RestaurantOpeningTime>{data.openingTime}</RestaurantOpeningTime>
           <ReviewImage src={data.image}></ReviewImage>
-          <div>{data.review}</div>
+          <ReviewContent>{data.review}</ReviewContent>
         </ReviewWrapper>
         <EvaluationSection />
         <CommentList>
           {data.comments.map((comment) => (
             <CommentBox key={comment._id}>
               <CommentUserInfoWrapper>
-                <Avatar imageUrl={comment.author.image!} size="38px" />
-                <CommentUserName>{comment.author.fullName}</CommentUserName>
+                <WriterWrapper>
+                  <Avatar imageUrl={comment.author.image!} size="30px" />
+                  <CommentUserName>{comment.author.fullName}</CommentUserName>
+                </WriterWrapper>
+                <CommentCreatedTime>
+                  {getElapsedTime(comment.createdAt)}
+                </CommentCreatedTime>
               </CommentUserInfoWrapper>
               <Comment>{comment.comment}</Comment>
             </CommentBox>
