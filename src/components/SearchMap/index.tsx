@@ -138,6 +138,7 @@ export default function SearchMap({ searchKeyword }: SearchMapProps) {
     display: flex;
     flex-direction: column;
     position: relative;
+    height: 100%;
   `;
 
   const handleClickPlace = ({ restaurant, location }: PlaceInfoType) => {
@@ -169,7 +170,6 @@ export default function SearchMap({ searchKeyword }: SearchMapProps) {
               onMoveMap={moveMap}
               onClickPlace={handleClickPlace}
             />
-            <div id="pagination"></div>
           </SearchResult>
         )}
       </SearchResultWrapper>
