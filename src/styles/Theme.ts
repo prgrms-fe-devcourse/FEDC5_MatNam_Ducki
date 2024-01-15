@@ -20,6 +20,7 @@ export const theme: Theme = {
     fullSize: '100%',
     halfSize: '50%',
     noSize: '0%',
+    navbarSize: '6rem',
   },
   device: {
     mobile: '(max-width: 480px)',
