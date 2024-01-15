@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 
-export const PopularSearchContainer = styled.div``;
+export const PopularSearchContainer = styled.div`
+  margin: 0 0.5rem;
+`;
 
 export const Title = styled.h2`
-  margin: 2rem;
+  margin-top: 2rem;
   font-size: 1.6rem;
   color: #868686;
 `;
 
 export const ResultList = styled.div`
-  margin: 0 2rem;
   list-style: none;
 `;
 
