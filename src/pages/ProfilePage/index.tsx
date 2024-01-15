@@ -43,7 +43,7 @@ export default function ProfilePage() {
 
   const handleFileChange = (file: File | null) => {
     if (file) {
-      changeImage(file);
+      changeImage(file, false);
     }
   };
 
