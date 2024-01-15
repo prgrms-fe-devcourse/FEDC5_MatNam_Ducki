@@ -31,7 +31,8 @@ export default function LikePosts() {
                   createdAt={item.createdAt}
                   likes={item.likes.length}
                   profileName={item.author.fullName}
-                  content={item.title}></ReviewCard>
+                  content={item.title}
+                  id={item.author._id}></ReviewCard>
               ),
           )}
         </>
