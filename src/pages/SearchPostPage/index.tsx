@@ -10,6 +10,7 @@ import {
   SearchKeywordWrapper,
   SearchPostPageWrapper,
 } from './style';
+import PopularSearch from '@/components/PopularSearch';
 
 export default function SearchPostPage() {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -29,7 +30,7 @@ export default function SearchPostPage() {
           <ReviewList />
         </>
       ) : (
-        <PopularKeyword>인기 검색어 영역</PopularKeyword>
+        <PopularSearch />
       )}
     </SearchPostPageWrapper>
   );
