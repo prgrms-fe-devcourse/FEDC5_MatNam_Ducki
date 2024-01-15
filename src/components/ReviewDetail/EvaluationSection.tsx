@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -6,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useGetDetail, useLike } from '@/hooks/ReviewDetail';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { theme } from '@/styles/Theme';
+
+import LikeIcon from '../Common/Icons/LikeIcon';
 
 export default function EvaluationSection() {
   const { postId } = useParams() as { postId: string };
@@ -42,48 +43,38 @@ export default function EvaluationSection() {
   if (postData && userData) {
     return (
       <StyledEvaluationSection>
-        <EvaluationLeftWrapper>
-          <LikeText>좋아요 {likeCount}</LikeText>
+        <EvaluationLeftWrapper onClick={handleLikeClick}>
+          <LikeIcon fill={isLike ? '#EEA734' : 'gray'} />
+          <LikeText>좋아요 {likeCount}개</LikeText>
         </EvaluationLeftWrapper>
-        <EvaluationRightWrapper>
-          <LikeBtn isLike={isLike} onClick={handleLikeClick}>
-            👍
-          </LikeBtn>
-        </EvaluationRightWrapper>
       </StyledEvaluationSection>
     );
   }
 }
 
 const StyledEvaluationSection = styled.div`
-  margin: 2.5rem 0;
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 const EvaluationLeftWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 1rem;
 `;
 
 const LikeText = styled.span`
-  color: ${theme.colors.accent};
-  font-weight: ${theme.fontWeight.bold};
-`;
-
-const EvaluationRightWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
-const LikeBtn = styled.button<{ isLike: boolean }>`
-  border: 1px solid ${theme.colors.accent};
-  padding: 0.3rem 1.3;
-  border-radius: 8px;
-
-  ${(props) =>
-    props.isLike &&
-    css`
-      background-color: ${theme.colors.accent};
-    `}
+  color: ${({ theme }) => theme.colors.gray};
+  font-weight: ${theme.fontWeight.regular};
 `;
