@@ -1,32 +1,25 @@
-import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-export interface PropsAvatar {
+export type AvatarSize = 'large' | 'small';
+
+export interface PropsAvatar extends React.ComponentProps<'img'> {
   imageUrl?: string;
-  size: string | number;
+  size: AvatarSize;
   borderRadius?: number;
 }
 
-const ImageComponent = styled.img<{ borderRadius: number }>`
-  object-fit: cover;
-  border: 1px solid #cdcdcd;
-  transition: opacity 0.2s ease-out;
-  background-color: #eee;
-  border-radius: ${(props) => props.borderRadius}%;
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  cursor: pointer;
-`;
+import { ImageComponent } from './style';
 
 export default function Avatar({
   imageUrl,
   size,
   borderRadius = 50,
+  ...props
 }: PropsAvatar) {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
-  const defaultAvatar = '../../../public/vite.svg';
+  const defaultAvatar = '../../../../public/images/defaultProfileImage.png';
 
   useEffect(() => {
     const image = new Image();
@@ -45,13 +38,19 @@ export default function Avatar({
     image.src = imageUrlToLoad;
   }, [imageUrl, defaultAvatar]);
 
+  const getSizeValue = () => {
+    // large와 small에 따라 다른 값을 리턴
+    return size === 'large' ? '80px' : size === 'small' ? '50px' : size;
+  };
+
   return (
     <ImageComponent
       src={hasError ? defaultAvatar : imageUrl || defaultAvatar}
-      width={size}
-      height={size}
+      width={getSizeValue()}
+      height={getSizeValue()}
       borderRadius={borderRadius}
       alt="profile_image"
-      style={{ opacity: loaded ? 1 : 0 }}></ImageComponent>
+      style={{ opacity: loaded ? 1 : 0 }}
+      {...props}></ImageComponent>
   );
 }
