@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import NotFoundPage from '@/pages/NotFoundPage';
 import ReviewDetail from '@/pages/ReviewDetailPage';
 import SignInPage from '@/pages/SignInPage';
 
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.NOTIFICATION,
         element: <NotificationPage />,
+      },
+      {
+        path: PATH.NOTFOUND,
+        element: <NotFoundPage />,
       },
     ],
   },
