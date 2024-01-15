@@ -6,6 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import BottomNavBar from '@/components/BottomNavBar';
 import ErrorFallback from '@/components/Common/ErrorFallback';
 import ModalContainer from '@/components/Common/Modal/ModalContainer';
+import Spinner from '@/components/Common/Spinner';
 import { ACCESS_TOKEN_KEY } from '@/constants/api';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { userAtom } from '@/recoil/user';
@@ -29,7 +30,7 @@ export default function MainPage() {
   return (
     <MainPageWrapper>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Suspense>
+        <Suspense fallback={<Spinner />}>
           <ContentWrapper>
             <Outlet />
           </ContentWrapper>
