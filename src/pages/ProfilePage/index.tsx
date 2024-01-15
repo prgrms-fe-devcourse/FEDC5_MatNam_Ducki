@@ -43,7 +43,7 @@ export default function ProfilePage() {
 
   const handleFileChange = (file: File | null) => {
     if (file) {
-      changeImage(file);
+      changeImage(file, false);
     }
   };
 
@@ -69,7 +69,7 @@ export default function ProfilePage() {
 
   const buttonText = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
 
-  const defaultImage = '../../public/vite.svg';
+  const defaultImage = '../../../public/images/defaultProfileImage.png';
   return (
     <>
       <>
@@ -79,7 +79,7 @@ export default function ProfilePage() {
               <UserInfoWrapper>
                 {isLoading ? (
                   <Skeleton
-                    style={{ marginTop: '1.2rem' }}
+                    style={{ marginTop: '1.2rem', marginLeft: '4rem' }}
                     width="80px"
                     height="80px"
                     borderRadius="50%"></Skeleton>
