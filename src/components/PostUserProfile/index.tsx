@@ -21,6 +21,10 @@ import {
 
 export default function PostUserProfile() {
   const { userId } = useParams() as { userId: string };
+  if (userId === 'undefined') {
+    return;
+  }
+
   const { data: user } = useGetUser(userId);
 
   return (
