@@ -24,9 +24,9 @@ export const theme: Theme = {
     navbarSize: '8rem',
   },
   device: {
-    mobile: '(max-width: 480px)',
-    tablet: '(max-width: 768px)',
-    laptop: '(max-width: 1024px)',
+    mobile: ' 375px',
+    tablet: ' 768px',
+    laptop: ' 1024px',
   },
   fontWeight: {
     regular: 400,
