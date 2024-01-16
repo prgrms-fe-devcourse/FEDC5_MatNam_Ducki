@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { PROFILE_BACKGROUND_IMAGE } from '@/constants/profile';
 import { theme } from '@/styles/Theme';
 
 export const ProfileWrapper = styled.div`
@@ -7,7 +8,7 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const ProfileBackGroundImage = styled.div`
-  background-image: url('../../../public/images/profileBackground.png');
+  background-image: url(${PROFILE_BACKGROUND_IMAGE});
   background-size: cover;
   display: flex;
   justify-content: center;

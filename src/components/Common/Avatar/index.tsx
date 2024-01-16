@@ -21,7 +21,7 @@ export default function Avatar({
   const [loaded, setLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
-  const defaultAvatar = `../../../${DEFAULT_PROFILE_IMAGE}`;
+  const defaultAvatar = DEFAULT_PROFILE_IMAGE;
 
   useEffect(() => {
     const image = new Image();

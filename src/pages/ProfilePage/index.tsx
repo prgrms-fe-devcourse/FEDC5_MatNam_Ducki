@@ -8,6 +8,7 @@ import PostUserProfile from '@/components/PostUserProfile';
 import Skeleton from '@/components/Skeleton';
 import UserInfo from '@/components/UserInfo';
 import UserIntroductionEditor from '@/components/UserIntroductionEditor';
+import { DEFAULT_PROFILE_IMAGE } from '@/constants/profile';
 import {
   DONE_BUTTON_TEXT,
   EDIT_BUTTON_TEXT,
@@ -92,7 +93,8 @@ export default function ProfilePage() {
 
   const buttonText = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
 
-  const defaultImage = '../../../public/images/defaultProfileImage.png';
+  const defaultImage = DEFAULT_PROFILE_IMAGE;
+
   return (
     <>
       <>
