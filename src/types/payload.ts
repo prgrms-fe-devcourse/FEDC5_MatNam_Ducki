@@ -21,7 +21,7 @@ export interface SendNotificationsPayload {
   notificationType: string;
   notificationTypeId: string;
   userId: string;
-  postId: string;
+  postId: string | null;
 }
 
 interface Pagination {

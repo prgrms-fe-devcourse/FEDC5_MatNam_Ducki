@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
+import Button from '@/components/Common/Button/Button';
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector';
 import PostUserProfile from '@/components/PostUserProfile';
 import Skeleton from '@/components/Skeleton';
 import UserInfo from '@/components/UserInfo';
 import UserIntroductionEditor from '@/components/UserIntroductionEditor';
+import { DEFAULT_PROFILE_IMAGE } from '@/constants/profile';
 import {
   DONE_BUTTON_TEXT,
   EDIT_BUTTON_TEXT,
   PLACEHOLDER_DEFAULTS,
 } from '@/constants/profile';
 import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useSignOut } from '@/hooks/useAuth';
 import { useChangeIntroduce } from '@/hooks/useGetProfile';
 import { useChangeImage } from '@/hooks/useGetProfile';
+import { selectedFileAtom } from '@/recoil/selectedFile';
+import { theme } from '@/styles/Theme';
 
 import {
   ImageWrapper,
@@ -29,12 +35,15 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [introduction, setIntroduction] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { changeImage } = useChangeImage(setIsLoading);
+  const setSelectedFile = useSetRecoilState(selectedFileAtom);
+  const { changeImage } = useChangeImage(setIsLoading, setSelectedFile);
   const { data: authUser } = useCheckAuthUser();
   const params = useParams();
   const userId = params.userId;
   const navigate = useNavigate();
   const { changeIntroduce } = useChangeIntroduce();
+
+  const { mutate: signOut } = useSignOut();
 
   useEffect(() => {
     if (authUser) {
@@ -68,6 +77,14 @@ export default function ProfilePage() {
     }
   };
 
+  const handleLogOutButtonClick = () => {
+    const confirm = window.confirm('로그아웃 하시겠습니까?');
+    if (confirm) {
+      signOut();
+      navigate('/');
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length < 17) {
       setIntroduction(e.target.value);
@@ -89,7 +106,8 @@ export default function ProfilePage() {
 
   const buttonText = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
 
-  const defaultImage = '../../../public/images/defaultProfileImage.png';
+  const defaultImage = DEFAULT_PROFILE_IMAGE;
+
   return (
     <>
       <>
@@ -122,6 +140,16 @@ export default function ProfilePage() {
                   userName={authUser.fullName}
                   userId={authUser.email}
                 />
+                <Button
+                  onClick={handleLogOutButtonClick}
+                  style={{ marginLeft: '1rem', marginTop: '4rem' }}
+                  width="60px"
+                  backgroundColor={theme.colors.lightGray}
+                  height="35px"
+                  textColor={theme.colors.gray}
+                  borderRadius="19px">
+                  로그아웃
+                </Button>
               </UserInfoWrapper>
             </ProfileBackGroundImage>
             <UserWrapper>

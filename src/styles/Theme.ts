@@ -9,6 +9,7 @@ export const theme: Theme = {
     accent: '#525FE1', // 강조 색상
     gray: '#868686',
     lightGray: '#F3F2F2',
+    green: '#2CC069',
   },
   size: {
     xSmall: '0.5rem',
@@ -20,7 +21,7 @@ export const theme: Theme = {
     fullSize: '100%',
     halfSize: '50%',
     noSize: '0%',
-    navbarSize: '6rem',
+    navbarSize: '8rem',
   },
   device: {
     mobile: '(max-width: 480px)',

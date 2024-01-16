@@ -5,11 +5,14 @@ export const PATH = {
   SEARCH: {
     MAP: '/search/map',
     POST: '/search/post',
+    USER: '/search/user',
   },
   REVIEW: '/review',
   REVIEWUPDATE: '/reviewupdate',
   REVIEWLIST: '/reviewlist',
-  REVIEWDETAIL: 'reviewdetail',
+  REVIEWDETAIL: '/reviewdetail',
   PROFILE: '/profile',
   NOTIFICATION: '/notification',
+  DIRECTMESSAGE: '/message',
+  NOTFOUND: '/*',
 };

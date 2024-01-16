@@ -1,8 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import DirectMessagePage from '@/pages/DirectMessagePage';
+import DetailMessagePage from '@/pages/DirectMessagePage/DetailMessagePage';
 import MainPage from '@/pages/MainPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 import ReviewDetail from '@/pages/ReviewDetailPage';
 import SearchPostPage from '@/pages/SearchPostPage';
+import SearchUserPage from '@/pages/SearchUserPage';
 import SignInPage from '@/pages/SignInPage';
 
 import NotificationPage from '../pages/NotificationPage';
@@ -41,6 +45,10 @@ export const router = createBrowserRouter([
         element: <SearchPostPage />,
       },
       {
+        path: PATH.SEARCH.USER,
+        element: <SearchUserPage />,
+      },
+      {
         path: PATH.REVIEW,
         element: <ReviewPage />,
       },
@@ -63,6 +71,18 @@ export const router = createBrowserRouter([
       {
         path: PATH.NOTIFICATION,
         element: <NotificationPage />,
+      },
+      {
+        path: PATH.DIRECTMESSAGE,
+        element: <DirectMessagePage />,
+      },
+      {
+        path: `${PATH.DIRECTMESSAGE}/:userId`,
+        element: <DetailMessagePage />,
+      },
+      {
+        path: PATH.NOTFOUND,
+        element: <NotFoundPage />,
       },
     ],
   },

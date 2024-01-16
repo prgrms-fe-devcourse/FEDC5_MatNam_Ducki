@@ -17,7 +17,7 @@ import {
 } from './style';
 
 export default function ReviewPage() {
-  const { mutate: createPost, isLoading } = useCreatePost();
+  const { mutate: createPost } = useCreatePost();
 
   const [file, setFile] = useState<File | null>(null);
   const [channelId, setChannelId] = useState('');

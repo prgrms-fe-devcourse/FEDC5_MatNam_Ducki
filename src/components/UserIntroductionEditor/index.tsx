@@ -4,6 +4,7 @@ import { PropsIntroductionEditor } from '@/types/profile';
 
 import HookFormInput from '../Common/HookFormInput';
 import {
+  EmptyIntroduce,
   Introduction,
   IntroductionBar,
   IntroductionButton,
@@ -45,7 +46,13 @@ export default function UserIntroductionEditor({
       ) : (
         <>
           <IntroductionWrapper>
-            <Introduction>{introduction}</Introduction>
+            <Introduction>
+              {introduction === '' ? (
+                <EmptyIntroduce>자기소개를 작성하세요.</EmptyIntroduce>
+              ) : (
+                introduction
+              )}
+            </Introduction>
             <IntroductionButton onClick={onEditButtonClick}>
               {buttonText}
             </IntroductionButton>
