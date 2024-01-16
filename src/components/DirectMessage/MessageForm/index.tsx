@@ -12,16 +12,21 @@ import {
   MessageInputWrapper,
   MessageSendButton,
 } from './style';
+import { useSendNotification } from '@/hooks/useNotification';
 
 interface MessageValues {
   message: string;
 }
 
 interface MessageFormProps {
+  receiverId: string;
   onRefetchMessages: () => void;
 }
 
-export default function MessageForm({ onRefetchMessages }: MessageFormProps) {
+export default function MessageForm({
+  receiverId,
+  onRefetchMessages,
+}: MessageFormProps) {
   const { userId } = useParams();
 
   if (!userId) return;
@@ -29,7 +34,8 @@ export default function MessageForm({ onRefetchMessages }: MessageFormProps) {
   const { register, handleSubmit, resetField, setFocus } =
     useForm<MessageValues>();
 
-  const { mutateAsync } = useCreateMessage();
+  const { mutateAsync: createMessage } = useCreateMessage();
+  const { mutate: sendNotifications } = useSendNotification();
 
   const handleResetValue = () => {
     resetField('message');
@@ -39,7 +45,16 @@ export default function MessageForm({ onRefetchMessages }: MessageFormProps) {
   const onSubmit: SubmitHandler<MessageValues> = async ({ message }) => {
     if (!message.trim()) return;
 
-    await mutateAsync({ message, receiver: userId });
+    const messageResult = await createMessage({ message, receiver: userId });
+
+    if (messageResult != null) {
+      sendNotifications({
+        notificationType: 'MESSAGE',
+        notificationTypeId: messageResult._id,
+        userId: receiverId,
+        postId: null,
+      });
+    }
 
     onRefetchMessages();
     handleResetValue();
