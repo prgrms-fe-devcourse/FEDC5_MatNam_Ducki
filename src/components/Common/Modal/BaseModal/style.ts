@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const BaseModalWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  z-index: 10;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 
@@ -15,6 +14,7 @@ export const ModalOverlay = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   background: #00000090;
+  z-index: 10;
 `;
 
 export const ModalContainer = styled.div`
@@ -25,7 +25,7 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 5;
+  z-index: 100;
 `;
 
 export const CloseButton = styled.button`
