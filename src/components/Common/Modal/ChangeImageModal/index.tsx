@@ -61,22 +61,8 @@ export default function ChangeImageModal() {
     ? [
         { text: '이미지 변경', onClick: handleImageUpdate },
         { text: '기본 이미지로 변경', onClick: handleImageRemove },
-        {
-          text: '취소',
-          onClick: () => {
-            closeModal({ type: ModalType.CHANGE_IMAGE });
-          },
-        },
       ]
-    : [
-        { text: '이미지 추가', onClick: handleImageUpdate },
-        {
-          text: '취소',
-          onClick: () => {
-            closeModal({ type: ModalType.CHANGE_IMAGE });
-          },
-        },
-      ];
+    : [{ text: '이미지 추가', onClick: handleImageUpdate }];
 
   return (
     <ChangeImageModalWrapper>
@@ -93,6 +79,7 @@ export default function ChangeImageModal() {
             {text}
           </SelectItem>
         ))}
+        <SelectItem onClick={handleCloseModal}>취소</SelectItem>
       </SelectList>
     </ChangeImageModalWrapper>
   );
