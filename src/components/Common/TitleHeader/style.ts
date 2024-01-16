@@ -10,10 +10,11 @@ export const StyledTitleHeader = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
 `;
 
 export const IconWrapper = styled.div`
+  padding: 1rem 2rem;
   position: absolute;
   left: 0;
   cursor: pointer;

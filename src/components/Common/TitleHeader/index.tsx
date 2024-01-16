@@ -27,11 +27,10 @@ export default function TitleHeader() {
 
     case PATH.REVIEW:
       Header.title = '후기 작성';
-      Header.isBack = true;
       break;
 
     case PATH.PROFILE:
-      Header.title = '내 정보';
+      Header.title = '프로필';
       break;
 
     case PATH.NOTIFICATION:
