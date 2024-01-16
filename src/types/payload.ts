@@ -39,7 +39,10 @@ export interface GetPostByUserPayload extends Pagination {
 
 export interface UpdatePostPayload {
   postId: string;
-  title: string;
+  review: string;
+  restaurant: string;
+  location: string;
+  openingTime: string;
   image: File | null;
   channelId: string;
 }
@@ -48,7 +51,7 @@ export type CreatePostPayload = Omit<UpdatePostPayload, 'postId'>;
 
 export interface UpdateUserNamePayload {
   fullName: string;
-  userName: string;
+  username?: string;
 }
 
 export interface GetUsersPayload extends Pagination {}

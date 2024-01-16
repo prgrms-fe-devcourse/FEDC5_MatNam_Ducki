@@ -6,6 +6,7 @@ export interface UserReponse {
 export interface User {
   _id: string;
   fullName: string;
+  username?: string;
   email: string;
   posts: Post[];
   likes: Like[];
@@ -54,6 +55,10 @@ export interface Post {
   image?: string;
   imagePublicId?: string;
   title: string;
+  review: string;
+  restaurant: string;
+  location: string;
+  openingTime: string;
 }
 
 export interface Like {
@@ -96,4 +101,5 @@ export interface Message {
   updatedAt: string;
 }
 
-export type SearchResultType = User[] | Post[] | null;
+export type PostResultType = Post[] | null;
+export type UserResultType = User[] | null;

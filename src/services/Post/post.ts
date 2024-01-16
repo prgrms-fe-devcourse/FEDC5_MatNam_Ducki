@@ -25,7 +25,21 @@ export const getPostByChannel = async ({
       },
     );
 
-    return response;
+    const parsedData = response.map((post: Post) => {
+      const { review, restaurant, location, openingTime }: Post = JSON.parse(
+        post.title,
+      );
+
+      return {
+        ...post,
+        review,
+        restaurant,
+        location,
+        openingTime,
+      };
+    });
+
+    return parsedData;
   } catch (error) {
     console.error(error);
     return null;
@@ -48,7 +62,21 @@ export const getPostByUser = async ({
       },
     );
 
-    return response;
+    const parsedData = response.map((post: Post) => {
+      const { review, restaurant, location, openingTime }: Post = JSON.parse(
+        post.title,
+      );
+
+      return {
+        ...post,
+        review,
+        restaurant,
+        location,
+        openingTime,
+      };
+    });
+
+    return parsedData;
   } catch (error) {
     console.error(error);
     return null;
@@ -56,7 +84,10 @@ export const getPostByUser = async ({
 };
 
 export const createPost = async ({
-  title,
+  review,
+  restaurant,
+  location,
+  openingTime,
   image,
   channelId,
 }: CreatePostPayload) => {
@@ -65,8 +96,15 @@ export const createPost = async ({
       throw new Error('이미지가 비어있습니다.');
     }
 
+    const customPost = JSON.stringify({
+      review,
+      restaurant,
+      location,
+      openingTime,
+    });
     const formData = new FormData();
-    formData.append('title', title);
+
+    formData.append('title', customPost);
     formData.append('image', image);
     formData.append('channelId', channelId);
 
@@ -80,7 +118,19 @@ export const getPostDetail = async (postId: string) => {
   try {
     const response = await axiosInstance.get<Post>(ENDPOINT.POSTS.POST(postId));
 
-    return response;
+    const { review, restaurant, location, openingTime } = JSON.parse(
+      response.title,
+    );
+
+    const parsedData: Post = {
+      ...response,
+      review,
+      restaurant,
+      location,
+      openingTime,
+    };
+
+    return parsedData;
   } catch (error) {
     console.error(error);
     return null;
@@ -89,21 +139,31 @@ export const getPostDetail = async (postId: string) => {
 
 export const updatePost = async ({
   postId,
-  title,
+  review,
+  restaurant,
+  location,
+  openingTime,
   image,
   channelId,
 }: UpdatePostPayload) => {
   try {
+    const customPost = JSON.stringify({
+      review,
+      restaurant,
+      location,
+      openingTime,
+    });
     const formData = new FormData();
+
     formData.append('postId', postId);
-    formData.append('title', title);
+    formData.append('title', customPost);
     formData.append('channelId', channelId);
 
     if (image instanceof File) {
       formData.append('image', image);
     }
 
-    await axiosInstance.put<Post>(ENDPOINT.POSTS.UPDATE, formData);
+    await axiosAuthInstance.put<Post>(ENDPOINT.POSTS.UPDATE, formData);
   } catch (error) {
     console.error(error);
   }

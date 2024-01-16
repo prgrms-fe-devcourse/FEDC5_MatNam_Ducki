@@ -5,8 +5,12 @@ declare module '@emotion/react' {
     colors: {
       primary: string;
       secondary: string;
+      lightSecondary: string;
+      whitePrimary: string;
       accent: string;
-      white: string;
+      gray: string;
+      lightGray: string;
+      green: string;
     };
     size: {
       xSmall: string;
@@ -18,6 +22,7 @@ declare module '@emotion/react' {
       fullSize: string;
       halfSize: string;
       noSize: string;
+      navbarSize: string;
     };
     device: {
       mobile: string;

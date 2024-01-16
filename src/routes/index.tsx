@@ -1,13 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import MainPage from '../pages/MainPage';
+import MainPage from '@/pages/MainPage';
+import NotFoundPage from '@/pages/NotFoundPage';
+import ReviewDetail from '@/pages/ReviewDetailPage';
+import SearchPostPage from '@/pages/SearchPostPage';
+import SearchUserPage from '@/pages/SearchUserPage';
+import SignInPage from '@/pages/SignInPage';
+
 import NotificationPage from '../pages/NotificationPage';
 import ProfilePage from '../pages/ProfilePage';
-import ReviewDetail from '../pages/ReviewDetail';
 import ReviewList from '../pages/ReviewList';
 import ReviewPage from '../pages/ReviewPage';
-import SearchPage from '../pages/SearchPage';
-import SigninPage from '../pages/SigninPage';
+import ReviewUpdatePage from '../pages/ReviewUpdatePage';
+import SearchMapPage from '../pages/SearchMapPage';
 import SignUpPage from '../pages/SignUpPage';
 import TestPage from '../pages/TestPage';
 import { PATH } from './path';
@@ -23,35 +28,51 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.SIGNIN,
-        element: <SigninPage />,
+        element: <SignInPage />,
       },
       {
         path: PATH.SIGNUP,
         element: <SignUpPage />,
       },
       {
-        path: PATH.SEARCH,
-        element: <SearchPage />,
+        path: PATH.SEARCH.MAP,
+        element: <SearchMapPage />,
+      },
+      {
+        path: PATH.SEARCH.POST,
+        element: <SearchPostPage />,
+      },
+      {
+        path: PATH.SEARCH.USER,
+        element: <SearchUserPage />,
       },
       {
         path: PATH.REVIEW,
         element: <ReviewPage />,
       },
       {
+        path: PATH.REVIEWUPDATE,
+        element: <ReviewUpdatePage />,
+      },
+      {
         path: PATH.REVIEWLIST,
         element: <ReviewList />,
       },
       {
-        path: PATH.REVIEWDETAIL,
+        path: `${PATH.REVIEWDETAIL}/:postId`,
         element: <ReviewDetail />,
       },
       {
-        path: PATH.PROFILE,
+        path: `${PATH.PROFILE}/:userId`,
         element: <ProfilePage />,
       },
       {
         path: PATH.NOTIFICATION,
         element: <NotificationPage />,
+      },
+      {
+        path: PATH.NOTFOUND,
+        element: <NotFoundPage />,
       },
     ],
   },
