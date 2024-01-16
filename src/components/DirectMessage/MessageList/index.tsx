@@ -21,8 +21,13 @@ export default function MessageList({ myId, messageList }: MessageListProps) {
 
   return (
     <MessageListWrapper ref={scrollRef}>
-      {messageList.map((message) => (
-        <MessageItem key={message._id} myId={myId} messageItem={message} />
+      {messageList.map((message, index) => (
+        <MessageItem
+          key={message._id}
+          myId={myId}
+          messageItem={message}
+          prevDate={index === 0 ? null : messageList[index - 1].createdAt}
+        />
       ))}
     </MessageListWrapper>
   );
