@@ -47,7 +47,6 @@ export default function SearchBar({
   const handleResetValue = () => {
     resetField('search');
     setFocus('search');
-    navigate({ pathname });
   };
 
   const onSubmit: SubmitHandler<SearchBarValues> = () => {
@@ -56,9 +55,9 @@ export default function SearchBar({
 
   useEffect(() => {
     if (searchKeyword === '') {
-      navigate({ pathname });
+      navigate({ pathname }, { replace: true });
     } else if (searchKeyword != null) {
-      navigate({ pathname, search: `?q=${searchKeyword}` });
+      navigate({ pathname, search: `?q=${searchKeyword}` }, { replace: true });
     }
   }, [searchKeyword]);
 

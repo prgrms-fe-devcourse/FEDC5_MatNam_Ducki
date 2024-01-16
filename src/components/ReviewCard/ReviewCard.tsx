@@ -1,3 +1,4 @@
+import { useRedirectToProfile } from '@/hooks/useRedirectProfile';
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
 import ThumbsDownIcon from '../Common/Icons/ThumbsDownIcon';
@@ -26,6 +27,7 @@ interface ReviewCardProps extends React.ComponentProps<'div'> {
   width?: string;
   likes: number;
   channelId: string;
+  id?: string;
 }
 
 /**
@@ -48,12 +50,14 @@ export const ReviewCard = ({
   likes,
   channelId,
   width = '100%',
+  id,
   ...props
 }: ReviewCardProps) => {
+  const redirectToProfile = useRedirectToProfile();
   return (
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
-        <ProfileNickname>
+        <ProfileNickname onClick={() => redirectToProfile(id)}>
           {profileName}
           {channelId === '65a67d71231c3e492734777f' ? (
             <ThumbsUpIcon />
