@@ -21,6 +21,7 @@ import { useChangeIntroduce } from '@/hooks/useGetProfile';
 import { useChangeImage } from '@/hooks/useGetProfile';
 import { selectedFileAtom } from '@/recoil/selectedFile';
 import { theme } from '@/styles/Theme';
+import { Toast } from '@/utils/toast';
 
 import {
   ImageWrapper,
@@ -53,7 +54,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (userId === 'undefined') {
-      alert('로그인이 필요합니다.');
+      Toast.info('로그인이 필요합니다.');
       navigate('/signIn');
     }
   }, [userId]);
@@ -89,7 +90,7 @@ export default function ProfilePage() {
     if (e.target.value.length < 17) {
       setIntroduction(e.target.value);
     } else {
-      alert('작성 범위를 초과했습니다.');
+      Toast.info('작성 범위를 초과했습니다.');
 
       if (authUser) {
         // 범위를 넘기면 alert 발생하면서 초기값으로 돌아가게 되어서 일단은 서버쪽에 보내는 쪽으로 저장하도록했습니다.

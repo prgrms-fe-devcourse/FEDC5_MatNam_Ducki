@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { INPUT_VALIDATION } from '@/constants/validation';
 import { useSignIn } from '@/hooks/useAuth';
 import { HookFormInputListProps } from '@/types/input';
+import { Toast } from '@/utils/toast.ts';
 
 import CTAButton from '../Common/Button/CTAButton.tsx';
 import LabelInput from '../Common/Input/LabelInput.tsx/index.tsx';
@@ -27,7 +28,7 @@ export default function SignInForm() {
 
   const handleSignInSuccess = () => {
     navigateToMainPage();
-    alert('로그인 되었어요!');
+    Toast.success('로그인 되었어요!');
   };
 
   const { mutate } = useSignIn({ onSuccess: handleSignInSuccess });

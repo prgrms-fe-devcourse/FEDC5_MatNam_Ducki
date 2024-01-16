@@ -6,6 +6,7 @@ import CTAButton from '@/components/Common/Button/CTAButton';
 import ImageUpload from '@/components/Common/ImageUpload';
 import { useInput } from '@/hooks/useInput';
 import { useCreatePost } from '@/hooks/usePost';
+import { Toast } from '@/utils/toast';
 import { isValidCreatePost } from '@/utils/validation';
 
 import {
@@ -43,18 +44,18 @@ export default function ReviewPage() {
     const review = elements.review.value;
 
     if (!isValidCreatePost({ channelId, restaurant, location, review })) {
-      alert('필수 입력 사항을 모두 입력해주세요.');
+      Toast.info('필수 입력 사항을 모두 입력해주세요.');
       return;
     }
     createPost(
       { review, restaurant, location, openingTime, channelId, image: file },
       {
         onSuccess: () => {
-          alert('succeess');
+          Toast.success('success');
           navigate('/');
         },
         onError: () => {
-          alert('글 등록 실패');
+          Toast.error('글 등록 실패');
         },
       },
     );
