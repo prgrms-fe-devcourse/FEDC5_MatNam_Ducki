@@ -17,7 +17,7 @@ export const MessageFormWrapper = styled.form`
 export const BottomGradient = styled.div`
   position: absolute;
   left: 0;
-  top: -4.5rem;
+  top: -4rem;
   width: 100%;
   height: 40px;
   z-index: 10;

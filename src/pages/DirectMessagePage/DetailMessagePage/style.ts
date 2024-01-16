@@ -4,7 +4,7 @@ export const DetailMessagePageWrapper = styled.ul`
   width: 100%;
   position: relative;
   top: 8.5rem;
-  height: calc(100% - 16rem);
+  height: calc(100% - 15.5rem);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
