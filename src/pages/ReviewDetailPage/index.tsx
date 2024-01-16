@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Badge } from '@/components/Badge/Badge';
 import BottomNavBar from '@/components/BottomNavBar';
-import Avatar from '@/components/Common/Avatar/Avatar';
+import Avatar from '@/components/Common/Avatar';
 import DropDownContainer from '@/components/Common/DropDown';
 import ClockIcon from '@/components/Common/Icons/ClockIcon';
 import ThumbsUpIcon from '@/components/Common/Icons/ThumbsUpIcon';
@@ -74,7 +74,7 @@ export default function ReviewDetail() {
     return (
       <ReviewDetailPage>
         <UserInfoWrapper>
-          <Avatar imageUrl={data.author.image!} size="80px" />
+          <Avatar imageUrl={data.author.image!} size="large" />
           <UserInfoTextBox>
             <UserName>{data.author.fullName}</UserName>
             <UserMail>{data.author.email}</UserMail>
@@ -110,7 +110,7 @@ export default function ReviewDetail() {
             <CommentBox key={comment._id}>
               <CommentUserInfoWrapper>
                 <WriterWrapper>
-                  <Avatar imageUrl={comment.author.image!} size="30px" />
+                  <Avatar imageUrl={comment.author.image!} size="small" />
                   <CommentUserName>{comment.author.fullName}</CommentUserName>
                 </WriterWrapper>
                 <CommentCreatedTime>
