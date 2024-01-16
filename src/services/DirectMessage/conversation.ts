@@ -27,7 +27,11 @@ export const getUserMessages = async (userId: string) => {
       },
     );
 
-    return response;
+    return response
+      ? response.sort(
+          (a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt),
+        )
+      : [];
   } catch (error) {
     console.error(error);
     return null;
