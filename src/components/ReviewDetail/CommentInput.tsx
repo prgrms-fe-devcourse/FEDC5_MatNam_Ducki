@@ -45,14 +45,16 @@ export default function CommentInput() {
 }
 
 const FormWrapper = styled.form`
+  max-width: ${({ theme }) => theme.device.mobile};
   width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
   display: flex;
   padding: 1.5rem 2rem 3rem 2rem;
   background-color: white;
   gap: 1.5rem;
   position: fixed;
   bottom: 60px;
-  left: 0;
 
   box-shadow:
     rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,

@@ -70,8 +70,6 @@ export default function ReviewDetail() {
     },
   ];
 
-  console.log(data?.comments);
-
   if (!isLoading && data) {
     return (
       <ReviewDetailPage>
