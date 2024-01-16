@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 import SearchBar from '@/components/SearchBar';
 import { useSignIn, useSignOut } from '@/hooks/useAuth';
@@ -16,6 +17,8 @@ export default function TestPage() {
     email: 'testbot1@gmail.com',
     password: 'testtest*',
   };
+
+  const navigate = useNavigate();
 
   const { mutate: signIn } = useSignIn({
     onSuccess: () => alert('로그인 완료!'),
@@ -48,6 +51,9 @@ export default function TestPage() {
   return (
     <MainPageWrapper>
       <SearchBar disabled navigatePath={PATH.SEARCH.POST} />
+      <TestButton onClick={() => navigate(PATH.DIRECTMESSAGE)}>
+        DM 페이지 이동
+      </TestButton>
       <TestButton onClick={() => signIn(testUser)}>
         테스트 계정 로그인
       </TestButton>
