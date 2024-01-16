@@ -1,7 +1,9 @@
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Global } from '@emotion/react';
 import { RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
-import ToastContainer from './components/Common/Toast/ToastContainer';
 import { router } from './routes';
 import { reset } from './styles/Global';
 
