@@ -4,12 +4,14 @@ import {
   createMessage,
   getAllConversations,
   getUserMessages,
+  updateMessageSeen,
 } from '@/services/DirectMessage/conversation';
 
 const searchKeys = {
   conversation: ['conversations'] as const,
   userMessages: (userId: string) => ['userMessages', userId],
   createMessage: ['createMessage'] as const,
+  seenMessage: ['seenMessage'] as const,
 };
 
 export const useGetAllConversations = () => {
@@ -30,5 +32,11 @@ export const useGetUserMessages = (userId: string) => {
 export const useCreateMessage = () => {
   return useMutation({
     mutationFn: createMessage,
+  });
+};
+
+export const useUpdateMessageSeen = () => {
+  return useMutation({
+    mutationFn: updateMessageSeen,
   });
 };

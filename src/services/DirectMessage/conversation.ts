@@ -65,7 +65,7 @@ export const createMessage = async ({
 
 export const updateMessageSeen = async (sender: string) => {
   try {
-    await axiosAuthInstance.put(ENDPOINT.MESSAGES.CREATE, {
+    await axiosAuthInstance.put(ENDPOINT.MESSAGES.UPDATE_SEEN, {
       sender,
     });
   } catch (error) {
