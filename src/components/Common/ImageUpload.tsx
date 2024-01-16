@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { useModal } from '@/hooks/useModal';
+import { selectedFileAtom } from '@/recoil/selectedFile';
+import { ModalType } from '@/types/modal';
 
 interface ImageUploadProps {
   onFileChange: (file: File | null) => void;
@@ -26,6 +31,7 @@ const UploadContainer = styled.div<{
   align-items: center;
   position: relative;
   font-size: 1rem;
+  cursor: pointer;
 `;
 
 const ImagePreview = styled.img<{ ratio?: string }>`
@@ -65,47 +71,33 @@ export default function ImageUpload({
     image || null,
   );
 
-  const imageInputRef = useRef<HTMLInputElement>(null);
+  const selectedFile = useRecoilValue(selectedFileAtom);
 
-  const handleImageFilesChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    if (!event.target.files || event.target.files.length === 0) {
-      return;
-    }
+  const { openModal } = useModal();
 
-    const file = event.target.files[0];
-    const fileURL = URL.createObjectURL(file);
-    setSelectedImage(fileURL);
-    onFileChange(file); // 선택된 파일을 외부로 전달
-  };
-
-  const handleImageUpdate = () => {
-    imageInputRef.current?.click();
+  const handleOpenModal = () => {
+    openModal({ type: ModalType.CHANGE_IMAGE });
   };
 
   useEffect(() => {
-    setSelectedImage(image);
-  }, [image]);
+    if (selectedFile instanceof File) {
+      const fileURL = URL.createObjectURL(selectedFile);
+      setSelectedImage(fileURL);
+      onFileChange(selectedFile);
+    } else {
+      onFileChange(null);
+    }
+  }, [selectedFile]);
 
   return (
     <section>
-      <input
-        ref={imageInputRef}
-        onChange={handleImageFilesChange}
-        type="file"
-        accept="image/*"
-        style={{ display: 'none' }} // 숨김 처리
-      />
       <UploadContainer
-        onClick={handleImageUpdate}
+        onClick={handleOpenModal}
         borderRadius={borderRadius}
         width={width}
         ratio={ratio}>
         {selectedImage ? (
-          <>
-            <ImagePreview src={selectedImage} alt="이미지 미리보기" />
-          </>
+          <ImagePreview src={selectedImage} alt="이미지 미리보기" />
         ) : (
           <span>이미지 추가</span>
         )}

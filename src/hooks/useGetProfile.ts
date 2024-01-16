@@ -15,6 +15,7 @@ export const useGetPost = (userId: string) => {
 
 export const useChangeImage = (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  setSelectedFile: React.Dispatch<React.SetStateAction<File | File[] | null>>,
 ) => {
   const queryClient = useQueryClient();
   const { mutate, data } = useMutation({
@@ -24,6 +25,7 @@ export const useChangeImage = (
       // 예: 프로필 정보를 다시 불러오는 등의 작업
       await queryClient.refetchQueries(['checkAuthUser']);
       setIsLoading(false); // 로딩 완료 시 isLoading 상태를 false로 설정
+      setSelectedFile(null);
     },
   });
 
