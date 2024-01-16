@@ -66,17 +66,19 @@ export const ReviewCard = ({
             navigate(`${PATH.PROFILE}/${id}`);
           }}>
           {profileName}
-          {channelId === '65a67d71231c3e492734777f' ? (
-            <ThumbsUpIcon />
-          ) : (
-            <ThumbsDownIcon />
-          )}
         </ProfileNickname>
         <ElaspedTime>{getElapsedTime(createdAt)}</ElaspedTime>
       </ReviewCardHeader>
       <ReviewCardBody>
         <ReviewCardInfo>
-          <RestaurantName>{restaurant}</RestaurantName>
+          <RestaurantName>
+            {restaurant}
+            {channelId === '65a67d71231c3e492734777f' ? (
+              <ThumbsUpIcon />
+            ) : (
+              <ThumbsDownIcon />
+            )}
+          </RestaurantName>
           <LikeContainer>❤ {likes}</LikeContainer>
         </ReviewCardInfo>
         <RestaurantLocation>{location}</RestaurantLocation>

@@ -10,21 +10,20 @@ export const ReviewCardContainer = styled.div<{ width: string }>`
 
 export const ReviewCardHeader = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  padding: 1rem;
   font-size: 1.2rem;
   color: #4f4f4f;
 `;
 
 export const ProfileNickname = styled.span`
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   cursor: pointer;
 `;
 
-export const ElaspedTime = styled.span``;
+export const ElaspedTime = styled.span`
+  padding: 1rem 1rem 0.5rem 1rem;
+`;
 
 export const ReviewCardBody = styled.div`
   padding: 1rem;
@@ -56,6 +55,9 @@ export const ReviewCardInfo = styled.span`
 `;
 
 export const RestaurantName = styled.span`
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
   font-weight: bold;
 `;
 
