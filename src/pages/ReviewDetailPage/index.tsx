@@ -48,7 +48,7 @@ export default function ReviewDetail() {
   const { data, isLoading } = useGetDetail({ postId });
 
   const { mutate: deletePost } = useDeletePost();
-  const redirectToOpponentProfile = useRedirectToProfile();
+  const redirectToProfile = useRedirectToProfile();
 
   const handleGoToEditPage = useCallback(() => {
     navigate(PATH.REVIEWUPDATE, { state: postId });
@@ -75,8 +75,7 @@ export default function ReviewDetail() {
   if (!isLoading && data) {
     return (
       <ReviewDetailPage>
-        <UserInfoWrapper
-          onClick={() => redirectToOpponentProfile(data.author._id)}>
+        <UserInfoWrapper onClick={() => redirectToProfile(data.author._id)}>
           <Avatar imageUrl={data.author.image!} size="80px" />
           <UserInfoTextBox>
             <UserName>{data.author.fullName}</UserName>
@@ -113,7 +112,7 @@ export default function ReviewDetail() {
             <CommentBox key={comment._id}>
               <CommentUserInfoWrapper>
                 <WriterWrapper
-                  onClick={() => redirectToOpponentProfile(comment.author._id)}>
+                  onClick={() => redirectToProfile(comment.author._id)}>
                   <Avatar imageUrl={comment.author.image!} size="30px" />
                   <CommentUserName>{comment.author.fullName}</CommentUserName>
                 </WriterWrapper>

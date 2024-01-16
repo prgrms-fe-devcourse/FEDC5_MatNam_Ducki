@@ -45,11 +45,11 @@ export const ReviewCard = ({
   id,
   ...props
 }: ReviewCardProps) => {
-  const redirectToOpponentProfile = useRedirectToProfile();
+  const redirectToProfile = useRedirectToProfile();
   return (
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
-        <ProfileNickname onClick={() => redirectToOpponentProfile(id)}>
+        <ProfileNickname onClick={() => redirectToProfile(id)}>
           {profileName}
         </ProfileNickname>
         <ElaspedTime>{getElapsedTime(createdAt)}</ElaspedTime>
