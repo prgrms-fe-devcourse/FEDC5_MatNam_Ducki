@@ -1,3 +1,4 @@
+import { useRedirectToProfile } from '@/hooks/useRedirectProfile';
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
 import {
@@ -21,6 +22,7 @@ interface ReviewCardProps extends React.ComponentProps<'div'> {
   createdAt: string;
   width?: string;
   likes: number;
+  id?: string;
 }
 
 /**
@@ -40,12 +42,16 @@ export const ReviewCard = ({
   createdAt,
   likes,
   width = '100%',
+  id,
   ...props
 }: ReviewCardProps) => {
+  const redirectToProfile = useRedirectToProfile();
   return (
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
-        <ProfileNickname>{profileName}</ProfileNickname>
+        <ProfileNickname onClick={() => redirectToProfile(id)}>
+          {profileName}
+        </ProfileNickname>
         <ElaspedTime>{getElapsedTime(createdAt)}</ElaspedTime>
       </ReviewCardHeader>
       <ReviewCardBody>

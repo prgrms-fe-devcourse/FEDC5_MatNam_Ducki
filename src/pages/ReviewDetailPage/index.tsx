@@ -11,6 +11,7 @@ import CommentInput from '@/components/ReviewDetail/CommentInput';
 import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
 import { useDeletePost } from '@/hooks/useDeletePost';
+import { useRedirectToProfile } from '@/hooks/useRedirectProfile';
 import { PATH } from '@/routes/path';
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
@@ -47,6 +48,7 @@ export default function ReviewDetail() {
   const { data, isLoading } = useGetDetail({ postId });
 
   const { mutate: deletePost } = useDeletePost();
+  const redirectToProfile = useRedirectToProfile();
 
   const handleGoToEditPage = useCallback(() => {
     navigate(PATH.REVIEWUPDATE, { state: postId });
@@ -73,7 +75,7 @@ export default function ReviewDetail() {
   if (!isLoading && data) {
     return (
       <ReviewDetailPage>
-        <UserInfoWrapper>
+        <UserInfoWrapper onClick={() => redirectToProfile(data.author._id)}>
           <Avatar imageUrl={data.author.image!} size="large" />
           <UserInfoTextBox>
             <UserName>{data.author.fullName}</UserName>
@@ -109,7 +111,8 @@ export default function ReviewDetail() {
           {data.comments.map((comment) => (
             <CommentBox key={comment._id}>
               <CommentUserInfoWrapper>
-                <WriterWrapper>
+                <WriterWrapper
+                  onClick={() => redirectToProfile(comment.author._id)}>
                   <Avatar imageUrl={comment.author.image!} size="small" />
                   <CommentUserName>{comment.author.fullName}</CommentUserName>
                 </WriterWrapper>
