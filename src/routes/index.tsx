@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import DirectMessagePage from '@/pages/DirectMessagePage';
 import DetailMessagePage from '@/pages/DirectMessagePage/DetailMessagePage';
 import MainPage from '@/pages/MainPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 import ReviewDetail from '@/pages/ReviewDetailPage';
 import SearchPostPage from '@/pages/SearchPostPage';
 import SearchUserPage from '@/pages/SearchUserPage';
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: `${PATH.DIRECTMESSAGE}/:userId`,
         element: <DetailMessagePage />,
+      },
+      {
+        path: PATH.NOTFOUND,
+        element: <NotFoundPage />,
       },
     ],
   },

@@ -74,7 +74,7 @@ export default function ReviewDetail() {
     return (
       <ReviewDetailPage>
         <UserInfoWrapper>
-          <Avatar imageUrl={data.author.image!} size="80px" />
+          <Avatar imageUrl={data.author.image!} size="large" />
           <UserInfoTextBox>
             <UserName>{data.author.fullName}</UserName>
             <UserMail>{data.author.email}</UserMail>
@@ -110,7 +110,7 @@ export default function ReviewDetail() {
             <CommentBox key={comment._id}>
               <CommentUserInfoWrapper>
                 <WriterWrapper>
-                  <Avatar imageUrl={comment.author.image!} size="30px" />
+                  <Avatar imageUrl={comment.author.image!} size="small" />
                   <CommentUserName>{comment.author.fullName}</CommentUserName>
                 </WriterWrapper>
                 <CommentCreatedTime>
