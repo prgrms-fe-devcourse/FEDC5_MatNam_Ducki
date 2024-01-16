@@ -27,18 +27,6 @@ export const useCreateComment = ({ postId }: { postId: string }) => {
   });
 };
 
-export const useLike = ({
-  postId,
-  isLike,
-}: {
-  postId: string;
-  isLike: boolean;
-}) => {
-  return useMutation({
-    mutationFn: isLike ? () => createLike(postId) : () => deleteLike(postId),
-  });
-};
-
 export const useCreateLike = ({ postId }: { postId: string }) => {
   return useMutation({
     mutationFn: () => createLike(postId),

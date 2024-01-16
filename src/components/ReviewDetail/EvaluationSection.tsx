@@ -18,6 +18,10 @@ export default function EvaluationSection() {
   const { data: userData } = useCheckAuthUser();
 
   const [isLike, setIsLike] = useState(false);
+  const [likeId, setLikeId] = useState(
+    postData?.likes.find((like) => like.user === userData?._id)?._id,
+  );
+
   const [likeCount, setLikeCount] = useState(postData!.likes.length);
   const [timer, setTimer] = useState(0);
 
@@ -38,11 +42,21 @@ export default function EvaluationSection() {
 
     if (timer) clearTimeout(timer);
     const newTimer = window.setTimeout(() => {
-      const likeId = postData?.likes.find(
-        (like) => like.user === userData?._id,
-      );
+      if (!isLike && !likeId) {
+        createMutate(undefined, {
+          onSuccess: (data) => {
+            setLikeId(data?._id);
+          },
+        });
+      }
 
-      isLike ? likeId && deleteMutate(likeId._id) : !likeId && createMutate();
+      if (isLike && likeId) {
+        deleteMutate(likeId, {
+          onSuccess: () => {
+            setLikeId(undefined);
+          },
+        });
+      }
     }, 500);
 
     setTimer(newTimer);
