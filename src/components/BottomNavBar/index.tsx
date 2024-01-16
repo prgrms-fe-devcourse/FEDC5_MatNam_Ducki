@@ -50,6 +50,10 @@ export default function BottomNavBar() {
 
   const { data: notifications } = useGetNotifications(authUser);
 
+  const newNotification = notifications?.filter(
+    (notification) => !notification.seen,
+  );
+
   const navItems: PropsBottomNavBar[] = [
     {
       path: MAIN_PATH,
@@ -64,7 +68,7 @@ export default function BottomNavBar() {
     {
       path: NOTIFICATION_PATH,
       icon: (
-        <NotificationBadge count={notifications?.length} maxCount={99}>
+        <NotificationBadge count={newNotification?.length} maxCount={99}>
           <NotificationIcon />
         </NotificationBadge>
       ),
