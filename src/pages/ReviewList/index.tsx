@@ -10,7 +10,7 @@ import { Post } from '@/types/response';
 import { ReviewListContainer, SortContainer, SortOption } from './style';
 
 export default function ReviewList() {
-  const [channelId, setChannelId] = useState('65965f97f759661f3e669793');
+  const [channelId, setChannelId] = useState('65a67d71231c3e492734777f');
   const [sortType, setSortType] = useState(SORT_TYPE.LATEST); // ['latest', 'popular']
   const [sortedPosts, setSortedPosts] = useState<Post[]>([]);
 

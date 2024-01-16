@@ -28,6 +28,7 @@ export const ReviewCardList = ({ posts }: PostListProps) => {
           likes={post.likes.length}
           channelId={post.channel._id}
           onClick={() => navigate(`${PATH.REVIEWDETAIL}/${post._id}`)}
+          id={post.author._id}
         />
       ))}
     </ReviewCardListWrapper>

@@ -1,4 +1,6 @@
-import { useRedirectToProfile } from '@/hooks/useRedirectProfile';
+import { useNavigate } from 'react-router-dom';
+
+import { PATH } from '@/routes/path';
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
 import ThumbsDownIcon from '../Common/Icons/ThumbsDownIcon';
@@ -53,11 +55,16 @@ export const ReviewCard = ({
   id,
   ...props
 }: ReviewCardProps) => {
-  const redirectToProfile = useRedirectToProfile();
+  const navigate = useNavigate();
+
   return (
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
-        <ProfileNickname onClick={() => redirectToProfile(id)}>
+        <ProfileNickname
+          onClick={(event) => {
+            event.stopPropagation();
+            navigate(`${PATH.PROFILE}/${id}`);
+          }}>
           {profileName}
           {channelId === '65a67d71231c3e492734777f' ? (
             <ThumbsUpIcon />
