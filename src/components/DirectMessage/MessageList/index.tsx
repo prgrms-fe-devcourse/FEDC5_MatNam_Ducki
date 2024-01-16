@@ -6,11 +6,11 @@ import MessageItem from '../MessageItem';
 import { MessageListWrapper } from './style';
 
 interface MessageListProps {
-  myId: string;
+  userId: string;
   messageList: Message[];
 }
 
-export default function MessageList({ myId, messageList }: MessageListProps) {
+export default function MessageList({ userId, messageList }: MessageListProps) {
   const scrollRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function MessageList({ myId, messageList }: MessageListProps) {
       {messageList.map((message, index) => (
         <MessageItem
           key={message._id}
-          myId={myId}
+          userId={userId}
           messageItem={message}
           prevDate={index === 0 ? null : messageList[index - 1].createdAt}
         />

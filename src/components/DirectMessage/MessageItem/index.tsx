@@ -4,28 +4,29 @@ import { convertUtcToKstDate, convertUtcToKstTime } from '@/utils/convertTime';
 
 import {
   calendarStyle,
-  CreatedTime,
+  CreatedTimeText,
   DateText,
   MessageItemWrapper,
   ReceiverMessage,
   ReceiverMessageWrapper,
+  SeenText,
   SenderMessage,
   SenderMessageWrapper,
 } from './style';
 
 interface MessageItemProps {
-  myId: string;
+  userId: string;
   messageItem: Message;
-  prevDate?: string | null;
+  prevDate: string | null;
 }
 
 export default function MessageItem({
-  myId,
+  userId,
   messageItem,
   prevDate,
 }: MessageItemProps) {
-  const { receiver, message, createdAt } = messageItem;
-  const isMyMessage = myId === receiver._id;
+  const { sender, message, createdAt, seen } = messageItem;
+  const isUserMessage = userId === sender._id;
 
   const currentTime = convertUtcToKstTime(createdAt);
   const currentDate = convertUtcToKstDate(createdAt);
@@ -42,16 +43,17 @@ export default function MessageItem({
           {currentDate}
         </DateText>
       )}
-      {isMyMessage ? (
-        <SenderMessageWrapper>
-          <CreatedTime>{currentTime}</CreatedTime>
-          <SenderMessage>{message}</SenderMessage>
-        </SenderMessageWrapper>
-      ) : (
+      {isUserMessage ? (
         <ReceiverMessageWrapper>
           <ReceiverMessage>{message}</ReceiverMessage>
-          <CreatedTime>{currentTime}</CreatedTime>
+          <CreatedTimeText>{currentTime}</CreatedTimeText>
         </ReceiverMessageWrapper>
+      ) : (
+        <SenderMessageWrapper>
+          {!seen && <SeenText>1</SeenText>}
+          <CreatedTimeText>{currentTime}</CreatedTimeText>
+          <SenderMessage>{message}</SenderMessage>
+        </SenderMessageWrapper>
       )}
     </MessageItemWrapper>
   );

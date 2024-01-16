@@ -36,7 +36,7 @@ export default function DetailMessagePage() {
           <UserProfileInfo user={user} />
         </UserProfileWrapper>
       )}
-      {messageList && <MessageList myId={userId} messageList={messageList} />}
+      {messageList && <MessageList userId={userId} messageList={messageList} />}
       <MessageForm receiverId={userId} onRefetchMessages={refetchMessages} />
     </DetailMessagePageWrapper>
   );
