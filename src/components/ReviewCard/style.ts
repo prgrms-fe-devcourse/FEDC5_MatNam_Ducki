@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
+import { theme } from '@/styles/Theme';
+
 export const ReviewCardContainer = styled.div<{ width: string }>`
   width: ${({ width }) => width};
   margin: 0 auto;
-  border-radius: 1rem;
-  border: 1px solid #bdbdbd;
-  box-shadow: 0px 1.5px 1.5px rgba(0, 0, 0, 0.25);
+  border-bottom: 0.1rem solid ${theme.colors.lightGray};
 `;
 
 export const ReviewCardHeader = styled.div`
@@ -19,12 +19,9 @@ export const ReviewCardHeader = styled.div`
 
 export const ProfileNickname = styled.span`
   cursor: pointer;
-  padding: 0.5rem 1rem;
 `;
 
-export const ElaspedTime = styled.span`
-  padding: 0.5rem 1rem;
-`;
+export const ElaspedTime = styled.span``;
 
 export const ReviewCardBody = styled.div`
   padding: 1rem;
@@ -33,7 +30,14 @@ export const ReviewCardBody = styled.div`
   gap: 1.5rem;
 `;
 
-export const ReviewCardContents = styled.span``;
+export const ReviewCardContents = styled.span`
+  font-size: 1.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 export const ReviewCardImage = styled.img`
   width: 100%;

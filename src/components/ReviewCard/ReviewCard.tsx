@@ -16,7 +16,9 @@ import {
 
 interface ReviewCardProps extends React.ComponentProps<'div'> {
   imageUrl?: string;
-  content: string;
+  restaurant: string;
+  location: string;
+  review: string;
   profileName: string;
   createdAt: string;
   width?: string;
@@ -35,7 +37,9 @@ interface ReviewCardProps extends React.ComponentProps<'div'> {
 
 export const ReviewCard = ({
   imageUrl,
-  content,
+  restaurant,
+  location,
+  review,
   profileName,
   createdAt,
   likes,
@@ -50,12 +54,15 @@ export const ReviewCard = ({
       </ReviewCardHeader>
       <ReviewCardBody>
         <ReviewCardInfo>
-          <RestaurantName>나이스 샤워 역삼점</RestaurantName>
+          <RestaurantName>{restaurant}</RestaurantName>
           <LikeContainer>❤ {likes}</LikeContainer>
         </ReviewCardInfo>
-        <RestaurantLocation>서울특별시 강남구</RestaurantLocation>
+        <RestaurantLocation>{location}</RestaurantLocation>
         <ReviewCardImage src={imageUrl} />
-        <ReviewCardContents>{content}</ReviewCardContents>
+        <ReviewCardContents>
+          {review}
+          ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        </ReviewCardContents>
       </ReviewCardBody>
     </ReviewCardContainer>
   );
