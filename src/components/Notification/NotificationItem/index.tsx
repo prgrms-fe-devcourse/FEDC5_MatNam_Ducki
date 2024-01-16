@@ -1,21 +1,10 @@
 import { MESSAGE } from '@/constants/notification';
+import { Notification } from '@/types/response';
 
 import { NotificationItemContainer } from './style';
 
-export interface DummyData {
-  _id: string;
-  seen: boolean;
-  author: {
-    fullName: string;
-  };
-  user: string;
-  comment: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
 interface NotificationItemProps {
-  notification: DummyData;
+  notification: Notification;
 }
 
 export default function NotificationItem({

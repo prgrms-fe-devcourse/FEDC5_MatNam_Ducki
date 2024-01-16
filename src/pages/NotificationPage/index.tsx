@@ -1,38 +1,28 @@
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+
 import NotificationList from '@/components/Notification/NotificationList';
+import { useGetNotifications } from '@/hooks/useNotification';
+import { userAtom } from '@/recoil/user';
+import { PATH } from '@/routes/path';
 
 import { NotificationContainer } from './style';
 
 export default function NotificationPage() {
-  const notifications = [
-    {
-      _id: '1',
-      seen: false,
-      author: {
-        // User 인터페이스에 따라 추가 정보를 넣어주세요.
-        fullName: 'baek',
-      },
-      user: '2',
-      comment: '3',
-      createdAt: '2024-01-10T00:00:00Z',
-      updatedAt: '2024-01-10T00:00:00Z',
-    },
-    {
-      _id: '2',
-      seen: false,
-      author: {
-        fullName: 'kim',
-      },
-      user: '2',
-      comment: '4',
-      createdAt: '2024-01-10T00:00:00Z',
-      updatedAt: '2024-01-10T00:00:00Z',
-    },
-  ];
+  const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
+  if (!user) {
+    alert('로그인이 필요합니다.');
+    navigate(PATH.SIGNIN);
+  } else {
+    const { data: notifications } = useGetNotifications(user);
 
-  return (
-    <NotificationContainer>
-      <header>알림 목록</header>
-      <NotificationList notifications={notifications} />
-    </NotificationContainer>
-  );
+    const validNotifications = notifications || [];
+
+    return (
+      <NotificationContainer>
+        <NotificationList notifications={validNotifications} />
+      </NotificationContainer>
+    );
+  }
 }

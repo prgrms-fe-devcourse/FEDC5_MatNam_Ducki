@@ -1,10 +1,12 @@
 import { PropsWithChildren } from 'react';
 
-import NotificationItem, { DummyData } from '../NotificationItem';
+import { Notification } from '@/types/response';
+
+import NotificationItem from '../NotificationItem';
 import { NotificationListContainer } from './style';
 
 interface NotificationListProps {
-  notifications: DummyData[];
+  notifications: Notification[];
 }
 
 export default function NotificationList({
