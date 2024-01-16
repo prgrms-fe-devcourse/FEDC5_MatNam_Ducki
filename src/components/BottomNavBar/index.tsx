@@ -12,6 +12,7 @@ import MainIcon from '../Common/Icons/MainIcon';
 import NotificationIcon from '../Common/Icons/NotificationIcon';
 import ProfileIcon from '../Common/Icons/ProfileIcon';
 import ReviewIcon from '../Common/Icons/ReviewIcon';
+import NotificationBadge from '../Common/NotificationBadge';
 import { BottomNavBarWrapper, LinkWrapper, TextStyle } from './style';
 
 interface PropsBottomNavBar {
@@ -59,7 +60,11 @@ export default function BottomNavBar() {
     },
     {
       path: NOTIFICATION_PATH,
-      icon: <NotificationIcon />,
+      icon: (
+        <NotificationBadge count={5} maxCount={99}>
+          <NotificationIcon />
+        </NotificationBadge>
+      ),
       title: <TextStyle>알림</TextStyle>,
     },
     {
