@@ -6,14 +6,14 @@ import { ENDPOINT } from '../endPoint';
 
 export const updateUserName = async ({
   fullName,
-  userName,
+  username,
 }: UpdateUserNamePayload) => {
   try {
     const response = await axiosAuthInstance.put<User>(
       ENDPOINT.SETTINGS.UPDATE_USER,
       {
         fullName,
-        userName,
+        username,
       },
     );
 

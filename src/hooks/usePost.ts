@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { getPostByChannel } from '@/services/Post/post';
+import { createPost, getPostByChannel, updatePost } from '@/services/Post/post';
 import { GetPostByChannelPayload } from '@/types/payload';
 
 export const useGetPostByChannel = ({
@@ -13,4 +13,12 @@ export const useGetPostByChannel = ({
     queryFn: () => getPostByChannel({ channelId, limit, offset }),
     retry: false,
   });
+};
+
+export const useCreatePost = () => {
+  return useMutation({ mutationFn: createPost });
+};
+
+export const useUpdatePost = () => {
+  return useMutation({ mutationFn: updatePost });
 };
