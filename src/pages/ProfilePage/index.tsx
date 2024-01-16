@@ -142,7 +142,7 @@ export default function ProfilePage() {
                 />
                 <Button
                   onClick={handleLogOutButtonClick}
-                  style={{ marginLeft: '2rem', marginTop: '4rem' }}
+                  style={{ marginLeft: '1rem', marginTop: '4rem' }}
                   width="60px"
                   backgroundColor={theme.colors.lightGray}
                   height="35px"

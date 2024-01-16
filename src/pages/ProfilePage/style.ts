@@ -18,7 +18,7 @@ export const ProfileBackGroundImage = styled.div`
 
 export const UserInfoWrapper = styled.div`
   display: flex;
-  padding-top: 16rem;
+  padding-top: 14rem;
   width: 100%;
 `;
 
@@ -30,7 +30,7 @@ export const UserWrapper = styled.div`
 
 export const ImageWrapper = styled.div`
   margin-top: 1.2rem;
-  margin-left: 4rem;
+  margin-left: 2rem;
 `;
 
 export const Label = styled.span`
