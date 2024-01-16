@@ -5,6 +5,7 @@ import DetailMessagePage from '@/pages/DirectMessagePage/DetailMessagePage';
 import MainPage from '@/pages/MainPage';
 import ReviewDetail from '@/pages/ReviewDetailPage';
 import SearchPostPage from '@/pages/SearchPostPage';
+import SearchUserPage from '@/pages/SearchUserPage';
 import SignInPage from '@/pages/SignInPage';
 
 import NotificationPage from '../pages/NotificationPage';
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.SEARCH.POST,
         element: <SearchPostPage />,
+      },
+      {
+        path: PATH.SEARCH.USER,
+        element: <SearchUserPage />,
       },
       {
         path: PATH.REVIEW,

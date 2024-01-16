@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Badge } from '@/components/Badge/Badge';
 import BottomNavBar from '@/components/BottomNavBar';
-import Avatar from '@/components/Common/Avatar/Avatar';
+import Avatar from '@/components/Common/Avatar';
 import DropDownContainer from '@/components/Common/DropDown';
 import ClockIcon from '@/components/Common/Icons/ClockIcon';
 import ThumbsUpIcon from '@/components/Common/Icons/ThumbsUpIcon';
