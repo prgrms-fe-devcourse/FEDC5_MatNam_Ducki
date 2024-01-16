@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
 import { DEFAULT_PROFILE_IMAGE } from '@/constants/profile';
@@ -16,6 +17,10 @@ import {
 
 export default function ChangeImageModal() {
   const { closeModal } = useModal();
+
+  const location = useLocation();
+  const isProfilePage = location.pathname.includes('profile');
+
   const setSelectedFile = useSetRecoilState(selectedFileAtom);
 
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -31,11 +36,13 @@ export default function ChangeImageModal() {
   const handleImageFilesChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    if (!event.target.files || event.target.files.length === 0) {
+    const files = event.target.files;
+
+    if (!files || files.length === 0) {
       return;
     }
 
-    const selectedFile = event.target.files[0];
+    const selectedFile = isProfilePage ? files[0] : Array.from(files);
     setSelectedFile(selectedFile);
     handleCloseModal();
   };
@@ -50,16 +57,26 @@ export default function ChangeImageModal() {
     handleCloseModal();
   };
 
-  const selectListData = [
-    { text: '이미지 변경', onClick: handleImageUpdate },
-    { text: '기본 이미지로 변경', onClick: handleImageRemove },
-    {
-      text: '취소',
-      onClick: () => {
-        closeModal({ type: ModalType.CHANGE_IMAGE });
-      },
-    },
-  ];
+  const selectListData = isProfilePage
+    ? [
+        { text: '이미지 변경', onClick: handleImageUpdate },
+        { text: '기본 이미지로 변경', onClick: handleImageRemove },
+        {
+          text: '취소',
+          onClick: () => {
+            closeModal({ type: ModalType.CHANGE_IMAGE });
+          },
+        },
+      ]
+    : [
+        { text: '이미지 추가', onClick: handleImageUpdate },
+        {
+          text: '취소',
+          onClick: () => {
+            closeModal({ type: ModalType.CHANGE_IMAGE });
+          },
+        },
+      ];
 
   return (
     <ChangeImageModalWrapper>
@@ -68,6 +85,7 @@ export default function ChangeImageModal() {
         onChange={handleImageFilesChange}
         type="file"
         accept="image/*"
+        multiple={isProfilePage ? false : true}
       />
       <SelectList>
         {selectListData.map(({ text, onClick }) => (
