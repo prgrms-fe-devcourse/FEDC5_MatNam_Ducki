@@ -16,7 +16,6 @@ export const useGetNotifications = (user: User) => {
     queryKey: notificationKeys.all,
     queryFn: getNotifications,
     retry: false,
-    initialData: [],
     enabled: !!user,
     refetchInterval: 2000,
     refetchIntervalInBackground: true,
