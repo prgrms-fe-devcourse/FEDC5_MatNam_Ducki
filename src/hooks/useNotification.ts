@@ -11,11 +11,12 @@ const notificationKeys = {
   all: ['notifications'] as const,
 };
 
-export const useGetNotifications = (user: User) => {
+export const useGetNotifications = (user: User | null | undefined) => {
   return useQuery({
     queryKey: notificationKeys.all,
     queryFn: getNotifications,
     retry: false,
+    initialData: [],
     enabled: !!user,
     refetchInterval: 2000,
     refetchIntervalInBackground: true,

@@ -6,13 +6,13 @@ import NotificationItem from '../NotificationItem';
 import { NotificationListContainer } from './style';
 
 interface NotificationListProps {
-  notifications: Notification[];
+  notifications: Notification[] | null;
 }
 
 export default function NotificationList({
   notifications,
 }: PropsWithChildren<NotificationListProps>) {
-  if (notifications.length) {
+  if (notifications) {
     return (
       <NotificationListContainer>
         {notifications.map((notification) => (

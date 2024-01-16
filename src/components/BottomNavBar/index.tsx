@@ -7,6 +7,7 @@ import {
   REVIEW_PATH,
 } from '@/constants';
 import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useGetNotifications } from '@/hooks/useNotification';
 
 import MainIcon from '../Common/Icons/MainIcon';
 import NotificationIcon from '../Common/Icons/NotificationIcon';
@@ -47,6 +48,8 @@ export default function BottomNavBar() {
 
   const { data: authUser } = useCheckAuthUser();
 
+  const { data: notifications } = useGetNotifications(authUser);
+
   const navItems: PropsBottomNavBar[] = [
     {
       path: MAIN_PATH,
@@ -61,7 +64,7 @@ export default function BottomNavBar() {
     {
       path: NOTIFICATION_PATH,
       icon: (
-        <NotificationBadge count={5} maxCount={99}>
+        <NotificationBadge count={notifications?.length} maxCount={99}>
           <NotificationIcon />
         </NotificationBadge>
       ),

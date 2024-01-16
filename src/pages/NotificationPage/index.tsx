@@ -18,6 +18,8 @@ export default function NotificationPage() {
 
   const { mutate: seenNotifications } = useSeenNotifications();
 
+  const { data: notifications } = useGetNotifications(user);
+
   useEffect(() => {
     seenNotifications();
   }, []);
@@ -29,15 +31,9 @@ export default function NotificationPage() {
     }
   }, [navigate, user]);
 
-  if (user) {
-    const { data: notifications } = useGetNotifications(user);
-
-    const validNotifications = notifications || [];
-
-    return (
-      <NotificationContainer>
-        <NotificationList notifications={validNotifications} />
-      </NotificationContainer>
-    );
-  }
+  return (
+    <NotificationContainer>
+      <NotificationList notifications={notifications} />
+    </NotificationContainer>
+  );
 }
