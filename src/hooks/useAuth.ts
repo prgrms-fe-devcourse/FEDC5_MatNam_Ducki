@@ -5,6 +5,7 @@ import { checkAuthUser, signIn, signOut, signUp } from '@/services/Auth/auth';
 
 interface AuthProps {
   onSuccess?: () => void;
+  isEnabled?: boolean;
 }
 
 const authKeys = {
@@ -71,10 +72,14 @@ export const useSignOut = ({ onSuccess }: AuthProps = {}) => {
  * @param onSuccess - optional) 성공 시 수행할 callback 함수를 넘겨줄 때 사용합니다.
  * @return 성공 시 User, 실패 시 null을 반환합니다.
  */
-export const useCheckAuthUser = ({ onSuccess }: AuthProps = {}) => {
+export const useCheckAuthUser = ({
+  onSuccess,
+  isEnabled = true,
+}: AuthProps = {}) => {
   return useQuery({
     queryKey: authKeys.checkAuthUser,
     queryFn: checkAuthUser,
+    enabled: isEnabled,
     onSuccess: () => {
       if (onSuccess) {
         onSuccess();

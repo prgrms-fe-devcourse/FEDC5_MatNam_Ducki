@@ -5,6 +5,7 @@ export const PATH = {
   SEARCH: {
     MAP: '/search/map',
     POST: '/search/post',
+    USER: '/search/user',
   },
   REVIEW: '/review',
   REVIEWUPDATE: '/reviewupdate',
@@ -12,5 +13,6 @@ export const PATH = {
   REVIEWDETAIL: 'reviewdetail',
   PROFILE: '/profile',
   NOTIFICATION: '/notification',
+  DIRECTMESSAGE: '/message',
   NOTFOUND: '/*',
 };

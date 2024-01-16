@@ -4,17 +4,15 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
 import { useCreateComment } from '@/hooks/ReviewDetail';
-import { useCheckAuthUser } from '@/hooks/useAuth';
 import { theme } from '@/styles/Theme';
 
-import Avatar from '../Common/Avatar/Avatar';
+import Button from '../Common/Button/Button';
 import HookFormInput from '../Common/HookFormInput';
 
 export default function CommentInput() {
   const { postId } = useParams() as { postId: string };
   const { register, handleSubmit, reset } = useForm<{ comment: string }>();
   const { mutate } = useCreateComment({ postId });
-  const { data, isLoading } = useCheckAuthUser();
 
   const onSubmit: SubmitHandler<{ comment: string }> = ({ comment }) => {
     mutate({ comment, postId });
@@ -23,37 +21,40 @@ export default function CommentInput() {
     //TODO: scroll 최하단으로
   };
 
-  if (!isLoading && data) {
-    return (
-      <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-        <Avatar imageUrl={data.image!} size="48px" />
-        <HookFormInput
-          register={register}
-          name="comment"
-          placeholder="댓글 달기"
-          css={css`
-            width: 100%;
-            padding: 0.625rem 1.25rem;
-            background-color: ${theme.colors.whitePrimary};
-            border: 0;
-            border-radius: 0.625rem;
-            outline: none;
-          `}
-        />
-      </FormWrapper>
-    );
-  }
+  return (
+    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+      <HookFormInput
+        register={register}
+        name="comment"
+        placeholder="댓글 작성하기"
+        css={css`
+          width: 100%;
+          height: 100%;
+          padding: 0.625rem 1.25rem;
+          background-color: ${theme.colors.lightGray};
+          border: 0;
+          border-radius: 0.625rem;
+          outline: none;
+        `}
+      />
+      <Button width="60px" height="40px" textSize="14px">
+        전송
+      </Button>
+    </FormWrapper>
+  );
 }
 
 const FormWrapper = styled.form`
-  width: inherit;
+  width: 100%;
   display: flex;
+  padding: 1.5rem 2rem 3rem 2rem;
   background-color: white;
   gap: 1.5rem;
   position: fixed;
   bottom: 60px;
+  left: 0;
 
-  div {
-    width: 100%;
-  }
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 `;

@@ -1,10 +1,10 @@
 export interface PropsIntroductionEditor {
   isEditing: boolean;
-  introduction: string;
+  introduction?: string;
   onEditButtonClick: () => void;
   onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholderText: string;
+  placeholderText?: string;
   buttonText: string;
 }
 

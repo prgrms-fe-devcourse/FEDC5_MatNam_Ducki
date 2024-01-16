@@ -1,10 +1,10 @@
+import EmptySearchResult from '@/components/Common/EmptySearchResult';
 import PlaceIcon from '@/components/Common/Icons/PlaceIcon';
 import { PlaceInfoType, PlaceType, PositionType } from '@/types/placeMap';
 
 import {
   Address,
   AddressTag,
-  EmptySearchResult,
   PhoneNumber,
   PlaceIconWrapper,
   PlaceInfo,
@@ -71,7 +71,7 @@ export default function PlaceList({
           ),
         )
       ) : (
-        <EmptySearchResult>검색 결과가 없습니다.</EmptySearchResult>
+        <EmptySearchResult />
       )}
     </PlaceListWrapper>
   );

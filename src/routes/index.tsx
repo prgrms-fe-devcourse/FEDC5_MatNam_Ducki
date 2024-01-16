@@ -1,10 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import MainPage from '@/pages/MainPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import ReviewDetail from '@/pages/ReviewDetailPage';
+import SearchPostPage from '@/pages/SearchPostPage';
+import SearchUserPage from '@/pages/SearchUserPage';
 import SignInPage from '@/pages/SignInPage';
 
-import MainPage from '../pages/MainPage';
 import NotificationPage from '../pages/NotificationPage';
 import ProfilePage from '../pages/ProfilePage';
 import ReviewList from '../pages/ReviewList';
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: PATH.SEARCH.MAP,
         element: <SearchMapPage />,
+      },
+      {
+        path: PATH.SEARCH.POST,
+        element: <SearchPostPage />,
+      },
+      {
+        path: PATH.SEARCH.USER,
+        element: <SearchUserPage />,
       },
       {
         path: PATH.REVIEW,

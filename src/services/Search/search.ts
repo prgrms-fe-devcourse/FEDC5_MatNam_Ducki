@@ -24,7 +24,20 @@ export const searchAll = async (query: string) => {
       ENDPOINT.SEARCH.ALL(query),
     );
 
-    return response;
+    const userData: User[] = [];
+    const postData: Post[] = [];
+
+    if (Array.isArray(response)) {
+      response.forEach((item) => {
+        if ('fullName' in item) {
+          userData.push(item as User);
+        } else {
+          postData.push(item as Post);
+        }
+      });
+    }
+
+    return { userData, postData };
   } catch (error) {
     console.error(error);
     return null;

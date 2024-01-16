@@ -1,10 +1,6 @@
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-
-import { useSearchAll } from '@/hooks/useSearch';
-import { PATH } from '@/routes/path';
-import { SearchResultType } from '@/types/response';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import HookFormInput from '../Common/HookFormInput';
 import CloseFilledIcon from '../Common/Icons/CloseFilledIcon';
@@ -22,22 +18,28 @@ interface SearchBarValues {
 }
 
 interface SearchBarProps {
+  searchIcon?: React.ReactNode;
+  disabled?: boolean;
+  placeholder?: string;
+  navigatePath?: string;
   onSearchKeyword?: (keyword: string) => void;
-  onSearchResult?: (result: SearchResultType) => void;
 }
 
 export default function SearchBar({
+  searchIcon,
+  disabled = false,
+  placeholder,
+  navigatePath,
   onSearchKeyword,
-  onSearchResult,
 }: SearchBarProps) {
   const { register, handleSubmit, watch, setFocus, resetField, setValue } =
     useForm<SearchBarValues>();
 
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const searchValue = watch('search');
-
-  const { refetch } = useSearchAll(searchValue);
+  const searchKeyword = searchValue?.trim();
 
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('q');
@@ -45,29 +47,20 @@ export default function SearchBar({
   const handleResetValue = () => {
     resetField('search');
     setFocus('search');
-    navigate({ pathname: PATH.SEARCH.MAP });
+    navigate({ pathname });
   };
 
-  const onSubmit: SubmitHandler<SearchBarValues> = async () => {
-    const searchKeyword = searchValue?.trim();
-    if (!searchKeyword) return;
-
-    const { data } = await refetch();
-
-    if (onSearchKeyword) {
-      onSearchKeyword(searchKeyword);
-    }
-
-    if (onSearchResult) {
-      onSearchResult(data ?? null);
-    }
+  const onSubmit: SubmitHandler<SearchBarValues> = () => {
+    onSearchKeyword?.(searchKeyword);
   };
 
   useEffect(() => {
-    if (searchValue != null) {
-      navigate({ pathname: PATH.SEARCH.MAP, search: `?q=${searchValue}` });
+    if (searchKeyword === '') {
+      navigate({ pathname });
+    } else if (searchKeyword != null) {
+      navigate({ pathname, search: `?q=${searchKeyword}` });
     }
-  }, [searchValue]);
+  }, [searchKeyword]);
 
   useEffect(() => {
     if (searchQuery != null) {
@@ -76,21 +69,25 @@ export default function SearchBar({
   }, [searchQuery]);
 
   useEffect(() => {
-    if (searchQuery && onSearchKeyword) {
-      onSearchKeyword(searchQuery);
+    if (searchQuery != null) {
+      onSearchKeyword?.(searchQuery);
     }
   }, []);
 
+  const handleFormClick = () => {
+    if (navigatePath) {
+      navigate(navigatePath);
+    }
+  };
+
   return (
-    <SearchForm onSubmit={handleSubmit(onSubmit)}>
-      <SearchButton>
-        <PlaceIcon />
-      </SearchButton>
+    <SearchForm onSubmit={handleSubmit(onSubmit)} onClick={handleFormClick}>
+      <SearchButton>{searchIcon ?? <PlaceIcon />}</SearchButton>
       <HookFormInput
         name="search"
         register={register}
-        placeholder="맛집 검색"
-        autoFocus
+        placeholder={placeholder ?? '맛집 후기를 검색해 보세요!'}
+        autoFocus={!disabled}
         css={inputStyle}
       />
       <SearchCloseButton>

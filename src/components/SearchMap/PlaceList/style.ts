@@ -4,6 +4,7 @@ export const PlaceListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   margin-top: 4rem;
+  height: 100%;
 `;
 
 export const PlaceItem = styled.li`
@@ -55,13 +56,4 @@ export const AddressTag = styled.span`
 
 export const PhoneNumber = styled.span`
   color: #0f6fff;
-`;
-
-export const EmptySearchResult = styled.span`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: auto;
-  color: ${({ theme }) => theme.colors.gray};
 `;

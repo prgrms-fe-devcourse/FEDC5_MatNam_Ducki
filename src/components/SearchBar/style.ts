@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 export const SearchForm = styled.form`
   width: 100%;
+  max-width: 375px;
   display: flex;
   align-items: center;
   position: relative;
@@ -32,6 +33,7 @@ export const inputStyle = css`
   border: 1px solid #ddd;
   border-radius: 1.4rem;
   padding: 1rem 4.6rem 1rem;
+  background-color: #fbfbfb;
 `;
 
 export const closeFilledIconStyle = css`
