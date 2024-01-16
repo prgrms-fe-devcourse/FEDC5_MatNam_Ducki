@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useCheckAuthUser } from '@/hooks/useAuth';
+import { PATH } from '@/routes/path';
 
 export const useRedirectToProfile = () => {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ export const useRedirectToProfile = () => {
 
   const redirectToProfile = (id?: string) => {
     if (id && id !== authUser?._id) {
-      navigate(`/profile/${id}`);
+      navigate(`${PATH.PROFILE}/${id}`);
     }
   };
 
