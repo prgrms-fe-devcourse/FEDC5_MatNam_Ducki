@@ -38,3 +38,15 @@ export const useLike = ({
     mutationFn: isLike ? () => createLike(postId) : () => deleteLike(postId),
   });
 };
+
+export const useCreateLike = ({ postId }: { postId: string }) => {
+  return useMutation({
+    mutationFn: () => createLike(postId),
+  });
+};
+
+export const useDeleteLike = () => {
+  return useMutation({
+    mutationFn: deleteLike,
+  });
+};
