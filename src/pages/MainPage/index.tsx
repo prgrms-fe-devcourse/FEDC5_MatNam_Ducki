@@ -7,6 +7,7 @@ import BottomNavBar from '@/components/BottomNavBar';
 import ErrorFallback from '@/components/Common/ErrorFallback';
 import ModalContainer from '@/components/Common/Modal/ModalContainer';
 import Spinner from '@/components/Common/Spinner';
+import TitleHeader from '@/components/Common/TitleHeader';
 import { ACCESS_TOKEN_KEY } from '@/constants/api';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { userAtom } from '@/recoil/user';
@@ -31,6 +32,7 @@ export default function MainPage() {
     <MainPageWrapper>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Suspense fallback={<Spinner />}>
+          <TitleHeader />
           <ContentWrapper>
             <Outlet />
           </ContentWrapper>
