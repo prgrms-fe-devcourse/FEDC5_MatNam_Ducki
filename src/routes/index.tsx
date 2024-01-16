@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import DirectMessagePage from '@/pages/DirectMessagePage';
+import DetailMessagePage from '@/pages/DirectMessagePage/DetailMessagePage';
 import MainPage from '@/pages/MainPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import ReviewDetail from '@/pages/ReviewDetailPage';
@@ -69,6 +71,14 @@ export const router = createBrowserRouter([
       {
         path: PATH.NOTIFICATION,
         element: <NotificationPage />,
+      },
+      {
+        path: PATH.DIRECTMESSAGE,
+        element: <DirectMessagePage />,
+      },
+      {
+        path: `${PATH.DIRECTMESSAGE}/:userId`,
+        element: <DetailMessagePage />,
       },
       {
         path: PATH.NOTFOUND,

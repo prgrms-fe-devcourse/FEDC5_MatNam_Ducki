@@ -56,4 +56,12 @@ export const ENDPOINT = {
     SEEN: '/notifications/seen',
     CREATE: '/notifications/create',
   },
+
+  /* message */
+  MESSAGES: {
+    ALL: '/messages/conversations',
+    USER: '/messages',
+    CREATE: '/messages/create',
+    UPDATE_SEEN: '/messages/update-seen',
+  },
 };
