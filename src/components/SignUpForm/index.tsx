@@ -26,6 +26,8 @@ interface SignUpValues {
   passwordCheck: string;
 }
 
+type SignUpSubmitValues = Omit<SignUpValues, 'passwordCheck'>;
+
 export default function SignUpForm() {
   const { register, handleSubmit, watch, formState } = useForm<SignUpValues>({
     mode: 'onChange',
@@ -46,11 +48,8 @@ export default function SignUpForm() {
 
   const { mutate } = useSignUp({ onSuccess: handleSignUpSuccess });
 
-  const onSubmit: SubmitHandler<SignUpValues> = ({
-    passwordCheck,
-    ...signUpInput
-  }) => {
-    mutate(signUpInput);
+  const onSubmit: SubmitHandler<SignUpSubmitValues> = (data) => {
+    mutate(data);
   };
 
   const password = watch('password');

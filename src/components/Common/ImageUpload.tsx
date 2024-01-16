@@ -1,9 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { useModal } from '@/hooks/useModal';
-import { ModalType } from '@/types/modal';
-
 interface ImageUploadProps {
   onFileChange: (file: File | null) => void;
   image: string | null;
@@ -68,12 +65,6 @@ export default function ImageUpload({
     image || null,
   );
 
-  const { openModal } = useModal();
-
-  const handleOpenModal = () => {
-    openModal({ type: ModalType.CHANGE_IMAGE });
-  };
-
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageFilesChange = (
@@ -87,20 +78,6 @@ export default function ImageUpload({
     const fileURL = URL.createObjectURL(file);
     setSelectedImage(fileURL);
     onFileChange(file); // 선택된 파일을 외부로 전달
-  };
-
-  const handleImageRemove = () => {
-    if (selectedImage) {
-      URL.revokeObjectURL(selectedImage);
-      setSelectedImage(null);
-    }
-
-    // 'current'가 존재하는지 확인 후, input의 value를 리셋하여 같은 파일이 다시 업로드될 수 있게 합니다.
-    if (imageInputRef.current) {
-      imageInputRef.current.value = '';
-    }
-
-    onFileChange(null); // 이미지 제거 시 외부에 null을 전달
   };
 
   const handleImageUpdate = () => {

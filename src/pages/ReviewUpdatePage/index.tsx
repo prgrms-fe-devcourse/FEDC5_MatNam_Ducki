@@ -43,7 +43,7 @@ export default function ReviewPage() {
   const location = prevLocation;
   const [openingTime, handleOpeningTime] = useInput(prevOpeningTime);
   const [channelId, setChannelId] = useState(prevChannel._id);
-  const [image, setImage] = useState<string | null>(prevPostImageUrl);
+  const [image] = useState<string | null>(prevPostImageUrl);
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (file: File | null) => {
