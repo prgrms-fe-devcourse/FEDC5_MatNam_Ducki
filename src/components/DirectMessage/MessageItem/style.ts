@@ -36,7 +36,6 @@ export const SenderMessageWrapper = styled.li`
   display: flex;
   justify-content: end;
   align-items: end;
-  gap: 1rem;
 `;
 
 export const SenderMessage = styled.div`
@@ -47,8 +46,15 @@ export const SenderMessage = styled.div`
   color: ${theme.colors.whitePrimary};
 `;
 
-export const CreatedTime = styled.span`
+export const CreatedTimeText = styled.span`
   color: ${theme.colors.gray};
+  font-size: 1.2rem;
+  padding: 0 1rem;
+`;
+
+export const SeenText = styled.span`
+  color: ${theme.colors.gray};
+  font-weight: ${theme.fontWeight.semiBold};
   font-size: 1.2rem;
 `;
 
