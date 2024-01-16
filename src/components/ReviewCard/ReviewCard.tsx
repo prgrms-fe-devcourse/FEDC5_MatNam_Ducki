@@ -1,5 +1,6 @@
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
+import ThumbsUpIcon from '../Common/Icons/ThumbsUpIcon';
 import {
   ElaspedTime,
   LikeContainer,
@@ -23,6 +24,7 @@ interface ReviewCardProps extends React.ComponentProps<'div'> {
   createdAt: string;
   width?: string;
   likes: number;
+  channelId: string;
 }
 
 /**
@@ -43,13 +45,17 @@ export const ReviewCard = ({
   profileName,
   createdAt,
   likes,
+  channelId,
   width = '100%',
   ...props
 }: ReviewCardProps) => {
   return (
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
-        <ProfileNickname>{profileName}</ProfileNickname>
+        <ProfileNickname>
+          {profileName}
+          <ThumbsUpIcon />
+        </ProfileNickname>
         <ElaspedTime>{getElapsedTime(createdAt)}</ElaspedTime>
       </ReviewCardHeader>
       <ReviewCardBody>

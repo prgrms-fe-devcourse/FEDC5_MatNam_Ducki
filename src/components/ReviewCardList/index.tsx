@@ -26,6 +26,7 @@ export const ReviewCardList = ({ posts }: PostListProps) => {
           review={post.review}
           createdAt={post.createdAt}
           likes={post.likes.length}
+          channelId={post.channel._id}
           onClick={() => navigate(`${PATH.REVIEWDETAIL}/${post._id}`)}
         />
       ))}
