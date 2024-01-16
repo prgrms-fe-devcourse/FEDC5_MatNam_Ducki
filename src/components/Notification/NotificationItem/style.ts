@@ -1,18 +1,44 @@
 import styled from '@emotion/styled';
 
+import { theme } from '@/styles/Theme';
+
 export const NotificationItemContainer = styled.li`
   display: flex;
+  flex-grow: 1;
   cursor: pointer;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 2rem 3rem;
-  border: 1px solid #e2e2e2;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem #e2e2e2;
-  background-color: #ffa614;
+  gap: 0.5rem;
 
   &:active {
     transform: scale(1.01);
   }
+`;
+
+export const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const MessageWrapper = styled.div`
+  font-size: 1.3rem;
+  width: 21rem;
+`;
+
+export const UserWrapper = styled.span`
+  font-weight: ${theme.fontWeight.bold};
+`;
+
+export const AuthorWrapper = styled.span`
+  font-weight: ${theme.fontWeight.semiBold};
+`;
+
+export const ContentWrapper = styled.span`
+  font-weight: ${theme.fontWeight.medium};
+`;
+
+export const TimeWrapper = styled.span`
+  font-size: 1.1rem;
+  color: ${theme.colors.gray};
 `;

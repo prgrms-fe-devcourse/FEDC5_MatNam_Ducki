@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import NotificationList from '@/components/Notification/NotificationList';
-import { useGetNotifications } from '@/hooks/useNotification';
+import {
+  useGetNotifications,
+  useSeenNotifications,
+} from '@/hooks/useNotification';
 import { userAtom } from '@/recoil/user';
 import { PATH } from '@/routes/path';
 
@@ -13,7 +16,11 @@ export default function NotificationPage() {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
 
-  console.log(user);
+  const { mutate: seenNotifications } = useSeenNotifications();
+
+  useEffect(() => {
+    seenNotifications();
+  }, []);
 
   useEffect(() => {
     if (!user) {

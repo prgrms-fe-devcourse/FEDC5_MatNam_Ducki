@@ -24,9 +24,13 @@ export const useGetNotifications = (user: User) => {
 };
 
 export const useSeenNotifications = () => {
-  return useMutation(seenNotifications);
+  return useMutation({
+    mutationFn: seenNotifications,
+  });
 };
 
 export const useSendNotifications = () => {
-  return useMutation(sendNotifications);
+  return useMutation({
+    mutationFn: sendNotifications,
+  });
 };
