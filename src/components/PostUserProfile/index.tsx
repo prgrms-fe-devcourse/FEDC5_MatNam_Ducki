@@ -49,7 +49,7 @@ export default function PostUserProfile() {
           <UserWrapper>
             <Label>자기소개</Label>
             <IntroductionWrapper>
-              <Introduction>만나서 반갑습니다.</Introduction>
+              <Introduction>{user.username}</Introduction>
               <IntroductionBar />
             </IntroductionWrapper>
             <SelectorWrapper>
