@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector';
@@ -15,6 +16,7 @@ import {
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useChangeIntroduce } from '@/hooks/useGetProfile';
 import { useChangeImage } from '@/hooks/useGetProfile';
+import { selectedFileAtom } from '@/recoil/selectedFile';
 
 import {
   ImageWrapper,
@@ -29,7 +31,8 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [introduction, setIntroduction] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { changeImage } = useChangeImage(setIsLoading);
+  const setSelectedFile = useSetRecoilState(selectedFileAtom);
+  const { changeImage } = useChangeImage(setIsLoading, setSelectedFile);
   const { data: authUser } = useCheckAuthUser();
   const params = useParams();
   const userId = params.userId;
