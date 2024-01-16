@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import SearchBar from '@/components/SearchBar';
 import { useSignIn, useSignOut } from '@/hooks/useAuth';
 import { useModal } from '@/hooks/useModal';
+import { PATH } from '@/routes/path';
 import { ModalType } from '@/types/modal';
 
 export default function TestPage() {
@@ -49,7 +50,7 @@ export default function TestPage() {
 
   return (
     <MainPageWrapper>
-      <SearchBar disabled />
+      <SearchBar disabled navigatePath={PATH.SEARCH.POST} />
       <TestButton onClick={handleSignIn}>테스트 계정 로그인</TestButton>
       <TestButton onClick={handleSignOut}>테스트 계정 로그아웃</TestButton>
       <TestButton onClick={handleOpenModal}>이미지 변경 모달 열기</TestButton>

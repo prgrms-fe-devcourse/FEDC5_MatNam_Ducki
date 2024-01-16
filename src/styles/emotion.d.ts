@@ -10,6 +10,7 @@ declare module '@emotion/react' {
       accent: string;
       gray: string;
       lightGray: string;
+      green: string;
     };
     size: {
       xSmall: string;
