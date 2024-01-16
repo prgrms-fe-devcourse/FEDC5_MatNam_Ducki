@@ -18,6 +18,10 @@ export const ReviewCardHeader = styled.div`
 `;
 
 export const ProfileNickname = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   cursor: pointer;
 `;
 

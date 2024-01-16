@@ -1,5 +1,6 @@
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
+import ThumbsDownIcon from '../Common/Icons/ThumbsDownIcon';
 import ThumbsUpIcon from '../Common/Icons/ThumbsUpIcon';
 import {
   ElaspedTime,
@@ -54,7 +55,11 @@ export const ReviewCard = ({
       <ReviewCardHeader>
         <ProfileNickname>
           {profileName}
-          <ThumbsUpIcon />
+          {channelId === '65a67d71231c3e492734777f' ? (
+            <ThumbsUpIcon />
+          ) : (
+            <ThumbsDownIcon />
+          )}
         </ProfileNickname>
         <ElaspedTime>{getElapsedTime(createdAt)}</ElaspedTime>
       </ReviewCardHeader>
