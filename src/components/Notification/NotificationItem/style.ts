@@ -10,8 +10,8 @@ export const NotificationItemContainer = styled.li`
   justify-content: space-between;
   gap: 0.5rem;
 
-  &:active {
-    transform: scale(1.01);
+  &:hover {
+    background-color: ${theme.colors.whitePrimary};
   }
 `;
 
