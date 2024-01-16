@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetDetail, useLike } from '@/hooks/ReviewDetail';
+import {
+  useCreateLike,
+  useDeleteLike,
+  useGetDetail,
+} from '@/hooks/ReviewDetail';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { theme } from '@/styles/Theme';
 
@@ -17,7 +21,8 @@ export default function EvaluationSection() {
   const [likeCount, setLikeCount] = useState(postData!.likes.length);
   const [timer, setTimer] = useState(0);
 
-  const { mutate } = useLike({ postId, isLike });
+  const { mutate: createMutate } = useCreateLike({ postId });
+  const { mutate: deleteMutate } = useDeleteLike();
 
   //최초 렌더링시 좋아요 체크
   useEffect(() => {
@@ -33,8 +38,11 @@ export default function EvaluationSection() {
 
     if (timer) clearTimeout(timer);
     const newTimer = window.setTimeout(() => {
-      postData?.likes.some((like) => like?.user === userData?._id) === isLike &&
-        mutate();
+      const likeId = postData?.likes.find(
+        (like) => like.user === userData?._id,
+      );
+
+      isLike ? likeId && deleteMutate(likeId._id) : !likeId && createMutate();
     }, 500);
 
     setTimer(newTimer);
