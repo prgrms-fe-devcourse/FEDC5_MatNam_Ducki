@@ -38,5 +38,5 @@ export const CloseButton = styled.button`
 export const Modal = styled.div`
   width: 100%;
   background-color: rgb(255, 255, 255);
-  border-radius: 0.4rem;
+  border-radius: 1rem;
 `;
