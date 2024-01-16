@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
+import Button from '@/components/Common/Button/Button';
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector';
 import PostUserProfile from '@/components/PostUserProfile';
@@ -15,9 +16,11 @@ import {
   PLACEHOLDER_DEFAULTS,
 } from '@/constants/profile';
 import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useSignOut } from '@/hooks/useAuth';
 import { useChangeIntroduce } from '@/hooks/useGetProfile';
 import { useChangeImage } from '@/hooks/useGetProfile';
 import { selectedFileAtom } from '@/recoil/selectedFile';
+import { theme } from '@/styles/Theme';
 
 import {
   ImageWrapper,
@@ -39,6 +42,8 @@ export default function ProfilePage() {
   const userId = params.userId;
   const navigate = useNavigate();
   const { changeIntroduce } = useChangeIntroduce();
+
+  const { mutate: signOut } = useSignOut();
 
   useEffect(() => {
     if (authUser) {
@@ -69,6 +74,14 @@ export default function ProfilePage() {
 
     if (authUser) {
       changeIntroduce({ fullName: authUser.fullName, username: introduction });
+    }
+  };
+
+  const handleLogOutButtonClick = () => {
+    const confirm = window.confirm('로그아웃 하시겠습니까?');
+    if (confirm) {
+      signOut();
+      navigate('/');
     }
   };
 
@@ -127,6 +140,16 @@ export default function ProfilePage() {
                   userName={authUser.fullName}
                   userId={authUser.email}
                 />
+                <Button
+                  onClick={handleLogOutButtonClick}
+                  style={{ marginLeft: '2rem', marginTop: '4rem' }}
+                  width="60px"
+                  backgroundColor={theme.colors.lightGray}
+                  height="35px"
+                  textColor={theme.colors.gray}
+                  borderRadius="19px">
+                  로그아웃
+                </Button>
               </UserInfoWrapper>
             </ProfileBackGroundImage>
             <UserWrapper>
