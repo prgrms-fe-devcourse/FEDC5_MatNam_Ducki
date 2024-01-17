@@ -3,7 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { PATH } from '@/routes/path';
 
 import ChevronLeftIcon from '../Icons/ChevronLeftIcon';
-import { IconWrapper, StyledTitleHeader, Title } from './style';
+import LogoIcon from '../Icons/LogoIcon';
+import {
+  IconWrapper,
+  LogoWrapper,
+  StyledTitleHeader,
+  Title,
+  TitleWrapper,
+} from './style';
 
 export default function TitleHeader() {
   const navigate = useNavigate();
@@ -62,8 +69,14 @@ export default function TitleHeader() {
           <ChevronLeftIcon />
         </IconWrapper>
       )}
-
-      <Title>{Header.title}</Title>
+      {Header.title && (
+        <TitleWrapper>
+          <LogoWrapper>
+            <LogoIcon width={20} height={20} />
+          </LogoWrapper>
+          <Title>{Header.title}</Title>
+        </TitleWrapper>
+      )}
     </StyledTitleHeader>
   );
 }
