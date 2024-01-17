@@ -120,9 +120,9 @@ export default function HookFormInput<T extends FieldValues>({
           tabIndex={-1}
           onClick={handleToggleType}>
           {inputType === 'password' ? (
-            <VisibilityIcon />
-          ) : (
             <VisibilityOffIcon />
+          ) : (
+            <VisibilityIcon />
           )}
         </TogglePasswordButton>
       )}
