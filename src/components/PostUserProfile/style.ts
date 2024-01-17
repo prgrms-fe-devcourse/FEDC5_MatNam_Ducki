@@ -4,7 +4,9 @@ import { PROFILE_BACKGROUND_IMAGE } from '@/constants/profile';
 import { theme } from '@/styles/Theme';
 
 export const ProfileWrapper = styled.div`
-  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 `;
 
 export const ProfileBackGroundImage = styled.div`
@@ -15,20 +17,12 @@ export const ProfileBackGroundImage = styled.div`
 
 export const UserInfoWrapper = styled.div`
   display: flex;
-  padding-top: 14rem;
-  width: 100%;
 `;
 
 export const UserWrapper = styled.div`
   display: flex;
-  gap: 1rem;
   flex-direction: column;
-  margin: 3rem 2rem 0 2rem;
-`;
-
-export const ImageWrapper = styled.div`
-  margin-top: 1.2rem;
-  margin-left: 2rem;
+  gap: 1.5rem;
 `;
 
 export const Label = styled.span`
@@ -40,12 +34,11 @@ export const IntroductionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1rem;
+  gap: 1.5rem;
 `;
 
 export const Introduction = styled.span`
-  margin-top: 0.6rem;
-  line-height: 2.08rem;
+  line-height: 2rem;
   box-sizing: border-box;
 `;
 
@@ -53,16 +46,20 @@ export const IntroductionBar = styled.div`
   border-bottom: 1px solid ${theme.colors.lightGray};
 `;
 
-export const SelectorWrapper = styled.div`
-  text-align: center;
-  margin-top: 2rem;
+export const UserProfile = styled.div`
   display: flex;
-  border-radius: 1rem;
-  height: 4rem;
   align-items: center;
+  gap: 2rem;
+  padding-top: 14rem;
+`;
+
+export const PostWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
 export const PostsTitle = styled.div`
-  font-size: ${theme.size.large};
+  font-size: ${theme.size.medium};
   font-weight: ${theme.fontWeight.bold};
 `;

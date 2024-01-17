@@ -4,7 +4,7 @@ import { PATH } from '@/routes/path';
 import { Post } from '@/types/response';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
-import { ReviewCardListWrapper } from './style';
+import { EmptyPostTitle, ReviewCardListWrapper } from './style';
 
 interface PostListProps {
   posts: Post[] | null;
@@ -12,7 +12,7 @@ interface PostListProps {
 
 export const ReviewCardList = ({ posts }: PostListProps) => {
   const navigate = useNavigate();
-  if (!posts) return <div>Post가 없습니다</div>;
+  if (!posts) return <EmptyPostTitle>작성된 리뷰가 없습니다.</EmptyPostTitle>;
 
   return (
     <ReviewCardListWrapper>
