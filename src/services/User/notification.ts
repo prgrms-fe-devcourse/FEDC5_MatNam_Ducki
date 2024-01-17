@@ -6,7 +6,7 @@ import { ENDPOINT } from '../endPoint';
 
 export const getNotifications = async () => {
   try {
-    const response = await axiosAuthInstance.delete<Notification>(
+    const response = await axiosAuthInstance.get<Notification[]>(
       ENDPOINT.NOTIFICATIONS.ALL,
     );
 

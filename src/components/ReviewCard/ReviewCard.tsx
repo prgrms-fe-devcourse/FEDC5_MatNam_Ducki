@@ -1,6 +1,11 @@
-import { useRedirectToProfile } from '@/hooks/useRedirectProfile';
+import { useNavigate } from 'react-router-dom';
+
+import { CHANNEL } from '@/constants/channel';
+import { PATH } from '@/routes/path';
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
+import ThumbsDownIcon from '../Common/Icons/ThumbsDownIcon';
+import ThumbsUpIcon from '../Common/Icons/ThumbsUpIcon';
 import {
   ElaspedTime,
   LikeContainer,
@@ -17,11 +22,14 @@ import {
 
 interface ReviewCardProps extends React.ComponentProps<'div'> {
   imageUrl?: string;
-  content: string;
+  restaurant: string;
+  location: string;
+  review: string;
   profileName: string;
   createdAt: string;
   width?: string;
   likes: number;
+  channelId: string;
   id?: string;
 }
 
@@ -37,31 +45,42 @@ interface ReviewCardProps extends React.ComponentProps<'div'> {
 
 export const ReviewCard = ({
   imageUrl,
-  content,
+  restaurant,
+  location,
+  review,
   profileName,
   createdAt,
   likes,
+  channelId,
   width = '100%',
   id,
   ...props
 }: ReviewCardProps) => {
-  const redirectToProfile = useRedirectToProfile();
+  const navigate = useNavigate();
+
   return (
     <ReviewCardContainer width={width} {...props}>
       <ReviewCardHeader>
-        <ProfileNickname onClick={() => redirectToProfile(id)}>
+        <ProfileNickname
+          onClick={(event) => {
+            event.stopPropagation();
+            navigate(`${PATH.PROFILE}/${id}`);
+          }}>
           {profileName}
         </ProfileNickname>
         <ElaspedTime>{getElapsedTime(createdAt)}</ElaspedTime>
       </ReviewCardHeader>
       <ReviewCardBody>
         <ReviewCardInfo>
-          <RestaurantName>나이스 샤워 역삼점</RestaurantName>
+          <RestaurantName>
+            {restaurant}
+            {channelId === CHANNEL.LIKE ? <ThumbsUpIcon /> : <ThumbsDownIcon />}
+          </RestaurantName>
           <LikeContainer>❤ {likes}</LikeContainer>
         </ReviewCardInfo>
-        <RestaurantLocation>서울특별시 강남구</RestaurantLocation>
-        <ReviewCardImage src={imageUrl} />
-        <ReviewCardContents>{content}</ReviewCardContents>
+        <RestaurantLocation>{location}</RestaurantLocation>
+        {imageUrl && <ReviewCardImage src={imageUrl} />}
+        <ReviewCardContents>{review}</ReviewCardContents>
       </ReviewCardBody>
     </ReviewCardContainer>
   );

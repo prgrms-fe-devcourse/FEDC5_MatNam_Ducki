@@ -7,7 +7,7 @@ interface SortOptionProps {
 export const ReviewListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.8rem;
   padding: 2rem;
 `;
 

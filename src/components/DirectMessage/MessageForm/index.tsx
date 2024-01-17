@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import HookFormInput from '@/components/Common/HookFormInput';
 import SendMessageIcon from '@/components/Common/Icons/SendMessageIcon';
 import { useCreateMessage } from '@/hooks/useConversation';
+import { useSendNotifications } from '@/hooks/useNotification';
 
 import {
   BottomGradient,
@@ -12,7 +13,6 @@ import {
   MessageInputWrapper,
   MessageSendButton,
 } from './style';
-import { useSendNotification } from '@/hooks/useNotification';
 
 interface MessageValues {
   message: string;
@@ -35,7 +35,7 @@ export default function MessageForm({
     useForm<MessageValues>();
 
   const { mutateAsync: createMessage } = useCreateMessage();
-  const { mutate: sendNotifications } = useSendNotification();
+  const { mutate: sendNotifications } = useSendNotifications();
 
   const handleResetValue = () => {
     resetField('message');

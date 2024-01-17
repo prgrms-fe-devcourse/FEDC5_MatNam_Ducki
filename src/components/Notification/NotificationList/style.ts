@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-export const ReviewCardListWrapper = styled.div`
+export const NotificationListContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 `;

@@ -8,12 +8,14 @@ import {
   REVIEW_PATH,
 } from '@/constants';
 import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useGetNotifications } from '@/hooks/useNotification';
 
 import MainIcon from '../Common/Icons/MainIcon';
 import MessageIcon from '../Common/Icons/MessageIcon';
 import NotificationIcon from '../Common/Icons/NotificationIcon';
 import ProfileIcon from '../Common/Icons/ProfileIcon';
 import ReviewIcon from '../Common/Icons/ReviewIcon';
+import NotificationBadge from '../Common/NotificationBadge';
 import { BottomNavBarWrapper, LinkWrapper } from './style';
 
 interface PropsBottomNavBar {
@@ -48,6 +50,12 @@ export default function BottomNavBar() {
 
   const { data: authUser } = useCheckAuthUser();
 
+  const { data: notifications } = useGetNotifications(authUser);
+
+  const newNotification = notifications?.filter(
+    (notification) => !notification.seen,
+  );
+
   const navItems: PropsBottomNavBar[] = [
     {
       path: MAIN_PATH,
@@ -63,7 +71,11 @@ export default function BottomNavBar() {
     },
     {
       path: NOTIFICATION_PATH,
-      icon: <NotificationIcon />,
+      icon: (
+        <NotificationBadge count={newNotification?.length} maxCount={99}>
+          <NotificationIcon />
+        </NotificationBadge>
+      ),
     },
     {
       path: `${PROFILE_PATH}/${authUser?._id}`,

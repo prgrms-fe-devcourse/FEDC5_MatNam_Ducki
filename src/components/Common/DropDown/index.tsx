@@ -16,7 +16,7 @@ export default function DropDownContainer({ items }: DropDownContainerProps) {
   const [view, setView] = useState(false);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', cursor: 'pointer' }}>
       <MeatBallMenu onClick={() => setView(!view)} />
       {view && (
         <DropDownWrapper>

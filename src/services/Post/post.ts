@@ -100,6 +100,10 @@ export const createPost = async ({
     });
     const formData = new FormData();
 
+    if (image) {
+      formData.append('image', image);
+    }
+
     formData.append('title', customPost);
     formData.append('channelId', channelId);
 

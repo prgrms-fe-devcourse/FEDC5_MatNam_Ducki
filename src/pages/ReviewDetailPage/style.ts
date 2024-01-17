@@ -96,7 +96,7 @@ export const ReviewHeaderTitleWrapper = styled.div`
 export const ReviewHeaderLeft = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 `;
 
 export const RestaurantName = styled.h3`
