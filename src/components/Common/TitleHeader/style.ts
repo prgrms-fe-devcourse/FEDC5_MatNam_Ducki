@@ -1,12 +1,21 @@
 import styled from '@emotion/styled';
 
 export const StyledTitleHeader = styled.div`
-  margin: 2rem 0;
+  max-width: ${({ theme }) => theme.device.mobile};
+  width: 100%;
+  height: 4rem;
+  background-color: white;
+  opacity: 0.8;
+  margin: 0rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  position: relative;
+  position: sticky;
+  top: 0;
+
+  border-right: 1px solid black;
+  border-left: 1px solid black;
 `;
 
 export const Title = styled.h2`
