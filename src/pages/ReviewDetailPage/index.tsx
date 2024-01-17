@@ -102,7 +102,7 @@ export default function ReviewDetail() {
                   <ThumbsDownIcon />
                 )}
               </ReviewHeaderLeft>
-              {user?.posts.some((post) => post._id === postId) && (
+              {user?.posts?.some((post) => post._id === postId) && (
                 <DropDownContainer items={dropDownItems} />
               )}
             </ReviewHeaderTitleWrapper>
