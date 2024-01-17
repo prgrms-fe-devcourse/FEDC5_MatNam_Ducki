@@ -107,10 +107,6 @@ export const createPost = async ({
     formData.append('title', customPost);
     formData.append('channelId', channelId);
 
-    if (image) {
-      formData.append('image', image);
-    }
-
     await axiosAuthInstance.post(ENDPOINT.POSTS.CREATE, formData);
   } catch (error) {
     console.error(error);
