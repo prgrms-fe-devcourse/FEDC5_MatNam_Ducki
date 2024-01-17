@@ -6,6 +6,7 @@ export const ReviewCardContainer = styled.div<{ width: string }>`
   width: ${({ width }) => width};
   margin: 0 auto;
   border-bottom: 0.1rem solid ${theme.colors.lightGray};
+  cursor: pointer;
 `;
 
 export const ReviewCardHeader = styled.div`

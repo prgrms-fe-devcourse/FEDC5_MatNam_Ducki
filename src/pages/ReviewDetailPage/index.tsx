@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import { Badge } from '@/components/Badge/Badge';
 import BottomNavBar from '@/components/BottomNavBar';
@@ -12,6 +13,7 @@ import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
 import { useGetDetail } from '@/hooks/ReviewDetail';
 import { useDeletePost } from '@/hooks/useDeletePost';
 import { useRedirectToProfile } from '@/hooks/useRedirectProfile';
+import { userAtom } from '@/recoil/user';
 import { PATH } from '@/routes/path';
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
@@ -43,6 +45,9 @@ import {
 
 export default function ReviewDetail() {
   const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
+
+  console.log(user);
 
   const { postId } = useParams() as { postId: string };
 
@@ -71,8 +76,6 @@ export default function ReviewDetail() {
     },
   ];
 
-  console.log(data?.comments);
-
   if (!isLoading && data) {
     return (
       <ReviewDetailPage>
@@ -95,7 +98,9 @@ export default function ReviewDetail() {
                 {/* TODO: API의 좋았어요, 가지마세요에 맞춰서 수정 */}
                 <ThumbsUpIcon />
               </ReviewHeaderLeft>
-              <DropDownContainer items={dropDownItems} />
+              {user?.posts.some((post) => post._id === postId) && (
+                <DropDownContainer items={dropDownItems} />
+              )}
             </ReviewHeaderTitleWrapper>
             <RestaurantLocation>{data.location}</RestaurantLocation>
           </ReviewHeaderWrapper>

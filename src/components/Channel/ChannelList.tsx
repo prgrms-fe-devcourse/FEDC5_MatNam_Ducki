@@ -13,6 +13,7 @@ interface ChannelListProps {
 const ChannelSection = styled.section`
   display: inline-flex;
   gap: 1rem;
+  cursor: pointer;
 `;
 
 export const ChannelList = memo(
