@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useGetPost } from '@/hooks/useGetProfile';
+import { PATH } from '@/routes/path';
 
-import { ReviewCard } from '../ReviewCard/ReviewCard';
+import { MyReview } from '../ReviewCard/MyReview';
 import { EmptyPostTitle, PostWrapper } from './style';
 
 export default function MyPosts() {
+  const navigate = useNavigate();
   const { data: auth } = useCheckAuthUser();
 
   if (!auth) {
-    // auth가 undefined일 아무것도 렌더링하지 않음
     return null;
   }
 
@@ -19,17 +22,16 @@ export default function MyPosts() {
       {posts?.length !== 0 && auth ? (
         <>
           {posts?.map((item) => (
-            <ReviewCard
+            <MyReview
               key={item._id}
               imageUrl={item.image}
-              profileName={auth.fullName}
               restaurant={item.restaurant}
               location={item.location}
               review={item.review}
               likes={item.likes.length}
               channelId={item.channel._id}
-              createdAt={item.createdAt}
               id={auth._id}
+              onClick={() => navigate(`${PATH.REVIEWDETAIL}/${item._id}`)}
             />
           ))}
         </>
