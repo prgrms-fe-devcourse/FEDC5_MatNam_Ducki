@@ -1,3 +1,4 @@
+import LikeIcon from '@/components/Common/Icons/LikeIcon';
 import ThumbsDownIcon from '@/components/Common/Icons/ThumbsDownIcon';
 import ThumbsUpIcon from '@/components/Common/Icons/ThumbsUpIcon';
 import { CHANNEL } from '@/constants/channel';
@@ -51,7 +52,9 @@ export const MyReview = ({
             {restaurant}
             {channelId === CHANNEL.LIKE ? <ThumbsUpIcon /> : <ThumbsDownIcon />}
           </RestaurantName>
-          <LikeContainer>❤ {likes}</LikeContainer>
+          <LikeContainer>
+            <LikeIcon fill={'#EEA734'} /> {likes}
+          </LikeContainer>
         </ReviewCardInfo>
         <RestaurantLocation>{location}</RestaurantLocation>
         {imageUrl && <ReviewCardImage src={imageUrl} />}

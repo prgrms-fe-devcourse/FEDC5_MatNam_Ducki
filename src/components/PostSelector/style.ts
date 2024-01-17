@@ -12,7 +12,7 @@ export const SelectorWrapper = styled.div`
 export const MyPostWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
 `;
 
 export const MyPostsTitle = styled.div<{ isLikesSelected: boolean }>`

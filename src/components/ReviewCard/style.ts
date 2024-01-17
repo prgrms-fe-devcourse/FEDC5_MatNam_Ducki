@@ -10,7 +10,6 @@ export const ReviewCardContainer = styled.div<{ width: string }>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1rem 0;
 `;
 
 export const ReviewCardHeader = styled.div`
@@ -66,7 +65,12 @@ export const RestaurantName = styled.span`
   font-weight: bold;
 `;
 
-export const LikeContainer = styled.span``;
+export const LikeContainer = styled.span`
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  font-size: ${theme.size.medium};
+`;
 
 export const RestaurantLocation = styled.span`
   color: ${theme.colors.gray};

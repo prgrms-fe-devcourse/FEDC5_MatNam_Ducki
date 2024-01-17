@@ -5,6 +5,7 @@ import { theme } from '@/styles/Theme';
 export const PostWrapper = styled.div``;
 
 export const EmptyPostTitle = styled.div`
-  margin-left: 1rem;
   color: ${theme.colors.gray};
+  font-size: ${theme.size.medium};
+  font-weight: ${theme.fontWeight.bold};
 `;

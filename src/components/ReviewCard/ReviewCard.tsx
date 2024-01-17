@@ -4,6 +4,7 @@ import { CHANNEL } from '@/constants/channel';
 import { PATH } from '@/routes/path';
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
+import LikeIcon from '../Common/Icons/LikeIcon';
 import ThumbsDownIcon from '../Common/Icons/ThumbsDownIcon';
 import ThumbsUpIcon from '../Common/Icons/ThumbsUpIcon';
 import {
@@ -76,7 +77,9 @@ export const ReviewCard = ({
             {restaurant}
             {channelId === CHANNEL.LIKE ? <ThumbsUpIcon /> : <ThumbsDownIcon />}
           </RestaurantName>
-          <LikeContainer>❤ {likes}</LikeContainer>
+          <LikeContainer>
+            <LikeIcon fill={'#EEA734'} /> {likes}
+          </LikeContainer>
         </ReviewCardInfo>
         <RestaurantLocation>{location}</RestaurantLocation>
         {imageUrl && <ReviewCardImage src={imageUrl} />}
