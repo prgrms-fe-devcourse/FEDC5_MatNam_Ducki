@@ -3,10 +3,13 @@ import styled from '@emotion/styled';
 import { theme } from '@/styles/Theme';
 
 export const PostWrapper = styled.div`
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 `;
 
 export const EmptyPostTitle = styled.div`
-  margin-left: 1rem;
   color: ${theme.colors.gray};
+  font-size: ${theme.size.medium};
+  font-weight: ${theme.fontWeight.bold};
 `;

@@ -1,37 +1,27 @@
-import { useNavigate } from 'react-router-dom';
-
+import LikeIcon from '@/components/Common/Icons/LikeIcon';
+import ThumbsDownIcon from '@/components/Common/Icons/ThumbsDownIcon';
+import ThumbsUpIcon from '@/components/Common/Icons/ThumbsUpIcon';
 import { CHANNEL } from '@/constants/channel';
-import { PATH } from '@/routes/path';
-import { getElapsedTime } from '@/utils/getElapsedTime';
 
-import LikeIcon from '../Common/Icons/LikeIcon';
-import ThumbsDownIcon from '../Common/Icons/ThumbsDownIcon';
-import ThumbsUpIcon from '../Common/Icons/ThumbsUpIcon';
 import {
-  ElaspedTime,
   LikeContainer,
-  ProfileNickname,
   RestaurantLocation,
   RestaurantName,
   ReviewCardBody,
   ReviewCardContainer,
   ReviewCardContents,
-  ReviewCardHeader,
   ReviewCardImage,
   ReviewCardInfo,
-} from './style';
+} from '../style';
 
-interface ReviewCardProps extends React.ComponentProps<'div'> {
+interface MyReviewProps extends React.ComponentProps<'div'> {
   imageUrl?: string;
   restaurant: string;
   location: string;
   review: string;
-  profileName: string;
-  createdAt: string;
   width?: string;
   likes: number;
   channelId: string;
-  id?: string;
 }
 
 /**
@@ -44,33 +34,18 @@ interface ReviewCardProps extends React.ComponentProps<'div'> {
  * @param {string} width - 리뷰 카드 너비
  */
 
-export const ReviewCard = ({
+export const MyReview = ({
   imageUrl,
   restaurant,
   location,
   review,
-  profileName,
-  createdAt,
   likes,
   channelId,
   width = '100%',
-  id,
   ...props
-}: ReviewCardProps) => {
-  const navigate = useNavigate();
-
+}: MyReviewProps) => {
   return (
     <ReviewCardContainer width={width} {...props}>
-      <ReviewCardHeader>
-        <ProfileNickname
-          onClick={(event) => {
-            event.stopPropagation();
-            navigate(`${PATH.PROFILE}/${id}`);
-          }}>
-          {profileName}
-        </ProfileNickname>
-        <ElaspedTime>{getElapsedTime(createdAt)}</ElaspedTime>
-      </ReviewCardHeader>
       <ReviewCardBody>
         <ReviewCardInfo>
           <RestaurantName>
