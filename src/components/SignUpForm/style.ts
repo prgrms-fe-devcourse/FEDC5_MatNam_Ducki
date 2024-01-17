@@ -10,7 +10,7 @@ export const FormWrapper = styled.form`
 export const InputListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
   margin: 4rem 0;
 `;
 

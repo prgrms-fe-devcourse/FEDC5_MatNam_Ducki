@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 
-export const SignInPageContainer = styled.div``;
+export const SignInPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 
 export const GuideContainer = styled.div`
   display: flex;
