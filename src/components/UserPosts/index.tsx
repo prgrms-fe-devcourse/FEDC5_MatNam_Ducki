@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useGetPost } from '@/hooks/useGetProfile';
+import { PATH } from '@/routes/path';
 
 import { MyReview } from '../ReviewCard/MyReview';
 import { EmptyPostTitle, PostWrapper } from './style';
@@ -8,6 +11,7 @@ interface PropsUserPosts {
 }
 
 export default function UserPosts({ userId }: PropsUserPosts) {
+  const navigate = useNavigate();
   const { data: userPost } = useGetPost(userId);
 
   if (!userPost) {
@@ -25,6 +29,7 @@ export default function UserPosts({ userId }: PropsUserPosts) {
           review={item.review}
           channelId={item.channel._id}
           id={item.author._id}
+          onClick={() => navigate(`${PATH.REVIEWDETAIL}/${item._id}`)}
         />
       ))}
     </PostWrapper>
