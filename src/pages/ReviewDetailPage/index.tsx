@@ -7,9 +7,11 @@ import BottomNavBar from '@/components/BottomNavBar';
 import Avatar from '@/components/Common/Avatar';
 import DropDownContainer from '@/components/Common/DropDown';
 import ClockIcon from '@/components/Common/Icons/ClockIcon';
+import ThumbsDownIcon from '@/components/Common/Icons/ThumbsDownIcon';
 import ThumbsUpIcon from '@/components/Common/Icons/ThumbsUpIcon';
 import CommentInput from '@/components/ReviewDetail/CommentInput';
 import EvaluationSection from '@/components/ReviewDetail/EvaluationSection';
+import { CHANNEL } from '@/constants/channel';
 import { useGetDetail } from '@/hooks/ReviewDetail';
 import { useDeletePost } from '@/hooks/useDeletePost';
 import { useRedirectToProfile } from '@/hooks/useRedirectProfile';
@@ -46,8 +48,6 @@ import {
 export default function ReviewDetail() {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
-
-  console.log(user);
 
   const { postId } = useParams() as { postId: string };
 
@@ -95,8 +95,11 @@ export default function ReviewDetail() {
               <ReviewHeaderLeft>
                 <RestaurantName>{data.restaurant}</RestaurantName>
 
-                {/* TODO: API의 좋았어요, 가지마세요에 맞춰서 수정 */}
-                <ThumbsUpIcon />
+                {data.channel._id === CHANNEL.LIKE ? (
+                  <ThumbsUpIcon />
+                ) : (
+                  <ThumbsDownIcon />
+                )}
               </ReviewHeaderLeft>
               {user?.posts.some((post) => post._id === postId) && (
                 <DropDownContainer items={dropDownItems} />
@@ -109,7 +112,7 @@ export default function ReviewDetail() {
             영업시간
           </OpeningTitle>
           <RestaurantOpeningTime>{data.openingTime}</RestaurantOpeningTime>
-          <ReviewImage src={data.image}></ReviewImage>
+          {data.image && <ReviewImage src={data.image}></ReviewImage>}
           <ReviewContent>{data.review}</ReviewContent>
         </ReviewWrapper>
         <EvaluationSection />

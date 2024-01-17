@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
+import { CHANNEL } from '@/constants/channel';
 import { PATH } from '@/routes/path';
 import { getElapsedTime } from '@/utils/getElapsedTime';
 
@@ -73,20 +74,13 @@ export const ReviewCard = ({
         <ReviewCardInfo>
           <RestaurantName>
             {restaurant}
-            {channelId === '65a67d71231c3e492734777f' ? (
-              <ThumbsUpIcon />
-            ) : (
-              <ThumbsDownIcon />
-            )}
+            {channelId === CHANNEL.LIKE ? <ThumbsUpIcon /> : <ThumbsDownIcon />}
           </RestaurantName>
           <LikeContainer>❤ {likes}</LikeContainer>
         </ReviewCardInfo>
         <RestaurantLocation>{location}</RestaurantLocation>
         {imageUrl && <ReviewCardImage src={imageUrl} />}
-        <ReviewCardContents>
-          {review}
-          ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-        </ReviewCardContents>
+        <ReviewCardContents>{review}</ReviewCardContents>
       </ReviewCardBody>
     </ReviewCardContainer>
   );
