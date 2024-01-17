@@ -20,6 +20,8 @@ export default function SearchPostPage() {
 
   const postResult = data?.postData ?? [];
 
+  console.log(data);
+
   useEffect(() => {
     if (searchKeyword) {
       refetch();
