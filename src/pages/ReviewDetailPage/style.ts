@@ -41,8 +41,6 @@ export const CommentList = styled.div`
 `;
 
 export const CommentBox = styled.div`
-  padding: 1rem;
-
   border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -64,14 +62,19 @@ export const WriterWrapper = styled.div`
 
 export const CommentCreatedTime = styled.span`
   color: ${({ theme }) => theme.colors.gray};
+  font-size: 1.4rem;
 `;
 
 export const Comment = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   color: ${({ theme }) => theme.colors.gray};
+  font-size: 1.5rem;
+  padding: 0 1rem;
 `;
 
-export const CommentUserName = styled.h3``;
+export const CommentUserName = styled.h3`
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+`;
 
 export const ReviewWrapper = styled.div``;
 

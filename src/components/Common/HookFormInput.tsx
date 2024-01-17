@@ -111,7 +111,7 @@ export default function HookFormInput<T extends FieldValues>({
           ...validation,
           required: required && '값이 입력되지 않았어요',
         })}
-        autoComplete="off"
+        autoComplete="true"
         {...props}
       />
       {type === 'password' && (
