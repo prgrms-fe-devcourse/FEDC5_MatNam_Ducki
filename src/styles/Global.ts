@@ -157,4 +157,7 @@ export const reset = css`
       system-ui,
       sans-serif;
   }
+  input {
+    background-color: transparent;
+  }
 `;
