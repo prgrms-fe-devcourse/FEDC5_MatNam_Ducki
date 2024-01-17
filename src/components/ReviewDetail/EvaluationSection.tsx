@@ -30,12 +30,12 @@ export default function EvaluationSection() {
   const { mutate: createMutate } = useCreateLike({ postId });
   const { mutate: deleteMutate } = useDeleteLike();
 
-  if (userData && postData) {
-    //최초 렌더링시 좋아요 체크
-    useEffect(() => {
-      setIsLike(postData?.likes.some((like) => like?.user === userData?._id)!);
-    }, [postData, userData]);
+  //최초 렌더링시 좋아요 체크
+  useEffect(() => {
+    setIsLike(postData?.likes.some((like) => like?.user === userData?._id)!);
+  }, [postData, userData]);
 
+  if (userData && postData) {
     const handleLikeClick = () => {
       setIsLike((prevState) => !prevState);
 
