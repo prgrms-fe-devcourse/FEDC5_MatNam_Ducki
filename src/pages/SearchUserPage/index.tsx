@@ -5,12 +5,16 @@ import UserList from '@/components/DirectMessage/UserList';
 import SearchBar from '@/components/SearchBar';
 import { useSearchAll } from '@/hooks/useSearch';
 
-import { SearchUserWrapper } from './style';
+import {
+  EmptyResultText,
+  EmptyResultWrapper,
+  SearchUserWrapper,
+} from './style';
 
 export default function SearchUserPage() {
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const { refetch, data } = useSearchAll(searchKeyword);
+  const { refetch, data, isFetched } = useSearchAll(searchKeyword);
 
   const userResult = data?.userData ?? [];
 
@@ -25,9 +29,15 @@ export default function SearchUserPage() {
       <SearchBar
         searchIcon={<ProfileFilledIcon />}
         onSearchKeyword={setSearchKeyword}
-        placeholder="유저를 검색해 보세요"
+        placeholder="찾으시는 유저가 있나요?"
       />
-      {userResult && <UserList userList={userResult} />}
+      {userResult.length !== 0 && <UserList userList={userResult} />}{' '}
+      {isFetched && userResult.length === 0 && (
+        <EmptyResultWrapper>
+          <EmptyResultText>존재하지 않는 유저예요 👀</EmptyResultText>
+          <EmptyResultText>다른 이름으로 검색해 볼까요?</EmptyResultText>
+        </EmptyResultWrapper>
+      )}
     </SearchUserWrapper>
   );
 }
