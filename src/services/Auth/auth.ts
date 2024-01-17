@@ -1,5 +1,6 @@
 import { SignInPayload, SignUpPayload } from '@/types/payload';
 import { User, UserReponse } from '@/types/response';
+import { Toast } from '@/utils/toast';
 
 import { axiosAuthInstance, axiosInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
@@ -15,6 +16,7 @@ export const signUp = async ({ email, fullName, password }: SignUpPayload) => {
     return response;
   } catch (error) {
     console.error(error);
+    Toast.error('잠시 후 다시 시도해 주세요!');
     return null;
   }
 };
@@ -29,6 +31,7 @@ export const signIn = async ({ email, password }: SignInPayload) => {
     return response;
   } catch (error) {
     console.error(error);
+    Toast.error('정보를 다시 확인해 주세요!');
     return null;
   }
 };
