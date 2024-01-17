@@ -12,6 +12,7 @@ import {
   MessageContainer,
   MessageWrapper,
   NotificationItemContainer,
+  ProfileContainer,
   TimeWrapper,
   UserWrapper,
 } from './style';
@@ -40,14 +41,16 @@ export default function NotificationItem({
   };
   return (
     <NotificationItemContainer onClick={handleClick}>
-      <Avatar imageUrl={author.image} size={'small'} />
-      <MessageContainer>
-        <UserWrapper>{author.fullName}</UserWrapper>
-        <MessageWrapper>
-          <AuthorWrapper>{author.fullName}</AuthorWrapper>
-          <ContentWrapper>{MESSAGE[key].text}</ContentWrapper>
-        </MessageWrapper>
-      </MessageContainer>
+      <ProfileContainer>
+        <Avatar imageUrl={author.image} size={'small'} />
+        <MessageContainer>
+          <UserWrapper>{author.fullName}</UserWrapper>
+          <MessageWrapper>
+            <AuthorWrapper>{author.fullName}</AuthorWrapper>
+            <ContentWrapper>{MESSAGE[key].text}</ContentWrapper>
+          </MessageWrapper>
+        </MessageContainer>
+      </ProfileContainer>
       <TimeWrapper>{getElapsedTime(createdAt)}</TimeWrapper>
     </NotificationItemContainer>
   );

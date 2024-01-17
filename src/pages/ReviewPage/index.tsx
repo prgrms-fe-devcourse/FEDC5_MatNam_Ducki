@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ChannelList } from '@/components/Channel/ChannelList';
+import AnimationContainer from '@/components/Common/AnimationContainer';
 import CTAButton from '@/components/Common/Button/CTAButton';
 import ImageUpload from '@/components/Common/ImageUpload';
 import { useInput } from '@/hooks/useInput';
@@ -62,7 +63,7 @@ export default function ReviewPage() {
   };
 
   return (
-    <>
+    <AnimationContainer>
       <ReviewForm onSubmit={handleSubmit}>
         <Section>
           <TextStyle>가게 평가 *</TextStyle>
@@ -96,6 +97,6 @@ export default function ReviewPage() {
           <CTAButton>등록하기</CTAButton>
         </Section>
       </ReviewForm>
-    </>
+    </AnimationContainer>
   );
 }
