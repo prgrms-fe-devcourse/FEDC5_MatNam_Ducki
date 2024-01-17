@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 
 import { ChannelList } from '@/components/Channel/ChannelList';
 import CTAButton from '@/components/Common/Button/CTAButton';
@@ -29,6 +29,8 @@ export default function ReviewForm({
   isEdit = false,
 }: ReviewFormProps) {
   const [reviewState, setReviewState] = useRecoilState(reviewAtom);
+  const reviewReset = useResetRecoilState(reviewAtom);
+
   const { channelId, restaurant, location, review } = reviewState;
 
   const navigate = useNavigate();
@@ -71,6 +73,7 @@ export default function ReviewForm({
       onSuccess: () => {
         alert('succeess');
         navigate('/');
+        reviewReset();
       },
       onError: () => {
         alert('글 등록 실패');
@@ -97,6 +100,7 @@ export default function ReviewForm({
       onSuccess: () => {
         alert('succeess');
         navigate('/');
+        reviewReset();
       },
       onError: () => {
         alert('글 등록 실패');
