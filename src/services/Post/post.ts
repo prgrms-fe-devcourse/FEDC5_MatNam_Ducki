@@ -175,7 +175,7 @@ export const updatePost = async ({
 
 export const deletePost = async (postId: string) => {
   try {
-    await axiosInstance.delete(ENDPOINT.POSTS.DELETE, {
+    await axiosAuthInstance.delete(ENDPOINT.POSTS.DELETE, {
       data: {
         id: postId,
       },
