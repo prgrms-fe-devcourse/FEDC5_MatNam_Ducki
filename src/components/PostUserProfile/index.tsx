@@ -26,6 +26,7 @@ export default function PostUserProfile() {
   }
 
   const { data: user } = useGetUser(userId);
+  console.log(user?.username);
 
   return (
     <>

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { theme } from '@/styles/Theme';
 
 export const EmptyIntroduce = styled.div`
-  color: #ccc;
+  color: ${theme.colors.gray};
 `;
 
 export const Introduction = styled.span`
