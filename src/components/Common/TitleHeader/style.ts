@@ -6,13 +6,16 @@ export const StyledTitleHeader = styled.div`
   height: 4rem;
   background-color: white;
   opacity: 0.8;
-  margin: 2rem auto;
+  margin: 0rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
   position: sticky;
   top: 0;
+
+  border-right: 1px solid black;
+  border-left: 1px solid black;
 `;
 
 export const Title = styled.h2`
