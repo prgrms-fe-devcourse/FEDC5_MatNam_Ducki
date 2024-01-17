@@ -45,6 +45,19 @@ export interface UpdatePostPayload {
   openingTime: string;
   image: File | null;
   channelId: string;
+  imageToDeletePublicId?: string | null;
+}
+
+export interface ReviewType {
+  review: string;
+  restaurant: string;
+  location: string;
+  openingTime: string;
+  image: string | File | null;
+  channelId: string;
+  savedImage?: string | null;
+  imagePublicId?: string | null;
+  imageToDeletePublicId?: string | null;
 }
 
 export type CreatePostPayload = Omit<UpdatePostPayload, 'postId'>;

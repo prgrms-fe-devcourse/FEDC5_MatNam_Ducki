@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { MouseEvent, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -18,19 +18,23 @@ interface SearchBarValues {
 }
 
 interface SearchBarProps {
+  defaultValue?: string;
   searchIcon?: React.ReactNode;
   disabled?: boolean;
   placeholder?: string;
   navigatePath?: string;
   onSearchKeyword?: (keyword: string) => void;
+  onReset?: () => void;
 }
 
 export default function SearchBar({
+  defaultValue,
   searchIcon,
   disabled = false,
   placeholder,
   navigatePath,
   onSearchKeyword,
+  onReset,
 }: SearchBarProps) {
   const { register, handleSubmit, watch, setFocus, resetField, setValue } =
     useForm<SearchBarValues>();
@@ -44,8 +48,14 @@ export default function SearchBar({
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('q');
 
-  const handleResetValue = () => {
+  const handleResetValue = (event: MouseEvent) => {
+    event.stopPropagation();
+
     resetField('search');
+    navigate({ pathname }, { replace: true });
+    onReset?.();
+
+    if (disabled) return;
     setFocus('search');
   };
 
@@ -54,6 +64,8 @@ export default function SearchBar({
   };
 
   useEffect(() => {
+    if (navigatePath) return;
+
     if (searchKeyword === '') {
       navigate({ pathname }, { replace: true });
     } else if (searchKeyword != null) {
@@ -88,15 +100,14 @@ export default function SearchBar({
         placeholder={placeholder ?? '맛집 후기를 검색해 보세요!'}
         autoFocus={!disabled}
         css={inputStyle}
+        defaultValue={defaultValue}
+        readOnly={disabled}
       />
-      <SearchCloseButton>
-        {searchValue && (
-          <CloseFilledIcon
-            onClick={handleResetValue}
-            css={closeFilledIconStyle}
-          />
-        )}
-      </SearchCloseButton>
+      {searchValue && !disabled && (
+        <SearchCloseButton onClick={handleResetValue}>
+          <CloseFilledIcon css={closeFilledIconStyle} />
+        </SearchCloseButton>
+      )}
     </SearchForm>
   );
 }
