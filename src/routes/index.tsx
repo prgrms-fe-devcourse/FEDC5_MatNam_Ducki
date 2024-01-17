@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
         element: <ReviewPage />,
       },
       {
-        path: PATH.REVIEWUPDATE,
+        path: `${PATH.REVIEWUPDATE}/:postId`,
         element: <ReviewUpdatePage />,
       },
       {

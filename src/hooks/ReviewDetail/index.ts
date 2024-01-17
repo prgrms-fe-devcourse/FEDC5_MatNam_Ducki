@@ -27,14 +27,14 @@ export const useCreateComment = ({ postId }: { postId: string }) => {
   });
 };
 
-export const useLike = ({
-  postId,
-  isLike,
-}: {
-  postId: string;
-  isLike: boolean;
-}) => {
+export const useCreateLike = ({ postId }: { postId: string }) => {
   return useMutation({
-    mutationFn: isLike ? () => createLike(postId) : () => deleteLike(postId),
+    mutationFn: () => createLike(postId),
+  });
+};
+
+export const useDeleteLike = () => {
+  return useMutation({
+    mutationFn: deleteLike,
   });
 };

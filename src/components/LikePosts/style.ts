@@ -13,6 +13,8 @@ export const EmptyPostTitle = styled.div`
   align-items: center;
   margin-left: 1rem;
   color: ${theme.colors.gray};
+  font-size: ${theme.size.medium};
+  font-weight: ${theme.fontWeight.bold};
 `;
 
 export const EmptyResultWrapper = styled.div`

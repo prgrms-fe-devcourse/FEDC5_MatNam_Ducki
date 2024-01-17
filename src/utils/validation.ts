@@ -24,7 +24,7 @@ export const isValidCreatePost = ({
   return (
     channelId.length > 0 &&
     restaurant.length > 0 &&
-    review.length > 0 &&
-    location.length > 0
+    location.length > 0 &&
+    review.trim().length > 0
   );
 };

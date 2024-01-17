@@ -1,10 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useGetPostDetail } from '@/hooks/useGetProfile';
+import { PATH } from '@/routes/path';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
 import { EmptyResultText, EmptyResultWrapper, PostWrapper } from './style';
 
 export default function LikePosts() {
+  const navigate = useNavigate();
   const { data: auth } = useCheckAuthUser();
 
   if (!auth) {
@@ -24,14 +28,18 @@ export default function LikePosts() {
             (item) =>
               item && (
                 <ReviewCard
-                  style={{ marginBottom: '3.2rem' }}
                   key={item._id}
                   imageUrl={item.image}
-                  createdAt={item.createdAt}
-                  likes={item.likes.length}
                   profileName={item.author.fullName}
-                  content={item.title}
-                  id={item.author._id}></ReviewCard>
+                  createdAt={item.createdAt}
+                  restaurant={item.restaurant}
+                  location={item.location}
+                  review={item.review}
+                  likes={item.likes.length}
+                  channelId={item.channel._id}
+                  id={item.author._id}
+                  onClick={() => navigate(`${PATH.REVIEWDETAIL}/${item._id}`)}
+                />
               ),
           )}
         </>

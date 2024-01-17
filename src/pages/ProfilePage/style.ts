@@ -5,6 +5,9 @@ import { theme } from '@/styles/Theme';
 
 export const ProfileWrapper = styled.div`
   background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 `;
 
 export const ProfileBackGroundImage = styled.div`
@@ -19,7 +22,14 @@ export const ProfileBackGroundImage = styled.div`
 export const UserInfoWrapper = styled.div`
   display: flex;
   padding-top: 14rem;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+`;
+
+export const ProfileInfo = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 export const UserWrapper = styled.div`
@@ -29,10 +39,7 @@ export const UserWrapper = styled.div`
   height: 100%;
 `;
 
-export const ImageWrapper = styled.div`
-  margin-top: 1.2rem;
-  margin-left: 2rem;
-`;
+export const ImageWrapper = styled.div``;
 
 export const Label = styled.span`
   color: #868686;

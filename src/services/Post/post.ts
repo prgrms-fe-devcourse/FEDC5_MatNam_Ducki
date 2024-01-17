@@ -92,10 +92,6 @@ export const createPost = async ({
   channelId,
 }: CreatePostPayload) => {
   try {
-    // if (image == null) {
-    //   throw new Error('이미지가 비어있습니다.');
-    // }
-
     const customPost = JSON.stringify({
       review,
       restaurant,
@@ -110,6 +106,10 @@ export const createPost = async ({
 
     formData.append('title', customPost);
     formData.append('channelId', channelId);
+
+    if (image) {
+      formData.append('image', image);
+    }
 
     await axiosAuthInstance.post(ENDPOINT.POSTS.CREATE, formData);
   } catch (error) {
@@ -148,6 +148,7 @@ export const updatePost = async ({
   openingTime,
   image,
   channelId,
+  imageToDeletePublicId,
 }: UpdatePostPayload) => {
   try {
     const customPost = JSON.stringify({
@@ -164,6 +165,10 @@ export const updatePost = async ({
 
     if (image instanceof File) {
       formData.append('image', image);
+    }
+
+    if (imageToDeletePublicId) {
+      formData.append('imageToDeletePublicId', imageToDeletePublicId);
     }
 
     await axiosAuthInstance.put<Post>(ENDPOINT.POSTS.UPDATE, formData);

@@ -4,40 +4,33 @@ import { theme } from '@/styles/Theme';
 
 export const SelectorWrapper = styled.div`
   text-align: center;
-  margin-top: 3rem;
   display: flex;
-  width: 33.2rem;
-  border-radius: 1rem;
-  height: 4rem;
   align-items: center;
   gap: 0.5rem;
 `;
 
-export const Ball = styled.div`
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: black;
-  border-radius: 50%;
-  text-align: center;
+export const MyPostWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  background-color: ${theme.colors.gray};
+  flex-direction: column;
+  gap: 2.5rem;
 `;
 
 export const MyPostsTitle = styled.div<{ isLikesSelected: boolean }>`
   font-size: ${({ isLikesSelected }) =>
     isLikesSelected ? '1.6rem' : '1.8rem'};
-  color: ${({ isLikesSelected }) => (isLikesSelected ? '#868686' : 'black')};
+  color: ${({ isLikesSelected }) =>
+    isLikesSelected ? theme.colors.gray : 'black'};
   font-weight: ${({ isLikesSelected }) =>
-    isLikesSelected ? 'normal' : 'bold'};
+    isLikesSelected ? theme.fontWeight.medium : theme.fontWeight.bold};
   cursor: pointer;
 `;
 
 export const LikesTitle = styled.div<{ isLikesSelected: boolean }>`
   font-size: ${({ isLikesSelected }) =>
     isLikesSelected ? '1.8rem' : '1.6rem'};
-  color: ${({ isLikesSelected }) => (isLikesSelected ? 'black' : '#868686')};
+  color: ${({ isLikesSelected }) =>
+    isLikesSelected ? 'black' : theme.colors.gray};
   font-weight: ${({ isLikesSelected }) =>
-    isLikesSelected ? 'bold' : 'normal'};
+    isLikesSelected ? theme.fontWeight.bold : theme.fontWeight.medium};
   cursor: pointer;
 `;
