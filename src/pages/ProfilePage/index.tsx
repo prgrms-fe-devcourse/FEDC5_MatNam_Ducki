@@ -21,6 +21,7 @@ import { useSignOut } from '@/hooks/useAuth';
 import { useChangeIntroduce } from '@/hooks/useGetProfile';
 import { useChangeImage } from '@/hooks/useGetProfile';
 import { selectedFileAtom } from '@/recoil/selectedFile';
+import { userAtom } from '@/recoil/user';
 import { theme } from '@/styles/Theme';
 import { Toast } from '@/utils/toast';
 
@@ -46,7 +47,9 @@ export default function ProfilePage() {
   const navigate = useNavigate();
   const { changeIntroduce } = useChangeIntroduce();
 
-  const { mutate: signOut } = useSignOut();
+  const setUserState = useSetRecoilState(userAtom);
+
+  const { mutate: signOut } = useSignOut({ setUserState });
 
   useEffect(() => {
     if (authUser) {

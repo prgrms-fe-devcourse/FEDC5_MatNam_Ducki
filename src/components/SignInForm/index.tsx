@@ -1,8 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import { INPUT_VALIDATION } from '@/constants/validation';
 import { useSignIn } from '@/hooks/useAuth';
+import { userAtom } from '@/recoil/user.ts';
 import { HookFormInputListProps } from '@/types/input';
 import { Toast } from '@/utils/toast.ts';
 
@@ -20,6 +22,8 @@ export default function SignInForm() {
     mode: 'onChange',
   });
 
+  const setUserState = useSetRecoilState(userAtom);
+
   const navigate = useNavigate();
 
   const navigateToMainPage = () => {
@@ -31,7 +35,10 @@ export default function SignInForm() {
     Toast.success('로그인 되었어요!');
   };
 
-  const { mutate } = useSignIn({ onSuccess: handleSignInSuccess });
+  const { mutate } = useSignIn({
+    onSuccess: handleSignInSuccess,
+    setUserState,
+  });
 
   const onSubmit: SubmitHandler<SignInValues> = (signInInput) => {
     mutate(signInInput);

@@ -1,9 +1,11 @@
 import { useTheme } from '@emotion/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import { INPUT_VALIDATION } from '@/constants/validation';
 import { useSignUp } from '@/hooks/useAuth';
+import { userAtom } from '@/recoil/user.ts';
 import { HookFormInputListProps } from '@/types/input';
 import { Toast } from '@/utils/toast.ts';
 import {
@@ -34,6 +36,8 @@ export default function SignUpForm() {
     mode: 'onChange',
   });
 
+  const setUserState = useSetRecoilState(userAtom);
+
   const { isSubmitted, errors, isValid } = formState;
 
   const navigate = useNavigate();
@@ -47,7 +51,10 @@ export default function SignUpForm() {
     Toast.success('가입이 완료 되었어요!');
   };
 
-  const { mutate } = useSignUp({ onSuccess: handleSignUpSuccess });
+  const { mutate } = useSignUp({
+    onSuccess: handleSignUpSuccess,
+    setUserState,
+  });
 
   const onSubmit: SubmitHandler<SignUpSubmitValues> = (data) => {
     mutate(data);
