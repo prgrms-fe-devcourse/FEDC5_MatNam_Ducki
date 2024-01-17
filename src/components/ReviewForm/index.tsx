@@ -9,6 +9,7 @@ import SearchBar from '@/components/SearchBar';
 import { useCreatePost, useUpdatePost } from '@/hooks/usePost';
 import { reviewAtom } from '@/recoil/review';
 import { PATH } from '@/routes/path';
+import { Toast } from '@/utils/toast';
 import { isValidCreatePost } from '@/utils/validation';
 
 import {
@@ -71,19 +72,19 @@ export default function ReviewForm({
 
     createPost(reviewData, {
       onSuccess: () => {
-        alert('succeess');
+        Toast.info('후기가 등록 됐어요!');
         navigate('/');
         reviewReset();
       },
       onError: () => {
-        alert('글 등록 실패');
+        Toast.error('잠시 후 다시 시도해주세요');
       },
     });
   };
 
   const handleUpdatePost = () => {
     if (!postId) {
-      alert('유효하지 않은 post예요');
+      Toast.error('존재하지 않는 후기예요');
       return;
     }
 
@@ -98,12 +99,12 @@ export default function ReviewForm({
 
     updatePost(reviewData, {
       onSuccess: () => {
-        alert('succeess');
+        Toast.info('후기가 등록 됐어요!');
         navigate('/');
         reviewReset();
       },
       onError: () => {
-        alert('글 등록 실패');
+        Toast.error('잠시 후 다시 시도해주세요');
       },
     });
   };
@@ -112,7 +113,7 @@ export default function ReviewForm({
     event.preventDefault();
 
     if (!isFormValid()) {
-      alert('필수 입력 사항을 모두 입력해주세요.');
+      Toast.info('필수 입력 사항을 모두 입력해주세요.');
       return;
     }
 
