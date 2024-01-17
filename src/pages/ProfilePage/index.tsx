@@ -148,7 +148,7 @@ export default function ProfilePage() {
                   onClick={handleLogOutButtonClick}
                   width="6rem"
                   backgroundColor={theme.colors.lightGray}
-                  height="4rem"
+                  height="3rem"
                   textColor={theme.colors.gray}
                   borderRadius="2rem">
                   로그아웃

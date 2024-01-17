@@ -42,6 +42,7 @@ export const IntroductionWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 1.5rem;
+  padding-bottom: 2rem;
 `;
 
 export const Introduction = styled.span`
@@ -63,10 +64,9 @@ export const UserProfile = styled.div`
 export const PostWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 `;
 
 export const PostsTitle = styled.div`
-  font-size: ${theme.size.medium};
+  font-size: 1.8rem;
   font-weight: ${theme.fontWeight.bold};
 `;

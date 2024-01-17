@@ -19,6 +19,7 @@ import {
   ReviewCardHeader,
   ReviewCardImage,
   ReviewCardInfo,
+  ThumbsDownWrapper,
 } from './style';
 
 interface ReviewCardProps extends React.ComponentProps<'div'> {
@@ -75,7 +76,13 @@ export const ReviewCard = ({
         <ReviewCardInfo>
           <RestaurantName>
             {restaurant}
-            {channelId === CHANNEL.LIKE ? <ThumbsUpIcon /> : <ThumbsDownIcon />}
+            {channelId === CHANNEL.LIKE ? (
+              <ThumbsUpIcon />
+            ) : (
+              <ThumbsDownWrapper>
+                <ThumbsDownIcon />
+              </ThumbsDownWrapper>
+            )}
           </RestaurantName>
           <LikeContainer>
             <LikeIcon fill={'#EEA734'} /> {likes}

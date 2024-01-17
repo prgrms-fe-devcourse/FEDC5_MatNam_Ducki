@@ -25,7 +25,6 @@ export const UserInfoWrapper = styled.div`
 export const UserInfo = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
 `;
 
 export const UserProfileWrapper = styled.div`
@@ -45,6 +44,8 @@ export const UserName = styled.span`
   position: relative;
   font-weight: ${theme.fontWeight.medium};
   flex-shrink: 0;
+  margin-left: 1rem;
+  margin-right: 1.5rem;
 `;
 
 export const Message = styled.span`
@@ -60,6 +61,7 @@ export const Message = styled.span`
 
 export const LastSendDateText = styled.span`
   color: ${theme.colors.gray};
+  font-size: 1.2rem;
 `;
 
 export const UserOnlineIconWrapper = styled.div`

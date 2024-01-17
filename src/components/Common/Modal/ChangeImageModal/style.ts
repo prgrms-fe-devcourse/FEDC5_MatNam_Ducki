@@ -23,8 +23,8 @@ export const SelectItem = styled.li`
   width: 100%;
   cursor: pointer;
   border-bottom: 1px solid ${`${theme.colors.gray}50`};
-  padding: 2rem 0;
-
+  padding: 2.5rem 0;
+  color: #2c2c2c;
   font-weight: ${theme.fontWeight.medium};
 
   &:last-child {

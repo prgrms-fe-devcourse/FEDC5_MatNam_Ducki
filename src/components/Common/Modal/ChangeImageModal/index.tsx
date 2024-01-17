@@ -62,7 +62,7 @@ export default function ChangeImageModal() {
         { text: '이미지 변경', onClick: handleImageUpdate },
         { text: '기본 이미지로 변경', onClick: handleImageRemove },
       ]
-    : [{ text: '이미지 추가', onClick: handleImageUpdate }];
+    : [{ text: '이미지 업로드 📸', onClick: handleImageUpdate }];
 
   return (
     <ChangeImageModalWrapper>
@@ -71,7 +71,6 @@ export default function ChangeImageModal() {
         onChange={handleImageFilesChange}
         type="file"
         accept="image/*"
-        multiple={isProfilePage ? false : true}
       />
       <SelectList>
         {selectListData.map(({ text, onClick }) => (

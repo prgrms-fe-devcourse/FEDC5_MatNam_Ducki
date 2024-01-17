@@ -35,8 +35,8 @@ export const ProfileInfo = styled.div`
 export const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 3rem 2rem 0 2rem;
   height: 100%;
+  padding: 0 2rem;
 `;
 
 export const ImageWrapper = styled.div``;

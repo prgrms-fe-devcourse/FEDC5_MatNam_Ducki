@@ -13,5 +13,5 @@ export const DetailMessagePageWrapper = styled.ul`
 
 export const UserProfileWrapper = styled.div`
   position: fixed;
-  top: 2rem;
+  top: 7.5rem;
 `;

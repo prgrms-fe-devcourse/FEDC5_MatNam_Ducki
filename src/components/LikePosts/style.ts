@@ -4,7 +4,6 @@ import { theme } from '@/styles/Theme';
 
 export const PostWrapper = styled.div`
   height: 100%;
-  margin-top: 3rem;
 `;
 
 export const EmptyPostTitle = styled.div`
