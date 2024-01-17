@@ -15,7 +15,7 @@ export default function UserList({ userList }: UserListProps) {
   const navigate = useNavigate();
 
   const navigateToUserMessage = (userId: string) => {
-    navigate(`${PATH.DIRECTMESSAGE}/${userId}`);
+    navigate(`${PATH.DIRECTMESSAGEDETAIL}/${userId}`);
   };
 
   return (

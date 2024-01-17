@@ -35,7 +35,7 @@ export default function NotificationItem({
     if (post) {
       navigate(`${PATH.REVIEWDETAIL}/${post}`);
     } else {
-      navigate(`${PATH.DIRECTMESSAGE}/${author._id}`);
+      navigate(`${PATH.DIRECTMESSAGEDETAIL}/${author._id}`);
     }
   };
   return (
