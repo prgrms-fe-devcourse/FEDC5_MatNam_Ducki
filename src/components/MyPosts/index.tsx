@@ -21,12 +21,16 @@ export default function MyPosts() {
           {posts?.map((item) => (
             <ReviewCard
               key={item._id}
-              style={{ marginBottom: '3.2rem' }}
               imageUrl={item.image}
-              likes={item.likes.length}
-              createdAt={item.createdAt}
               profileName={auth.fullName}
-              content={item.title}></ReviewCard>
+              restaurant={item.restaurant}
+              location={item.location}
+              review={item.review}
+              likes={item.likes.length}
+              channelId={item.channel._id}
+              createdAt={item.createdAt}
+              id={auth._id}
+            />
           ))}
         </>
       ) : (

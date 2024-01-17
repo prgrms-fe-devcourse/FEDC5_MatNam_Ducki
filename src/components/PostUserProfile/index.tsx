@@ -55,11 +55,7 @@ export default function PostUserProfile() {
             <SelectorWrapper>
               <PostsTitle>{user.fullName}님이 작성한 게시글</PostsTitle>
             </SelectorWrapper>
-            <UserPosts
-              userPost={user.posts}
-              userImage={user.image}
-              userName={user.fullName}
-            />
+            <UserPosts userId={user._id} userName={user.fullName} />
           </UserWrapper>
         </ProfileWrapper>
       )}

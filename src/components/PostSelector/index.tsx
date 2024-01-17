@@ -18,7 +18,7 @@ export default function PostSelector() {
         <LikesTitle
           isLikesSelected={isLikesSelected}
           onClick={() => setIsLikesSelected(true)}>
-          좋았어요
+          좋아요
         </LikesTitle>
       </SelectorWrapper>
       {isLikesSelected ? <LikePosts /> : <MyPosts />}

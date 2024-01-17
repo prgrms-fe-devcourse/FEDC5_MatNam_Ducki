@@ -25,14 +25,17 @@ export default function LikePosts() {
             (item) =>
               item && (
                 <ReviewCard
-                  style={{ marginBottom: '3.2rem' }}
                   key={item._id}
                   imageUrl={item.image}
-                  createdAt={item.createdAt}
-                  likes={item.likes.length}
                   profileName={item.author.fullName}
-                  content={item.title}
-                  id={item.author._id}></ReviewCard>
+                  createdAt={item.createdAt}
+                  restaurant={item.restaurant}
+                  location={item.location}
+                  review={item.review}
+                  likes={item.likes.length}
+                  channelId={item.channel._id}
+                  id={item.author._id}
+                />
               ),
           )}
         </>

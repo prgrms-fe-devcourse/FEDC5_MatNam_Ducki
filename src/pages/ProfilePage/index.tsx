@@ -117,7 +117,7 @@ export default function ProfilePage() {
               <UserInfoWrapper>
                 {isLoading ? (
                   <Skeleton
-                    style={{ marginTop: '1.2rem', marginLeft: '4rem' }}
+                    style={{ marginTop: '1.2rem', marginLeft: '2rem' }}
                     width="80px"
                     height="80px"
                     borderRadius="50%"></Skeleton>
