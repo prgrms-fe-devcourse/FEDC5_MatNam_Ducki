@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import UserInfo from '@/components/UserInfo/UserInfo';
+import UserInfo from '@/components/UserInfo';
 import { useGetUser } from '@/hooks/useGetProfile';
 
 import Avatar from '../Common/Avatar';

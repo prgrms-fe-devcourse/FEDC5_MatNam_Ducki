@@ -26,6 +26,7 @@ import {
   ImageWrapper,
   Label,
   ProfileBackGroundImage,
+  ProfileInfo,
   ProfileWrapper,
   UserInfoWrapper,
   UserWrapper,
@@ -115,39 +116,39 @@ export default function ProfilePage() {
           <ProfileWrapper>
             <ProfileBackGroundImage>
               <UserInfoWrapper>
-                {isLoading ? (
-                  <Skeleton
-                    style={{ marginTop: '1.2rem', marginLeft: '2rem' }}
-                    width="80px"
-                    height="80px"
-                    borderRadius="50%"></Skeleton>
-                ) : (
+                <ProfileInfo>
                   <ImageWrapper>
-                    <ImageUpload
-                      onFileChange={handleFileChange}
-                      ratio="5/5"
-                      width="80px"
-                      borderRadius="50%"
-                      image={
-                        authUser.image
-                          ? `${authUser.image}?${Date.now()}`
-                          : defaultImage // 초기 값
-                      }
-                    />
+                    {isLoading ? (
+                      <Skeleton
+                        width="80px"
+                        height="80px"
+                        borderRadius="50%"></Skeleton>
+                    ) : (
+                      <ImageUpload
+                        onFileChange={handleFileChange}
+                        ratio="5/5"
+                        width="80px"
+                        borderRadius="50%"
+                        image={
+                          authUser.image
+                            ? `${authUser.image}?${Date.now()}`
+                            : defaultImage // 초기 값
+                        }
+                      />
+                    )}
                   </ImageWrapper>
-                )}
-                <UserInfo
-                  userName={authUser.fullName}
-                  userId={authUser.email}
-                />
+                  <UserInfo
+                    userName={authUser.fullName}
+                    userId={authUser.email}
+                  />
+                </ProfileInfo>
                 <Button
                   onClick={handleLogOutButtonClick}
-                  style={{ marginLeft: '1rem', marginTop: '4rem' }}
-                  width="60px"
+                  width="6rem"
                   backgroundColor={theme.colors.lightGray}
-                  height="35px"
+                  height="4rem"
                   textColor={theme.colors.gray}
-                  borderRadius="19px">
+                  borderRadius="2rem">
                   로그아웃
                 </Button>
               </UserInfoWrapper>
@@ -163,8 +164,8 @@ export default function ProfilePage() {
                 onInputChange={handleInputChange}
                 buttonText={buttonText}
               />
-              <PostSelector />
             </UserWrapper>
+            <PostSelector />
           </ProfileWrapper>
         ) : (
           <PostUserProfile />

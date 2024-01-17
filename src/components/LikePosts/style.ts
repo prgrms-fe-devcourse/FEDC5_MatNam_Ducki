@@ -2,9 +2,7 @@ import styled from '@emotion/styled';
 
 import { theme } from '@/styles/Theme';
 
-export const PostWrapper = styled.div`
-  margin-top: 3rem;
-`;
+export const PostWrapper = styled.div``;
 
 export const EmptyPostTitle = styled.div`
   margin-left: 1rem;
