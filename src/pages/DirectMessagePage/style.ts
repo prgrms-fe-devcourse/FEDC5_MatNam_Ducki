@@ -7,6 +7,7 @@ export const DirectMessagePageWrapper = styled.div`
   flex-direction: column;
   gap: 2rem;
   padding: 2rem;
+  height: 100%;
 `;
 
 export const DirectMessageTitle = styled.span`

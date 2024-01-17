@@ -21,7 +21,7 @@ export default function ConversationList() {
         ))
       ) : (
         <EmptyConversationWrapper>
-          <EmptyConversationText>유저를 검색해서</EmptyConversationText>
+          <EmptyConversationText>유저를 검색해서 🔍</EmptyConversationText>
           <EmptyConversationText>메세지를 보내보세요!</EmptyConversationText>
         </EmptyConversationWrapper>
       )}

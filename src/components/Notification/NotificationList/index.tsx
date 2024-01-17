@@ -3,7 +3,11 @@ import { PropsWithChildren } from 'react';
 import { Notification } from '@/types/response';
 
 import NotificationItem from '../NotificationItem';
-import { NotificationListContainer } from './style';
+import {
+  EmptyConversationText,
+  EmptyConversationWrapper,
+  NotificationListContainer,
+} from './style';
 
 interface NotificationListProps {
   notifications: Notification[] | null;
@@ -12,7 +16,7 @@ interface NotificationListProps {
 export default function NotificationList({
   notifications,
 }: PropsWithChildren<NotificationListProps>) {
-  if (notifications) {
+  if (notifications && notifications.length !== 0) {
     return (
       <NotificationListContainer>
         {notifications.map((notification) => (
@@ -26,8 +30,11 @@ export default function NotificationList({
   }
 
   return (
-    <div>
-      <span>알림이 없습니다.</span>
-    </div>
+    <EmptyConversationWrapper>
+      <EmptyConversationText>아직 받은 알림이 없어요 🥲</EmptyConversationText>
+      <EmptyConversationText>
+        메세지를 나누거나 후기를 올려보세요!
+      </EmptyConversationText>
+    </EmptyConversationWrapper>
   );
 }
