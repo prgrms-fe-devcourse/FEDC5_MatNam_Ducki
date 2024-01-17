@@ -82,7 +82,7 @@ export const ReviewCard = ({
           <LikeContainer>❤ {likes}</LikeContainer>
         </ReviewCardInfo>
         <RestaurantLocation>{location}</RestaurantLocation>
-        <ReviewCardImage src={imageUrl} />
+        {imageUrl && <ReviewCardImage src={imageUrl} />}
         <ReviewCardContents>
           {review}
           ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
