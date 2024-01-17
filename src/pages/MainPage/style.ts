@@ -1,24 +1,15 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 
-export const MainPageWrapper = styled.div`
+export const MainPageWrapper = styled(motion.div)`
   width: 100%;
-  height: ${({ theme }) => `calc(100vh - ${theme.size.navbarSize})`};
+  height: calc(100vh - 8rem);
   overflow: auto;
-
-  // 스크롤바 숨기기
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  ::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
 `;
 
 export const ContentWrapper = styled.div`
   width: 100%;
   max-width: 37.5rem;
-  padding: 0 2rem;
-  height: 100%;
+  height: calc(100% - 6rem);
   margin: auto;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
 `;

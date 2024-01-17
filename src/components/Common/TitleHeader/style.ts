@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 
+import { theme } from '@/styles/Theme';
+
 export const StyledTitleHeader = styled.div`
   max-width: ${({ theme }) => theme.device.mobile};
   width: 100%;
-  height: 4rem;
+  height: 6rem;
   background-color: white;
-  opacity: 0.8;
   margin: 0rem auto;
   display: flex;
   justify-content: center;
@@ -13,13 +14,31 @@ export const StyledTitleHeader = styled.div`
   font-size: 20px;
   position: sticky;
   top: 0;
+  z-index: 100;
+  border-bottom: 2px solid ${`${theme.colors.lightGray}aa`};
+`;
 
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+export const TitleWrapper = styled.div`
+  position: relative;
+`;
+
+export const LogoWrapper = styled.div`
+  position: absolute;
+  left: -3rem;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+export const LogoRightWrapper = styled.div`
+  position: absolute;
+  right: -3rem;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 export const Title = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+  color: ${theme.colors.primary};
 `;
 
 export const IconWrapper = styled.div`

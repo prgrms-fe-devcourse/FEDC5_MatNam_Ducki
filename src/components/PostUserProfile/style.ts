@@ -24,6 +24,7 @@ export const UserWrapper = styled.div`
   gap: 1rem;
   flex-direction: column;
   margin: 3rem 2rem 0 2rem;
+  height: 100%;
 `;
 
 export const ImageWrapper = styled.div`

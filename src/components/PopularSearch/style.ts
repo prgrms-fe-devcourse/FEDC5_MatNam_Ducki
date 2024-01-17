@@ -19,6 +19,7 @@ export const ResultItem = styled.div`
   font-size: 1.6rem;
   display: flex;
   align-items: center;
+  color: #2c2c2c;
 `;
 
 export const IconWrapper = styled.span`

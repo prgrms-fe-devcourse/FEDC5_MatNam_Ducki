@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { theme } from '@/styles/Theme';
+
 export const SelectorWrapper = styled.div`
   text-align: center;
   margin-top: 3rem;
@@ -19,18 +21,23 @@ export const Ball = styled.div`
   text-align: center;
   display: flex;
   justify-content: center;
+  background-color: ${theme.colors.gray};
 `;
 
 export const MyPostsTitle = styled.div<{ isLikesSelected: boolean }>`
-  font-size: ${({ isLikesSelected }) => (isLikesSelected ? '1.95rem' : '2rem')};
+  font-size: ${({ isLikesSelected }) =>
+    isLikesSelected ? '1.6rem' : '1.8rem'};
   color: ${({ isLikesSelected }) => (isLikesSelected ? '#868686' : 'black')};
   font-weight: ${({ isLikesSelected }) =>
     isLikesSelected ? 'normal' : 'bold'};
+  cursor: pointer;
 `;
 
 export const LikesTitle = styled.div<{ isLikesSelected: boolean }>`
-  font-size: ${({ isLikesSelected }) => (isLikesSelected ? '2rem' : '1.95rem')};
+  font-size: ${({ isLikesSelected }) =>
+    isLikesSelected ? '1.8rem' : '1.6rem'};
   color: ${({ isLikesSelected }) => (isLikesSelected ? 'black' : '#868686')};
   font-weight: ${({ isLikesSelected }) =>
     isLikesSelected ? 'bold' : 'normal'};
+  cursor: pointer;
 `;

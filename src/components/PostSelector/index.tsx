@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
+import Circle from '../Common/Circle';
 import LikePosts from '../LikePosts';
 import MyPosts from '../MyPosts';
-import { Ball, LikesTitle, MyPostsTitle, SelectorWrapper } from './style';
+import { LikesTitle, MyPostsTitle, SelectorWrapper } from './style';
 
 export default function PostSelector() {
   const [isLikesSelected, setIsLikesSelected] = useState(false);
@@ -14,7 +15,7 @@ export default function PostSelector() {
           onClick={() => setIsLikesSelected(false)}>
           나의 포스트
         </MyPostsTitle>
-        <Ball></Ball>
+        <Circle />
         <LikesTitle
           isLikesSelected={isLikesSelected}
           onClick={() => setIsLikesSelected(true)}>
