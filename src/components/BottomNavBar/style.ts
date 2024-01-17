@@ -30,7 +30,3 @@ export const LinkWrapper = styled(Link)<{ active: string }>`
     color: ${theme.colors.primary};
   }
 `;
-
-export const TextStyle = styled.span`
-  font-size: 1.2rem;
-`;

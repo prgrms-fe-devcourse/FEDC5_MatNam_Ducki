@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends React.ComponentProps<'button'> {
   width?: string;
   height?: string;
   borderRadius?: string;

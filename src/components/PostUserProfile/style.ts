@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { PROFILE_BACKGROUND_IMAGE } from '@/constants/profile';
 import { theme } from '@/styles/Theme';
 
 export const ProfileWrapper = styled.div`
@@ -7,14 +8,14 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const ProfileBackGroundImage = styled.div`
-  background-image: url('../../../public/images/profileBackground.png');
+  background-image: url(${PROFILE_BACKGROUND_IMAGE});
   background-size: cover;
   font-weight: ${theme.fontWeight.medium};
 `;
 
 export const UserInfoWrapper = styled.div`
   display: flex;
-  padding-top: 16rem;
+  padding-top: 14rem;
   width: 100%;
 `;
 
@@ -27,7 +28,7 @@ export const UserWrapper = styled.div`
 
 export const ImageWrapper = styled.div`
   margin-top: 1.2rem;
-  margin-left: 4rem;
+  margin-left: 2rem;
 `;
 
 export const Label = styled.span`

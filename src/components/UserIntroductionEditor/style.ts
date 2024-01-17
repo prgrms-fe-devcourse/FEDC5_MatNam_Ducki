@@ -2,8 +2,12 @@ import styled from '@emotion/styled';
 
 import { theme } from '@/styles/Theme';
 
+export const EmptyIntroduce = styled.div`
+  color: #ccc;
+`;
+
 export const Introduction = styled.span`
-  margin-top: 0.85rem;
+  margin-top: 0.83rem;
   margin-left: 0.4rem;
   box-sizing: border-box;
 `;

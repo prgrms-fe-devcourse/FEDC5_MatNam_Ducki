@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import SearchBar from '@/components/SearchBar';
 import { useSignIn, useSignOut } from '@/hooks/useAuth';
 import { useModal } from '@/hooks/useModal';
+import { useToast } from '@/hooks/useToast';
 import { PATH } from '@/routes/path';
 import { ModalType } from '@/types/modal';
+import { TOP_POSITIONS } from '@/utils/getPositionStyle';
 
 export default function TestPage() {
   const testUser = {
@@ -48,6 +50,8 @@ export default function TestPage() {
     border-radius: 0.3rem;
   `;
 
+  const { addToast } = useToast();
+
   return (
     <MainPageWrapper>
       <SearchBar disabled navigatePath={PATH.SEARCH.POST} />
@@ -60,6 +64,12 @@ export default function TestPage() {
       <TestButton onClick={() => signIn(testBot)}>테스트 봇 로그인</TestButton>
       <TestButton onClick={() => signOut()}>테스트 계정 로그아웃</TestButton>
       <TestButton onClick={handleOpenModal}>이미지 변경 모달 열기</TestButton>
+      <TestButton
+        onClick={() => {
+          addToast({ content: '테스트 토스트' }, TOP_POSITIONS.CENTER);
+        }}>
+        토스트 테스트
+      </TestButton>
     </MainPageWrapper>
   );
 }
