@@ -41,7 +41,6 @@ export default function UserIntroductionEditor({
               register={register}></HookFormInput>
             <IntroductionButton>{buttonText}</IntroductionButton>
           </IntroductionForm>
-          <IntroductionBar />
         </>
       ) : (
         <>
@@ -53,6 +52,7 @@ export default function UserIntroductionEditor({
                 introduction
               )}
             </Introduction>
+            <IntroductionBar />
             <IntroductionButton onClick={onEditButtonClick}>
               {buttonText}
             </IntroductionButton>
