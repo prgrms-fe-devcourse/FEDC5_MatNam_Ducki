@@ -11,35 +11,45 @@ export default function TitleHeader() {
 
   const Header = {
     title: '맛남의 길',
-    isBack: false,
+    isBack: true,
   };
 
   switch (`/${pathname.split('/')[1]}`) {
+    case PATH.ROOT:
+      Header.isBack = false;
+      break;
+
     case PATH.SIGNIN:
       Header.title = '로그인';
-      Header.isBack = true;
       break;
 
     case PATH.SIGNUP:
       Header.title = '회원가입';
-      Header.isBack = true;
+      break;
+
+    case PATH.DIRECTMESSAGE:
+      Header.title = '메세지함';
+      Header.isBack = false;
       break;
 
     case PATH.REVIEW:
       Header.title = '후기 작성';
+      Header.isBack = false;
       break;
 
     case PATH.PROFILE:
       Header.title = '프로필';
+      Header.isBack = false;
+
       break;
 
     case PATH.NOTIFICATION:
       Header.title = '알림 목록';
+      Header.isBack = false;
       break;
 
     case PATH.REVIEWDETAIL:
       Header.title = '';
-      Header.isBack = true;
       break;
 
     default:
