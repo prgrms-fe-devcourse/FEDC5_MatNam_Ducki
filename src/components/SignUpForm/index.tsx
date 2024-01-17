@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { INPUT_VALIDATION } from '@/constants/validation';
 import { useSignUp } from '@/hooks/useAuth';
 import { HookFormInputListProps } from '@/types/input';
+import { Toast } from '@/utils/toast.ts';
 import {
   isPasswordContainsSpecialChar,
   isPasswordShort,
@@ -43,7 +44,7 @@ export default function SignUpForm() {
 
   const handleSignUpSuccess = () => {
     navigateToMainPage();
-    alert('가입이 완료 되었어요!');
+    Toast.success('가입이 완료 되었어요!');
   };
 
   const { mutate } = useSignUp({ onSuccess: handleSignUpSuccess });

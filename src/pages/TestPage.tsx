@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/useToast';
 import { PATH } from '@/routes/path';
 import { ModalType } from '@/types/modal';
 import { TOP_POSITIONS } from '@/utils/getPositionStyle';
+import { Toast } from '@/utils/toast';
 
 export default function TestPage() {
   const testUser = {
@@ -23,10 +24,10 @@ export default function TestPage() {
   const navigate = useNavigate();
 
   const { mutate: signIn } = useSignIn({
-    onSuccess: () => alert('로그인 완료!'),
+    onSuccess: () => Toast.success('로그인 완료!'),
   });
   const { mutate: signOut } = useSignOut({
-    onSuccess: () => alert('로그아웃 완료!'),
+    onSuccess: () => Toast.success('로그아웃 완료!'),
   });
 
   const { openModal } = useModal();

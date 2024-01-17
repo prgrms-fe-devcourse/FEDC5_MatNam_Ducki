@@ -1,10 +1,16 @@
 import { css } from '@emotion/react';
 
+import { theme } from './Theme';
+
 export const reset = css`
   /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
+  :root {
+    // react toastify color 재정의
+    --toastify-color-info: ${theme.colors.primary};
+  }
   html {
     font-size: 62.5%;
   }
