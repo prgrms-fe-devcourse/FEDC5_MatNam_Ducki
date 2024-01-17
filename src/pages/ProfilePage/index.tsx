@@ -59,7 +59,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (userId === 'undefined') {
-      Toast.info('로그인이 필요합니다.');
+      Toast.info('로그인 후 이용해 보세요!');
       navigate('/signIn');
     }
   }, [userId]);
