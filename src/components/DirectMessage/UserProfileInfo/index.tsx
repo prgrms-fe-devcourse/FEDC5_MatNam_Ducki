@@ -16,8 +16,8 @@ import {
 
 interface UserProfileInfoProps {
   user: User;
-  message: string;
-  lastSendDate: string;
+  message?: string;
+  lastSendDate?: string;
 }
 
 export default function UserProfileInfo({
@@ -35,9 +35,11 @@ export default function UserProfileInfo({
           </UserOnlineIconWrapper>
         </UserProfileWrapper>
         <UserName>{user.fullName}</UserName>
-        <Message>{message}</Message>
+        {message && <Message>{message}</Message>}
       </UserInfo>
-      <LastSendDateText>{getElapsedTime(lastSendDate)}</LastSendDateText>
+      {lastSendDate && (
+        <LastSendDateText>{getElapsedTime(lastSendDate)}</LastSendDateText>
+      )}
     </UserInfoWrapper>
   );
 }

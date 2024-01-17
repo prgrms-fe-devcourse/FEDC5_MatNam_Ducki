@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 import ReviewForm from '@/components/ReviewForm';
 import { useGetDetail } from '@/hooks/ReviewDetail';
@@ -9,7 +9,7 @@ import { reviewAtom } from '@/recoil/review';
 export default function ReviewPage() {
   const { postId } = useParams();
 
-  const [reviewState, setReviewState] = useRecoilState(reviewAtom);
+  const setReviewState = useSetRecoilState(reviewAtom);
 
   if (postId == null) {
     alert('존재하지 않는 글입니다.');

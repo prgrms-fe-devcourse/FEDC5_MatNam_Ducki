@@ -4,14 +4,14 @@ import Button from './Button';
 
 interface CTAButtonProps {
   children: React.ReactNode;
-  disabled: boolean;
+  disabled?: boolean;
   backgroundColor?: string;
   onClick?: () => void;
 }
 
 export default function CTAButton({
   children,
-  disabled,
+  disabled = false,
   backgroundColor,
   onClick,
 }: CTAButtonProps) {
