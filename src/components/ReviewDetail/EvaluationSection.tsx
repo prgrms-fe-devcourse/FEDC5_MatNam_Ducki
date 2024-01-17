@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetDetail, useLike } from '@/hooks/ReviewDetail';
+import {
+  useCreateLike,
+  useDeleteLike,
+  useGetDetail,
+} from '@/hooks/ReviewDetail';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useSendNotifications } from '@/hooks/useNotification';
 import { theme } from '@/styles/Theme';
@@ -16,11 +20,17 @@ export default function EvaluationSection() {
   const { mutate: sendLike } = useSendNotifications();
 
   const [isLike, setIsLike] = useState(false);
+  const [likeId, setLikeId] = useState(
+    postData?.likes.find((like) => like.user === userData?._id)?._id,
+  );
+
   const [likeCount, setLikeCount] = useState(postData!.likes.length);
   const [timer, setTimer] = useState(0);
 
-  const { mutate } = useLike({ postId, isLike });
-  if (postData && userData) {
+  const { mutate: createMutate } = useCreateLike({ postId });
+  const { mutate: deleteMutate } = useDeleteLike();
+
+  if (userData && postData) {
     //최초 렌더링시 좋아요 체크
     useEffect(() => {
       setIsLike(postData?.likes.some((like) => like?.user === userData?._id)!);
@@ -35,8 +45,21 @@ export default function EvaluationSection() {
 
       if (timer) clearTimeout(timer);
       const newTimer = window.setTimeout(() => {
-        postData?.likes.some((like) => like?.user === userData?._id) ===
-          isLike && mutate();
+        if (!isLike && !likeId) {
+          createMutate(undefined, {
+            onSuccess: (data) => {
+              setLikeId(data?._id);
+            },
+          });
+        }
+
+        if (isLike && likeId) {
+          deleteMutate(likeId, {
+            onSuccess: () => {
+              setLikeId(undefined);
+            },
+          });
+        }
       }, 500);
 
       setTimer(newTimer);

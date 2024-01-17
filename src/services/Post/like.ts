@@ -22,13 +22,13 @@ export const createLike = async (postId: string) => {
 /**
  * @description 특정 포스트에 좋아요한 것을 취소합니다.
  */
-export const deleteLike = async (postId: string) => {
+export const deleteLike = async (likeId: string) => {
   try {
     const response = await axiosAuthInstance.delete<Like>(
       ENDPOINT.LIKES.DELETE,
       {
         data: {
-          id: postId,
+          id: likeId,
         },
       },
     );
