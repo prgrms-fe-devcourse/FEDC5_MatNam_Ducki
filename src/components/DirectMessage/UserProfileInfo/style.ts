@@ -18,12 +18,19 @@ export const UserItemWrapper = styled.li`
 
 export const UserInfoWrapper = styled.div`
   display: flex;
-  gap: 1.5rem;
   align-items: center;
+  justify-content: space-between;
+`;
+
+export const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;
 
 export const UserProfileWrapper = styled.div`
   position: relative;
+  flex-shrink: 0;
 `;
 
 export const UserProfileImage = styled.img`
@@ -37,6 +44,22 @@ export const UserProfileImage = styled.img`
 export const UserName = styled.span`
   position: relative;
   font-weight: ${theme.fontWeight.medium};
+  flex-shrink: 0;
+`;
+
+export const Message = styled.span`
+  color: ${theme.colors.gray};
+  width: 100%;
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+`;
+
+export const LastSendDateText = styled.span`
+  color: ${theme.colors.gray};
 `;
 
 export const UserOnlineIconWrapper = styled.div`

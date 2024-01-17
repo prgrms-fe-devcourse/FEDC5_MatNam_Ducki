@@ -1,7 +1,11 @@
 import { DEFAULT_PROFILE_IMAGE } from '@/constants/profile';
 import { User } from '@/types/response';
+import { getElapsedTime } from '@/utils/getElapsedTime';
 
 import {
+  LastSendDateText,
+  Message,
+  UserInfo,
   UserInfoWrapper,
   UserName,
   UserOnlineIcon,
@@ -12,18 +16,28 @@ import {
 
 interface UserProfileInfoProps {
   user: User;
+  message: string;
+  lastSendDate: string;
 }
 
-export default function UserProfileInfo({ user }: UserProfileInfoProps) {
+export default function UserProfileInfo({
+  user,
+  message,
+  lastSendDate,
+}: UserProfileInfoProps) {
   return (
     <UserInfoWrapper>
-      <UserProfileWrapper>
-        <UserProfileImage src={user.image ?? DEFAULT_PROFILE_IMAGE} />
-        <UserOnlineIconWrapper>
-          <UserOnlineIcon active={user.isOnline.toString()} />
-        </UserOnlineIconWrapper>
-      </UserProfileWrapper>
-      <UserName>{user.fullName}</UserName>
+      <UserInfo>
+        <UserProfileWrapper>
+          <UserProfileImage src={user.image ?? DEFAULT_PROFILE_IMAGE} />
+          <UserOnlineIconWrapper>
+            <UserOnlineIcon active={user.isOnline.toString()} />
+          </UserOnlineIconWrapper>
+        </UserProfileWrapper>
+        <UserName>{user.fullName}</UserName>
+        <Message>{message}</Message>
+      </UserInfo>
+      <LastSendDateText>{getElapsedTime(lastSendDate)}</LastSendDateText>
     </UserInfoWrapper>
   );
 }
