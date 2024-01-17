@@ -10,6 +10,7 @@ import {
 } from '@/hooks/useNotification';
 import { userAtom } from '@/recoil/user';
 import { PATH } from '@/routes/path';
+import { Toast } from '@/utils/toast';
 
 import { NotificationContainer } from './style';
 
@@ -27,7 +28,7 @@ export default function NotificationPage() {
 
   useEffect(() => {
     if (!user) {
-      alert('로그인이 필요합니다.');
+      Toast.info('로그인이 필요합니다.');
       navigate(PATH.SIGNIN);
     }
   }, [navigate, user]);
