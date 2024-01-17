@@ -1,7 +1,7 @@
 import { GetUsersPayload, UpdateProfileImagePayload } from '@/types/payload';
 import { User } from '@/types/response';
 
-import { axiosAuthInstance, axiosInstance } from '../axiosInstance';
+import { axiosAuthInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
 
 export const getUsers = async ({
@@ -9,12 +9,15 @@ export const getUsers = async ({
   limit = 10,
 }: GetUsersPayload = {}) => {
   try {
-    const response = await axiosInstance.get<User[]>(ENDPOINT.USERS.GET_USERS, {
-      params: {
-        offset,
-        limit,
+    const response = await axiosAuthInstance.get<User[]>(
+      ENDPOINT.USERS.GET_USERS,
+      {
+        params: {
+          offset,
+          limit,
+        },
       },
-    });
+    );
 
     return response;
   } catch (error) {
