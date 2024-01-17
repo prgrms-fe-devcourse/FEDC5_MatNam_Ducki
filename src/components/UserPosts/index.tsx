@@ -4,7 +4,7 @@ import { useGetPost } from '@/hooks/useGetProfile';
 import { PATH } from '@/routes/path';
 
 import { MyReview } from '../ReviewCard/MyReview';
-import { EmptyPostTitle, PostWrapper } from './style';
+import { EmptyResultText, EmptyResultWrapper, PostWrapper } from './style';
 
 interface PropsUserPosts {
   userId: string;
@@ -14,8 +14,15 @@ export default function UserPosts({ userId }: PropsUserPosts) {
   const navigate = useNavigate();
   const { data: userPost } = useGetPost(userId);
 
-  if (!userPost) {
-    return <EmptyPostTitle>작성된 리뷰가 없습니다.</EmptyPostTitle>;
+  if (!userPost?.length) {
+    return (
+      <EmptyResultWrapper>
+        <EmptyResultText>
+          아직 작성된...
+          <EmptyResultText>게시글이 없습니다...📂 </EmptyResultText>
+        </EmptyResultText>
+      </EmptyResultWrapper>
+    );
   }
   return (
     <PostWrapper>

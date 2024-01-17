@@ -5,7 +5,7 @@ import { useGetPost } from '@/hooks/useGetProfile';
 import { PATH } from '@/routes/path';
 
 import { MyReview } from '../ReviewCard/MyReview';
-import { EmptyPostTitle, PostWrapper } from './style';
+import { EmptyResultText, EmptyResultWrapper, PostWrapper } from './style';
 
 export default function MyPosts() {
   const navigate = useNavigate();
@@ -36,9 +36,12 @@ export default function MyPosts() {
           ))}
         </>
       ) : (
-        <>
-          <EmptyPostTitle>아직 작성된 포스트가 없습니다.</EmptyPostTitle>
-        </>
+        <EmptyResultWrapper>
+          <EmptyResultText>
+            나만의 맛집들을
+            <EmptyResultText>사람들에게 공유해 보세요! 🚀</EmptyResultText>
+          </EmptyResultText>
+        </EmptyResultWrapper>
       )}
     </PostWrapper>
   );
