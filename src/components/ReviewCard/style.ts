@@ -37,7 +37,7 @@ export const ReviewCardBody = styled.div`
 `;
 
 export const ReviewCardContents = styled.span`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -46,6 +46,7 @@ export const ReviewCardContents = styled.span`
   line-height: 2.2rem;
   color: #2c2c2c;
   margin-top: 0.3rem;
+  letter-spacing: -0.08rem;
 `;
 
 export const ReviewCardImage = styled.img`

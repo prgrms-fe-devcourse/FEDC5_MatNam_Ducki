@@ -36,8 +36,14 @@ export const CommentList = styled.div`
   margin-bottom: 145px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 3rem;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const CommentBox = styled.div`
