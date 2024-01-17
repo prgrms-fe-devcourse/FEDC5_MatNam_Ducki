@@ -17,9 +17,6 @@ export const BottomNavBarWrapper = styled.div`
   bottom: 0;
   padding: 2rem;
   border-top: 1px solid ${theme.colors.lightGray};
-
-  border-right: 1px solid black;
-  border-left: 1px solid black;
 `;
 
 export const LinkWrapper = styled(Link)<{ active: string }>`

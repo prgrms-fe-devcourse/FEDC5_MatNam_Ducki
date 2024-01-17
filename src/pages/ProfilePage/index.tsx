@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
+import AnimationContainer from '@/components/Common/AnimationContainer';
 import Button from '@/components/Common/Button/Button';
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector';
@@ -111,7 +112,7 @@ export default function ProfilePage() {
   const defaultImage = DEFAULT_PROFILE_IMAGE;
 
   return (
-    <>
+    <AnimationContainer>
       <>
         {authUser && authUser._id === userId ? (
           <ProfileWrapper>
@@ -147,7 +148,7 @@ export default function ProfilePage() {
                   onClick={handleLogOutButtonClick}
                   width="6rem"
                   backgroundColor={theme.colors.lightGray}
-                  height="4rem"
+                  height="3rem"
                   textColor={theme.colors.gray}
                   borderRadius="2rem">
                   로그아웃
@@ -172,6 +173,6 @@ export default function ProfilePage() {
           <PostUserProfile />
         )}
       </>
-    </>
+    </AnimationContainer>
   );
 }

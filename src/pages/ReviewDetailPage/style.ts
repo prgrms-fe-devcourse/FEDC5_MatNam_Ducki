@@ -82,7 +82,7 @@ export const ReviewImage = styled.img`
 `;
 
 export const ReviewHeaderWrapper = styled.div`
-  margin: 10px 0px;
+  margin-top: 1rem;
   line-height: 2.2rem;
 `;
 
@@ -107,20 +107,26 @@ export const RestaurantName = styled.h3`
 export const RestaurantLocation = styled.span`
   color: ${({ theme }) => theme.colors.gray};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
+  font-size: 1.4rem;
 `;
 
 export const OpeningTitle = styled.h3`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.gray};
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 0.8rem;
+  font-size: 1.4rem;
 `;
 
 export const RestaurantOpeningTime = styled.div`
   color: ${({ theme }) => theme.colors.gray};
   margin-bottom: 1.5rem;
+  font-size: 1.4rem;
 `;
 
 export const ReviewContent = styled.div`
-  margin: 3.3rem 0;
+  margin: 2rem 0 3.3rem;
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  white-space: pre;
 `;

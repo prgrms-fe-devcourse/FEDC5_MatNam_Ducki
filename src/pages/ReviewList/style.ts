@@ -8,13 +8,14 @@ export const ReviewListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
-  padding: 2rem 0;
+  padding: 2.5rem 0;
 `;
 
 export const SortContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  padding: 0 0.5rem;
 `;
 
 export const SortOption = styled.div<SortOptionProps>`

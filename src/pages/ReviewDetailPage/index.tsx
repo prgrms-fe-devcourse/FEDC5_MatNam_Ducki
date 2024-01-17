@@ -57,7 +57,7 @@ export default function ReviewDetail() {
   const redirectToProfile = useRedirectToProfile();
 
   const handleGoToEditPage = useCallback(() => {
-    navigate(PATH.REVIEWUPDATE, { state: postId });
+    navigate(`${PATH.REVIEWUPDATE}/${postId}`);
   }, [navigate, postId]);
 
   const handleDeletePost = useCallback(() => {
@@ -87,14 +87,15 @@ export default function ReviewDetail() {
           </UserInfoTextBox>
         </UserInfoWrapper>
         <BadgeWrapper>
-          <Badge>{data.channel.name}</Badge>
+          <Badge variant={data.channel._id === CHANNEL.LIKE ? 'focus' : 'blur'}>
+            {data.channel.name}
+          </Badge>
         </BadgeWrapper>
         <ReviewWrapper>
           <ReviewHeaderWrapper>
             <ReviewHeaderTitleWrapper>
               <ReviewHeaderLeft>
                 <RestaurantName>{data.restaurant}</RestaurantName>
-
                 {data.channel._id === CHANNEL.LIKE ? (
                   <ThumbsUpIcon />
                 ) : (
@@ -107,11 +108,15 @@ export default function ReviewDetail() {
             </ReviewHeaderTitleWrapper>
             <RestaurantLocation>{data.location}</RestaurantLocation>
           </ReviewHeaderWrapper>
-          <OpeningTitle>
-            <ClockIcon />
-            영업시간
-          </OpeningTitle>
-          <RestaurantOpeningTime>{data.openingTime}</RestaurantOpeningTime>
+          {data.openingTime && (
+            <OpeningTitle>
+              <ClockIcon />
+              영업시간
+            </OpeningTitle>
+          )}
+          {data.openingTime && (
+            <RestaurantOpeningTime>{data.openingTime}</RestaurantOpeningTime>
+          )}
           {data.image && <ReviewImage src={data.image}></ReviewImage>}
           <ReviewContent>{data.review}</ReviewContent>
         </ReviewWrapper>

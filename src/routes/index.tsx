@@ -69,6 +69,10 @@ export const router = createBrowserRouter([
         element: <ProfilePage />,
       },
       {
+        path: `${PATH.USERPROFILE}/:userId`,
+        element: <ProfilePage />,
+      },
+      {
         path: PATH.NOTIFICATION,
         element: <NotificationPage />,
       },
@@ -77,7 +81,7 @@ export const router = createBrowserRouter([
         element: <DirectMessagePage />,
       },
       {
-        path: `${PATH.DIRECTMESSAGE}/:userId`,
+        path: `${PATH.DIRECTMESSAGEDETAIL}/:userId`,
         element: <DetailMessagePage />,
       },
       {

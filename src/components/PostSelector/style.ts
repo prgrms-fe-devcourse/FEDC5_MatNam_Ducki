@@ -12,23 +12,25 @@ export const SelectorWrapper = styled.div`
 export const MyPostWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  padding: 0 2rem;
 `;
 
 export const MyPostsTitle = styled.div<{ isLikesSelected: boolean }>`
   font-size: ${({ isLikesSelected }) =>
-    isLikesSelected ? '1.5rem' : '1.6rem'};
+    isLikesSelected ? '1.6rem' : '1.8rem'};
   color: ${({ isLikesSelected }) =>
     isLikesSelected ? theme.colors.gray : 'black'};
   font-weight: ${({ isLikesSelected }) =>
     isLikesSelected ? theme.fontWeight.medium : theme.fontWeight.bold};
+  cursor: pointer;
 `;
 
 export const LikesTitle = styled.div<{ isLikesSelected: boolean }>`
   font-size: ${({ isLikesSelected }) =>
-    isLikesSelected ? '1.6rem' : '1.5rem'};
+    isLikesSelected ? '1.8rem' : '1.6rem'};
   color: ${({ isLikesSelected }) =>
     isLikesSelected ? 'black' : theme.colors.gray};
   font-weight: ${({ isLikesSelected }) =>
     isLikesSelected ? theme.fontWeight.bold : theme.fontWeight.medium};
+  cursor: pointer;
 `;

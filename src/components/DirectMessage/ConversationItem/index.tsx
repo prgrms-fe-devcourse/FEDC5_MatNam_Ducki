@@ -24,7 +24,7 @@ export default function ConversationItem({
   const navigate = useNavigate();
 
   const navigateToUserMessage = () => {
-    navigate(`${PATH.DIRECTMESSAGE}/${messageSender._id}`);
+    navigate(`${PATH.DIRECTMESSAGEDETAIL}/${messageSender._id}`);
   };
 
   useEffect(() => {

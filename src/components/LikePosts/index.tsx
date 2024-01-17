@@ -5,8 +5,7 @@ import { useGetPostDetail } from '@/hooks/useGetProfile';
 import { PATH } from '@/routes/path';
 
 import { ReviewCard } from '../ReviewCard/ReviewCard';
-import { PostWrapper } from './style';
-import { EmptyPostTitle } from './style';
+import { EmptyResultText, EmptyResultWrapper, PostWrapper } from './style';
 
 export default function LikePosts() {
   const navigate = useNavigate();
@@ -45,9 +44,14 @@ export default function LikePosts() {
           )}
         </>
       ) : (
-        <>
-          <EmptyPostTitle>아직 좋아요한 목록이 없습니다.</EmptyPostTitle>
-        </>
+        <EmptyResultWrapper>
+          <EmptyResultText>
+            좋아요를 눌러서
+            <EmptyResultText>
+              더 많은 사람들이 볼 수 있게 해주세요! 🚀
+            </EmptyResultText>
+          </EmptyResultText>
+        </EmptyResultWrapper>
       )}
     </PostWrapper>
   );

@@ -4,7 +4,7 @@ export const theme: Theme = {
   colors: {
     primary: '#EEA734', // 메인 색상
     secondary: '#FFA41B', // 보조 색상
-    lightSecondary: '#FFDCA0',
+    lightSecondary: '#FEF8ED',
     whitePrimary: '#FFF7F5',
     accent: '#525FE1', // 강조 색상
     gray: '#868686',

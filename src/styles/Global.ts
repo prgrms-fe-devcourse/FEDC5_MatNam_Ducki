@@ -105,6 +105,7 @@ export const reset = css`
 
   body {
     font-size: 1.6rem;
+    letter-spacing: -0.04rem;
   }
 
   /* HTML5 display-role reset for older browsers */

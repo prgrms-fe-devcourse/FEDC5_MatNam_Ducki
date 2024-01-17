@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
 
+import PopularSearch from '@/components/PopularSearch';
+import { ReviewCardList } from '@/components/ReviewCardList';
 import SearchBar from '@/components/SearchBar';
+import { useSearchAll } from '@/hooks/useSearch';
 
 import {
+  EmptyResultText,
+  EmptyResultWrapper,
   SearchKeyword,
   SearchKeywordWrapper,
   SearchPostPageWrapper,
 } from './style';
-import PopularSearch from '@/components/PopularSearch';
-import { ReviewCardList } from '@/components/ReviewCardList';
-import EmptySearchResult from '@/components/Common/EmptySearchResult';
-import { useSearchAll } from '@/hooks/useSearch';
 
 export default function SearchPostPage() {
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const { data, refetch, isLoading } = useSearchAll(searchKeyword);
+  const { data, refetch } = useSearchAll(searchKeyword);
 
   const postResult = data?.postData ?? [];
 
@@ -33,17 +34,20 @@ export default function SearchPostPage() {
           <SearchKeywordWrapper>
             <SearchKeyword>{searchKeyword} 검색 결과</SearchKeyword>
           </SearchKeywordWrapper>
-          {isLoading ? (
-            <span>로딩 중..</span>
-          ) : (
-            <>
-              {postResult.length !== 0 ? (
-                <ReviewCardList posts={postResult} />
-              ) : (
-                <EmptySearchResult />
-              )}
-            </>
-          )}
+          <>
+            {postResult.length !== 0 ? (
+              <ReviewCardList posts={postResult} />
+            ) : (
+              <EmptyResultWrapper>
+                <EmptyResultText>
+                  아직 후기가 없나봐요 👀
+                  <EmptyResultText>
+                    다른 키워드로 검색해 보세요!
+                  </EmptyResultText>
+                </EmptyResultText>
+              </EmptyResultWrapper>
+            )}
+          </>
         </>
       ) : (
         <PopularSearch />

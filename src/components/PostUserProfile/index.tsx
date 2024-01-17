@@ -46,11 +46,15 @@ export default function PostUserProfile() {
             </UserInfoWrapper>
           </ProfileBackGroundImage>
           <UserWrapper>
-            <Label>자기소개</Label>
-            <IntroductionWrapper>
-              <Introduction>{user.username}</Introduction>
-              <IntroductionBar />
-            </IntroductionWrapper>
+            {user.username && (
+              <>
+                <Label>자기소개</Label>
+                <IntroductionWrapper>
+                  <Introduction>{user.username}</Introduction>
+                  <IntroductionBar />
+                </IntroductionWrapper>
+              </>
+            )}
             <PostWrapper>
               <PostsTitle>{user.fullName}님이 작성한 게시글</PostsTitle>
               <UserPosts userId={user._id} />

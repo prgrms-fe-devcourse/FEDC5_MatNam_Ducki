@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
+import AnimationContainer from '@/components/Common/AnimationContainer';
 import NotificationList from '@/components/Notification/NotificationList';
 import {
   useGetNotifications,
@@ -32,8 +33,10 @@ export default function NotificationPage() {
   }, [navigate, user]);
 
   return (
-    <NotificationContainer>
-      <NotificationList notifications={notifications} />
-    </NotificationContainer>
+    <AnimationContainer>
+      <NotificationContainer>
+        <NotificationList notifications={notifications} />
+      </NotificationContainer>
+    </AnimationContainer>
   );
 }

@@ -12,6 +12,7 @@ import {
   MessageContainer,
   MessageWrapper,
   NotificationItemContainer,
+  ProfileContainer,
   TimeWrapper,
   UserWrapper,
 } from './style';
@@ -35,19 +36,21 @@ export default function NotificationItem({
     if (post) {
       navigate(`${PATH.REVIEWDETAIL}/${post}`);
     } else {
-      navigate(`${PATH.DIRECTMESSAGE}/${author._id}`);
+      navigate(`${PATH.DIRECTMESSAGEDETAIL}/${author._id}`);
     }
   };
   return (
     <NotificationItemContainer onClick={handleClick}>
-      <Avatar imageUrl={author.image} size={'small'} />
-      <MessageContainer>
-        <UserWrapper>{author.fullName}</UserWrapper>
-        <MessageWrapper>
-          <AuthorWrapper>{author.fullName}</AuthorWrapper>
-          <ContentWrapper>{MESSAGE[key].text}</ContentWrapper>
-        </MessageWrapper>
-      </MessageContainer>
+      <ProfileContainer>
+        <Avatar imageUrl={author.image} size={'small'} />
+        <MessageContainer>
+          <UserWrapper>{author.fullName}</UserWrapper>
+          <MessageWrapper>
+            <AuthorWrapper>{author.fullName}</AuthorWrapper>
+            <ContentWrapper>{MESSAGE[key].text}</ContentWrapper>
+          </MessageWrapper>
+        </MessageContainer>
+      </ProfileContainer>
       <TimeWrapper>{getElapsedTime(createdAt)}</TimeWrapper>
     </NotificationItemContainer>
   );

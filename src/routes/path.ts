@@ -12,7 +12,9 @@ export const PATH = {
   REVIEWLIST: '/reviewlist',
   REVIEWDETAIL: '/reviewdetail',
   PROFILE: '/profile',
+  USERPROFILE: '/userprofile',
   NOTIFICATION: '/notification',
   DIRECTMESSAGE: '/message',
+  DIRECTMESSAGEDETAIL: '/messages',
   NOTFOUND: '/*',
 };
