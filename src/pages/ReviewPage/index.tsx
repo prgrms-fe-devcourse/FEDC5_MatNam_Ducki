@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
+import AnimationContainer from '@/components/Common/AnimationContainer';
 import ReviewForm from '@/components/ReviewForm';
 import { userAtom } from '@/recoil/user';
 import { PATH } from '@/routes/path';
@@ -18,5 +19,9 @@ export default function ReviewPage() {
     }
   }, []);
 
-  return <ReviewForm />;
+  return (
+    <AnimationContainer>
+      <ReviewForm />
+    </AnimationContainer>
+  );
 }
