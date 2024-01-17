@@ -6,4 +6,5 @@ export const NotificationContainer = styled.div`
   gap: 2rem;
   margin: 0 auto;
   padding: 2rem 0;
+  height: 100%;
 `;
