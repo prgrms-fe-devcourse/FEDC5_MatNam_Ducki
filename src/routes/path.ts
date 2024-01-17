@@ -14,5 +14,6 @@ export const PATH = {
   PROFILE: '/profile',
   NOTIFICATION: '/notification',
   DIRECTMESSAGE: '/message',
+  DIRECTMESSAGEDETAIL: '/messages',
   NOTFOUND: '/*',
 };

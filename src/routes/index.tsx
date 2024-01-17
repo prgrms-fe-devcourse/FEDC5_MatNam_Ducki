@@ -77,7 +77,7 @@ export const router = createBrowserRouter([
         element: <DirectMessagePage />,
       },
       {
-        path: `${PATH.DIRECTMESSAGE}/:userId`,
+        path: `${PATH.DIRECTMESSAGEDETAIL}/:userId`,
         element: <DetailMessagePage />,
       },
       {
