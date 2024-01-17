@@ -69,6 +69,10 @@ export const router = createBrowserRouter([
         element: <ProfilePage />,
       },
       {
+        path: `${PATH.USERPROFILE}/:userId`,
+        element: <ProfilePage />,
+      },
+      {
         path: PATH.NOTIFICATION,
         element: <NotificationPage />,
       },

@@ -9,7 +9,7 @@ export const useRedirectToProfile = () => {
 
   const redirectToProfile = (id?: string) => {
     if (id && id !== authUser?._id) {
-      navigate(`${PATH.PROFILE}/${id}`);
+      navigate(`${PATH.USERPROFILE}/${id}`);
     }
   };
 
