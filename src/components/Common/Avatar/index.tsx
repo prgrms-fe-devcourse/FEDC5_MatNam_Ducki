@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { DEFAULT_PROFILE_IMAGE } from '@/constants/avatar';
+import { DEFAULT_PROFILE_IMAGE } from '@/constants/profile';
 
 export type AvatarSize = 'large' | 'small';
 

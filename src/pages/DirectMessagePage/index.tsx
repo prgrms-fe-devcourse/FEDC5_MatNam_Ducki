@@ -13,15 +13,15 @@ import { Toast } from '@/utils/toast';
 import { DirectMessagePageWrapper, DirectMessageTitle } from './style';
 
 export default function DirectMessagePage() {
+  const user = useRecoilValue(userAtom);
   const navigate = useNavigate();
-  const userState = useRecoilValue(userAtom);
 
   useEffect(() => {
-    if (!userState) {
-      Toast.info('로그인이 필요합니다.');
+    if (!user) {
+      Toast.info('로그인 후 이용해 보세요!');
       navigate(PATH.SIGNIN);
     }
-  }, [userState?._id]);
+  }, []);
 
   return (
     <AnimationContainer>

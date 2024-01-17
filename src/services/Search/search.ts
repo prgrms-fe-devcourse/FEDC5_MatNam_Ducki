@@ -32,6 +32,15 @@ export const searchAll = async (query: string) => {
         if ('fullName' in item) {
           userData.push(item as User);
         } else {
+          if (item.title) {
+            const { review, restaurant, location, openingTime } = JSON.parse(
+              item.title,
+            );
+            item.review = review;
+            item.restaurant = restaurant;
+            item.location = location;
+            item.openingTime = openingTime;
+          }
           postData.push(item as Post);
         }
       });

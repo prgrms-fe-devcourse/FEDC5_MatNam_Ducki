@@ -8,6 +8,7 @@ import UserPosts from '../UserPosts';
 import {
   Introduction,
   IntroductionBar,
+  IntroductionContainer,
   IntroductionWrapper,
   Label,
   PostsTitle,
@@ -38,6 +39,7 @@ export default function PostUserProfile() {
                   imageUrl={user.image}
                   size={'large'}
                   style={{
+                    marginLeft: '2rem',
                     boxShadow: '0 10px 10px rgba(255, 232, 61, 0.29)',
                   }}
                 />
@@ -48,11 +50,13 @@ export default function PostUserProfile() {
           <UserWrapper>
             {user.username && (
               <>
-                <Label>자기소개</Label>
-                <IntroductionWrapper>
-                  <Introduction>{user.username}</Introduction>
-                  <IntroductionBar />
-                </IntroductionWrapper>
+                <IntroductionContainer>
+                  <Label>자기소개</Label>
+                  <IntroductionWrapper>
+                    <Introduction>{user.username}</Introduction>
+                    <IntroductionBar />
+                  </IntroductionWrapper>
+                </IntroductionContainer>
               </>
             )}
             <PostWrapper>

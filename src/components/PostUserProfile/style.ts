@@ -37,12 +37,18 @@ export const Label = styled.span`
   font-size: 1.3rem;
 `;
 
+export const IntroductionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
 export const IntroductionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1.5rem;
-  padding-bottom: 2rem;
+  gap: 0.5rem;
+  padding-bottom: 2.5rem;
 `;
 
 export const Introduction = styled.span`

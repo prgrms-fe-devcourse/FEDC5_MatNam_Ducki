@@ -8,15 +8,15 @@ import { PATH } from '@/routes/path';
 import { Toast } from '@/utils/toast';
 
 export default function ReviewPage() {
-  const userState = useRecoilValue(userAtom);
   const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
 
   useEffect(() => {
-    if (!userState) {
-      Toast.info('로그인이 필요합니다.');
+    if (!user) {
+      Toast.info('로그인 후 이용해 보세요!');
       navigate(PATH.SIGNIN);
     }
-  }, [userState?._id]);
+  }, []);
 
   return <ReviewForm />;
 }

@@ -29,7 +29,7 @@ export const UserInfoWrapper = styled.div`
 
 export const ProfileInfo = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 `;
 
 export const UserWrapper = styled.div`
