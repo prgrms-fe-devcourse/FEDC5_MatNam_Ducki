@@ -6,16 +6,16 @@ import { useGetUser } from '@/hooks/useGetProfile';
 import Avatar from '../Common/Avatar';
 import UserPosts from '../UserPosts';
 import {
-  ImageWrapper,
   Introduction,
   IntroductionBar,
   IntroductionWrapper,
   Label,
   PostsTitle,
+  PostWrapper,
   ProfileBackGroundImage,
   ProfileWrapper,
-  SelectorWrapper,
   UserInfoWrapper,
+  UserProfile,
   UserWrapper,
 } from './style';
 
@@ -33,7 +33,7 @@ export default function PostUserProfile() {
         <ProfileWrapper>
           <ProfileBackGroundImage>
             <UserInfoWrapper>
-              <ImageWrapper>
+              <UserProfile>
                 <Avatar
                   imageUrl={user.image}
                   size={'large'}
@@ -41,21 +41,20 @@ export default function PostUserProfile() {
                     boxShadow: '0 10px 10px rgba(255, 232, 61, 0.29)',
                   }}
                 />
-              </ImageWrapper>
-              <UserInfo userName={user.fullName} userId={user.email} />
+                <UserInfo userName={user.fullName} userId={user.email} />
+              </UserProfile>
             </UserInfoWrapper>
           </ProfileBackGroundImage>
-
           <UserWrapper>
             <Label>자기소개</Label>
             <IntroductionWrapper>
               <Introduction>{user.username}</Introduction>
               <IntroductionBar />
             </IntroductionWrapper>
-            <SelectorWrapper>
+            <PostWrapper>
               <PostsTitle>{user.fullName}님이 작성한 게시글</PostsTitle>
-            </SelectorWrapper>
-            <UserPosts userId={user._id} userName={user.fullName} />
+              <UserPosts userId={user._id} />
+            </PostWrapper>
           </UserWrapper>
         </ProfileWrapper>
       )}

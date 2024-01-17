@@ -3,13 +3,14 @@ import styled from '@emotion/styled';
 import { PropsUserInfo } from '@/types/profile';
 
 const UserInfoSection = styled.div`
-  margin-left: 2.2rem;
-  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
 `;
 
 const UserName = styled.div`
   font-size: 1.8rem;
-  margin-bottom: 0.4rem;
   font-weight: bold;
 `;
 
