@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import AnimationContainer from '@/components/Common/AnimationContainer';
 import Button from '@/components/Common/Button/Button';
@@ -47,6 +47,7 @@ export default function ProfilePage() {
   const navigate = useNavigate();
   const { changeIntroduce } = useChangeIntroduce();
 
+  const user = useRecoilValue(userAtom);
   const setUserState = useSetRecoilState(userAtom);
 
   const { mutate: signOut } = useSignOut({ setUserState });
@@ -58,11 +59,11 @@ export default function ProfilePage() {
   }, [authUser]);
 
   useEffect(() => {
-    if (userId === 'undefined') {
+    if (!user) {
       Toast.info('로그인 후 이용해 보세요!');
       navigate('/signIn');
     }
-  }, [userId]);
+  }, []);
 
   const handleFileChange = (file: File | null) => {
     if (file) {
