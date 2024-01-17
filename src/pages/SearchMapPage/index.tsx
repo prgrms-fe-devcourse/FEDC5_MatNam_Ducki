@@ -14,7 +14,10 @@ export default function SearchMapPage() {
 
   return (
     <SearchMapPageWrapper>
-      <SearchBar onSearchKeyword={handleSearchKeyword} />
+      <SearchBar
+        placeholder="맛집을 검색해 보세요!"
+        onSearchKeyword={handleSearchKeyword}
+      />
       <SearchMap searchKeyword={searchKeyword} />
     </SearchMapPageWrapper>
   );
