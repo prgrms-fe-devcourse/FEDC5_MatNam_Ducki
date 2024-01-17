@@ -8,6 +8,7 @@ import {
   useGetDetail,
 } from '@/hooks/ReviewDetail';
 import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useSendNotifications } from '@/hooks/useNotification';
 import { theme } from '@/styles/Theme';
 
 import LikeIcon from '../Common/Icons/LikeIcon';
@@ -16,6 +17,7 @@ export default function EvaluationSection() {
   const { postId } = useParams() as { postId: string };
   const { data: postData } = useGetDetail({ postId });
   const { data: userData } = useCheckAuthUser();
+  const { mutate: sendLike } = useSendNotifications();
 
   const [isLike, setIsLike] = useState(false);
   const [likeId, setLikeId] = useState(
@@ -28,41 +30,47 @@ export default function EvaluationSection() {
   const { mutate: createMutate } = useCreateLike({ postId });
   const { mutate: deleteMutate } = useDeleteLike();
 
-  //최초 렌더링시 좋아요 체크
-  useEffect(() => {
-    setIsLike(postData?.likes.some((like) => like?.user === userData?._id)!);
-  }, [postData, userData]);
+  if (userData && postData) {
+    //최초 렌더링시 좋아요 체크
+    useEffect(() => {
+      setIsLike(postData?.likes.some((like) => like?.user === userData?._id)!);
+    }, [postData, userData]);
 
-  const handleLikeClick = () => {
-    setIsLike((prevState) => !prevState);
+    const handleLikeClick = () => {
+      setIsLike((prevState) => !prevState);
 
-    isLike
-      ? setLikeCount((prev) => prev - 1)
-      : setLikeCount((prev) => prev + 1);
+      isLike
+        ? setLikeCount((prev) => prev - 1)
+        : setLikeCount((prev) => prev + 1);
 
-    if (timer) clearTimeout(timer);
-    const newTimer = window.setTimeout(() => {
-      if (!isLike && !likeId) {
-        createMutate(undefined, {
-          onSuccess: (data) => {
-            setLikeId(data?._id);
-          },
-        });
-      }
+      if (timer) clearTimeout(timer);
+      const newTimer = window.setTimeout(() => {
+        if (!isLike && !likeId) {
+          createMutate(undefined, {
+            onSuccess: (data) => {
+              setLikeId(data?._id);
+            },
+          });
+        }
 
-      if (isLike && likeId) {
-        deleteMutate(likeId, {
-          onSuccess: () => {
-            setLikeId(undefined);
-          },
-        });
-      }
-    }, 500);
+        if (isLike && likeId) {
+          deleteMutate(likeId, {
+            onSuccess: () => {
+              setLikeId(undefined);
+            },
+          });
+        }
+      }, 500);
 
-    setTimer(newTimer);
-  };
+      setTimer(newTimer);
 
-  if (postData && userData) {
+      sendLike({
+        notificationType: 'LIKE',
+        notificationTypeId: postData._id,
+        userId: postData.author._id,
+        postId,
+      });
+    };
     return (
       <StyledEvaluationSection>
         <EvaluationLeftWrapper onClick={handleLikeClick}>

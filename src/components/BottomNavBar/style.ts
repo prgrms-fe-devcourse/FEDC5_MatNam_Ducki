@@ -5,16 +5,21 @@ import { theme } from '@/styles/Theme';
 
 export const BottomNavBarWrapper = styled.div`
   position: fixed;
+  max-width: ${({ theme }) => theme.device.mobile};
   width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
   display: flex;
   height: 8rem;
   justify-content: space-around;
   align-items: center;
   background-color: white;
   bottom: 0;
-  left: 0;
   padding: 2rem;
   border-top: 1px solid ${theme.colors.lightGray};
+
+  border-right: 1px solid black;
+  border-left: 1px solid black;
 `;
 
 export const LinkWrapper = styled(Link)<{ active: string }>`
@@ -29,8 +34,4 @@ export const LinkWrapper = styled(Link)<{ active: string }>`
   &:hover {
     color: ${theme.colors.primary};
   }
-`;
-
-export const TextStyle = styled.span`
-  font-size: 1.2rem;
 `;

@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
+import Button from '@/components/Common/Button/Button';
 import ImageUpload from '@/components/Common/ImageUpload';
 import PostSelector from '@/components/PostSelector';
 import PostUserProfile from '@/components/PostUserProfile';
 import Skeleton from '@/components/Skeleton';
 import UserInfo from '@/components/UserInfo';
 import UserIntroductionEditor from '@/components/UserIntroductionEditor';
+import { DEFAULT_PROFILE_IMAGE } from '@/constants/profile';
 import {
   DONE_BUTTON_TEXT,
   EDIT_BUTTON_TEXT,
   PLACEHOLDER_DEFAULTS,
 } from '@/constants/profile';
 import { useCheckAuthUser } from '@/hooks/useAuth';
+import { useSignOut } from '@/hooks/useAuth';
 import { useChangeIntroduce } from '@/hooks/useGetProfile';
 import { useChangeImage } from '@/hooks/useGetProfile';
+import { selectedFileAtom } from '@/recoil/selectedFile';
+import { theme } from '@/styles/Theme';
+import { Toast } from '@/utils/toast';
 
 import {
   ImageWrapper,
   Label,
   ProfileBackGroundImage,
+  ProfileInfo,
   ProfileWrapper,
   UserInfoWrapper,
   UserWrapper,
@@ -29,12 +37,15 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [introduction, setIntroduction] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { changeImage } = useChangeImage(setIsLoading);
+  const setSelectedFile = useSetRecoilState(selectedFileAtom);
+  const { changeImage } = useChangeImage(setIsLoading, setSelectedFile);
   const { data: authUser } = useCheckAuthUser();
   const params = useParams();
   const userId = params.userId;
   const navigate = useNavigate();
   const { changeIntroduce } = useChangeIntroduce();
+
+  const { mutate: signOut } = useSignOut();
 
   useEffect(() => {
     if (authUser) {
@@ -44,7 +55,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (userId === 'undefined') {
-      alert('로그인이 필요합니다.');
+      Toast.info('로그인이 필요합니다.');
       navigate('/signIn');
     }
   }, [userId]);
@@ -68,11 +79,19 @@ export default function ProfilePage() {
     }
   };
 
+  const handleLogOutButtonClick = () => {
+    const confirm = window.confirm('로그아웃 하시겠습니까?');
+    if (confirm) {
+      signOut();
+      navigate('/');
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length < 17) {
       setIntroduction(e.target.value);
     } else {
-      alert('작성 범위를 초과했습니다.');
+      Toast.info('작성 범위를 초과했습니다.');
 
       if (authUser) {
         // 범위를 넘기면 alert 발생하면서 초기값으로 돌아가게 되어서 일단은 서버쪽에 보내는 쪽으로 저장하도록했습니다.
@@ -89,7 +108,8 @@ export default function ProfilePage() {
 
   const buttonText = isEditing ? DONE_BUTTON_TEXT : EDIT_BUTTON_TEXT;
 
-  const defaultImage = '../../../public/images/defaultProfileImage.png';
+  const defaultImage = DEFAULT_PROFILE_IMAGE;
+
   return (
     <>
       <>
@@ -97,31 +117,41 @@ export default function ProfilePage() {
           <ProfileWrapper>
             <ProfileBackGroundImage>
               <UserInfoWrapper>
-                {isLoading ? (
-                  <Skeleton
-                    style={{ marginTop: '1.2rem', marginLeft: '4rem' }}
-                    width="80px"
-                    height="80px"
-                    borderRadius="50%"></Skeleton>
-                ) : (
+                <ProfileInfo>
                   <ImageWrapper>
-                    <ImageUpload
-                      onFileChange={handleFileChange}
-                      ratio="5/5"
-                      width="80px"
-                      borderRadius="50%"
-                      image={
-                        authUser.image
-                          ? `${authUser.image}?${Date.now()}`
-                          : defaultImage // 초기 값
-                      }
-                    />
+                    {isLoading ? (
+                      <Skeleton
+                        width="80px"
+                        height="80px"
+                        borderRadius="50%"></Skeleton>
+                    ) : (
+                      <ImageUpload
+                        onFileChange={handleFileChange}
+                        ratio="5/5"
+                        width="80px"
+                        borderRadius="50%"
+                        image={
+                          authUser.image
+                            ? `${authUser.image}?${Date.now()}`
+                            : defaultImage // 초기 값
+                        }
+                      />
+                    )}
                   </ImageWrapper>
-                )}
-                <UserInfo
-                  userName={authUser.fullName}
-                  userId={authUser.email}
-                />
+                  <UserInfo
+                    userName={authUser.fullName}
+                    userId={authUser.email}
+                  />
+                </ProfileInfo>
+                <Button
+                  onClick={handleLogOutButtonClick}
+                  width="6rem"
+                  backgroundColor={theme.colors.lightGray}
+                  height="4rem"
+                  textColor={theme.colors.gray}
+                  borderRadius="2rem">
+                  로그아웃
+                </Button>
               </UserInfoWrapper>
             </ProfileBackGroundImage>
             <UserWrapper>
@@ -135,8 +165,8 @@ export default function ProfilePage() {
                 onInputChange={handleInputChange}
                 buttonText={buttonText}
               />
-              <PostSelector />
             </UserWrapper>
+            <PostSelector />
           </ProfileWrapper>
         ) : (
           <PostUserProfile />

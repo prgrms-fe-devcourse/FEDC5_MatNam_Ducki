@@ -1,39 +1,48 @@
 import styled from '@emotion/styled';
 
+import { theme } from '@/styles/Theme';
+
 export const ReviewCardContainer = styled.div<{ width: string }>`
   width: ${({ width }) => width};
   margin: 0 auto;
-  border-radius: 1rem;
-  border: 1px solid #bdbdbd;
-  box-shadow: 0px 1.5px 1.5px rgba(0, 0, 0, 0.25);
+  border-bottom: 0.1rem solid ${theme.colors.lightGray};
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 export const ReviewCardHeader = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  padding: 1rem;
   font-size: 1.2rem;
   color: #4f4f4f;
 `;
 
 export const ProfileNickname = styled.span`
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0 0.5rem 0.5rem 0;
 `;
 
 export const ElaspedTime = styled.span`
-  padding: 0.5rem 1rem;
+  padding: 0 0 0.5rem 0.5rem;
 `;
 
 export const ReviewCardBody = styled.div`
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 `;
 
-export const ReviewCardContents = styled.span``;
+export const ReviewCardContents = styled.span`
+  font-size: 1.3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 export const ReviewCardImage = styled.img`
   width: 100%;
@@ -49,12 +58,21 @@ export const ReviewCardInfo = styled.span`
 `;
 
 export const RestaurantName = styled.span`
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  font-size: ${theme.size.medium};
   font-weight: bold;
 `;
 
-export const LikeContainer = styled.span``;
+export const LikeContainer = styled.span`
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  font-size: ${theme.size.medium};
+`;
 
 export const RestaurantLocation = styled.span`
-  color: #828282;
-  font-size: 1.5rem;
+  color: ${theme.colors.gray};
+  font-size: 1.3rem;
 `;

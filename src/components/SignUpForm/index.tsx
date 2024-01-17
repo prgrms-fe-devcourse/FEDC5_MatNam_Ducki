@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { INPUT_VALIDATION } from '@/constants/validation';
 import { useSignUp } from '@/hooks/useAuth';
 import { HookFormInputListProps } from '@/types/input';
+import { Toast } from '@/utils/toast.ts';
 import {
   isPasswordContainsSpecialChar,
   isPasswordShort,
@@ -26,6 +27,8 @@ interface SignUpValues {
   passwordCheck: string;
 }
 
+type SignUpSubmitValues = Omit<SignUpValues, 'passwordCheck'>;
+
 export default function SignUpForm() {
   const { register, handleSubmit, watch, formState } = useForm<SignUpValues>({
     mode: 'onChange',
@@ -41,16 +44,13 @@ export default function SignUpForm() {
 
   const handleSignUpSuccess = () => {
     navigateToMainPage();
-    alert('가입이 완료 되었어요!');
+    Toast.success('가입이 완료 되었어요!');
   };
 
   const { mutate } = useSignUp({ onSuccess: handleSignUpSuccess });
 
-  const onSubmit: SubmitHandler<SignUpValues> = ({
-    passwordCheck,
-    ...signUpInput
-  }) => {
-    mutate(signUpInput);
+  const onSubmit: SubmitHandler<SignUpSubmitValues> = (data) => {
+    mutate(data);
   };
 
   const password = watch('password');

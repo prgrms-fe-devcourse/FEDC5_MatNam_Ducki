@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
 
+import { PROFILE_BACKGROUND_IMAGE } from '@/constants/profile';
 import { theme } from '@/styles/Theme';
 
 export const ProfileWrapper = styled.div`
   background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 `;
 
 export const ProfileBackGroundImage = styled.div`
-  background-image: url('../../../public/images/profileBackground.png');
+  background-image: url(${PROFILE_BACKGROUND_IMAGE});
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -17,20 +21,23 @@ export const ProfileBackGroundImage = styled.div`
 
 export const UserInfoWrapper = styled.div`
   display: flex;
-  padding-top: 16rem;
-  width: 100%;
+  padding-top: 14rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+`;
+
+export const ProfileInfo = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 export const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 3rem 2rem 0 2rem;
 `;
 
-export const ImageWrapper = styled.div`
-  margin-top: 1.2rem;
-  margin-left: 4rem;
-`;
+export const ImageWrapper = styled.div``;
 
 export const Label = styled.span`
   color: #868686;

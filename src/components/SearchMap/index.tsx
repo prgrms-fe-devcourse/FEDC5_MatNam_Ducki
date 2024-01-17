@@ -1,7 +1,11 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
+import { reviewAtom } from '@/recoil/review';
+import { PATH } from '@/routes/path';
 import { PlaceInfoType, PlaceType, PositionType } from '@/types/placeMap';
 
 import PlaceList from './PlaceList';
@@ -18,6 +22,10 @@ const { kakao } = window as any;
 
 export default function SearchMap({ searchKeyword }: SearchMapProps) {
   const [placeList, setPlaceList] = useState<PlaceType[]>([]);
+  const [reviewState, setReviewState] = useRecoilState(reviewAtom);
+
+  const navigate = useNavigate();
+
   const [map, setMap] = useState<any>();
 
   let markers: any[] = [];
@@ -144,6 +152,9 @@ export default function SearchMap({ searchKeyword }: SearchMapProps) {
   const handleClickPlace = ({ restaurant, location }: PlaceInfoType) => {
     // 상위 컴포넌트에 가게 정보를 전달하는 부분 처리 필요
     console.log('가게 정보: ', restaurant, location);
+    setReviewState({ ...reviewState, restaurant, location });
+
+    navigate(PATH.REVIEW);
   };
 
   return (

@@ -10,8 +10,9 @@ export const PATH = {
   REVIEW: '/review',
   REVIEWUPDATE: '/reviewupdate',
   REVIEWLIST: '/reviewlist',
-  REVIEWDETAIL: 'reviewdetail',
+  REVIEWDETAIL: '/reviewdetail',
   PROFILE: '/profile',
   NOTIFICATION: '/notification',
   DIRECTMESSAGE: '/message',
+  NOTFOUND: '/*',
 };

@@ -4,12 +4,14 @@ import Button from './Button';
 
 interface CTAButtonProps {
   children: React.ReactNode;
+  disabled: boolean;
   backgroundColor?: string;
   onClick?: () => void;
 }
 
 export default function CTAButton({
   children,
+  disabled,
   backgroundColor,
   onClick,
 }: CTAButtonProps) {
@@ -21,7 +23,11 @@ export default function CTAButton({
       height="4.8rem"
       borderRadius="0.8rem"
       textSize="1.6rem"
-      backgroundColor={backgroundColor ?? theme.colors.secondary}
+      backgroundColor={
+        disabled
+          ? `${theme.colors.secondary}80`
+          : backgroundColor ?? theme.colors.secondary
+      }
       onClick={onClick}>
       {children}
     </Button>
