@@ -45,6 +45,7 @@ export default function ReviewDetail() {
   const navigate = useNavigate();
 
   const { postId } = useParams() as { postId: string };
+
   const { data, isLoading } = useGetDetail({ postId });
 
   const { mutate: deletePost } = useDeletePost();

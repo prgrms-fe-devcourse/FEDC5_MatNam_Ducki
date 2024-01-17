@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { ChannelList } from '@/components/Channel/ChannelList';
 import CTAButton from '@/components/Common/Button/CTAButton';
@@ -21,8 +21,7 @@ import {
 import { NotUpdateInput } from './style';
 
 export default function ReviewPage() {
-  // const { state: pagePostId = '' } = useLocation(); <- DetailPage에서 넘어온 postId
-  const pagePostId = '65a115e9817f4c1a36bc4795';
+  const { state: pagePostId = '' } = useLocation();
   const { data: post } = useGetDetail({ postId: pagePostId });
 
   const {
