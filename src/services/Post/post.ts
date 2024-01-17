@@ -92,9 +92,9 @@ export const createPost = async ({
   channelId,
 }: CreatePostPayload) => {
   try {
-    if (image == null) {
-      throw new Error('이미지가 비어있습니다.');
-    }
+    // if (image == null) {
+    //   throw new Error('이미지가 비어있습니다.');
+    // }
 
     const customPost = JSON.stringify({
       review,
@@ -104,8 +104,11 @@ export const createPost = async ({
     });
     const formData = new FormData();
 
+    if (image) {
+      formData.append('image', image);
+    }
+
     formData.append('title', customPost);
-    formData.append('image', image);
     formData.append('channelId', channelId);
 
     await axiosAuthInstance.post(ENDPOINT.POSTS.CREATE, formData);

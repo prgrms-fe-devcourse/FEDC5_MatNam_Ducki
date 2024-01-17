@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ChannelList } from '@/components/Channel/ChannelList';
 import Circle from '@/components/Common/Circle';
 import { ReviewCardList } from '@/components/ReviewCardList';
+import { CHANNEL } from '@/constants/channel';
 import { SORT_TYPE } from '@/constants/review';
 import { useGetPostByChannel } from '@/hooks/usePost';
 import { Post } from '@/types/response';
@@ -10,7 +11,7 @@ import { Post } from '@/types/response';
 import { ReviewListContainer, SortContainer, SortOption } from './style';
 
 export default function ReviewList() {
-  const [channelId, setChannelId] = useState('65965f97f759661f3e669793');
+  const [channelId, setChannelId] = useState(CHANNEL.LIKE);
   const [sortType, setSortType] = useState(SORT_TYPE.LATEST); // ['latest', 'popular']
   const [sortedPosts, setSortedPosts] = useState<Post[]>([]);
 
