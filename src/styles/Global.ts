@@ -150,6 +150,7 @@ export const reset = css`
     border: none;
   }
   body {
+    width: 100%;
     font-family:
       'Pretendard-Regular',
       Pretendard,
