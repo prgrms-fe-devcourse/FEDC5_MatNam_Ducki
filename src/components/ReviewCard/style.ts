@@ -10,14 +10,19 @@ export const ReviewCardContainer = styled.div<{ width: string }>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2.5rem 0;
+  padding: 3rem 0;
+
+  &:last-child {
+    border: none;
+    padding-bottom: 0;
+  }
 `;
 
 export const ReviewCardHeader = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #4f4f4f;
 `;
 

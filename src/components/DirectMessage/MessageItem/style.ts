@@ -3,7 +3,9 @@ import styled from '@emotion/styled';
 
 import { theme } from '@/styles/Theme';
 
-export const MessageItemWrapper = styled.ul``;
+export const MessageItemWrapper = styled.li`
+  padding: 0 2rem;
+`;
 
 export const ReceiverMessageWrapper = styled.li`
   width: 100%;

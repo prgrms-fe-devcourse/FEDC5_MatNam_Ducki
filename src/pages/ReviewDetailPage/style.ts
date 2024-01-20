@@ -33,7 +33,7 @@ export const CommentList = styled.div`
   height: 100%;
 
   // bottom의 고정 값에 맞춰 수정
-  margin-bottom: 145px;
+  margin-bottom: 8.5rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -91,7 +91,7 @@ export const ReviewImage = styled.img`
 `;
 
 export const ReviewHeaderWrapper = styled.div`
-  margin-top: 1rem;
+  margin: 1rem 0;
   line-height: 2.2rem;
 `;
 
@@ -109,7 +109,7 @@ export const ReviewHeaderLeft = styled.div`
 `;
 
 export const RestaurantName = styled.h3`
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
@@ -135,7 +135,7 @@ export const RestaurantOpeningTime = styled.div`
 
 export const ReviewContent = styled.div`
   margin: 2rem 0 3.3rem;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   line-height: 2.2rem;
-  white-space: pre;
+  white-space: pre-line;
 `;

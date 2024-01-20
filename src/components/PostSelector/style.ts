@@ -12,7 +12,7 @@ export const SelectorWrapper = styled.div`
 export const MyPostWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 2rem;
+  padding: 0 2rem 2rem;
 `;
 
 export const MyPostsTitle = styled.div<{ isLikesSelected: boolean }>`
