@@ -8,10 +8,11 @@ export const MessageFormWrapper = styled.form`
   max-width: 37.5rem;
   position: fixed;
   left: 50%;
-  bottom: calc(${theme.size.navbarSize} + 1.5rem);
+  bottom: calc(${theme.size.navbarSize});
   transform: translateX(-50%);
-  padding: 0 2rem;
+  padding: 0 2rem 1.5rem;
   color: ${theme.colors};
+  background-color: #fff;
 `;
 
 export const BottomGradient = styled.div`
