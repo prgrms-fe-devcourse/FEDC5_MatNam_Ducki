@@ -59,11 +59,11 @@ export default function ProfilePage() {
   }, [user]);
 
   useEffect(() => {
-    if (!user) {
+    if (userId === 'undefined') {
       Toast.info('로그인 후 이용해 보세요!');
       navigate('/signIn');
     }
-  }, []);
+  }, [userId]);
 
   const handleFileChange = (file: File | null) => {
     if (file) {
