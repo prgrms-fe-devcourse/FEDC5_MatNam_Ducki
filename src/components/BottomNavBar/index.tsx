@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import {
   MAIN_PATH,
@@ -9,6 +10,7 @@ import {
 } from '@/constants';
 import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useGetNotifications } from '@/hooks/useNotification';
+import { userAtom } from '@/recoil/user';
 
 import MainIcon from '../Common/Icons/MainIcon';
 import MessageIcon from '../Common/Icons/MessageIcon';
@@ -17,7 +19,6 @@ import ProfileIcon from '../Common/Icons/ProfileIcon';
 import ReviewIcon from '../Common/Icons/ReviewIcon';
 import NotificationBadge from '../Common/NotificationBadge';
 import { BottomNavBarWrapper, LinkWrapper } from './style';
-
 interface PropsBottomNavBar {
   path: pathType;
   icon: React.ReactNode;
@@ -32,6 +33,7 @@ type pathType =
   | `${typeof PROFILE_PATH}/${string}`;
 
 export default function BottomNavBar() {
+  const user = useRecoilValue(userAtom);
   const location = useLocation();
   const currentPathName = location.pathname;
 
@@ -78,7 +80,7 @@ export default function BottomNavBar() {
       ),
     },
     {
-      path: `${PROFILE_PATH}/${authUser?._id}`,
+      path: `${PROFILE_PATH}/${user?._id}`,
       icon: <ProfileIcon />,
     },
   ];
