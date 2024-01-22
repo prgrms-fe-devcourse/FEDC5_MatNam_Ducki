@@ -59,6 +59,14 @@
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/4e8d1504-dab4-44e6-95ac-73caab84e518" />
 </div>
 
+### 맛집 지도 검색
+
+<div style={{ display: 'flex'; gap: "10"}}>
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/64ea1bbb-4a2e-4695-8945-cc9431f81128">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/6c52ca23-36f4-4844-9b0e-2947049f0f9c">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/1e8e7f5b-1252-45c7-83d6-1bd8dfad0e11">
+</div>
+
 ### 프로필
 
 <div style={{ display: 'flex'}}>
@@ -70,18 +78,16 @@
 ### 채팅 / 알림
 
 <div style={{ display: 'flex'; gap: "10"}}>
-  <img width="200" alt="스크린샷 2024-01-22 오후 2 50 29" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/17d26bf3-a11e-4ecf-a310-823b9e31eb19">
-  <img width="200" alt="스크린샷 2024-01-22 오후 2 49 54" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/7fae31f0-28c3-4978-a7ab-5d7beede02c7">
-  <img width="200" alt="스크린샷 2024-01-22 오후 2 53 17" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/8e48abec-30c2-4f53-af3e-f8af61f17b2b">
-  <img width="200" alt="스크린샷 2024-01-22 오후 2 59 44" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/c6195959-f1c5-43a5-805a-f8f3b7d4189f">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/17d26bf3-a11e-4ecf-a310-823b9e31eb19">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/7fae31f0-28c3-4978-a7ab-5d7beede02c7">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/8e48abec-30c2-4f53-af3e-f8af61f17b2b">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/c6195959-f1c5-43a5-805a-f8f3b7d4189f">
 </div>
-
-### 검색
 
 ### 회원가입 / 로그인
 
 <div style={{ display: 'flex'; gap: "10"}}>
-  <img width="200" alt="스크린샷 2024-01-22 오후 2 37 58" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/8dab672b-9561-41c4-ba58-61268310c6ad">
-  <img width="200" alt="스크린샷 2024-01-22 오후 2 39 02" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/6c9af836-7b31-4c87-a1dd-b323ef6096c3">
-  <img width="195" alt="스크린샷 2024-01-22 오후 2 40 23" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/c6f62e7d-cb04-466c-9ae8-9f432df9a79c">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/fdadf238-792e-4f6d-b44d-e8c062af023c">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/b3120b2c-7987-4a8a-a3db-1ad31886eefd">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/916a91b2-62f9-4cef-9865-955fedd1bc81">
 </div>
