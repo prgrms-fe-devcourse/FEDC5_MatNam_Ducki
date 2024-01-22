@@ -52,7 +52,7 @@
 
 ### 채널 / 리뷰
 
-<div style={{ display: 'flex'}>
+<div style={{ display: 'flex'}}>
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/f5351118-28a8-4c19-9576-165d5608ec18" />
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/ec2150ea-77d9-4417-8339-f3878bb29fcd" />
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/3302dd16-0caf-4d8d-a8b1-bb514d33ab46"/>
