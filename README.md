@@ -5,6 +5,8 @@
 [➡️ 서비스 이용하기](https://matnam.vercel.app)  
 [➡️ 노션 페이지 보러가기](https://www.notion.so/prgrms/746ea06f80fe4d94b9f56f9d860f3b10)
 
+<br />
+
 ## 기술 스택
 
 | Category  | Stack                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -17,6 +19,8 @@
 | Api       | <img src="https://img.shields.io/badge/axios-5A29E4?logo=axios&logoColor=white"/>                                                                                                                                                                                                                                                                                                                                                                                       |
 | Formatter | <img src="https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/prettier-F7B93E?logo=prettier&logoColor=white"/>                                                                                                                                                                                                                                                                                             |
 | Deploy    | <img src="https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white"/>                                                                                                                                                                                                                                                                                                                                                                                     |
+
+<br />
 
 ## 팀 소개
 
@@ -48,6 +52,8 @@
   </tbody>
 </table>
 
+<br />
+
 ## 주요 기능
 
 ### 채널 / 리뷰
@@ -65,6 +71,13 @@
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/64ea1bbb-4a2e-4695-8945-cc9431f81128">
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/6c52ca23-36f4-4844-9b0e-2947049f0f9c">
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/1e8e7f5b-1252-45c7-83d6-1bd8dfad0e11">
+</div>
+
+### 맛집 후기 검색
+
+<div style={{ display: 'flex'; gap: "10"}}>
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/f129e5e5-84ca-469f-8365-9ef6cc190b17">
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/1485ac8c-fdaf-4f6d-af68-129bd405e9bf">
 </div>
 
 ### 프로필
