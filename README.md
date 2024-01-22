@@ -61,12 +61,6 @@
 
 ### 프로필
 
-<img width="722" alt="스크린샷 2023-10-02 오후 1 22 47" src="https://github.com/prgrms-fe-devcourse/FEDC4_HONKOK_JunilHwang/assets/45515388/3212d9a5-d372-4466-8143-42a0e55a1058">
-
 ### 채팅 / 알림
 
-<img width="722" alt="스크린샷 2023-10-02 오후 1 22 29" src="https://github.com/prgrms-fe-devcourse/FEDC4_HONKOK_JunilHwang/assets/45515388/ff751a79-67b0-498d-9f79-5431766a7eda">
-
 ### 검색
-
-<img width="722" alt="스크린샷 2023-10-02 오후 1 23 11" src="https://github.com/prgrms-fe-devcourse/FEDC4_HONKOK_JunilHwang/assets/45515388/c53ebd6c-ce2e-45ae-a486-f7afdbb522ef">
