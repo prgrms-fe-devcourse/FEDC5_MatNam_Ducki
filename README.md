@@ -69,4 +69,19 @@
 
 ### 채팅 / 알림
 
+<div style={{ display: 'flex'; gap: "10"}}>
+  <img width="200" alt="스크린샷 2024-01-22 오후 2 50 29" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/17d26bf3-a11e-4ecf-a310-823b9e31eb19">
+  <img width="200" alt="스크린샷 2024-01-22 오후 2 49 54" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/7fae31f0-28c3-4978-a7ab-5d7beede02c7">
+  <img width="200" alt="스크린샷 2024-01-22 오후 2 53 17" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/8e48abec-30c2-4f53-af3e-f8af61f17b2b">
+  <img width="200" alt="스크린샷 2024-01-22 오후 2 59 44" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/c6195959-f1c5-43a5-805a-f8f3b7d4189f">
+</div>
+
 ### 검색
+
+### 회원가입 / 로그인
+
+<div style={{ display: 'flex'; gap: "10"}}>
+  <img width="200" alt="스크린샷 2024-01-22 오후 2 37 58" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/8dab672b-9561-41c4-ba58-61268310c6ad">
+  <img width="200" alt="스크린샷 2024-01-22 오후 2 39 02" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/6c9af836-7b31-4c87-a1dd-b323ef6096c3">
+  <img width="195" alt="스크린샷 2024-01-22 오후 2 40 23" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/c6f62e7d-cb04-466c-9ae8-9f432df9a79c">
+</div>
