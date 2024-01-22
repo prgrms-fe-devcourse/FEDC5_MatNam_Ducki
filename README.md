@@ -45,29 +45,15 @@
       <td><a href="https://github.com/nimgnas">@nimgnas</a></td>
       <td><a href="https://github.com/Songhee99">@Songhee99</a></td>
     </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td width="200"></td>
-      <td width="200"></td>
-      <td width="200"></td>
-      <td width="200"></td>
-      <td width="200"></td>
-    </tr>
   </tbody>
 </table>
 
 ## 주요 기능
 
-<!-- ### 채널 / 게시물
+### 채널 / 리뷰
 
-<img width="722" alt="스크린샷 2023-10-02 오후 1 21 55" src="https://github.com/prgrms-fe-devcourse/FEDC4_HONKOK_JunilHwang/assets/45515388/84ba6bfe-c05b-474b-bd59-fec884f99684">
-
+<img width="800" alt="스크린샷 2023-10-02 오후 1 21 55" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/316f596a-6a63-4360-b104-10e9a78b9043">
+<!-- 
 ### 프로필
 
 <img width="722" alt="스크린샷 2023-10-02 오후 1 22 47" src="https://github.com/prgrms-fe-devcourse/FEDC4_HONKOK_JunilHwang/assets/45515388/3212d9a5-d372-4466-8143-42a0e55a1058">
