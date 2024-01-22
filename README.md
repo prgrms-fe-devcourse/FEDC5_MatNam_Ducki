@@ -52,8 +52,13 @@
 
 ### 채널 / 리뷰
 
-<img width="800" alt="스크린샷 2023-10-02 오후 1 21 55" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/316f596a-6a63-4360-b104-10e9a78b9043">
-<!-- 
+<div style={{ display: 'flex'; gap: "10"}}>
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/f5351118-28a8-4c19-9576-165d5608ec18" />
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/ec2150ea-77d9-4417-8339-f3878bb29fcd" />
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/3302dd16-0caf-4d8d-a8b1-bb514d33ab46"/>
+  <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/4e8d1504-dab4-44e6-95ac-73caab84e518" />
+</div>
+
 ### 프로필
 
 <img width="722" alt="스크린샷 2023-10-02 오후 1 22 47" src="https://github.com/prgrms-fe-devcourse/FEDC4_HONKOK_JunilHwang/assets/45515388/3212d9a5-d372-4466-8143-42a0e55a1058">
@@ -64,4 +69,4 @@
 
 ### 검색
 
-<img width="722" alt="스크린샷 2023-10-02 오후 1 23 11" src="https://github.com/prgrms-fe-devcourse/FEDC4_HONKOK_JunilHwang/assets/45515388/c53ebd6c-ce2e-45ae-a486-f7afdbb522ef"> -->
+<img width="722" alt="스크린샷 2023-10-02 오후 1 23 11" src="https://github.com/prgrms-fe-devcourse/FEDC4_HONKOK_JunilHwang/assets/45515388/c53ebd6c-ce2e-45ae-a486-f7afdbb522ef">
