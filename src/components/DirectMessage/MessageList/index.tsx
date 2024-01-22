@@ -11,7 +11,7 @@ interface MessageListProps {
 }
 
 export default function MessageList({ userId, messageList }: MessageListProps) {
-  const scrollRef = useRef<HTMLUListElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (scrollRef.current) {

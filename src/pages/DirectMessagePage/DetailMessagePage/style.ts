@@ -8,10 +8,10 @@ export const DetailMessagePageWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 0 2rem;
 `;
 
 export const UserProfileWrapper = styled.div`
   position: fixed;
   top: 7.5rem;
+  padding: 0 2rem;
 `;

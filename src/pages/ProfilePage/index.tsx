@@ -16,7 +16,6 @@ import {
   EDIT_BUTTON_TEXT,
   PLACEHOLDER_DEFAULTS,
 } from '@/constants/profile';
-import { useCheckAuthUser } from '@/hooks/useAuth';
 import { useSignOut } from '@/hooks/useAuth';
 import { useChangeIntroduce } from '@/hooks/useGetProfile';
 import { useChangeImage } from '@/hooks/useGetProfile';
@@ -41,29 +40,30 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const setSelectedFile = useSetRecoilState(selectedFileAtom);
   const { changeImage } = useChangeImage(setIsLoading, setSelectedFile);
-  const { data: authUser } = useCheckAuthUser();
+
   const params = useParams();
   const userId = params.userId;
   const navigate = useNavigate();
   const { changeIntroduce } = useChangeIntroduce();
 
   const user = useRecoilValue(userAtom);
+
   const setUserState = useSetRecoilState(userAtom);
 
   const { mutate: signOut } = useSignOut({ setUserState });
 
   useEffect(() => {
-    if (authUser) {
-      setIntroduction(authUser.username || '');
+    if (user) {
+      setIntroduction(user.username || '');
     }
-  }, [authUser]);
+  }, [user]);
 
   useEffect(() => {
-    if (!user) {
+    if (userId === 'undefined') {
       Toast.info('로그인 후 이용해 보세요!');
       navigate('/signIn');
     }
-  }, []);
+  }, [userId]);
 
   const handleFileChange = (file: File | null) => {
     if (file) {
@@ -79,8 +79,8 @@ export default function ProfilePage() {
     e.preventDefault();
     setIsEditing((prevIsEditing) => !prevIsEditing);
 
-    if (authUser) {
-      changeIntroduce({ fullName: authUser.fullName, username: introduction });
+    if (user) {
+      changeIntroduce({ fullName: user.fullName, username: introduction });
     }
   };
 
@@ -98,10 +98,10 @@ export default function ProfilePage() {
     } else {
       Toast.info('작성 범위를 초과했습니다.');
 
-      if (authUser) {
+      if (user) {
         // 범위를 넘기면 alert 발생하면서 초기값으로 돌아가게 되어서 일단은 서버쪽에 보내는 쪽으로 저장하도록했습니다.
         changeIntroduce({
-          fullName: authUser.fullName,
+          fullName: user.fullName,
           username: introduction,
         });
       }
@@ -118,7 +118,7 @@ export default function ProfilePage() {
   return (
     <AnimationContainer>
       <>
-        {authUser && authUser._id === userId ? (
+        {user && user._id === userId ? (
           <ProfileWrapper>
             <ProfileBackGroundImage>
               <UserInfoWrapper>
@@ -136,17 +136,14 @@ export default function ProfilePage() {
                         width="80px"
                         borderRadius="50%"
                         image={
-                          authUser.image
-                            ? `${authUser.image}?${Date.now()}`
+                          user.image
+                            ? `${user.image}?${Date.now()}`
                             : defaultImage // 초기 값
                         }
                       />
                     )}
                   </ImageWrapper>
-                  <UserInfo
-                    userName={authUser.fullName}
-                    userId={authUser.email}
-                  />
+                  <UserInfo userName={user.fullName} userId={user.email} />
                 </ProfileInfo>
                 <Button
                   onClick={handleLogOutButtonClick}

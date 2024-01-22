@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import MessageForm from '@/components/DirectMessage/MessageForm';
@@ -10,7 +11,6 @@ import {
 import { useGetUser } from '@/hooks/useGetProfile';
 
 import { DetailMessagePageWrapper, UserProfileWrapper } from './style';
-import { useEffect } from 'react';
 
 export default function DetailMessagePage() {
   const { userId } = useParams();

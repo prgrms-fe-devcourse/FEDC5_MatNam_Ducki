@@ -44,6 +44,7 @@ export const AuthorWrapper = styled.span`
 
 export const ContentWrapper = styled.span`
   font-weight: ${theme.fontWeight.medium};
+  line-height: 1.6rem;
 `;
 
 export const TimeWrapper = styled.span`
@@ -51,4 +52,5 @@ export const TimeWrapper = styled.span`
   flex-shrink: 0;
   font-size: 1.1rem;
   color: ${theme.colors.gray};
+  margin-left: 0.4rem;
 `;
