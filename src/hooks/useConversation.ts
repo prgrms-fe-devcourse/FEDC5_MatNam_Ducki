@@ -26,6 +26,9 @@ export const useGetUserMessages = (userId: string) => {
     queryKey: searchKeys.userMessages(userId),
     queryFn: () => getUserMessages(userId),
     enabled: !!userId,
+    refetchInterval: 2000,
+    refetchIntervalInBackground: true,
+    cacheTime: 0,
   });
 };
 
