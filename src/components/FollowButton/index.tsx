@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { userAtom } from '@/recoil/user';
 
 import { Button } from './style.ts';
 
-export default function FollowButton() {
+export default function FollowButton(props: any) {
   const [isMe, setIsMe] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
+  const user = useRecoilValue(userAtom);
 
   useEffect(() => {
-    setIsMe(false);
+    props.userId == user?.email ? setIsMe(true) : setIsMe(false);
     setIsFollowing(false);
   }, []);
 
