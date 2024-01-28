@@ -64,4 +64,10 @@ export const ENDPOINT = {
     CREATE: '/messages/create',
     UPDATE_SEEN: '/messages/update-seen',
   },
+
+  /* follow */
+  FOLLOW: {
+    CREATE: '/follow/create',
+    DELETE: '/follow/delete',
+  },
 };
