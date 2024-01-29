@@ -7,7 +7,7 @@ import { userAtom } from '@/recoil/user';
 import { Button } from './style.ts';
 
 export default function FollowButton(props: any) {
-  const [isMe, setIsMe] = useState(true);
+  const [isMe, setIsMe] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const user = useRecoilValue(userAtom);
 
@@ -16,24 +16,20 @@ export default function FollowButton(props: any) {
   });
 
   useEffect(() => {
-    props.userId == user?.email ? setIsMe(true) : setIsMe(false);
+    if (props.userId == user?.email) setIsMe(true);
     const follower = props.followers.filter(
       (follower: any) => follower.user === props.userId,
     );
     if (follower.length > 0) setIsFollowing(true);
   }, []);
 
-  const viewFriends = () => {
-    console.log('친구 목록 보기');
-  };
+  const viewFriends = () => {};
 
   const unfollow = () => {
-    console.log('친구 끊기');
     setIsFollowing(false);
   };
 
   const follow = () => {
-    console.log('친구 맺기');
     createFollowMutate(props.userId);
     setIsFollowing(true);
   };
