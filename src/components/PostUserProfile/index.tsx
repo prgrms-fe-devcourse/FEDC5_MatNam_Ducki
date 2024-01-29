@@ -45,7 +45,8 @@ export default function PostUserProfile() {
                 />
                 <UserInfo
                   userName={user.fullName}
-                  userId={user.email}
+                  userId={user._id}
+                  userEmail={user.email}
                   followers={user.followers}
                 />
               </UserProfile>

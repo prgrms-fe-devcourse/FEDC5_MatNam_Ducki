@@ -5,13 +5,14 @@ import { UserId, UserInfoSection, UserName } from './style';
 
 export default function UserInfo({
   userName,
+  userEmail,
   userId,
   followers,
 }: PropsUserInfo) {
   return (
     <UserInfoSection>
       <UserName>{userName}</UserName>
-      <UserId>{userId}</UserId>
+      <UserId>{userEmail}</UserId>
       <FollowButton userId={userId} followers={followers}></FollowButton>
     </UserInfoSection>
   );
