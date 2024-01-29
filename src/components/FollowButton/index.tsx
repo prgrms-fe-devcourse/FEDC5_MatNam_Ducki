@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
+import { useCreateFollow } from '@/hooks/useFolllow';
 import { userAtom } from '@/recoil/user';
 
 import { Button } from './style.ts';
@@ -9,6 +10,10 @@ export default function FollowButton(props: any) {
   const [isMe, setIsMe] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
   const user = useRecoilValue(userAtom);
+
+  const { mutate: createFollowMutate } = useCreateFollow({
+    userId: props.userId,
+  });
 
   useEffect(() => {
     props.userId == user?.email ? setIsMe(true) : setIsMe(false);
@@ -26,6 +31,7 @@ export default function FollowButton(props: any) {
 
   const follow = () => {
     console.log('친구 맺기');
+    createFollowMutate(props.userId);
     setIsFollowing(true);
   };
 
