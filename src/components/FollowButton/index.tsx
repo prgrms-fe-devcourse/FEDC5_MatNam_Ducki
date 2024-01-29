@@ -17,7 +17,10 @@ export default function FollowButton(props: any) {
 
   useEffect(() => {
     props.userId == user?.email ? setIsMe(true) : setIsMe(false);
-    setIsFollowing(false);
+    const follower = props.followers.filter(
+      (follower: any) => follower.user === props.userId,
+    );
+    if (follower.length > 0) setIsFollowing(true);
   }, []);
 
   const viewFriends = () => {
