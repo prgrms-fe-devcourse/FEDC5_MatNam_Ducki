@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { useCreateFollow } from '@/hooks/useFolllow';
+import { useCreateFollow, useDeleteFollow } from '@/hooks/useFolllow';
 import { userAtom } from '@/recoil/user';
 
 import { Button } from './style.ts';
@@ -11,27 +11,31 @@ export default function FollowButton(props: any) {
   const [isFollowing, setIsFollowing] = useState(false);
   const user = useRecoilValue(userAtom);
 
+  const follower = props.followers.filter(
+    (follower: any) => follower.user === props.userId,
+  );
+
   const { mutate: createFollowMutate } = useCreateFollow({
     userId: props.userId,
   });
 
+  const { mutate: deleteFollowMutate } = useDeleteFollow();
+
   useEffect(() => {
     if (props.userId == user?.email) setIsMe(true);
-    const follower = props.followers.filter(
-      (follower: any) => follower.user === props.userId,
-    );
     if (follower.length > 0) setIsFollowing(true);
   }, []);
 
   const viewFriends = () => {};
 
-  const unfollow = () => {
-    setIsFollowing(false);
-  };
-
   const follow = () => {
     createFollowMutate(props.userId);
     setIsFollowing(true);
+  };
+
+  const unfollow = () => {
+    deleteFollowMutate(follower[0]._id);
+    setIsFollowing(false);
   };
 
   let followText = '';
