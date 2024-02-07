@@ -1,4 +1,4 @@
-import { Follow } from '@/types/response';
+import { Follow, User } from '@/types/response';
 
 import { axiosAuthInstance } from '../axiosInstance';
 import { ENDPOINT } from '../endPoint';
@@ -26,6 +26,21 @@ export const deleteFollow = async (userId: string) => {
       {
         data: { id: userId },
       },
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const getUserDetailsById = async (
+  userId: string,
+): Promise<User | null> => {
+  try {
+    const response = await axiosAuthInstance.get<User>(
+      ENDPOINT.USERS.USER(userId),
     );
 
     return response;
