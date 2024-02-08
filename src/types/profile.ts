@@ -10,5 +10,7 @@ export interface PropsIntroductionEditor {
 
 export interface PropsUserInfo {
   userName: string;
+  userEmail: string;
   userId: string;
+  followers: [];
 }

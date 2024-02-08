@@ -101,6 +101,14 @@ export interface Message {
   updatedAt: string;
 }
 
+export interface Follow {
+  _id: string;
+  user: string;
+  follower: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export type Conversation = Omit<Message, 'updatedAt'>;
 
 export type PostResultType = Post[] | null;

@@ -143,7 +143,11 @@ export default function ProfilePage() {
                       />
                     )}
                   </ImageWrapper>
-                  <UserInfo userName={user.fullName} userId={user.email} />
+                  <UserInfo
+                    userName={user.fullName}
+                    userId={user.email}
+                    followers={user.followers}
+                  />
                 </ProfileInfo>
                 <Button
                   onClick={handleLogOutButtonClick}

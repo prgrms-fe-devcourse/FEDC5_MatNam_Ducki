@@ -43,7 +43,12 @@ export default function PostUserProfile() {
                     boxShadow: '0 10px 10px rgba(255, 232, 61, 0.29)',
                   }}
                 />
-                <UserInfo userName={user.fullName} userId={user.email} />
+                <UserInfo
+                  userName={user.fullName}
+                  userId={user._id}
+                  userEmail={user.email}
+                  followers={user.followers}
+                />
               </UserProfile>
             </UserInfoWrapper>
           </ProfileBackGroundImage>
