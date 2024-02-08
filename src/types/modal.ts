@@ -6,6 +6,7 @@ export type ModalStateType = {
 
 export enum ModalType {
   CHANGE_IMAGE = 'CHANGE_IMAGE',
+  VIEW_FOLLOW = 'VIEW_FOLLOW',
 }
 
 export const MODAL_PROPS_BY_TYPE = [
