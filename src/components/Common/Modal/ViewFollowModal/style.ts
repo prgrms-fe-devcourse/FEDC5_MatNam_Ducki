@@ -51,3 +51,9 @@ export const FollowButton = styled.button<{ active: boolean }>`
   border: none;
   cursor: pointer;
 `;
+
+export const NoListMessage = styled.div`
+  text-align: center;
+  color: ${theme.colors.gray};
+  padding: 2rem;
+`;

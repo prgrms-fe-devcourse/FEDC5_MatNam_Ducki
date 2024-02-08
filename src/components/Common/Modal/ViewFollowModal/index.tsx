@@ -9,6 +9,7 @@ import { getUserDetailsById } from '@/services/Follow/follow';
 import {
   FollowButton,
   FollowButtonWrapper,
+  NoListMessage,
   UserList,
   UserListItem,
   UserName,
@@ -33,7 +34,7 @@ export default function ViewFollowModal() {
         ? user?.following.map((following) => following.user)
         : user?.followers.map((follower) => follower.follower);
 
-    if (ids) fetchUserDetails(ids);
+    ids && ids.length > 0 ? fetchUserDetails(ids) : setUserDetails([]);
   }, [activeList, user]);
 
   return (
@@ -48,17 +49,21 @@ export default function ViewFollowModal() {
           </FollowButton>
         ))}
       </FollowButtonWrapper>
-      <UserList>
-        {userDetails.map((detail, index) => (
-          <UserListItem key={index}>
-            <Avatar
-              imageUrl={detail.image || DEFAULT_PROFILE_IMAGE}
-              size="small"
-            />
-            <UserName>{detail.fullName}</UserName>
-          </UserListItem>
-        ))}
-      </UserList>
+      {userDetails.length > 0 ? (
+        <UserList>
+          {userDetails.map((detail, index) => (
+            <UserListItem key={index}>
+              <Avatar
+                imageUrl={detail.image || DEFAULT_PROFILE_IMAGE}
+                size="small"
+              />
+              <UserName>{detail.fullName}</UserName>
+            </UserListItem>
+          ))}
+        </UserList>
+      ) : (
+        <NoListMessage>{activeList} 목록이 없습니다.</NoListMessage>
+      )}
     </ViewFollowWrapper>
   );
 }
