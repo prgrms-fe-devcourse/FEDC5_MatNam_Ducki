@@ -80,12 +80,19 @@
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/55135881/1485ac8c-fdaf-4f6d-af68-129bd405e9bf">
 </div>
 
-### 프로필
+### 내 프로필
 
 <div style={{ display: 'flex'}}>
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/d6ba45c3-5f73-4bd9-bf46-4d9cd2d0ecff" />
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/b8631bba-0d12-47f1-aa4c-a2179e2578f8" />
   <img width="200" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/44563138/7af055ff-9b65-4f7b-b65d-7b57520d92f7"/>
+</div>
+
+### 유저 프로필
+
+<div style={{ display: 'flex'}}>
+   <img width="200" alt="스크린샷 2024-03-28 오후 5 17 32" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/81172451/7c898132-6749-4808-a770-22ad704f9919">
+   <img width="200" alt="스크린샷 2024-03-28 오후 5 22 05" src="https://github.com/prgrms-fe-devcourse/FEDC5_MatNam_Ducki/assets/81172451/ae9ce4d5-ea7e-4c98-a73b-9d21c18ce462">
 </div>
 
 ### 채팅 / 알림
